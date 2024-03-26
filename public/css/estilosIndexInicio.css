@@ -1,0 +1,109 @@
+/** Css Laura*/
+
+.div-index{
+    background-color: #9A000F;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.logo-index{
+    background-color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.barra-index{
+    text-decoration: none;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+.a-index{
+    color: #fff;
+    text-decoration: none;
+    padding: 0px 100px;
+}
+.sena{
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+}
+.recetas{
+    display: flex;
+    border-radius: 5px;
+    
+}
+.caja2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 400px;
+    margin-top: -20px;
+    margin-bottom: -80px;
+
+}
+.logo{
+    height: 800px;
+    width: 1000px;
+}
+.caja4 {
+    display: flex;
+    margin-top: 50px;
+    border-top: 1px solid white;
+    gap: 40px;
+    padding: 50px;
+    text-align: center;
+    justify-content: center;
+    font-size: larger;
+
+}
+.caja3,
+.caja5 {
+    display: flex;
+    margin-top: 50px;
+    border-top: 1px solid white;
+    gap: 40px;
+    text-align: center; 
+    text-align: center;
+    justify-content: center;
+    background-color: #aaa;
+    padding: 50px;
+    font-size: larger;
+}
+.tittle{
+    font-size: 50px;
+}
+.footerIndex{
+    height: 150px;
+    width: 100%;
+    position: relative;
+    top: 450px;
+    background-color: rgba(217, 217, 217);
+    border-top: 1px solid black;
+    display: grid;
+    grid-template: 150px / 110px 1fr 150px;
+    align-items: center;
+}
+
+.footerIndex p{
+    font-size: 25px;
+    text-align: left;
+    margin: 20px;
+}
+
+.logo1SenaIndex{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.logo3Index{
+    height: 140px;
+    width: 140px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    object-fit: cover;
+}

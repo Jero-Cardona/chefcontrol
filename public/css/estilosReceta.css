@@ -1,0 +1,478 @@
+*{
+    margin: 0px;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+}
+
+.contenedorRecetas{
+    display: grid;
+    min-width: 320px;
+}
+
+/*Header css*/
+
+.headerRecetas{
+    background-color: rgba(154, 0, 15);
+    width: 100%;
+    height: 100px;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.contenedorHR{
+    width: 100%;
+}
+
+.usuarioRecetas{
+    float: left;
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    color: rgba(255, 255, 255);
+}
+
+.logo1Recetas{
+    height: 90px;
+    width: 90px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    float: left;
+    margin-left: 5px;
+    object-fit: cover;
+}
+
+.menuRecetas{
+    float: right;
+    line-height: 90px;
+}
+
+.menuRecetas a{
+    color: rgba(255, 255, 255);
+    padding: 15px;
+    display: inline-block;
+    line-height: normal;
+    font-size: 16px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
+    font-size: 18px;
+}
+
+.menuRecetas a:hover{
+    color: rgba(255, 102, 0);
+    border-bottom: 4px solid rgba(255, 102, 0);
+}
+
+#btnMenu{
+    display: none;
+}
+
+.btnMenuR{
+    float: right;
+    display: none;
+}
+
+.btnMenuR label{
+    background-color: rgba(255, 102, 0);
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: rgba(255, 255, 255);
+    transition: all 500ms ease;
+}
+
+/*Contenedor1 css*/
+
+.contenedor1Recetas{
+    display: grid;
+    grid-template: 100px 50px 50px / 1fr;
+    justify-content: center;
+    text-align: center;
+}
+
+.fondo1Recetas{
+    height: 500px;
+    opacity: .4;
+    position: absolute;
+    display: flex;
+    width: 100%;
+}
+
+.logo2Recetas{
+    height: 700px;
+    width: 800px;
+    object-fit: cover;
+    position: relative;
+    bottom: 150px;
+    left: -20px;
+}
+
+.contenedor1Recetas h2{
+    position: relative;
+    bottom: 350px;
+    font-size: 30px;
+}
+
+.contenedor1Recetas p{
+    background-color: rgba(154, 0, 15);
+    position: relative;
+    bottom: 250px;
+    color: rgba(255, 255, 255);
+    padding: 30px;
+    font-size: 20px;
+}
+
+/*Contenedor2 css*/
+
+.contenedor2Recetas{
+    position: relative;
+    top: 500px;
+    display: grid;
+    grid-template: 400px 120px / 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.a3Recetas img{
+    position: relative;
+    top: 20px;
+}
+
+.a1Recetas, .a2Recetas, .a3Recetas{
+    text-align: center;
+    display: grid;
+    justify-content: space-evenly;
+}
+
+.a1Recetas b, .a2Recetas b, .a3Recetas b{
+    color: rgba(0, 0, 0);
+    position: relative;
+    font-size: 23px;
+    transition: all 500ms ease;
+}
+
+.a1Recetas b:hover{
+    color: rgba(154, 0, 15);
+    border-bottom: 4px solid rgba(154, 0, 15);
+}
+
+.a2Recetas b:hover{
+    color: rgba(154, 0, 15);
+    border-bottom: 4px solid rgba(154, 0, 15);
+}
+
+.a3Recetas b:hover{
+    color: rgba(154, 0, 15);
+    border-bottom: 4px solid rgba(154, 0, 15);
+}
+
+.contenedor2Recetas p{
+    grid-column: 1 / span 3;
+    text-align: center;
+    padding: 30px;
+    font-size: 20px;
+    background-color: rgba(217, 217, 217);
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid black;
+}
+
+
+/*ContenedorRecetario css*/
+
+.contenedorRecetario{
+    position: relative;
+    top: 500px;
+}
+
+.tituloRecetario{
+    background-color: rgba(154, 0, 15);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: rgba(255, 255, 255);
+}
+
+.contenedorRecetario .recetario1{
+    display: grid;
+    grid-template: 450px 450px 450px / 1fr 1fr;
+    margin-top: 100px;
+    justify-items: center;
+}
+
+.hover1Recetas figure{
+    width: 500px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.hover1Recetas figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 500ms ease-out;
+}
+
+.hoverDiv1Recetas{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    transition: all 500ms ease-out;
+    color: rgba(255, 255, 255);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hoverDiv2Recetas{
+    display: none;
+}
+
+.hoverDiv1Recetas h2{
+    margin: 10px;
+    position: absolute;
+    bottom: 50px;
+}
+
+.hoverDiv1Recetas p{
+    margin: 10px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.hover1Recetas figure:hover > a .hoverDiv1Recetas{
+    opacity: 1;
+    visibility: visible;
+}
+
+/*Footer css*/
+
+.footerRecetas{
+    height: 150px;
+    width: 100%;
+    position: relative;
+    top: 450px;
+    background-color: rgba(217, 217, 217);
+    border-top: 1px solid black;
+    display: grid;
+    grid-template: 150px / 110px 1fr 150px;
+    align-items: center;
+}
+
+.footerRecetas p{
+    font-size: 25px;
+    text-align: left;
+    margin: 20px;
+}
+
+.logo1SenaRecetas{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.logo3Recetas{
+    height: 140px;
+    width: 140px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*Media querys Footer*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .footerRecetas{
+        height: 80px;
+        top: 50px;
+        grid-template: 80px / 50px 1fr 80px;
+    }
+
+    .footerRecetas p{
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .logo1SenaRecetas{
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+    }
+
+    .logo3Recetas{
+        height: 65px;
+        width: 65px;
+    }
+
+} 
+
+/*Media querys ContenedorRecetario*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .contenedorRecetario{
+        top: 80px;
+    }
+
+    .tituloRecetario{
+        height: 60px;
+        font-size: 25px;
+    }
+
+    .contenedorRecetario .recetario1{
+        grid-template: 250px 250px 250px / 1fr 1fr;
+        margin-top: 30px;
+    }
+
+    .hover1Recetas figure{
+        height: 120px;
+        width: 180px;
+        border-radius: 10px;
+        margin: 5px;
+    }
+
+    .hoverDiv1Recetas{
+        display: none;
+    }
+
+    .hoverDiv2Recetas{
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgba(255, 102, 0);
+        color: rgba(255, 255, 255);
+        position: relative;
+        width: 160px;
+        height: 50px;
+        font-size: 8px;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        justify-content: center;
+        margin: 0px 10px;
+        border: 1px solid black;
+    }
+
+}
+
+
+/*Media querys Contenedor2*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .contenedor2Recetas{
+        top: 80px;
+        grid-template: 150px 60px / 1fr 1fr 1fr;
+    }
+
+    .a1Recetas img, .a2Recetas img, .a3Recetas img{
+        height: 100px;
+        width: 100px;
+        top: 10px;
+    }
+
+    .a1Recetas b, .a2Recetas b, .a3Recetas b{
+        font-size: 15px;
+    }
+
+    .contenedor2Recetas p{
+        font-size: 10px;
+        padding: 10px;
+    }
+
+}
+
+/*Media querys Contenedor1*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .fondo1Recetas{
+        height: 200px;
+        max-width: 768px;
+        min-width: 400px;
+    }
+
+    .logo2Recetas{
+        height: 300px;
+        width: 400px;
+        bottom: 70px;
+        left: -10px;
+    }
+
+    .contenedor1Recetas h2{
+        font-size: 15px;
+        bottom: 150px;
+    }
+
+    .contenedor1Recetas p{
+        padding: 10px;
+        font-size: 10px;
+        bottom: 130px;
+    }
+
+}
+
+/*Media querys header*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .menuRecetas, .btnMenuR{
+        line-height: 55px;
+    }
+
+    .usuarioRecetas{
+        position: relative;
+        top: -15px;
+    }
+
+    .logo1Recetas{
+        height: 55px;
+        width: 55px;
+    }
+
+    .headerRecetas{
+        height: 65px;
+    }
+
+    .menuRecetas{
+        position: absolute;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 65px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+
+    #btnMenu:checked ~ .menuRecetas{
+        transform: translateX(0);
+    }
+
+    .menuRecetas a{
+        display: block;
+        margin-top: 5px;
+    }
+
+    .btnMenuR{
+        display: block;
+        padding-right: 10px;
+    }
+} 
+
+@media only screen and (min-width:0px) and (max-width:320px){
+    *{
+        display: none;
+    }
+}
+
