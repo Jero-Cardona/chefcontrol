@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\tbl_tareas;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use App\Models\tbl_tareascompletadas;
 use Illuminate\Http\Request;
 
@@ -13,12 +15,6 @@ class TblTareascompletadasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //Edilberto
-        $tareasCompletadas = tbl_tareas::all();
-        return view('usuarios.LIstaInicio', ['tareasCompletadas' => $tareasCompletadas]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -28,34 +24,51 @@ class TblTareascompletadasController extends Controller
      */
     public function store(Request $request)
     {
-        $fecha = date('Y-m-d H:i:s');
-        $Id_Empleado = $request->input('Id_Empleado'); // Obtener el ID del empleado desde la solicitud
-        foreach($request->items as $item){
-            TblTareascompletadasController::create([
-                'Id_Empleado' => $Id_Empleado,
-                'id_tarea' => $item,
-                'fecha' =>  $fecha // Obtener la fecha actual
-            ]);
-        }
-        //Edilberto
-        return view('usuario.LIstaInicio', ['Id_Empleado' => $Id_Empleado]);
-       
-        $tareasCompletadas = $request->input('tareas'); // Obtener los IDs de las tareas completadas desde la solicitud
 
-        // Recorrer los IDs de las tareas completadas y crear registros en la tabla tbl_tareascompletadas
-        foreach ($tareasCompletadas as $id) {
-            
-        }
+        try{
 
-        // Redirigir a alguna parte después de guardar las tareas completadas
-        return redirect()->route('lista.store');
+
+
+        $tareasSeleccionadas = $request->input('items', []);
+
+        if (is_array($tareasSeleccionadas)) {
+            $userId = Auth::id();
+
+            foreach ($tareasSeleccionadas as $tareaId) {
+                $tareaCompletada = new tbl_tareascompletadas([
+                    'Id_Empleado' => $userId,
+                    'id_tarea' => $tareaId,
+                    'fecha' => now()
+                ]);
+                $tareaCompletada->save();
+            }
+
+            return redirect()->route('lista.inicio')->with('success', 'Tareas completadas guardadas exitosamente.');
+        } else {
+            return redirect()->route('lista.store')->with('error', 'No se seleccionaron tareas.');
+    }
+    }
+    catch (Exception $e){
+        $e->getMessage('no se guardo');
+    }
+}
+
+    public function index()
+    {
+
+        $estado = tbl_tareas::where('id_formato','=','1')->get();
+
+            return view('usuarios.ListaInicio', compact('estado'));
+
     }
 
-    public function create (){
+
+    public function create ()
+    {
         //
     }
 
-   
+
 
     /**
      * Display the specified resource.
@@ -90,4 +103,5 @@ class TblTareascompletadasController extends Controller
     {
         //
     }
+
 }

@@ -11,9 +11,9 @@ class TblTareasController extends Controller
             //Edilberto
             // $tareasCompletadas =tbl_tareas::all(); // Obtener todas las tareas registradas
             $estado = tbl_tareas::where('id_formato','=','1')->get();
-            
+
             return view('usuarios.ListaInicio', compact('estado'));
-                     
+
         // $estado ->estado =  $request->estado;
 
         // if($estado==1){
@@ -22,10 +22,10 @@ class TblTareasController extends Controller
         // }else{
         //     return "no funca";
         // }
-           
+
 
     }
-    
+
 }
 
 

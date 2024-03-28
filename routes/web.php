@@ -43,6 +43,7 @@ Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'
 
 // Rutas del modulo Recetas
 Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
+Route::view("/Receta",'usuarios.Receta')->name('receta.tomas');
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
@@ -71,9 +72,13 @@ Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/tareas-registradas', [TblTareasController::class, 'index'])->name('lista.inicio');
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('lista.store');
-Route::get('/ListaInicio',[TblTareasController::class,'index'])->name(('lista.inicio'));
+
+Route::get('/Listainicio/index',[TblTareascompletadasController::class,'index'])->name('lista.inicio');
+// Route::get('/Listainicio/create',[TblTareascompletadasController::class,'create'])->name('lista.create');
+Route::post('/Listainicio/store',[TblTareascompletadasController::class, 'store'])->name('lista.store');
+
+
 Route::get('/ListaFin',[TblTareasController::class,'fin'])->name(('lista.fin'));
-Route::post('/ListaIncio',[TblTareascompletadasController::class, 'store'])->name('lista.store');
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');
