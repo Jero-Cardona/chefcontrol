@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class TblRecetaController extends Controller
 {
     public function Mostrarimagen(Request $request, $id ){
-    $id=$request->Id_Receta;    
+    $id=$request->Id_Receta;
     $imagen=tbl_receta::find($id);
     if($imagen)
     {
@@ -62,7 +62,7 @@ class TblRecetaController extends Controller
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
-        $receta->Contribucion = $request->Contribucion; 
+        $receta->Contribucion = $request->Contribucion;
         $receta->Estado = $request->Estado;
         $receta->imagen = $urlreceta;
 
@@ -82,7 +82,7 @@ class TblRecetaController extends Controller
     }
     // Actualiza los datos del registro en la abla en la BD
     public function update(Request $request, $Id_Receta){
-        
+
        // devuelve un array del objeto
        $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
        $request->validate([
@@ -99,7 +99,7 @@ class TblRecetaController extends Controller
        // rempleza la imagen de la bd
        $request['imagen'] = $urlreceta;
        // dd($request);
-       
+
        // actualiza los datos
        if($receta){
            DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->update($request->except(['_token','_method','imagen1']));
@@ -119,5 +119,13 @@ class TblRecetaController extends Controller
         }else{
             return "no se lograron eliminar los datos";
         }
+    }
+
+
+    public function recetaedi ()
+    {
+        $recetas = tbl_receta::all();
+
+        return view('usuarios.IndexReceta', compact('recetas'));
     }
 }

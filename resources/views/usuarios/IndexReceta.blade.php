@@ -61,35 +61,49 @@
         <div class="contenedorRecetario">
             <h2 class="tituloRecetario">Recetario</h2>
             <div class="recetario1">
+
+
+
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
-                            <img src="../img/receta1.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
+
+                        <a href="{{ route('receta.tomas')}}">
+
+                           @foreach ($recetas as $receta)
+                                <h2>{{ $receta->Nombre }}</h2>
+                                <p>{{ $receta->Descripcion }}</p>
+                                <img src="{{ $receta->imagen }}" alt="{{ $receta->nombre }}">
+                            @endforeach
+
+
+
                         </a>
+
                     </figure>
+
                     <div class="hoverDiv2Recetas">
                         <h2>Nombre de la receta</h2>
                         <p>Descripcion breve de la receta: <br>
                             torta de espinaca con ajonjoli molido</p>
                     </div>
                 </div>
+
+
+
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
+                        <a href="{{ route('receta.tomas')}}">
+
                             <img src="../img/receta2.png">
                             <div class="hoverDiv1Recetas">
                                 <h2>Nombre de la receta</h2>
                                 <p>Descripcion breve de la receta: <br>
                                     torta de espinaca con ajonjoli molido</p>
                             </div>
+
                         </a>
                     </figure>
-                    <div class="hoverDiv2Recetas">
+<div class="hoverDiv2Recetas">
                         <h2>Nombre de la receta</h2>
                         <p>Descripcion breve de la receta: <br>
                             torta de espinaca con ajonjoli molido</p>
@@ -97,7 +111,7 @@
                 </div>
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
+                        <a href="{{ route('receta.tomas')}}">
                             <img src="../img/receta3.png">
                             <div class="hoverDiv1Recetas">
                                 <h2>Nombre de la receta</h2>
@@ -114,7 +128,7 @@
                 </div>
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
+                        <a href="{{ route('receta.tomas')}}">
                             <img src="../img/receta4.png">
                             <div class="hoverDiv1Recetas">
                                 <h2>Nombre de la receta</h2>
@@ -131,7 +145,7 @@
                 </div>
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
+                        <a href="{{ route('receta.tomas')}}">
                             <img src="../img/receta5.png">
                             <div class="hoverDiv1Recetas">
                                 <h2>Nombre de la receta</h2>
@@ -148,7 +162,7 @@
                 </div>
                 <div class="hover1Recetas">
                     <figure>
-                        <a href="#">
+                        <a href="{{ route('receta.tomas')}}">
                             <img src="../img/receta6.png">
                             <div class="hoverDiv1Recetas">
                                 <h2>Nombre de la receta</h2>
@@ -174,3 +188,4 @@
     </div>
 </body>
 </html>
+{{}}
