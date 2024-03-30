@@ -59,23 +59,20 @@
                     opciones son: Estandarizar, Sugerir, Ver listado (Editar, Borrar),etc...</b></p>
         </div>
         <div class="contenedorRecetario">
-            <h2 class="tituloRecetario">Recetario</h2>
+                <h2 class="tituloRecetario">Recetario</h2>
             <div class="recetario1">
-
-
-
                 
-                    <div class="hover1Recetas">
-                        @foreach ($recetas as $receta)
+                <div class="hover1Recetas">
+                    @foreach ($recetas as $receta)
                         <figure>
-                            <a href="{{ route('receta.tomas')}}">
-                                    <h2>{{ $receta->Nombre }}</h2>
-                                    <p>{{ $receta->Descripcion }}</p>
-                                    <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
+                            <a href="{{ route('receta.show', $receta->Id_Receta) }}">
+                                <h2>{{ $receta->Nombre }}</h2>
+                                <p>{{ $receta->Descripcion }}</p>
+                                <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
                             </a>
                         </figure>
-                        @endforeach
-                    </div>  
+                    @endforeach
+                </div>  
             </div>
         </div>
         <footer class="footerRecetas">

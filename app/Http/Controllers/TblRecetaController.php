@@ -121,11 +121,49 @@ class TblRecetaController extends Controller
         }
     }
 
-
+    //muestra todas las recetas en el recetario
     public function recetaedi ()
     {
         $recetas = tbl_receta::all();
 
         return view('usuarios.IndexReceta', compact('recetas'));
+    }
+
+    
+    //funcion para hacer una consulta inner join y traer los datos que necesito mostrar de cada tabla
+    public function showreceta($Id_Receta)
+    {
+        
+        $receta = DB::table('tbl_receta AS r')
+        ->join('tbl_detallereceta AS dr', 'r.Id_Receta', '=', 'dr.Id_Receta')
+        ->join('tbl_producto AS p', 'dr.Cod_Producto', '=', 'p.Cod_Producto')
+        ->join('tbl_umedida AS um', 'dr.Cod_UMedida', '=', 'um.Cod_UMedida')
+        ->select('r.nombre AS receta_nombre', 'r.Descripcion', 'r.imagen AS receta_imagen',
+                 'p.nombre AS producto_nombre', 'dr.Cantidad', 'um.Unidad_Medida AS unidad_medida')
+        ->where('r.Id_Receta', $Id_Receta)
+        ->first();
+
+        return view('usuarios.Receta', compact('receta'));
+    }
+
+    public function calcular($Id_Receta, Request $request)
+    {
+        // $porciones = $request->input('porciones');
+
+        $receta = json_decode(DB::table('tbl_receta AS r')
+            ->join('tbl_detallereceta AS dr', 'r.Id_Receta', '=', 'dr.Id_Receta')
+            ->join('tbl_producto AS p', 'dr.Cod_Producto', '=', 'p.Cod_Producto')
+            ->join('tbl_umedida AS um', 'dr.Cod_UMedida', '=', 'um.Cod_UMedida')
+            ->select('r.nombre AS receta_nombre', 'r.Descripcion', 'r.imagen AS receta_imagen',
+                    'p.nombre AS producto_nombre', 'dr.Cantidad', 'um.Unidad_Medida AS unidad_medida')
+            ->where('r.Id_Receta', $Id_Receta)
+            ->all());
+
+
+            // $receta->Cantidad = $receta->Cantidad * $porciones;
+
+            // $idReceta = $receta->get('Id_Receta');
+        
+            return view('usuarios.Receta', compact('receta',));
     }
 }

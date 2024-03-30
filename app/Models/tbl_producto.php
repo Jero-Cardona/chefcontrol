@@ -11,8 +11,12 @@ class tbl_producto extends Model
 
     protected $table = 'tbl_producto';
     protected $fillabel = ['Cod_Producto','Nombre','imagen','Stock_Minimo','Stock_Maximo','Fecha_Vencimiento','Costo','Cod_Tipo','Ubicacion','Cod_UMedida','Precio_Venta','Existencia','IVA'];
-    protected $primarykey = 'Cod_Producto';
+    protected $primaryKey = 'Cod_Producto';
     public $timestamps = false;
-    
+
+    public function detallesReceta()
+    {
+        return $this->hasMany(tbl_detallereceta::class, 'Cod_Producto');
+    }
 }
 

@@ -45,11 +45,18 @@ Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'
 Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 
 
-//parte de tomas y eresto
-Route::view('/Receta','usuarios.Receta')->name('receta.tomas');
-Route::get('/Receta/{id}', [TblRecetaController::class, 'recetatomas'])->name('show.tomas');
-
+//parte para traer las recetas y mostrarla una por una junto con sus ingredientes
 Route::get('/recetaedi',[TblRecetaController::class, 'recetaedi'])->name('receta.edi');
+Route::get('/recetaedi/{Id_Receta}', [TblRecetaController::class, 'showreceta'])->name('receta.show');
+// Route::post('/recetas/{Id_Receta}/calcular', [TblRecetaController::class, 'calcular'])->name('recetas.calcular');
+Route::view('/Receta','usuarios.Receta');
+
+
+
+
+
+
+
 
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");

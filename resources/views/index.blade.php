@@ -6,7 +6,7 @@
         <a href="{{route('receta.create')}}"><input type="submit" value="Recetas" class="botones1"></a>
         <a href="{{route('producto.create')}}"><input type="submit" value="Productos" class="botones1"></a>
         <a href="{{route('clienteCrear')}}"><input type="submit" value="Clientes" class="botones1"></a>
-        <a href="{{route('recetas.index')}}"><input type="submit" value="Recetas Index" class="botones1"></a>
+        <a href="{{route('receta.edi')}}"><input type="submit" value="Recetas Index" class="botones1"></a>
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
         <a href="{{route('crudrecetas')}}"><input type="submit" value="Crud Recetas" class="botones1"></a>
         <a href="{{route('crudproductos')}}"><input type="submit" value="Crud Productos" class="botones1"></a>
