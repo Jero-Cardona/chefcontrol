@@ -48,12 +48,8 @@ Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 //parte para traer las recetas y mostrarla una por una junto con sus ingredientes
 Route::get('/recetaedi',[TblRecetaController::class, 'recetaedi'])->name('receta.edi');
 Route::get('/recetaedi/{Id_Receta}', [TblRecetaController::class, 'showreceta'])->name('receta.show');
-// Route::post('/recetas/{Id_Receta}/calcular', [TblRecetaController::class, 'calcular'])->name('recetas.calcular');
+Route::post('/recetas/{Id_Receta}/ajustar', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
 Route::view('/Receta','usuarios.Receta');
-
-
-
-
 
 
 

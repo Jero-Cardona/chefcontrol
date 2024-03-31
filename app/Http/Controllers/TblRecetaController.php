@@ -134,36 +134,29 @@ class TblRecetaController extends Controller
     public function showreceta($Id_Receta)
     {
         
-        $receta = DB::table('tbl_receta AS r')
-        ->join('tbl_detallereceta AS dr', 'r.Id_Receta', '=', 'dr.Id_Receta')
-        ->join('tbl_producto AS p', 'dr.Cod_Producto', '=', 'p.Cod_Producto')
-        ->join('tbl_umedida AS um', 'dr.Cod_UMedida', '=', 'um.Cod_UMedida')
-        ->select('r.nombre AS receta_nombre', 'r.Descripcion', 'r.imagen AS receta_imagen',
-                 'p.nombre AS producto_nombre', 'dr.Cantidad', 'um.Unidad_Medida AS unidad_medida')
-        ->where('r.Id_Receta', $Id_Receta)
-        ->first();
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        
+
 
         return view('usuarios.Receta', compact('receta'));
     }
 
-    public function calcular($Id_Receta, Request $request)
+    public function cantidadmultiplicada(Request $request, $Id_Receta)
     {
-        // $porciones = $request->input('porciones');
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        $porciones = $request->input('porciones');
 
-        $receta = json_decode(DB::table('tbl_receta AS r')
-            ->join('tbl_detallereceta AS dr', 'r.Id_Receta', '=', 'dr.Id_Receta')
-            ->join('tbl_producto AS p', 'dr.Cod_Producto', '=', 'p.Cod_Producto')
-            ->join('tbl_umedida AS um', 'dr.Cod_UMedida', '=', 'um.Cod_UMedida')
-            ->select('r.nombre AS receta_nombre', 'r.Descripcion', 'r.imagen AS receta_imagen',
-                    'p.nombre AS producto_nombre', 'dr.Cantidad', 'um.Unidad_Medida AS unidad_medida')
-            ->where('r.Id_Receta', $Id_Receta)
-            ->all());
+        $cantidadesAjustadas = [];
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $porciones;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
 
-
-            // $receta->Cantidad = $receta->Cantidad * $porciones;
-
-            // $idReceta = $receta->get('Id_Receta');
-        
-            return view('usuarios.Receta', compact('receta',));
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','porciones'));
     }
+    
 }

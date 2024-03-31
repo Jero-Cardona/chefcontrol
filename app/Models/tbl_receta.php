@@ -16,7 +16,7 @@ class tbl_receta extends Model
     
     public function detallesReceta()
     {
-        return $this->hasMany(tbl_detallereceta::class, 'Id_Receta');
+        return $this->hasMany(tbl_detallereceta::class, 'Id_Receta', 'Id_Receta');
     }
    
 }

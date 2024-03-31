@@ -14,9 +14,6 @@ class tbl_producto extends Model
     protected $primaryKey = 'Cod_Producto';
     public $timestamps = false;
 
-    public function detallesReceta()
-    {
-        return $this->hasMany(tbl_detallereceta::class, 'Cod_Producto');
-    }
+    
 }
 

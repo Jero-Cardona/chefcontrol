@@ -18,7 +18,7 @@ class tbl_detallereceta extends Model
  
     public function receta()
     {
-        return $this->belongsTo(tbl_receta::class,'Id_Receta');
+        return $this->belongsTo(tbl_receta::class, 'Id_Receta');
     }
 
     public function producto()
