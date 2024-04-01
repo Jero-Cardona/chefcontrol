@@ -122,7 +122,7 @@ class TblRecetaController extends Controller
     }
 
     //muestra todas las recetas en el recetario
-    public function recetaedi ()
+    public function recetario ()
     {
         $recetas = tbl_receta::all();
 
@@ -130,13 +130,12 @@ class TblRecetaController extends Controller
     }
 
     
-    //funcion para hacer una consulta inner join y traer los datos que necesito mostrar de cada tabla
-    public function showreceta($Id_Receta)
+    
+    public function showingrediente($Id_Receta)
     {
-        
+        //se llama el modelo de recetas y se interatua con las relaciones(funciones) que se hizo en los modelos de detallereceta y receta, y se utiliza el metodo "findOrFail" para encontrar la clave promaria del modelo y obtener una instancia de dicho modelo
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
         
-
 
         return view('usuarios.Receta', compact('receta'));
     }
@@ -144,9 +143,14 @@ class TblRecetaController extends Controller
     public function cantidadmultiplicada(Request $request, $Id_Receta)
     {
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+
+        //se crea una variable para obtener el numero de porciones ingresado en el input
         $porciones = $request->input('porciones');
 
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
         $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
         foreach ($receta->detallesReceta as $detalle) {
             $cantidadAjustada = $detalle->Cantidad * $porciones;
             $cantidadesAjustadas[] = [

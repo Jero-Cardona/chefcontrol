@@ -65,7 +65,7 @@
                 <div class="hover1Recetas">
                     @foreach ($recetas as $receta)
                         <figure>
-                            <a href="{{ route('receta.show', $receta->Id_Receta) }}">
+                            <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
                                 <h2>{{ $receta->Nombre }}</h2>
                                 <p>{{ $receta->Descripcion }}</p>
                                 <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
@@ -75,12 +75,12 @@
                 </div>  
             </div>
         </div>
-        <footer class="footerRecetas">
+        {{-- <footer class="footerRecetas">
             <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
             <p><b>Servicio nacional de aprendizaje <br>
                 Centro de la Innovacion, agroindustria y aviacion</b></p>
             <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
-        </footer>
+        </footer> --}}
     </div>
 </body>
 </html>

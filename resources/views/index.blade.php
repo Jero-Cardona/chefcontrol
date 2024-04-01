@@ -2,17 +2,17 @@
 @section('content')
 <div class="contenedor" >
     <div class="caja1">
-        <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>
-        <a href="{{route('receta.create')}}"><input type="submit" value="Recetas" class="botones1"></a>
-        <a href="{{route('producto.create')}}"><input type="submit" value="Productos" class="botones1"></a>
-        <a href="{{route('clienteCrear')}}"><input type="submit" value="Clientes" class="botones1"></a>
-        <a href="{{route('receta.edi')}}"><input type="submit" value="Recetas Index" class="botones1"></a>
+        <a href="{{route('usuarios.create')}}"><input type="submit" value="Nuevo Usuario" class="botones1"></a>
+        <a href="{{route('receta.create')}}"><input type="submit" value="Nueva Receta" class="botones1"></a>
+        <a href="{{route('producto.create')}}"><input type="submit" value="Nuevo Producto" class="botones1"></a>
+        <a href="{{route('clienteCrear')}}"><input type="submit" value=" Nuevo Cliente" class="botones1"></a>
+        <a href="{{route('receta.recetario')}}"><input type="submit" value="Recetario" class="botones1"></a>
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
-        <a href="{{route('crudrecetas')}}"><input type="submit" value="Crud Recetas" class="botones1"></a>
-        <a href="{{route('crudproductos')}}"><input type="submit" value="Crud Productos" class="botones1"></a>
-        <a href="{{route('crudclientes')}}"><input type="submit" value="Crud Clientes" class="botones1"></a>
+        <a href="{{route('crudrecetas')}}"><input type="submit" value="Lista Recetas" class="botones1"></a>
+        <a href="{{route('crudproductos')}}"><input type="submit" value="Lista Productos" class="botones1"></a>
+        <a href="{{route('crudclientes')}}"><input type="submit" value="Lista Clientes" class="botones1"></a>
         <a href="{{route('lista.inicio')}}"><input type="submit" value="Lista Incio Jornada" class="botones1"></a>
-        <a href="{{route('indexInicio')}}"><input type="submit" value="Index Inicio" class="botones1"></a>
+        <a href="{{route('indexInicio')}}"><input type="submit" value="Index " class="botones1"></a>
 
         {{-- <a href="{{route('lista.fin')}}"><input type="submit" value="Lista Fin Jornada" class="botones1"></a> --}}
     </div>

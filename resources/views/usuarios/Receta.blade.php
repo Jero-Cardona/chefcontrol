@@ -18,7 +18,7 @@
         @csrf
         <label for="porciones">Número de porciones:</label>
         <input type="number" name="porciones" min="1" required>
-        <button type="submit">Calcular cantidad</button>
+        <button type="submit">Calcular</button>
     </form>
 <br>
     @if(isset($cantidadesAjustadas))
@@ -26,7 +26,7 @@
         <ul>
             @foreach($cantidadesAjustadas as $detalle)
                 <li>
-                    {{ $detalle['producto']->Nombre }} - {{ $detalle['cantidadAjustada'] }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                    {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, ',', '.') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
                 </li>
             @endforeach
         </ul>

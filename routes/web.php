@@ -45,10 +45,10 @@ Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'
 Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 
 
-//parte para traer las recetas y mostrarla una por una junto con sus ingredientes
-Route::get('/recetaedi',[TblRecetaController::class, 'recetaedi'])->name('receta.edi');
-Route::get('/recetaedi/{Id_Receta}', [TblRecetaController::class, 'showreceta'])->name('receta.show');
-Route::post('/recetas/{Id_Receta}/ajustar', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+//parte para traer las recetas y mostrarla una por una junto con sus ingredientes y carcularlos
+Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
+Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
+Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
 Route::view('/Receta','usuarios.Receta');
 
 

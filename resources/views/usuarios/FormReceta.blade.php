@@ -84,6 +84,7 @@
                             <option value="4">Onzas</option>
                             <option value="5">Porcion</option>
                             <option value="6">Unidad</option>
+                            <option value="7">Mililitro</option>
                         </select>
                     </div>
                     <div class="btn1Registro">
