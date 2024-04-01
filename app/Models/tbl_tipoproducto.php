@@ -10,7 +10,7 @@ class tbl_tipoproducto extends Model
     use HasFactory;
 
     protected $table = 'tbl_tipoproducto';
-    protected $fillabel = ['Tipo'];
+    protected $fillable = ['Tipo'];
     protected $primarykey = 'Cod_Tipo';
     public $timestamps = false;
     

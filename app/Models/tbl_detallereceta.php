@@ -12,7 +12,7 @@ class tbl_detallereceta extends Model
     use SoftDeletes;
 
     protected $table = 'tbl_detallereceta';
-    protected $fillabel = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
+    protected $fillable = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
     protected $primarykey = 'Consecutivo';
     public $timestamps = false;
     

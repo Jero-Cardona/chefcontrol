@@ -18,8 +18,8 @@
                     <img class="logo1Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
                 <div class="usuarioRecetas">
-                    <h2>Usuario</h2>
-                    <h4>Rol</h4>
+                    <h2>{{Auth::user()->Nombre}}</h2>
+                    <h4>{{Auth::user()->Id_Rol}}</h4>
                 </div>
                 <div class="btnMenuR">
                     <label for="btnMenu">Menú</label>

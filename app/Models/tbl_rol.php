@@ -10,7 +10,7 @@ class tbl_rol extends Model
     use HasFactory;
 
     protected $table = 'tbl_rol';
-    protected $fillabel = ['Rol'];
+    protected $fillable = ['Rol'];
     protected $primarykey = 'Id_Rol';
     public $timestamps = false;
 }
