@@ -26,7 +26,7 @@
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
                     <a href="{{route('usuarios.index')}}">Inicio</a>
-                    <a href="../vistas/login.html">Iniciar sesión</a>
+                    <a href="{{route('login')}}">Iniciar sesión</a>
                     <a class="activeIndex" href="../vistas/register.html">Registrarse</a>
                 </nav>
             </div>
@@ -40,7 +40,7 @@
                 <form action="{{route('usuarios.store')}}" method="POST" class="formularioRegistro">
                     @csrf
                     <div class="formRegistro">
-                        <input id="Id_Empleado" name="Id_Empleado" type="number" required>
+                        <input autofocus="autofocus" id="Id_Empleado" name="Id_Empleado" type="number" required>
                         <label for="Id_Empleado">Numero de documento</label>
                     </div>
                     <div class="form1Registro">
@@ -64,6 +64,14 @@
                     <div class="formRegistro">
                         <input id="Telefono" name="Telefono" type="text" required>
                         <label for="Telefono"> Telefono Usuario</label>
+                    </div>
+                    <div class="formRegistro">
+                        <input id="password" name="password" type="password" required>
+                        <label for="password">Contraseña</label>
+                    </div>
+                    <div class="formRegistro">
+                        <input id="password_confirmation" name="password_confirmation" type="password" required>
+                        <label for="password_confirmation">Confimación de contraseña</label>
                     </div>
                     <div class="form1Registro">
                         <select id="Id_Rol" name="Id_Rol" required>

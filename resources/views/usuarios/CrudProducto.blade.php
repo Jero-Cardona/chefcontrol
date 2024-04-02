@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- {{$usuarios = tbl_usuarios::all();}} --}}
+                            
                             @foreach ($productos as $producto)
                             <tr>
                                 <td>{{ $producto->Cod_Producto }}</td>
@@ -38,9 +38,9 @@
                                 <td>{{ $producto->Stock_Maximo }}</td>
                                 <td>{{ $producto->Fecha_Vencimiento}}</td>
                                 <td>{{ $producto->Costo }}</td>
-                                <td>{{ $producto->Cod_Tipo }}</td>
+                                <td>{{ $producto->tipoProducto->Tipo }}</td>
                                 <td>{{ $producto->Ubicacion }}</td>
-                                <td>{{ $producto->Cod_UMedida }}</td>
+                                <td>{{ $producto->tipoMedida->Unidad_Medida }}</td>
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>

@@ -10,8 +10,11 @@ class tbl_tipoproducto extends Model
     use HasFactory;
 
     protected $table = 'tbl_tipoproducto';
-    protected $fillabel = ['Tipo'];
-    protected $primarykey = 'Cod_Tipo';
+    protected $fillable = ['Tipo'];
+    protected $primaryKey = 'Cod_Tipo';
     public $timestamps = false;
     
+    public function productos() {
+        return $this->hasMany(tbl_producto::class, 'Cod_Tipo');
+      }
 }

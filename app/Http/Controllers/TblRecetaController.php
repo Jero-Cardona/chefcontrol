@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class TblRecetaController extends Controller
 {
+    // funcion de autentificacion de usuario
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>'index']);
+    }
+
     public function Mostrarimagen(Request $request, $id ){
-    $id=$request->Id_Receta;    
+    $id=$request->Id_Receta;
     $imagen=tbl_receta::find($id);
     if($imagen)
     {
@@ -25,7 +32,6 @@ class TblRecetaController extends Controller
     // Carga la vista de Recetas
     public function index(){
 
-        $recetas="";
         $recetas = tbl_receta::all();
         return view('usuarios.CrudReceta',compact('recetas'));
     }
@@ -62,7 +68,7 @@ class TblRecetaController extends Controller
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
-        $receta->Contribucion = $request->Contribucion; 
+        $receta->Contribucion = $request->Contribucion;
         $receta->Estado = $request->Estado;
         $receta->imagen = $urlreceta;
 
@@ -82,7 +88,7 @@ class TblRecetaController extends Controller
     }
     // Actualiza los datos del registro en la abla en la BD
     public function update(Request $request, $Id_Receta){
-        
+
        // devuelve un array del objeto
        $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
        $request->validate([
@@ -99,7 +105,7 @@ class TblRecetaController extends Controller
        // rempleza la imagen de la bd
        $request['imagen'] = $urlreceta;
        // dd($request);
-       
+
        // actualiza los datos
        if($receta){
            DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->update($request->except(['_token','_method','imagen1']));
@@ -119,5 +125,53 @@ class TblRecetaController extends Controller
         }else{
             return "no se lograron eliminar los datos";
         }
+
+        
     }
+<<<<<<< HEAD
+
+    //muestra todas las recetas en el recetario
+    public function recetario ()
+    {
+        $recetas = tbl_receta::all();
+
+        return view('usuarios.IndexReceta', compact('recetas'));
+    }
+
+    
+    
+    public function showingrediente($Id_Receta)
+    {
+        //se llama el modelo de recetas y se interatua con las relaciones(funciones) que se hizo en los modelos de detallereceta y receta, y se utiliza el metodo "findOrFail" para encontrar la clave promaria del modelo y obtener una instancia de dicho modelo
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        
+
+        return view('usuarios.Receta', compact('receta'));
+    }
+
+    public function cantidadmultiplicada(Request $request, $Id_Receta)
+    {
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+
+        //se crea una variable para obtener el numero de porciones ingresado en el input
+        $porciones = $request->input('porciones');
+
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
+        $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $porciones;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
+
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','porciones'));
+    }
+=======
+>>>>>>> jero
+    
 }

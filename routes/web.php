@@ -10,6 +10,7 @@ use App\Http\Controllers\TblTareascompletadasController;
 use App\Http\Controllers\TblTareasController;
 use App\Http\Controllers\TblTipoproductoController;
 use App\Http\Controllers\TblUsuariosController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +25,11 @@ use Illuminate\Support\Facades\Route;
 */
 // Ruta del Index Principal
 Route::view("/",'home')->name('home');
-
-Route::view('/indexInicio', 'usuarios.IndexInicio')->name('indexInicio');
 // Rutas de Usuario
-Route::view("/login",'usuarios.login')->name('login');
+Route::get('/login',[TblUsuariosController::class,'login'])->name('login');
+Route::post('/LoginStore', [TblUsuariosController::class, 'storeLogin'])->name('login.store');
+Route::get('logout', [TblUsuariosController::class, 'logout'])->name('logout');
+
 // Rutas del Crud
 Route::get("/CrudClientes",[TblClienteController::class, 'index'])->name('crudclientes');
 Route::get("/CrudRecetas", [TblRecetaController::class, 'index'])->name('crudrecetas');
@@ -43,6 +45,17 @@ Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'
 
 // Rutas del modulo Recetas
 Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
+
+
+//parte para traer las recetas y mostrarla una por una junto con sus ingredientes y carcularlos
+Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
+Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
+Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+Route::view('/Receta','usuarios.Receta');
+
+
+
+
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
@@ -69,11 +82,14 @@ Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->na
 Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])->name('cliente.destroy');
 
 //Rutas Listas de Chequeo-Edilberto
-Route::get('/tareas-registradas', [TblTareasController::class, 'index'])->name('lista.inicio');
-Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('lista.store');
-Route::get('/ListaInicio',[TblTareasController::class,'index'])->name(('lista.inicio'));
-Route::get('/ListaFin',[TblTareasController::class,'fin'])->name(('lista.fin'));
-Route::post('/ListaIncio',[TblTareascompletadasController::class, 'store'])->name('lista.store');
+Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
+Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
+Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
+Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
+
+
+//logout
+Route::get('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');

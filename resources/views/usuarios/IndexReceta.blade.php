@@ -11,6 +11,11 @@
         <title>Recetario</title>
 </head>
 <body>
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="contenedorRecetas">
         <header class="headerRecetas">
             <div class="contenedorHR">
@@ -18,8 +23,12 @@
                     <img class="logo1Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
                 <div class="usuarioRecetas">
-                    <h2>Usuario</h2>
-                    <h4>Rol</h4>
+                   
+                    <h2>{{Auth::user()->Nombre}}</h2>
+                    <?php
+                    $rol =  App\Models\tbl_rol::where('Id_Rol', Auth::user()->Id_Rol)->first();
+                    ?>
+                    <h4>{{$rol->Rol}}</h4>
                 </div>
                 <div class="btnMenuR">
                     <label for="btnMenu">Menú</label>
@@ -28,7 +37,7 @@
                 <nav class="menuRecetas">
                     <a href="#">Recetas</a>
                     <a href="#">Sugerir</a>
-                    <a href="#">Listado de recetas</a>
+                    <a href="{{route('crudrecetas')}}">Listado de recetas</a>
                 </nav>
             </div>
         </header>
@@ -59,118 +68,29 @@
                     opciones son: Estandarizar, Sugerir, Ver listado (Editar, Borrar),etc...</b></p>
         </div>
         <div class="contenedorRecetario">
-            <h2 class="tituloRecetario">Recetario</h2>
+                <h2 class="tituloRecetario">Recetario</h2>
             <div class="recetario1">
+                
                 <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta1.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
-                <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta2.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
-                <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta3.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
-                <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta4.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
-                <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta5.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
-                <div class="hover1Recetas">
-                    <figure>
-                        <a href="#">
-                            <img src="../img/receta6.png">
-                            <div class="hoverDiv1Recetas">
-                                <h2>Nombre de la receta</h2>
-                                <p>Descripcion breve de la receta: <br>
-                                    torta de espinaca con ajonjoli molido</p>
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="hoverDiv2Recetas">
-                        <h2>Nombre de la receta</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            torta de espinaca con ajonjoli molido</p>
-                    </div>
-                </div>
+                    @foreach ($recetas as $receta)
+                        <figure>
+                            <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
+                                <h2>{{ $receta->Nombre }}</h2>
+                                <p>{{ $receta->Descripcion }}</p>
+                                <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
+                            </a>
+                        </figure>
+                    @endforeach
+                </div>  
             </div>
         </div>
-        <footer class="footerRecetas">
+        {{-- <footer class="footerRecetas">
             <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
             <p><b>Servicio nacional de aprendizaje <br>
                 Centro de la Innovacion, agroindustria y aviacion</b></p>
             <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
-        </footer>
+        </footer> --}}
     </div>
 </body>
 </html>
+

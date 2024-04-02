@@ -14,7 +14,7 @@
         <header class="headerIndex">
             <div class="contenedorHIndex">
                 <div>
-                    <img class="logoHIndex" src="../img/logo.svg">
+                    <img class="logoHIndex" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
                 <div class="NombreProyectoLogin">
                     <h2>ChefControl</h2>
@@ -24,47 +24,59 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
-                    <a href="#">Index</a>
-                    <a href="#">Registrarse</a>
+                    <a href="{{route('usuarios.index')}}">Index</a>
+                    <a href="{{route('usuarios.create')}}">Registrarse</a>
                 </nav>
             </div>
         </header>
+        @if (session('logout'))
+        <div class="alert alert-success">
+            {{ session('logout') }}
+        </div>
+    @endif
         <div class="contenedorFormLogin">
             <div class="contenedor1Login">
                 <div class="tituloFormLogin">
                     <h2>Iniciar sesión</h2>
                 </div>
-                <form class="formularioLogin">
+                <form class="formularioLogin" method="POST" action="{{route('login.store')}}">
+                    @csrf
+                    <div class="form2Login">
+                        <input autofocus type="number" name="Id_Empleado" id="Id_Empleado" required>
+                        <label for="Id_Empleado">Numero de documento</label>
+                    </div>
                     <div class="form1Login">
-                        <select required>
+                        <select id="tipo_documento" name="tipo_documento" required>
                             <option value="" disabled selected hidden>Tipo de documento</option>
-                            <option value="0">Cedula de ciudadania</option>
-                            <option value="1">Cedula de extranjeria</option>
-                            <option value="2">Tarjeta de identidad</option>
+                            <option value="Cédula de Ciudadanía">Cédula de Ciudadanía (CC)</option>
+                            <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
+                            <option value="Cédula de Extranjería ">Cédula de Extranjería (CE)</option>
+                            <option value="NIT">NIT (Número de Identificación Tributaria)</option>
+                            <option value="Pasaporte">Pasaporte</option>
                         </select>
                     </div>
                     <div class="form2Login">
-                        <input type="number" required>
-                        <label>Numero de documento</label>
+                        <input type="password" name="password" id="password" required>
+                        <label for="password">Contraseña</label>
                     </div>
-                    <div class="form2Login">
-                        <input type="password" required>
-                        <label>Contraseña</label>
+                    <div style="margin: 0 auto;">
+                        <input type="checkbox" name="remember" required>
+                        <span>Recuerdame</span>
                     </div>
                     <div class="btn1Login">
                         <input type="submit" class="enviarLogin">
-                        <a href="../vistas/recetas.html">Volver</a>
+                        <a href="{{route('usuarios.index')}}">Volver</a>
                     </div>
                 </form>
-                <img src="../img/comida.webp">
+                <img id="imagenlogin" src="{{asset('imagenes/proyecto/cocineros.png')}}">
             </div>
         </div>
     </div>
     <footer class="footerLogin">
-        <img class="logo1SenaLogin" src="../img/logoSena.png">
+        <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
         <p><b>Servicio nacional de aprendizaje <br>
             Centro de la Innovacion, agroindustria y aviacion</b></p>
-        <img class="logo3Login" src="../img/logo.svg">
+        <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
     </footer>
 </body>
 </html>

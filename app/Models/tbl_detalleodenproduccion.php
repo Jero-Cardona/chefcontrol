@@ -10,7 +10,7 @@ class tbl_detalleordenproduccion extends Model
     use HasFactory;
 
     protected $table = 'tbl_detalleordenproduccion';
-    protected $fillabel = ['Id_Detalle','Fecha_Pedido','Presentacion'];
+    protected $fillable = ['Id_Detalle','Fecha_Pedido','Presentacion'];
     protected $primarykey = 'Consecutivo';
     public $timestamps = false;
     
