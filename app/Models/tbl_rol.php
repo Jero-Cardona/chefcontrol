@@ -10,7 +10,12 @@ class tbl_rol extends Model
     use HasFactory;
 
     protected $table = 'tbl_rol';
-    protected $fillabel = ['Rol'];
-    protected $primarykey = 'Id_Rol';
+    protected $fillable = ['Rol'];
+    protected $primaryKey = 'Id_Rol';
     public $timestamps = false;
+
+    public function usuarios() {
+        return $this->hasMany(tbl_producto::class, 'Id_Empleado');
+      }
+
 }

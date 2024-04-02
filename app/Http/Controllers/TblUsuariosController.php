@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules;
 use App\Models\tbl_usuarios;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class TblUsuariosController extends Controller
 {
+    // sobreescribe el metodo
+    public function username()
+    {
+        return 'Id_Empleado';
+    }
+
     // Consulta los usuarios y retorna la vista con todos
     public function index()
     {
@@ -29,24 +40,72 @@ class TblUsuariosController extends Controller
             'Nombre'=>'required',
             'Apellido'=>'required',
             'Telefono'=>'required',
+            'password'=>['required', 'confirmed', Rules\Password::defaults()],
             'Id_Rol'=>'required'
         ]);
 
         // esto es una instancia
-        $usuario = new tbl_usuarios;
+        $usuario = new User;
         // aqui se guardan los datos
         $usuario->Id_Empleado = $request->input('Id_Empleado');
         $usuario->tipo_documento = $request->input('tipo_documento');
         $usuario->Nombre = $request->input('Nombre');
         $usuario->Apellido = $request->input('Apellido');
         $usuario->Telefono = $request->input('Telefono');
+        $usuario->password = bcrypt($request->input('password')); 
         $usuario->Id_Rol = $request->input('Id_Rol');
         $usuario->save();
-        //parte Edilberto
-        session()->flash('confirm-user','Usuario registrado correctamente');
-        return to_route('usuarios.create');
+
+        // autentificar el usuario
+
+        return to_route('login')->with('status','Usuario Registrado Exitosamente');
         
     }
+    
+
+    public function login(){
+        // $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
+        // return view ('usuarios.login', compact('usuario'));
+        return view('usuarios.login');
+
+    }
+
+    // Validar Datos e Iniciar Sesion
+    public function storeLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'Id_Empleado'=>['required','int'],
+            'tipo_documento'=>'required',
+            'password'=>['required', 'string']
+        ]);
+        
+        // $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
+
+            // validacion de Datos
+            if ( ! Auth::attempt($credentials, $request->boolean('remember')))
+            {
+                // indica error de validacion
+                throw ValidationException::withMessages([
+                    'password'=>__('auth.failed')
+                ]);
+            }
+        // Identificador de sesion
+        $request->session()->regenerate();
+            return redirect()->intended('recetas.index')->
+            with('status', 'Has iniciado sesion Correctamente');
+    }
+    
+    // funcion para salir de la sesion
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('login')
+        ->with('status','Has cerrado session correctamente');
+    }
+
 
     // Carga el formulario de edicion de los datos
     public function edit($Id_Empleado)

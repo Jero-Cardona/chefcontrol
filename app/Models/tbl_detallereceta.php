@@ -12,6 +12,7 @@ class tbl_detallereceta extends Model
     
 
     protected $table = 'tbl_detallereceta';
+<<<<<<< HEAD
     protected $fillabel = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
     protected $primaryKey = 'Consecutivo';
     public $timestamps = false;
@@ -30,5 +31,11 @@ class tbl_detallereceta extends Model
     {
         return $this->belongsTo(tbl_umedida::class, 'Cod_UMedida');
     }
+=======
+    protected $fillable = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
+    protected $primarykey = 'Consecutivo';
+    public $timestamps = false;
+ 
+>>>>>>> jero
     
 }

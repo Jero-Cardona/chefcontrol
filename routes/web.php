@@ -10,6 +10,7 @@ use App\Http\Controllers\TblTareascompletadasController;
 use App\Http\Controllers\TblTareasController;
 use App\Http\Controllers\TblTipoproductoController;
 use App\Http\Controllers\TblUsuariosController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +25,9 @@ use Illuminate\Support\Facades\Route;
 */
 // Ruta del Index Principal
 Route::view("/",'home')->name('home');
-
-Route::view('/indexInicio', 'usuarios.IndexInicio')->name('indexInicio');
 // Rutas de Usuario
-Route::view("/login",'usuarios.login')->name('login');
+Route::get('/login',[TblUsuariosController::class,'login'])->name('login');
+Route::post('/LoginStore', [TblUsuariosController::class, 'storeLogin'])->name('login.store');
 // Rutas del Crud
 Route::get("/CrudClientes",[TblClienteController::class, 'index'])->name('crudclientes');
 Route::get("/CrudRecetas", [TblRecetaController::class, 'index'])->name('crudrecetas');
@@ -80,6 +80,7 @@ Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->na
 Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])->name('cliente.destroy');
 
 //Rutas Listas de Chequeo-Edilberto
+<<<<<<< HEAD
 Route::get('/tareas-registradas', [TblTareasController::class, 'index'])->name('lista.inicio');
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('lista.store');
 
@@ -89,6 +90,16 @@ Route::post('/Listainicio/store',[TblTareascompletadasController::class, 'store'
 
 
 Route::get('/ListaFin',[TblTareasController::class,'fin'])->name(('lista.fin'));
+=======
+Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
+Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
+Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
+Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
+
+
+//logout
+Route::get('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
+>>>>>>> jero
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');

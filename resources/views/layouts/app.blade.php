@@ -23,8 +23,13 @@
                 <div>
                     <img class="logoHIndex" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
+                @auth
+                {{-- <div class="NombreProyectoIndex">
+                    <h2>{{Auth::user()->Id_Empleado}}</h2>
+                </div> --}}
+                @endauth
                 <div class="NombreProyectoIndex">
-                    <h2>ChefControl</h2>
+                    <h2 style="margin-top: 15px">ChefControl</h2>
                 </div>
                 <div class="btnMenuHIndex">
                     <label for="btnMenu">Menú</label>
@@ -32,6 +37,13 @@
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
                     <a href="{{route('usuarios.index')}}">Inicio</a>
+                    @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="return confirm('¿Estás seguro de que quieres cerrar la sesión?')" style="color: brown">Cerrar sesión</a>
+                      </form>
+
+                    @endauth
                 </nav>
             </div>
         </header>

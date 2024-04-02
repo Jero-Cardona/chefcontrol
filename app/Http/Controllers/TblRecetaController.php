@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class TblRecetaController extends Controller
 {
+    // funcion de autentificacion de usuario
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>'index']);
+    }
+
     public function Mostrarimagen(Request $request, $id ){
     $id=$request->Id_Receta;
     $imagen=tbl_receta::find($id);
@@ -25,7 +32,6 @@ class TblRecetaController extends Controller
     // Carga la vista de Recetas
     public function index(){
 
-        $recetas="";
         $recetas = tbl_receta::all();
         return view('usuarios.CrudReceta',compact('recetas'));
     }
@@ -119,7 +125,10 @@ class TblRecetaController extends Controller
         }else{
             return "no se lograron eliminar los datos";
         }
+
+        
     }
+<<<<<<< HEAD
 
     //muestra todas las recetas en el recetario
     public function recetario ()
@@ -162,5 +171,7 @@ class TblRecetaController extends Controller
 
         return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','porciones'));
     }
+=======
+>>>>>>> jero
     
 }

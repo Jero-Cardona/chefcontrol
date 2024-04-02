@@ -1,8 +1,18 @@
-/** Css Laura*/
-
+*{
+    margin: 0 auto;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+}
+.contenedorIndex{
+    display: grid;
+    min-width: 320px;
+}
 .div-index{
     background-color: #9A000F;
-    display: flex;
+    width: 100%;
+    display: grid;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -15,8 +25,8 @@
 }
 .barra-index{
     text-decoration: none;
-    font-size: 22px;
-    display: flex;
+    font-size: 25px;
+    display: inline-block;
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px;
@@ -54,9 +64,10 @@
     margin-top: 50px;
     border-top: 1px solid white;
     gap: 40px;
-    padding: 50px;
+    padding: 40px;
     text-align: center;
     justify-content: center;
+    /* font-size: 15px; */
     font-size: larger;
 
 }
@@ -67,20 +78,24 @@
     border-top: 1px solid white;
     gap: 40px;
     text-align: center; 
-    text-align: center;
     justify-content: center;
     background-color: #aaa;
     padding: 50px;
+    /* font-size: 15px; */
     font-size: larger;
+
 }
 .tittle{
-    font-size: 50px;
+    font-size: 30px;
 }
+
+/*footer css*/
+
 .footerIndex{
+    margin-top: -50px;
     height: 150px;
     width: 100%;
     position: relative;
-    top: 450px;
     background-color: rgba(217, 217, 217);
     border-top: 1px solid black;
     display: grid;
@@ -106,4 +121,126 @@
     background-color: rgba(255, 255, 255);
     border-radius: 50%;
     object-fit: cover;
+}
+
+/*Media querys Footer*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .footerIndex{
+        height: 80px;
+        top: 50px;
+        grid-template: 80px / 50px 1fr 80px;
+    }
+
+    .footerIndex p{
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .logo1SenaIndex{
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+    }
+
+    .logo3Index{
+        height: 65px;
+        width: 65px;
+    }
+
+} 
+
+/*Media querys ContenedorRecetario*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .contenedorIndex{
+        top: 80px;
+    }
+
+}  
+
+/*Media querys Caja4*/
+
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .caja4{
+        top: 80px;
+        grid-template: 150px 60px / 1fr 1fr 1fr;
+    }
+
+    .sena img{
+        height: 100px;
+        width: 100px;
+        top: 10px;
+    }
+
+    .sena b{
+        font-size: 15px;
+    }
+
+    .caja4 p{
+        font-size: 10px;
+        padding: 10px;
+    }
+
+}
+
+/*Media querys Contenedor1*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .logo{
+        height: 300px;
+        width: 400px;
+        bottom: 70px;
+        left: -10px;
+    }
+
+    .caja1 p{
+        padding: 10px;
+        font-size: 10px;
+        bottom: 130px;
+    }
+
+}
+
+/*Media querys header*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .barrindex{
+        line-height: 55px;
+    }
+
+    .a-index{
+        position: relative;
+        top: -15px;
+    }
+
+    header{
+        height: 65px;
+    }
+
+    .barra-index{
+        position: absolute;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 65px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+
+    .barra-index a{
+        display: block;
+        margin-top: 5px;
+    }
+
+} 
+
+@media only screen and (min-width:0px) and (max-width:320px){
+    *{
+        display: none;
+    }
 }

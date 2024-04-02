@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TblProductoController extends Controller
@@ -112,7 +113,7 @@ class TblProductoController extends Controller
     }
     
     // elimina Registros de los producto
-    public function destroy($Cod_Producto, $imageName)
+    public function destroy($Cod_Producto)
     {
          // codigo para eliminar los datos
          $producto = DB::table('tbl_producto')->where('Cod_Producto', $Cod_Producto)->get();
