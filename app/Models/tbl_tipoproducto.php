@@ -11,7 +11,10 @@ class tbl_tipoproducto extends Model
 
     protected $table = 'tbl_tipoproducto';
     protected $fillable = ['Tipo'];
-    protected $primarykey = 'Cod_Tipo';
+    protected $primaryKey = 'Cod_Tipo';
     public $timestamps = false;
     
+    public function productos() {
+        return $this->hasMany(tbl_producto::class, 'Cod_Tipo');
+      }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\TblTareascompletadasController;
 use App\Http\Controllers\TblTareasController;
 use App\Http\Controllers\TblTipoproductoController;
 use App\Http\Controllers\TblUsuariosController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +73,10 @@ Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.i
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
 Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
+
+
+//logout
+Route::get('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');

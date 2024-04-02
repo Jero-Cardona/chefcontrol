@@ -15,5 +15,6 @@ class tbl_detallereceta extends Model
     protected $fillable = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
     protected $primarykey = 'Consecutivo';
     public $timestamps = false;
+ 
     
 }

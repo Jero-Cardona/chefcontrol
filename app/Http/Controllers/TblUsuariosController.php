@@ -91,7 +91,7 @@ class TblUsuariosController extends Controller
             }
         // Identificador de sesion
         $request->session()->regenerate();
-            return redirect()->intended('usuarios.index')->
+            return redirect()->intended('recetas.index')->
             with('status', 'Has iniciado sesion Correctamente');
     }
     

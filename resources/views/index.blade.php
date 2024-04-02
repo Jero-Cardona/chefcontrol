@@ -49,7 +49,7 @@
                                 <td>{{ $usuario->Nombre }}</td>
                                 <td>{{ $usuario->Apellido }}</td>
                                 <td>{{ $usuario->Telefono }}</td>
-                                <td>{{ $usuario->Id_Rol }}</td>
+                                <td>{{ $usuario->tipoRol->Rol }}</td>
                                 <td>
                                     <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST">
                                         <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btn btn-sm btn-primary">Editar Datos</a>

@@ -11,6 +11,11 @@ class tbl_rol extends Model
 
     protected $table = 'tbl_rol';
     protected $fillable = ['Rol'];
-    protected $primarykey = 'Id_Rol';
+    protected $primaryKey = 'Id_Rol';
     public $timestamps = false;
+
+    public function usuarios() {
+        return $this->hasMany(tbl_producto::class, 'Id_Empleado');
+      }
+
 }

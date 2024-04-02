@@ -125,5 +125,8 @@ class TblRecetaController extends Controller
         }else{
             return "no se lograron eliminar los datos";
         }
+
+        
     }
+    
 }

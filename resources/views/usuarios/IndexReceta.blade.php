@@ -11,6 +11,11 @@
         <title>Recetario</title>
 </head>
 <body>
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="contenedorRecetas">
         <header class="headerRecetas">
             <div class="contenedorHR">
@@ -18,8 +23,12 @@
                     <img class="logo1Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
                 <div class="usuarioRecetas">
+                   
                     <h2>{{Auth::user()->Nombre}}</h2>
-                    <h4>{{Auth::user()->Id_Rol}}</h4>
+                    <?php
+                    $rol =  App\Models\tbl_rol::where('Id_Rol', Auth::user()->Id_Rol)->first();
+                    ?>
+                    <h4>{{$rol->Rol}}</h4>
                 </div>
                 <div class="btnMenuR">
                     <label for="btnMenu">Menú</label>
@@ -28,7 +37,7 @@
                 <nav class="menuRecetas">
                     <a href="#">Recetas</a>
                     <a href="#">Sugerir</a>
-                    <a href="#">Listado de recetas</a>
+                    <a href="{{route('crudrecetas')}}">Listado de recetas</a>
                 </nav>
             </div>
         </header>

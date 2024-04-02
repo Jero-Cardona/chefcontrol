@@ -11,7 +11,11 @@ class tbl_umedida extends Model
 
     protected $table = 'tbl_umedida';
     protected $fillable = ['Unidad_Medida'];
-    protected $primarykey = 'Cod_UMedida';
+    protected $primaryKey = 'Cod_UMedida';
     public $timestamps = false;
     
+
+    public function productos() {
+        return $this->hasMany(tbl_producto::class, 'Cod_Producto');
+      }
 }

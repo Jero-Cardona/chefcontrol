@@ -17,4 +17,9 @@ class tbl_usuarios extends Model
     protected $fillable = ['Id_Empleado','tipo_documento','Nombre','Apellido','Telefono', 'password','Id_Rol'];
     protected $primaryKey = 'Id_Empleado';
     public $timestamps = false;
+
+    public function tipoRol() {
+        return $this->belongsTo(tbl_rol::class, 'Id_Rol');
+      }
+  
 }

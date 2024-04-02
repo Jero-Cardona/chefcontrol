@@ -38,10 +38,11 @@
                 <nav class="menuHIndex">
                     <a href="{{route('usuarios.index')}}">Inicio</a>
                     @auth
-                        <form action="{{'logout'}}" method="post">
-                            @csrf
-                            <a href="#" onclick="this.closets('form').submit()">Salir</a>
-                        </form>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="return confirm('¿Estás seguro de que quieres cerrar la sesión?')" style="color: brown">Cerrar sesión</a>
+                      </form>
+
                     @endauth
                 </nav>
             </div>

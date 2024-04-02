@@ -10,6 +10,11 @@
     <title>Document</title>
 </head>
 <body>
+    @if (session('logout'))
+    <div class="alert alert-success">
+        {{ session('logout') }}
+    </div>
+@endif
     <div class="contenedorLogin">
         <header class="headerIndex">
             <div class="contenedorHIndex">
