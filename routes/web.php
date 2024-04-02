@@ -28,6 +28,8 @@ Route::view("/",'home')->name('home');
 // Rutas de Usuario
 Route::get('/login',[TblUsuariosController::class,'login'])->name('login');
 Route::post('/LoginStore', [TblUsuariosController::class, 'storeLogin'])->name('login.store');
+Route::get('logout', [TblUsuariosController::class, 'logout'])->name('logout');
+
 // Rutas del Crud
 Route::get("/CrudClientes",[TblClienteController::class, 'index'])->name('crudclientes');
 Route::get("/CrudRecetas", [TblRecetaController::class, 'index'])->name('crudrecetas');
@@ -75,8 +77,6 @@ Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
 Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
 
 
-//logout
-Route::get('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');
