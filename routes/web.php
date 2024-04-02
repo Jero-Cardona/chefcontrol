@@ -82,17 +82,6 @@ Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->na
 Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])->name('cliente.destroy');
 
 //Rutas Listas de Chequeo-Edilberto
-<<<<<<< HEAD
-Route::get('/tareas-registradas', [TblTareasController::class, 'index'])->name('lista.inicio');
-Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('lista.store');
-
-Route::get('/Listainicio/index',[TblTareascompletadasController::class,'index'])->name('lista.inicio');
-// Route::get('/Listainicio/create',[TblTareascompletadasController::class,'create'])->name('lista.create');
-Route::post('/Listainicio/store',[TblTareascompletadasController::class, 'store'])->name('lista.store');
-
-
-Route::get('/ListaFin',[TblTareasController::class,'fin'])->name(('lista.fin'));
-=======
 Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
@@ -101,7 +90,6 @@ Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->
 
 //logout
 Route::get('/logout', 'App\Http\Controllers\LogoutController@logout')->name('logout');
->>>>>>> jero
 
 // Rutas de prueba
 // Route::get('/RegistrarCliente', [TblRecetaController::class, 'Mostrarimagen'])->name('mostrar');
