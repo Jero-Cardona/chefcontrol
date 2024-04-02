@@ -10,11 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    @if (session('logout'))
-    <div class="alert alert-success">
-        {{ session('logout') }}
-    </div>
-@endif
     <div class="contenedorLogin">
         <header class="headerIndex">
             <div class="contenedorHIndex">
@@ -34,6 +29,11 @@
                 </nav>
             </div>
         </header>
+        @if (session('logout'))
+        <div class="alert alert-success">
+            {{ session('logout') }}
+        </div>
+    @endif
         <div class="contenedorFormLogin">
             <div class="contenedor1Login">
                 <div class="tituloFormLogin">

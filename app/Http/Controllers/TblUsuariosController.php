@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 // use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules;
 use App\Models\tbl_usuarios;
@@ -91,8 +92,8 @@ class TblUsuariosController extends Controller
             }
         // Identificador de sesion
         $request->session()->regenerate();
-            return redirect()->intended('recetas.index')->
-            with('status', 'Has iniciado sesion Correctamente');
+            return redirect()->intended('usuarios')->
+            with('logout', '¡Has cerrado sesión correctamente!');
     }
     
     // funcion para salir de la sesion
@@ -103,7 +104,7 @@ class TblUsuariosController extends Controller
         $request->session()->regenerateToken();
 
         return to_route('login')
-        ->with('status','Has cerrado session correctamente');
+        ->with('logout','Has cerrado session correctamente');
     }
 
 
