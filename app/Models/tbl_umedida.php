@@ -10,11 +10,7 @@ class tbl_umedida extends Model
     use HasFactory;
 
     protected $table = 'tbl_umedida';
-<<<<<<< HEAD
-    protected $fillabel = ['Unidad_Medida'];
-=======
     protected $fillable = ['Unidad_Medida'];
->>>>>>> jero
     protected $primaryKey = 'Cod_UMedida';
     public $timestamps = false;
     
