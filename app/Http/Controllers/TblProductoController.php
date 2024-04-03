@@ -93,6 +93,17 @@ class TblProductoController extends Controller
         ]);
          // condicional de imagen
          if($request->hasFile('imagen1')){
+
+            $imagenUrl = $producto[0]->imagen;
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName = $urlComponentes['path'];
+            $urlproducto = public_path($imageName);
+
+            if (file_exists($urlproducto)) {
+            // Elimina la imagen del directorio
+                unlink($urlproducto);
+            }
+
             $imageName = time().'.'.$request->imagen1->extension();
             $request->imagen1->move(public_path('imagenes/productos/'), $imageName);
             $urlproducto = asset('imagenes/productos/'. $imageName);
@@ -101,7 +112,6 @@ class TblProductoController extends Controller
         }
         // rempleza la imagen de la bd
         $request['imagen'] = $urlproducto;
-        // dd($request);
         
         // actualiza los datos
         if($producto){
@@ -118,20 +128,18 @@ class TblProductoController extends Controller
          // codigo para eliminar los datos
          $producto = DB::table('tbl_producto')->where('Cod_Producto', $Cod_Producto)->get();
          if($producto){
+            $imagenUrl = $producto[0]->imagen;
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName = $urlComponentes['path'];
             DB::table('tbl_producto')->where('Cod_Producto', $Cod_Producto)->delete();
 
         // codigo para borrar la imagen del directorio
-        //     DB::table('tbl_producto')->where('Cod_Producto', $Cod_Producto)->move(public_path('imagenes/productos/'), $imageName);
+            $urlproducto = public_path($imageName);
 
-        //     // Ruta completa de la imagen
-        //     $urlproducto = public_path('imagenes/productos' . $imageName);
-        //     // Verifica si el archivo existe antes de intentar eliminarlo
-        //     if (file_exists($urlproducto)) {
-        //     // Elimina la imagen del directorio
-        //     unlink($urlproducto);
-        // }else{
-        //     return "no se logra eliminar la imagen del directorio";
-        // }
+            // Verifica si el archivo existe antes de intentar eliminarlo
+            if (file_exists($urlproducto)) {
+                unlink($urlproducto);
+            }
 
              return to_route('crudproductos')->with('success','se elimino el producto de manera existosa');
          }else{

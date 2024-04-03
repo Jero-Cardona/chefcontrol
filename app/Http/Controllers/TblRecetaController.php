@@ -96,6 +96,17 @@ class TblRecetaController extends Controller
        ]);
         // condicional de imagen
         if($request->hasFile('imagen1')){
+
+            $imagenUrl = $receta[0]->imagen;
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName = $urlComponentes['path'];
+            $urlproducto = public_path($imageName);
+
+            if (file_exists($urlproducto)) {
+            // Elimina la imagen del directorio
+                unlink($urlproducto);
+            }
+
            $imageName = time().'.'.$request->imagen1->extension();
            $request->imagen1->move(public_path('imagenes/recetas/'), $imageName);
            $urlreceta = asset('imagenes/recetas/'. $imageName);
@@ -120,25 +131,32 @@ class TblRecetaController extends Controller
         // codigo para eliminar los datos
         $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
         if($receta){
+            $imagenUrl = $receta[0]->imagen;
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName = $urlComponentes['path'];
             DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->delete();
+
+             // codigo para borrar la imagen del directorio
+             $urlreceta = public_path($imageName);
+
+             // Verifica si el archivo existe antes de intentar eliminarlo
+             if (file_exists($urlreceta)) {
+                 unlink($urlreceta);
+             }
+
             return to_route('crudrecetas')->with('success','se elimino la receta de manera existosa');
         }else{
             return "no se lograron eliminar los datos";
         }
-
         
     }
-<<<<<<< HEAD
 
     //muestra todas las recetas en el recetario
     public function recetario ()
     {
         $recetas = tbl_receta::all();
-
         return view('usuarios.IndexReceta', compact('recetas'));
     }
-
-    
     
     public function showingrediente($Id_Receta)
     {
@@ -171,7 +189,5 @@ class TblRecetaController extends Controller
 
         return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','porciones'));
     }
-=======
->>>>>>> jero
     
 }
