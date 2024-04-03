@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\tbl_receta;
+use App\Models\tbl_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -162,32 +164,27 @@ class TblRecetaController extends Controller
     {
         //se llama el modelo de recetas y se interatua con las relaciones(funciones) que se hizo en los modelos de detallereceta y receta, y se utiliza el metodo "findOrFail" para encontrar la clave promaria del modelo y obtener una instancia de dicho modelo
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
-        
-
         return view('usuarios.Receta', compact('receta'));
     }
 
     public function cantidadmultiplicada(Request $request, $Id_Receta)
     {
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
-
         //se crea una variable para obtener el numero de porciones ingresado en el input
-        $porciones = $request->input('porciones');
-
+        $cantidad = $request->input('cantidad');
         //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
         $cantidadesAjustadas = [];
         
         //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
         foreach ($receta->detallesReceta as $detalle) {
-            $cantidadAjustada = $detalle->Cantidad * $porciones;
+            $cantidadAjustada = $detalle->Cantidad * $cantidad;
             $cantidadesAjustadas[] = [
                 'producto' => $detalle->producto,
                 'cantidadAjustada' => $cantidadAjustada,
                 'unidadMedida' => $detalle->unidadMedida
             ];
         }
-
-        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','porciones'));
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
     }
     
 }

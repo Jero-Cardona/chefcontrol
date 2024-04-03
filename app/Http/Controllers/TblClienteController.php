@@ -75,4 +75,9 @@ class TblClienteController extends Controller
              return "no se lograron eliminar los datos";
          }
     }
+
+    public function getClientes()
+{
+    return tbl_cliente::all();
+}
 }
