@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@auth
 <div>
     <h1>{{ $receta->Nombre }}</h1>
     <p>{{ $receta->Descripcion }}</p>
@@ -14,15 +15,24 @@
         @endforeach
     </ul>
 <hr>
-    <form method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
+    <form method="POST" action="{{route('recetas.cantidadmultiplicada', $receta->Id_Receta)}}">
         @csrf
-        <label for="porciones">Número de porciones:</label>
-        <input type="number" name="porciones" min="1" required>
+        <label for="cantidad">Cantidad de la receta</label>
+        <input type="number" name="cantidad" min="1" required>
+        <label for="Id_Cliente">Cliente al que se dirije la orden:</label>
+        <select name="Id_Cliente" required>
+        @foreach (tbl_cliente::all() as $cliente)
+            <option value="{{$cliente->Id_cliente}}">{{$cliente->Nombre}}</option>
+        @endforeach
+        </select>
+        <input type="hidden" name="Fecha"  value="{{ Carbon::now()->format('Y-m-d H:i:s') }}">
+        <input type="hidden" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}">
+        <input type="text" name="estado" value="En espera">
         <button type="submit">Calcular</button>
     </form>
 <br>
     @if(isset($cantidadesAjustadas))
-        <h2>Cantidades ajustadas para {{$porciones}} porciones:</h2>
+        <h2>Cantidades ajustadas para {{$cantidad}} cantidad:</h2>
         <ul>
             @foreach($cantidadesAjustadas as $detalle)
                 <li>
@@ -32,4 +42,5 @@
         </ul>
     @endif
 </div
+@endauth            
 @endsection

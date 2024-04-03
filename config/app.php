@@ -190,8 +190,14 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
+    // 'aliases' => Facade::defaultAliases()->merge([
+    //     // ...
+    // ])->toArray(),
+
+    'aliases' => [
         // ...
-    ])->toArray(),
+        'Carbon' => Carbon\Carbon::class,
+        // ...
+    ],
 
 ];

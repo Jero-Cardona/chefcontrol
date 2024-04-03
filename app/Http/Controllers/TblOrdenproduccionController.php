@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\tbl_ordenproduccion;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class TblOrdenproduccionController extends Controller
     {
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Fecha'=>'required',
+            'Fecha'=>['date','required'],
             'Id_Cliente'=>'required',
             'Id_Empleado'=>'required',
             'estado'=>'required'

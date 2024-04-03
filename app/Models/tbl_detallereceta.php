@@ -12,7 +12,7 @@ class tbl_detallereceta extends Model
     
 
     protected $table = 'tbl_detallereceta';
-    protected $fillabel = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
+    protected $fillable = ['Id_Receta','Cod_Producto','Cantidad','Cod_UMedida'];
     protected $primaryKey = 'Consecutivo';
     public $timestamps = false;
  
