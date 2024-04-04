@@ -200,4 +200,10 @@ return [
     //     // ...
     // ],
 
+    // 'aliases' => [
+    //     // ...
+    //     'Carbon' => Carbon\Carbon::class,
+    //     // ...
+    // ],
+
 ];
