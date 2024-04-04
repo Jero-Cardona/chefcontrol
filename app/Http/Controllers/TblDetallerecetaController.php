@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\tbl_detallereceta;
+use App\Models\tbl_producto;
+use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 
 class TblDetallerecetaController extends Controller
@@ -25,6 +27,9 @@ class TblDetallerecetaController extends Controller
         $detalleReceta->Cantidad = $request->input('Cantidad');
         $detalleReceta->Cod_UMedida = $request->input('Cod_UMedida');
         $detalleReceta->save();
+
+        $productos= tbl_producto::findOrFail($request->Cod_Producto);
+        $recetas= tbl_receta::finOrFail($request->Id_Receta);
         // Retorna a la vista de las recetas
         return to_route('detalleReceta.create');
 

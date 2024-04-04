@@ -194,4 +194,10 @@ return [
         // ...
     ])->toArray(),
 
+    // 'aliases' => [
+    //     // ...
+    //     'Carbon' => Carbon\Carbon::class,
+    //     // ...
+    // ],
+
 ];

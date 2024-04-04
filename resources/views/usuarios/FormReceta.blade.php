@@ -1,3 +1,10 @@
+<?php
+use App\Models\tbl_producto;
+use App\Models\tbl_receta;
+
+$recetas = tbl_receta::all();
+$productos = tbl_producto::all(); 
+?>
 @extends('layouts.app')
 {{ session('confirm-receta') }}
 @section('style')
@@ -63,13 +70,22 @@
                 {{-- formulario de detalle receta resposive recetas resposive --}}
                 <form action="{{route('detalleReceta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
                     @csrf
-                    <div class="formRegistro">
-                        <input id="Id_Receta" name="Id_Receta" type="number" required>
-                        <label for="Id_Receta">Identificador Receta</label>
+                    <div class="form1Registro">
+                        <select id="" >
+                            <option value="" disabled selected hidden>Indentificador de receta</option>
+                            @foreach ($recetas as $receta)
+                                <option value="{{ $receta->Id_Receta }}">{{$receta->Nombre}}</option>
+                            @endforeach
+                        </select>
+                        
                     </div>
-                    <div class="formRegistro">
-                        <input id="Cod_Producto" name="Cod_Producto" type="number" required>
-                        <label for="Cod_Producto"> Codigo del Producto</label>
+                    <div class="form1Registro">
+                        <select>
+                            <option value="" disabled selected hidden>Indentificador de receta</option>
+                            @foreach ($productos as $producto)
+                                <option value="{{ $producto->Cod_Producto }}">{{$producto->Nombre}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="formRegistro">
                         <input name="Cantidad" id="Cantidad" type="text" required>
