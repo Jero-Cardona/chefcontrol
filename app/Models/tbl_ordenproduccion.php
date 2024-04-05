@@ -10,8 +10,8 @@ class tbl_ordenproduccion extends Model
     use HasFactory;
 
     protected $table = 'tbl_ordenproduccion';
-    protected $fillable = ['Fecha','Id_Cliente','Id_Empleado'];
-    protected $primarykey = 'Consecutivo';
+    protected $fillable = ['Fecha','Id_Cliente','Id_Empleado','Id_Receta','cantidad','estado'];
+    protected $primaryKey = 'Consecutivo';
     public $timestamps = false;
     
 }

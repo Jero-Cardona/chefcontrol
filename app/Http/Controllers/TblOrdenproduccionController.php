@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\tbl_ordenproduccion;
+use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 
 class TblOrdenproduccionController extends Controller
@@ -21,14 +22,20 @@ class TblOrdenproduccionController extends Controller
             'Fecha'=>['date','required'],
             'Id_Cliente'=>'required',
             'Id_Empleado'=>'required',
+            'Id_Receta'=>'required',
             'estado'=>'required'
         ]);
 
+        // Crear una instancia de Carbon para obtener la fecha y hora actual
+        $fechaActual = Carbon::now();
+
         // se instancia la clase
         $produccion= new tbl_ordenproduccion;
-        $produccion->Fecha = $request->Id_Receta;
+        $produccion->Fecha = $fechaActual;
         $produccion->Id_Cliente = $request->Id_Cliente;
         $produccion->Id_Empleado = $request->Id_Empleado;
+        $produccion->Id_Receta = $request->Id_Receta;
+        $produccion->cantidad = $request->cantidad;
         $produccion->estado = $request->estado;
  
         // $produccion->imagen = $urlreceta;
@@ -39,6 +46,51 @@ class TblOrdenproduccionController extends Controller
         // retorna a la vista de las recetas
         return to_route('produccion$produccion.create');
     }
+
+    public function cantidadmultiplicada(Request $request, $Id_Receta)
+    {
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        //se crea una variable para obtener el numero de porciones ingresado en el input
+        $cantidad = $request->cantidadporciones;
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
+        $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $cantidad;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
+
+        // $cliente = tbl_cliente::findOrFail($request->Id_Cliente);
+
+        // Procesar el formulario y guardar el valor de cantidad en la sesión
+        session()->flash('cantidad', $request->cantidadporciones);
+        
+        
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Carga el formulario de edicion de los datos
     public function edit($Consecutivo)

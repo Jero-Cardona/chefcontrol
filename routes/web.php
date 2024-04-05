@@ -11,6 +11,7 @@ use App\Http\Controllers\TblTareasController;
 use App\Http\Controllers\TblTipoproductoController;
 use App\Http\Controllers\TblUsuariosController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\TblOrdenproduccionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +51,7 @@ Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 //parte para traer las recetas y mostrarla una por una junto con sus ingredientes y carcularlos
 Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
 Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
-Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblOrdenproduccionController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
 Route::view('/Receta','usuarios.Receta');
 
 
