@@ -26,7 +26,7 @@ $clientes = tbl_cliente::all();
     <form id="frmcantidad" method="POST" action="{{route('recetas.cantidadmultiplicada', $receta->Id_Receta)}}">
         @csrf
         <label for="cantidad">Cantidad de la receta:</label>
-        <input type="number" name="cantidadporciones" min="1" required><br><br>
+        <input type="number" name="cantidad" min="1" required><br><br>
         <button type="submit">Calcular</button>
     </form>
 <br>
@@ -41,21 +41,28 @@ $clientes = tbl_cliente::all();
         </ul>
     @endif
     <hr>
-    <form id="frmorden" action="#" method="POST">
-        <input type="hidden" name="Fecha"  value="{{ Carbon::now()->format('Y-m-d H:i:s') }}">  
-        <label for="Id_Cliente">Cliente al que se dirije la orden:</label>
-        <select name="Id_Cliente" id="Id_Cliente"><br>
-            @foreach ($clientes as $cliente)
-                <option value="{{ $cliente->Id_Cliente }}">{{ $cliente->Nombre }}</option>
-            @endforeach
-        </select>
-        <input type="hidden" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}"><br>
-        <input type="hidden" name="Id_Receta" value=""><br>
-        <label for="">Cantidad de porciones</label>
-        <input type="number" name="cantidadorden" value="{{ session('cantidad') }}"><br>
-        <input type="hidden" name="estado" value="En espera"><br><br>
-        <button type="submit">Crear Orden de Producción</button>
-    </form>
+     <form id="frmorden" action="{{ route('orden.store')}}" method="POST">
+        @csrf
+        <legend>
+                 <h1>Orden de producción</h1><br>
+            <fieldset>
+                <input type="" name="Fecha"  value="{{ Carbon::now()->format('Y-m-d H:i:s') }}"><br>
+                <label for="Id_Cliente">Cliente al que se dirije la orden:</label>
+                <select name="Id_Cliente" id="Id_Cliente"><br>
+                    @foreach ($clientes as $cliente)
+                        <option value="{{ $cliente->Id_Cliente }}">{{ $cliente->Nombre }}</option>
+                    @endforeach
+                </select><br>
+                <input type="number" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}"><br>
+                <label for="">Id_Receta</label>
+                <input type="tel" name="Id_Receta" value="{{$receta->Id_Receta}}"><br>
+                <label for="">Cantidad de porciones:</label>
+                <input type="number" name="cantidad" value="{{ session('cantidad') }}"><br>
+                <input type="hidden" name="estado" value="En espera"><br><br>
+                <button type="submit">Crear Orden</button>
+            </fieldset>
+        </legend>
+    </form>     
 </div
 @endauth            
 @endsection

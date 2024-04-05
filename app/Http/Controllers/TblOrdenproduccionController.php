@@ -17,17 +17,21 @@ class TblOrdenproduccionController extends Controller
 
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Bogota');
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Fecha'=>['date','required'],
+            'Fecha'=>['required','date_format:Y-m-d H:i:s'],
             'Id_Cliente'=>'required',
             'Id_Empleado'=>'required',
             'Id_Receta'=>'required',
+            'cantidad'=>'required',
             'estado'=>'required'
         ]);
 
+        $fecha = $request->input('Fecha');
+
         // Crear una instancia de Carbon para obtener la fecha y hora actual
-        $fechaActual = Carbon::now();
+        $fechaActual = Carbon::createFromFormat('Y-m-d H:i:s', $fecha);
 
         // se instancia la clase
         $produccion= new tbl_ordenproduccion;
@@ -44,14 +48,14 @@ class TblOrdenproduccionController extends Controller
         //mensaje de envio de datos
         session()->flash('confirm-produccion$produccion','La produccion$produccion fue registrada correctamente');
         // retorna a la vista de las recetas
-        return to_route('produccion$produccion.create');
+        return to_route('receta.recetario');
     }
 
     public function cantidadmultiplicada(Request $request, $Id_Receta)
     {
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
         //se crea una variable para obtener el numero de porciones ingresado en el input
-        $cantidad = $request->cantidadporciones;
+        $cantidad = $request->cantidad;
         //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
         $cantidadesAjustadas = [];
         
@@ -68,7 +72,7 @@ class TblOrdenproduccionController extends Controller
         // $cliente = tbl_cliente::findOrFail($request->Id_Cliente);
 
         // Procesar el formulario y guardar el valor de cantidad en la sesión
-        session()->flash('cantidad', $request->cantidadporciones);
+        session()->flash('cantidad', $request->cantidad);
         
         
         return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));

@@ -52,6 +52,7 @@ Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
 Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
 Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblOrdenproduccionController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+Route::post('/OrdenProduccion', [TblOrdenproduccionController::class, 'store'])->name('orden.store');
 Route::view('/Receta','usuarios.Receta');
 
 
