@@ -4,14 +4,18 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Recetas</h3>
+    <div class="div1CrudR">
+        <div class="div2CrudR">
+            <div class="div3CrudR">
+                <div class="divHeaderCrudR">
+                    <h3 class="titulo1CrudR">Lista de Recetas</h3>
+                    <form class="buscadorCrudR">
+                        <input type="text" placeholder="Buscar">
+                        <button>Enviar</button>
+                    </form>
                 </div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="divBodyCrudR">
+                    <table class="tableCrudR">
                         <thead>
                             <tr>
                                 <th>Identificador</th>
@@ -34,14 +38,14 @@
                                 <td>{{ $receta->Costo_Total }}</td>
                                 <td>{{ $receta->Contribucion }}</td>
                                 <td>{{ $receta->Estado }}</td>
-                                <td> <img class="imagen-crud" src="{{$receta->imagen}}" alt=""> </td>
+                                <td> <img class="imagenCrudR" src="{{$receta->imagen}}" alt=""> </td>
 
                                 <td>
                                     <form action="{{ route('receta.destroy', $receta->Id_Receta) }}" method="POST">
-                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="editarCrudR">Editar Datos</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="eliminarCrudR" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
