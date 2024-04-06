@@ -1,14 +1,21 @@
 @extends('layouts.app')
-@section('content')
+@section('style')
+     <link rel="stylesheet" href="{{asset('/css/estiloCrudProducto.css')}}">
+     @endsection
+     @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Productos</h3>
+    <div class="div1CrudP">
+        <div class="div2CrudP">
+            <div class="div3CrudP">
+                <div class="divHeaderCrudP">
+                    <h3 class="titulo1CrudP">Lista de Productos</h3>
+                    <form class="buscadorCrudP">
+                        <input type="text" placeholder="¿Qué desea buscar?">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="divBodyCrudP">
+                    <table class="tableCrudP">
                         <thead>
                             <tr>
                                 <th>id</th>
@@ -45,11 +52,11 @@
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
                                 <td>
-                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST" class="crud-form">
+                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="crud-button editar-button">Editar Datos</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="crud-button eliminar-button" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

@@ -1,0 +1,153 @@
+*{
+    margin: 0px;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+}
+
+
+
+.contenedor1CrudP{
+    width: 100%;
+
+}
+
+.div1CrudP{
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.div2CrudP{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.div3CrudP{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    overflow: auto;
+}
+
+.divHeaderCrudP{
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    display: flex;
+    justify-content: space-between;
+}
+
+.buscadorCrudP input{
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.buscadorCrudP  button{
+    border-radius: 6px;
+    color: rgba(255, 255, 255);
+    background-color: rgba(255, 102, 0);
+    border: none;
+    height: 28px;
+    margin: 10px;
+    padding: 0px 5px 0px 5px;
+    transition: all 500ms ease-out;
+}
+
+.buscadorCrudP button:hover{
+    background-color: rgb(200, 80, 0);
+}
+
+.titulo1CrudP{
+    font-size: 24px;
+    color: rgba(154, 0, 15);
+    line-height: 50px;
+}
+
+.divBodyCrudP{
+    display: grid;
+    padding: 1rem 1rem;
+    grid-template: 120px / repeat(8 1fr) minmax(150px 200px);
+}
+
+.tableCrudP{
+    margin: 20px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tableCrudP thead tr th{
+    border-bottom: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.tableCrudP tbody tr td{
+    flex-shrink: 1;
+    padding: 10px;
+}
+
+.crud-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crud-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.editar-button {
+    background-color: rgba(255, 102, 0);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.eliminar-button {
+    background-color: rgba(154, 0, 15);
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crud-button:hover {
+    opacity: 0.9;
+}
+
+.crud-button:active {
+    transform: translateY(2px);
+}
+
+
+
+
+
+
+
+
