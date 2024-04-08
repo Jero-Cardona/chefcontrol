@@ -62,8 +62,9 @@ Route::put('/ordenes/{orden}/detalles',[TblOrdenproduccionController::class,'upd
 Route::view('/Orden-Produccion','usuarios.OrdenProduccion')->name('orden.produccion');
 Route::post('/orden/{ordenId}/preparacion-iniciar', [TblOrdenproduccionController::class  ,'iniciarPreparacion'])->name('orden.preparacion.iniciar');
 Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class,'marcarComoEntregado'])->name('orden.entregado');
-Route::get('/ordenes-en-espera', [TblOrdenproduccionController::class,'indexOrdenEspera'])->name('ordenes.indexEspera');
-
+Route::get('/ordenes/espera', [TblOrdenproduccionController::class,'indexOrdenesEspera'])->name('ordenes.espera');
+Route::get('/ordenes/preparacion', [TblOrdenProduccionController::class ,'indexOrdenesPreparacion'])->name('ordenes.preparacion');
+Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class ,'indexOrdenesEntegadas'])->name('ordenes.entregadas');
 
 
 
@@ -72,6 +73,7 @@ Route::get('/ordenes-en-espera', [TblOrdenproduccionController::class,'indexOrde
 
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
+
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
 Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');

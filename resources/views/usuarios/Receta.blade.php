@@ -36,11 +36,11 @@
             </form>
             <br>
             @if(isset($cantidadesAjustadas))
-                <h2>Cantidades ajustadas para {{ $cantidad }} porciones:</h2>
+                <h2>Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
                 <ul class="list-unstyled">
                     @foreach($cantidadesAjustadas as $detalle)
                         <li>
-                            {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, ',', '.') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                            {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
                         </li>
                     @endforeach
                 </ul>

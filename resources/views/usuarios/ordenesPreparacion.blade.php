@@ -9,10 +9,10 @@
 <div class="container">
     <div class="card border-danger mb-3">
         <div class="card-header text-center">
-            <h1 style="color: #8B0000;">Órdenes de Producción en Espera</h1>
+            <h1 style="color: #8B0000;">Órdenes de Producción en Preparacción</h1>
         </div>
         <div class="card-body">
-            @foreach($ordenesEnEspera->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
+            @foreach($ordenesEnPreparacion->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
                 <h2 class="text-center" style="color: #8B4513;">Cliente: {{ $cliente }}</h2>
                 <div class="row">
                     @foreach($ordenesDelCliente as $orden)
@@ -33,10 +33,14 @@
                                     <h4>Precio de la orden: {{ $precioFormato }}</h4>
                                     @endif
                                     <h4>Estado: {{ $orden->estado }}</h4>
-                                    @if ($orden->estado == 'En espera')
-                                    <form action="{{ route('orden.preparacion.iniciar', ['ordenId' => $orden->Consecutivo]) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Preparación iniciada</button>
+                                    @if ($orden->estado == 'En preparación')
+                                    <div class="spinner-border text-primary" role="status" style="width: 5rem; height: 5rem;">
+                                      </div>  
+                                      @endif                            
+                                    @if ($orden->estado == 'En preparación')
+                                    <form action="{{ route('orden.entregado', ['ordenId' => $orden->Consecutivo]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Marcar como entregado</button>
                                     </form>
                                     @endif
                                     <hr>
@@ -70,38 +74,6 @@
         </div>
     </div>
 </div>
-<hr style="height: 15px">
-        <div class="container-lg">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card text-center">
-                        <h2 style="color: green;">Agregar detalles a múltiples recetas</h2>
-                        <form class="form-group" action="{{ route('ordenes.detalles.bulk') }}" method="POST">
-                            @csrf
-                            <div>
-                                <label for="fecha_pedido">Fecha Pedido:</label>
-                                <input class="form-control" type="datetime-local" name="Fecha_Pedido"  required>
-                            </div>
-                            <div>
-                                <label for="presentacion">Presentación:</label>
-                                <input class="form-control" type="text" name="Presentacion"  required>
-                            </div>
-                            <div>
-                                <label>Seleccionar recetas:</label>
-                                @foreach($ordenesPorCliente as $cliente => $ordenes)
-                                    @foreach($ordenes as $orden)
-                                        <div>
-                                            <input class="form-check-input" type="checkbox" name="recetas[]" value="{{ $orden->Consecutivo }}"> {{ $orden->receta->Nombre }}
-                                        </div>
-                                    @endforeach
-                                @endforeach
-                            </div>
-                            <br>
-                            <button class="btn btn-success" type="submit">Agregar Detalles</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> 
-@endauth
+
+@endauth   
 @endsection

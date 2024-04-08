@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
 @auth
 @if (session('success'))
     <div class="alert alert-success">
