@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblUsuariosController extends Controller
 {
@@ -138,5 +139,14 @@ class TblUsuariosController extends Controller
         }else{
             return "no se lograron eliminar los datos";
         }
+    }
+
+    public function pdf()
+    {
+        $usuarios = tbl_usuarios::all();
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfusuarios',compact('usuarios'));
+        // descarga el pdf
+        return $pdf->download('usuarios.pdf');
     }
 }

@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class TblProductoController extends Controller
 {
@@ -145,5 +149,22 @@ class TblProductoController extends Controller
          }else{
              return "no se lograron eliminar los datos";
          }
+    }
+
+    public function pdf()
+    {
+        $productos = tbl_producto::all();
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfproductos',compact('productos'));
+        // descarga el pdf
+        return $pdf->download('producto.pdf');
+        
+        // // Ejemplo usando el método header()
+        // $response = Response::make($pdf);
+        // $response->header('Content-Type', 'application/pdf');
+        // return $response;
+
+        // // Ejemplo usando el método header() de la respuesta de Laravel
+        // return response($pdf)->header('Content-Type', 'application/pdf');
     }
 }

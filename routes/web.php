@@ -43,6 +43,9 @@ Route::post('/registro', [TblUsuariosController::class, 'store'])->name('usuario
 Route::get('/Usuario/{Id_Empleado}/edit', [TblUsuariosController::class, 'edit'])->name('usuarios.edit');
 Route::put('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'update'])->name('usuarios.update');
 Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'])->name('usuarios.destroy');
+// descarga usuarios pdf
+Route::get('Usuariospdf',[TblUsuariosController::class, 'pdf'])->name('usuarios.pdf');
+
 
 // Rutas del modulo Recetas
 Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
@@ -62,6 +65,8 @@ Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
 Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
+// descargar registros de recetas
+Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
 
 // Rutas de detalle receta
 Route::get("/FDetalleReceta", [TblDetallerecetaController::class, 'create'])->name('detalleReceta.create');
@@ -73,6 +78,9 @@ Route::post('Producto', [TblProductoController::class, 'store'])->name('producto
 Route::get('/Producto/{Cod_Producto}/Editar', [TblProductoController::class, 'edit'])->name('producto.edit');
 Route::put('/Producto/{Cod_Producto}', [TblProductoController::class, 'update'])->name('producto.update');
 Route::delete('/Producto/{Cod_Producto}', [TblProductoController::class, 'destroy'])->name('producto.destroy');
+// descargar pdf de registros de producto
+Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('producto.pdf');
+
 
 
 // Rutas de Cliente
@@ -81,6 +89,8 @@ Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.
 Route::get('/Cliente/{Id_Cliente}/editar', [TblClienteController::class, 'edit'])->name('cliente.edit');
 Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->name('cliente.update');
 Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])->name('cliente.destroy');
+// descargar pdf de registros de cliente
+Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.pdf');
 
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));

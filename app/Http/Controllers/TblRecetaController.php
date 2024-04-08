@@ -8,6 +8,8 @@ use App\Models\tbl_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class TblRecetaController extends Controller
@@ -167,6 +169,13 @@ class TblRecetaController extends Controller
         return view('usuarios.Receta', compact('receta'));
     }
 
-    
-    
+    public function pdf()
+    {
+        $recetas = tbl_receta::all();
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas'));
+        // descarga el pdf
+        return $pdf->download('recetas.pdf');
+    }
+
 }

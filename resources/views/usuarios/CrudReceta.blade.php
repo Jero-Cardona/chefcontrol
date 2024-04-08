@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('/css/estiloCrudReceta.css')}}">
 @endsection
 @section('content')
+<a href="{{route('recetas.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
