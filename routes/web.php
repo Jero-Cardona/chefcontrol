@@ -54,8 +54,21 @@ Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 //parte para traer las recetas y mostrarla una por una junto con sus ingredientes y carcularlos
 Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
 Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
-Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblOrdenproduccionController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
+Route::post('/Orden-Produccion/crear', [TblOrdenproduccionController::class, 'store'])->name('orden.store');
+Route::get('/Ordenes-De-Produccion',[TblOrdenproduccionController::class, 'index'])->name('orden.index');
+Route::post('/ordenes/{orden}/detalles', [TblOrdenproduccionController::class,'storeDetalles'])->name('ordenes.detalles.store');
+Route::post('/ordenes/detalles/bulk', [TblOrdenproduccionController::class,'storeBulkDetalles'])->name('ordenes.detalles.bulk');
 Route::view('/Receta','usuarios.Receta');
+Route::get('/ordenes/{orden}/detalles/edit',[TblOrdenproduccionController::class, 'editDetalles'])->name('ordenes.detalles.edit');
+Route::put('/ordenes/{orden}/detalles',[TblOrdenproduccionController::class,'updateDetalles'])->name('ordenes.detalles.update');
+Route::view('/Orden-Produccion','usuarios.OrdenProduccion')->name('orden.produccion');
+Route::post('/orden/{ordenId}/preparacion-iniciar', [TblOrdenproduccionController::class  ,'iniciarPreparacion'])->name('orden.preparacion.iniciar');
+Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class,'marcarComoEntregado'])->name('orden.entregado');
+Route::get('/ordenes-en-espera', [TblOrdenproduccionController::class,'indexOrdenEspera'])->name('ordenes.indexEspera');
+
+
+
 
 
 
@@ -94,7 +107,7 @@ Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.
 
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
-Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('listainicio.store');
+Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
-Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
+Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'storeFin'])->name('listafin.store');
 

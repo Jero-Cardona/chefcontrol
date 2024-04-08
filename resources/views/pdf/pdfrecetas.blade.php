@@ -36,7 +36,7 @@
                 <td>{{ $receta->Costo_Total }}</td>
                 <td>{{ $receta->Contribucion }}</td>
                 <td>{{ $receta->Estado }}</td>
-                <td><img src="{{ public_path('imagenes/recetas' . $receta->imagen) }}" aClt="Imagen"></td>
+                <td><img src="{{ asset('imagenes/recetas' . $receta->urlreceta) }}" alt="Imagen"></td>
                 <!-- Agrega más columnas según tus necesidades -->
             </tr>
         @endforeach

@@ -5,29 +5,83 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\tbl_ordenproduccion;
+use App\Models\tbl_cliente;
+use App\Models\tbl_detalleordenproduccion;
 use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 
 class TblOrdenproduccionController extends Controller
 {
+    public function index()
+    {
+        $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+        ->get()
+        ->groupBy(function ($orden) {
+            return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+        });
+
+        return view('usuarios.CrudOrden', compact('ordenesPorCliente'));
+       
+    }
+
+    public function storeDetalles(Request $request, $ordenId)
+    {
+        $orden = tbl_ordenproduccion::findOrFail($ordenId);
+
+        $detalle = new tbl_detalleordenproduccion();
+        $detalle->Consecutivo = $orden->Consecutivo;
+        $detalle->Fecha_Pedido = $request->input('Fecha_Pedido');
+        $detalle->Presentacion = $request->input('Presentacion');
+        $detalle->save();
+
+        return redirect()->back()->with('success', 'Detalle agregado correctamente.');
+    }
+
+    public function storeBulkDetalles(Request $request)
+    {
+       
+        $fechaPedido = $request->input('Fecha_Pedido');
+        $presentacion = $request->input('Presentacion');
+        $recetasSeleccionadas = $request->input('recetas', []);
+
+        foreach ($recetasSeleccionadas as $consecutivo) {
+            $orden = tbl_ordenproduccion::findOrFail($consecutivo);
+
+            $detalle = new tbl_detalleordenproduccion();
+            $detalle->Consecutivo = $orden->Consecutivo;
+            $detalle->Fecha_Pedido = $fechaPedido;
+            $detalle->Presentacion = $presentacion;
+            $detalle->save();
+        }
+       
+        return redirect()->back()->with('success', 'Detalles agregados correctamente.');
+    }
+
+
+
     public function create(){
         // vista del formulario de orden de produccion 
-        return view('usuarios.Formorden');
+        return view('usuarios.OrdenProduccion');
     }
 
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Bogota');
+
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Fecha'=>['date','required'],
+            'Fecha'=>['required','date_format:Y-m-d H:i:s'],
             'Id_Cliente'=>'required',
             'Id_Empleado'=>'required',
             'Id_Receta'=>'required',
+            'cantidad'=>'required',
             'estado'=>'required'
         ]);
 
+        $fecha = $request->input('Fecha');
+
         // Crear una instancia de Carbon para obtener la fecha y hora actual
-        $fechaActual = Carbon::now();
+        $fechaActual = Carbon::createFromFormat('Y-m-d H:i:s', $fecha);
 
         // se instancia la clase
         $produccion= new tbl_ordenproduccion;
@@ -41,56 +95,61 @@ class TblOrdenproduccionController extends Controller
         // $produccion->imagen = $urlreceta;
         $produccion->save();
 
-        //mensaje de envio de datos
-        session()->flash('confirm-produccion$produccion','La produccion$produccion fue registrada correctamente');
+        
         // retorna a la vista de las recetas
-        return to_route('produccion$produccion.create');
+        return to_route('orden.produccion');
     }
 
-    public function cantidadmultiplicada(Request $request, $Id_Receta)
+    public function iniciarPreparacion($ordenId)
     {
-        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
-        //se crea una variable para obtener el numero de porciones ingresado en el input
-        $cantidad = $request->cantidadporciones;
-        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
-        $cantidadesAjustadas = [];
-        
-        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
-        foreach ($receta->detallesReceta as $detalle) {
-            $cantidadAjustada = $detalle->Cantidad * $cantidad;
-            $cantidadesAjustadas[] = [
-                'producto' => $detalle->producto,
-                'cantidadAjustada' => $cantidadAjustada,
-                'unidadMedida' => $detalle->unidadMedida
-            ];
-        }
+        $orden = tbl_ordenproduccion::findOrFail($ordenId);
+        $orden->estado = 'En preparación';
+        $orden->save();
 
-        // $cliente = tbl_cliente::findOrFail($request->Id_Cliente);
-
-        // Procesar el formulario y guardar el valor de cantidad en la sesión
-        session()->flash('cantidad', $request->cantidadporciones);
-        
-        
-        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+        return redirect()->back()->with('success', 'Estado de la orden actualizado a "En preparación"');
+    }
+    public function marcarComoEntregado($ordenId)
+    {
+        $orden = tbl_ordenproduccion::findOrFail($ordenId);
+        $orden->estado = 'Entregado';
+        $orden->save();
+    
+        return redirect()->back()->with('success', 'La orden ha sido marcada como entregada.');
     }
 
+    public function indexOrdenEspera()
+    {
+        $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
+        $ordenesEnPreparacion = tbl_ordenproduccion::where('estado', 'En preparación')->get();
+        $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->get();
 
+        return view('usuarios.ordenesEspera', compact('ordenesEnEspera'))
+            ->with('ordenesEnPreparacion', $ordenesEnPreparacion)
+            ->with('ordenesEntregadas', $ordenesEntregadas);
+    }
 
+    public function editDetalles($ordenId)
+    {
+    $orden = tbl_ordenproduccion::findOrFail($ordenId);
+        return view('usuarios.EditDetalle', compact('orden'));
+    }
+    
+    public function updateDetalles(Request $request, $ordenId)
+    {
+        $orden = tbl_ordenproduccion::findOrFail($ordenId);
+        $detalles = $orden->detalles;
+    
+        $detalles->Fecha_Pedido = $request->input('Fecha_Pedido');
+        $detalles->Presentacion = $request->input('Presentacion');
+        $detalles->save();
+    
+        return redirect()->route('orden.index')->with('success', 'Detalle actualizado correctamente.');
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function show()
+    {
+        //
+    }
 
     // Carga el formulario de edicion de los datos
     public function edit($Consecutivo)

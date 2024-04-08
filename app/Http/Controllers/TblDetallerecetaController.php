@@ -29,7 +29,7 @@ class TblDetallerecetaController extends Controller
         $detalleReceta->save();
 
         $productos= tbl_producto::findOrFail($request->Cod_Producto);
-        $recetas= tbl_receta::finOrFail($request->Id_Receta);
+        $recetas= tbl_receta::findOrFail($request->Id_Receta);
         // Retorna a la vista de las recetas
         return to_route('detalleReceta.create');
 

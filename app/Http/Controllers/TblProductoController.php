@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_producto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;

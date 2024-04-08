@@ -26,7 +26,6 @@ class TblRecetaController extends Controller
     if($imagen)
     {
         $imagenmostrada=base64_encode($imagen->imagen);
-
         return view('index',['imagen'=>$imagenmostrada]);
     }else{
         return "NO FUNCA";
@@ -171,11 +170,38 @@ class TblRecetaController extends Controller
 
     public function pdf()
     {
+        // obtiene todos los 
         $recetas = tbl_receta::all();
+        // obtener el paht de la imagen
+        $imagenUrl = $recetas[0]->imagen;
+        $urlComponentes = parse_url($imagenUrl);
+        $imageName = $urlComponentes['path'];
+
         // mostrar pdf
         $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas'));
         // descarga el pdf
         return $pdf->download('recetas.pdf');
     }
 
+     public function cantidadmultiplicada(Request $request, $Id_Receta)
+    {
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        //se crea una variable para obtener el numero de porciones ingresado en el input
+        $cantidad = $request->cantidad;
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
+        $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $cantidad;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
+        
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+    }
+    
 }
