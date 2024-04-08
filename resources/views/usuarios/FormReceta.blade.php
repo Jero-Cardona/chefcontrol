@@ -71,7 +71,7 @@ $productos = tbl_producto::all();
                 <form action="{{route('detalleReceta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
                     @csrf
                     <div class="form1Registro">
-                        <select id="" >
+                        <select name="Id_Receta" id="Id_Receta">
                             <option value="" disabled selected hidden>Indentificador de receta</option>
                             @foreach ($recetas as $receta)
                                 <option value="{{ $receta->Id_Receta }}">{{$receta->Nombre}}</option>
@@ -80,8 +80,8 @@ $productos = tbl_producto::all();
                         
                     </div>
                     <div class="form1Registro">
-                        <select>
-                            <option value="" disabled selected hidden>Indentificador de receta</option>
+                        <select name="Cod_Producto" id="Cod_Producto">
+                            <option value="" disabled selected hidden>Indentificador de producto</option>
                             @foreach ($productos as $producto)
                                 <option value="{{ $producto->Cod_Producto }}">{{$producto->Nombre}}</option>
                             @endforeach

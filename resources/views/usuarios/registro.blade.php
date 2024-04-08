@@ -10,7 +10,12 @@
     <title>Registro</title>
 </head>
 <body>
-    {{session ('confirm-user')}}
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{session ('confirm-user')}}
+    </div>
+@endif
+   
     <div class="contenedorRegistro">
         <header class="headerIndex">
             <div class="contenedorHIndex">

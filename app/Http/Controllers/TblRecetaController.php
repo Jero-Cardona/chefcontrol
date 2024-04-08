@@ -167,6 +167,25 @@ class TblRecetaController extends Controller
         return view('usuarios.Receta', compact('receta'));
     }
 
-    
+     public function cantidadmultiplicada(Request $request, $Id_Receta)
+    {
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        //se crea una variable para obtener el numero de porciones ingresado en el input
+        $cantidad = $request->cantidad;
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
+        $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $cantidad;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
+        
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+    }
     
 }

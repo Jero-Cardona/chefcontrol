@@ -14,6 +14,9 @@
         <a href="{{route('crudclientes')}}"><input type="submit" value="Lista Clientes" class="botones1"></a>
         <a href="{{route('lista.inicio')}}"><input type="submit" value="Lista Incio Jornada" class="botones1"></a>
         <a href="{{route('lista.fin')}}"><input type="submit" value="Lista Fin Jornada" class="botones1"></a>
+        <a href="{{route('orden.produccion')}}"><input type="submit" value="Crear Orden Producción" class="botones1"></a>
+        <a href="{{route('orden.index')}}"><input type="submit" value="Ordenes de Producción" class="botones1"></a>
+        <a href="{{route('ordenes.indexEspera')}}"><input type="submit" value="Ordenes en Espera" class="botones1"></a>
         @endauth
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>

@@ -11,7 +11,7 @@ class tbl_cliente extends Model
 
     protected $table = 'tbl_cliente';
     protected $fillable = ['Tipo_identificacion','Nombre','Apellido','Telefono', 'estado'];
-    protected $primarykey = 'Id_Cliente';
+    protected $primaryKey = 'Id_Cliente';
     public $timestamps = false;
     
 }
