@@ -75,6 +75,8 @@ Route::put('/Producto/{Cod_Producto}', [TblProductoController::class, 'update'])
 Route::delete('/Producto/{Cod_Producto}', [TblProductoController::class, 'destroy'])->name('producto.destroy');
 
 
+
+
 // Rutas de Cliente
 Route::get('/RegistrarCliente', [TblClienteController::class, 'create'])->name('clienteCrear');
 Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.store');

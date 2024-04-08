@@ -1,5 +1,8 @@
 @extends('layouts.app')
-@section('content')
+@section('style')
+     <link rel="stylesheet" href="{{asset('/css/estiloListaUsuarios.css')}}">
+     @endsection
+     @section('content')
 <div class="contenedor" >
     @auth
     <div class="caja1">
@@ -21,13 +24,17 @@
 </div>
 <br><br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Usuarios</h3>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Usuarios</h3>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
                             <tr>
@@ -52,10 +59,10 @@
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
                                 <td>
                                     <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST">
-                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

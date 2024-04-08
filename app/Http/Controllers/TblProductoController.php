@@ -76,6 +76,8 @@ class TblProductoController extends Controller
 
     }
 
+
+
     // carga el formulario de receta
     public function edit($Cod_Producto)
     {

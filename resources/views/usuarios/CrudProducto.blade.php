@@ -3,14 +3,15 @@
      <link rel="stylesheet" href="{{asset('/css/estiloCrudProducto.css')}}">
      @endsection
      @section('content')
-<div class="container">
+<div class="contenedor1CrudP">
     <div class="div1CrudP">
         <div class="div2CrudP">
             <div class="div3CrudP">
                 <div class="divHeaderCrudP">
                     <h3 class="titulo1CrudP">Lista de Productos</h3>
-                    <form class="buscadorCrudP">
-                        <input type="text" placeholder="¿Qué desea buscar?">
+                    <form action="#" class="buscadorCrudP">
+                        @csrf
+                        <input type="text" name="buscar" placeholder="¿Qué desea buscar?">
                         <button>Buscar</button>
                     </form>
                 </div>
@@ -53,10 +54,10 @@
                                 <td>{{ $producto->IVA }}</td>
                                 <td>
                                     <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST" class="crud-form">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="crud-button editar-button">Editar Datos</a>
+                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="editarCrudP">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="crud-button eliminar-button" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="eliminarCrudP" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
