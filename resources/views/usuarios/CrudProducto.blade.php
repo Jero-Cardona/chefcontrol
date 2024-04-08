@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<a href="{{route('producto.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
 <div class="container">
     <div class="row">
         <div class="col-md-12">

@@ -26,9 +26,11 @@
     </div>
 </div>
 <br><br>
+@auth
+    
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Lista de Usuarios</h3>
@@ -71,7 +73,11 @@
                 </div>
             </div>
         </div>
+        <a href="{{route('usuarios.pdf')}}"><input type="submit" value="descargar usuarios pdf" class="botones1"></a>
     </div>
 </div>
+@endauth
     {{ session('confirm-user') }}
     @endsection
+
+    

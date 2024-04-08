@@ -8,6 +8,8 @@ use App\Models\tbl_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class TblRecetaController extends Controller
@@ -24,7 +26,6 @@ class TblRecetaController extends Controller
     if($imagen)
     {
         $imagenmostrada=base64_encode($imagen->imagen);
-
         return view('index',['imagen'=>$imagenmostrada]);
     }else{
         return "NO FUNCA";
@@ -166,6 +167,21 @@ class TblRecetaController extends Controller
         //se llama el modelo de recetas y se interatua con las relaciones(funciones) que se hizo en los modelos de detallereceta y receta, y se utiliza el metodo "findOrFail" para encontrar la clave promaria del modelo y obtener una instancia de dicho modelo
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
         return view('usuarios.Receta', compact('receta'));
+    }
+
+    public function pdf()
+    {
+        // obtiene todos los 
+        $recetas = tbl_receta::all();
+        // obtener el paht de la imagen
+        $imagenUrl = $recetas[0]->imagen;
+        $urlComponentes = parse_url($imagenUrl);
+        $imageName = $urlComponentes['path'];
+
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas'));
+        // descarga el pdf
+        return $pdf->download('recetas.pdf');
     }
 
      public function cantidadmultiplicada(Request $request, $Id_Receta)
