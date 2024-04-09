@@ -11,9 +11,8 @@ class tbl_tareascompletadas extends Model
 
     protected $table = 'tbl_tareascompletadas';
     protected $fillable = ['Id_Empleado', 'id_tarea', 'fecha'];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
-    
 }
 

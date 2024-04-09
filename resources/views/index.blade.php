@@ -2,6 +2,11 @@
 @section('content')
 <div class="contenedor" >
     @auth
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="caja1">
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Nuevo Usuario" class="botones1"></a>
         <a href="{{route('receta.create')}}"><input type="submit" value="Nueva Receta" class="botones1"></a>

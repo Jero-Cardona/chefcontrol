@@ -21,5 +21,4 @@ class tbl_usuarios extends Model
     public function tipoRol() {
         return $this->belongsTo(tbl_rol::class, 'Id_Rol');
       }
-  
 }

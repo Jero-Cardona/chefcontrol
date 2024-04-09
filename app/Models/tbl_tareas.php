@@ -10,7 +10,8 @@ class tbl_tareas extends Model
     use HasFactory;
 
     protected $table = 'tbl_tareas';
-    protected $fillable = ['nombre','id_formato'];
-    protected $primarykey = 'id';
+    protected $fillable = ['nombre','id_formato','estado'];
+    protected $primaryKey = 'id';
     public $timestamps = false;
+
 }

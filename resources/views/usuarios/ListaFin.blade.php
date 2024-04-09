@@ -3,10 +3,17 @@ use Carbon\Carbon;
 $fechaActual = Carbon::now();
 ?>
 @extends('layouts.app')
-    @section('style')
-        <link rel="stylesheet" href="{{asset('/css/estilosListasChequeo.css')}}">
-    @endsection
-    @section('content')
+@section('style')
+    <link rel="stylesheet" href="{{asset('/css/estilosListasChequeo.css')}}">
+@endsection
+ @section('content')
+ @auth
+ @if (session('status'))
+ <div class="alert alert-success">
+     {{ session('status') }}
+ </div>
+@endif
+
 <body>
     <div class="formulario">
         <div class="tittle">
@@ -16,8 +23,8 @@ $fechaActual = Carbon::now();
             <form id="form-verificacion" action="{{ route('listafin.store') }}" method="POST">
                 @csrf
                 <label style="margin: 10px 40px;" class="tittle-items">Selecciona los elementos:</label><br>
-                    @foreach ($estado as $tarea)
-                    <input style="margin: 15px;" type="checkbox" name="items" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
+                    @foreach ($formato as $tarea)
+                    <input style="margin: 15px;" type="checkbox" name="id_tarea[]" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
                     @endforeach
                     <input type="hidden" name="fecha" value="{{Carbon::now()->format('Y-m-d H:i:s')}}">
                     <input type="hidden" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}">
@@ -26,4 +33,5 @@ $fechaActual = Carbon::now();
         </div>
     </div>
 </body>
+@endauth
 @endsection
