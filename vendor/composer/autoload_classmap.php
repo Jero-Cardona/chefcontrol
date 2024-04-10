@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\tbl_cliente' => $baseDir . '/app/Models/tbl_cliente.php',
+    'App\\Models\\tbl_detalleordenproduccion' => $baseDir . '/app/Models/tbl_detalleordenproduccion.php',
     'App\\Models\\tbl_detallereceta' => $baseDir . '/app/Models/tbl_detallereceta.php',
     'App\\Models\\tbl_formatos' => $baseDir . '/app/Models/tbl_formatos.php',
     'App\\Models\\tbl_ordenproduccion' => $baseDir . '/app/Models/tbl_ordenproduccion.php',

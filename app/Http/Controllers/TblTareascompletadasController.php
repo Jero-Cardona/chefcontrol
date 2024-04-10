@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\tbl_tareas;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Models\tbl_tareascompletadas;
+use App\Models\tbl_usuarios;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblTareascompletadasController extends Controller
 {
@@ -16,18 +19,51 @@ class TblTareascompletadasController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function indexInicio()
     {
-        //Edilberto
-        $tareasCompletadas = tbl_tareas::all();
-        return view('usuarios.LIstaInicio', ['tareasCompletadas' => $tareasCompletadas]);
+        
+        // Obtener los registros de tareas completadas agrupados por fecha y filtrados por id_tarea <= 23
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '<=', 22);
+        })
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+
+        return view('usuarios.CrudListaInicio', compact('tareasCompletadasPorFecha'));
     }
+    
+    public function indexFin()
+    {
+        // Obtener los registros de tareas completadas agrupados por fecha y filtrados por id_tarea <= 23
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '>=', 23);
+        })
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+
+        return view('usuarios.CrudListaFin', compact('tareasCompletadasPorFecha'));
+        }
 
    
     public function store(Request $request)
     {
-        try{
-            $tareasSeleccionadas = $request->input('items', []);
+       
+        // Validar los datos recibidos del formulario
+        $request->validate([
+            'Id_Empleado' => 'required',
+            'id_tarea' => 'required|array', // Se espera un arreglo de tareas
+            'fecha' => ['required', 'date_format:Y-m-d H:i:s'],
+            
+        ]);
+    
+        $fecha = $request->input('fecha');
+        $fechaActual = Carbon::createFromFormat('Y-m-d H:i:s', $fecha);
+
+            $tareasSeleccionadas = $request->input('id_tarea', []);
             if (is_array($tareasSeleccionadas))
             {
                 $Id_Empleado = Auth::user()->Id_Empleado;
@@ -35,40 +71,15 @@ class TblTareascompletadasController extends Controller
                     $tareaCompletada = new tbl_tareascompletadas([
                         'Id_Empleado' => $Id_Empleado,
                         'id_tarea' => $tareaId,
-                        'fecha' => now()
+                        'fecha' => $fechaActual
                     ]);
                     $tareaCompletada->save();
                 }
     
-                return redirect()->route('usuarios.index')->with('status', 'Tareas completadas guardadas exitosamente.');
+                return redirect()->route('usuarios.index')->with('status', 'Lista Incio de Jornada guardada correctamente.');
             } else {
-                return redirect()->route('lista.inicio')->with('status', 'no se estan seguistrando las tareas');
+                return redirect()->route('lista.inicio')->with('status', 'No fue posible guardar la Lista de Inicio de Jornada.');
         }
-        }catch (Exception $mensaje){
-            $mensaje->getMessage();
-        }
-    
-        // $fecha = date('Y-m-d H:i:s');
-        // $Id_Empleado = $request->input('Id_Empleado'); // Obtener el ID del empleado desde la solicitud
-        // foreach($request->items as $item){
-        //     TblTareascompletadasController::create([
-        //         'Id_Empleado' => $Id_Empleado,
-        //         'id_tarea' => $item,
-        //         'fecha' =>  $fecha // Obtener la fecha actual
-        //     ]);
-        // }
-        // //Edilberto
-        // return view('usuario.LIstaInicio', ['Id_Empleado' => $Id_Empleado]);
-       
-        // $tareasCompletadas = $request->input('tareas'); // Obtener los IDs de las tareas completadas desde la solicitud
-
-        // // Recorrer los IDs de las tareas completadas y crear registros en la tabla tbl_tareascompletadas
-        // foreach ($tareasCompletadas as $id) {
-            
-        // }
-
-        // // Redirigir a alguna parte después de guardar las tareas completadas
-        // return redirect()->route('lista.store');
     }
-
+    
 }

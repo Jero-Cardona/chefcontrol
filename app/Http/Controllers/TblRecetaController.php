@@ -8,6 +8,8 @@ use App\Models\tbl_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class TblRecetaController extends Controller
@@ -24,7 +26,6 @@ class TblRecetaController extends Controller
     if($imagen)
     {
         $imagenmostrada=base64_encode($imagen->imagen);
-
         return view('index',['imagen'=>$imagenmostrada]);
     }else{
         return "NO FUNCA";
@@ -41,12 +42,13 @@ class TblRecetaController extends Controller
     public function create(){
         return view('usuarios.FormReceta');
     }
+
     // Almacena los datos del registro en la BD
     public function store(Request $request){
 
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Id_Receta'=>'required',
+            
             'Nombre'=>'required',
             'Descripcion'=>'required',
             'Costo_Total'=>'required',
@@ -66,7 +68,7 @@ class TblRecetaController extends Controller
 
         // se instancia la clase
         $receta= new tbl_receta;
-        $receta->Id_Receta = $request->Id_Receta;
+       
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
@@ -77,9 +79,9 @@ class TblRecetaController extends Controller
         // guardar datos
         $receta->save();
         //parte Edilberto
-        session()->flash('confirm-receta','La receta fue registrada correctamente');
+        session()->flash('success','La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
         // retorna a la vista de las recetas
-        return to_route('receta.create');
+        return view('usuarios.frmDetalleReceta');
 
     }
 
@@ -167,6 +169,40 @@ class TblRecetaController extends Controller
         return view('usuarios.Receta', compact('receta'));
     }
 
-    
+    public function pdf()
+    {
+        // obtiene todos los 
+        $recetas = tbl_receta::all();
+        // obtener el paht de la imagen
+        $imagenUrl = $recetas[0]->imagen;
+        $urlComponentes = parse_url($imagenUrl);
+        $imageName = $urlComponentes['path'];
+
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas'));
+        // descarga el pdf
+        return $pdf->download('recetas.pdf');
+    }
+
+     public function cantidadmultiplicada(Request $request, $Id_Receta)
+    {
+        $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
+        //se crea una variable para obtener el numero de porciones ingresado en el input
+        $cantidad = $request->cantidad;
+        //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
+        $cantidadesAjustadas = [];
+        
+        //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
+        foreach ($receta->detallesReceta as $detalle) {
+            $cantidadAjustada = $detalle->Cantidad * $cantidad;
+            $cantidadesAjustadas[] = [
+                'producto' => $detalle->producto,
+                'cantidadAjustada' => $cantidadAjustada,
+                'unidadMedida' => $detalle->unidadMedida
+            ];
+        }
+        
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+    }
     
 }

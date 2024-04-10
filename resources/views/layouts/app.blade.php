@@ -29,7 +29,7 @@
                 </div> --}}
                 @endauth
                 <div class="NombreProyectoIndex">
-                    <h2 style="margin-top: 15px">ChefControl</h2>
+                    <h2>ChefControl</h2>
                 </div>
                 <div class="btnMenuHIndex">
                     <label for="btnMenu">Menú</label>

@@ -15,7 +15,7 @@ class tbl_rol extends Model
     public $timestamps = false;
 
     public function usuarios() {
-        return $this->hasMany(tbl_producto::class, 'Id_Empleado');
+        return $this->hasMany(tbl_usuarios::class, 'Id_Empleado');
       }
 
 }

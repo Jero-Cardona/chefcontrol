@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\tbl_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class TblClienteController extends Controller
 {
@@ -77,7 +79,16 @@ class TblClienteController extends Controller
     }
 
     public function getClientes()
-{
-    return tbl_cliente::all();
-}
+    {
+        return tbl_cliente::all();
+    }
+
+    public function pdf()
+    {
+        $clientes = tbl_cliente::all();
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfclientes',compact('clientes'));
+        // descarga el pdf
+        return $pdf->download('clientes.pdf');
+    }
 }

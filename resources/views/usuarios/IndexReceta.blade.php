@@ -15,7 +15,8 @@
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
-@endif
+    @endif
+    
     <div class="contenedorRecetas">
         <header class="headerRecetas">
             <div class="contenedorHR">

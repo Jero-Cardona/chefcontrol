@@ -5,6 +5,11 @@
      @section('content')
 <div class="contenedor" >
     @auth
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="caja1">
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Nuevo Usuario" class="botones1"></a>
         <a href="{{route('receta.create')}}"><input type="submit" value="Nueva Receta" class="botones1"></a>
@@ -17,12 +22,23 @@
         <a href="{{route('crudclientes')}}"><input type="submit" value="Lista Clientes" class="botones1"></a>
         <a href="{{route('lista.inicio')}}"><input type="submit" value="Lista Incio Jornada" class="botones1"></a>
         <a href="{{route('lista.fin')}}"><input type="submit" value="Lista Fin Jornada" class="botones1"></a>
+        <a href="{{route('orden.produccion')}}"><input type="submit" value="Crear Orden Producción" class="botones1"></a>
+        <a href="{{route('orden.index')}}"><input type="submit" value="Ordenes de Producción" class="botones1"></a>
+        <a href="{{route('ordenes.espera')}}"><input type="submit" value="Ordenes en Espera" class="botones1"></a>
+        <a href="{{route('ordenes.preparacion')}}"><input type="submit" value="Ordenes en Preparación" class="botones1"></a>
+        <a href="{{route('ordenes.entregadas')}}"><input type="submit" value="Ordenes Entregadas" class="botones1"></a>
+        <a href="{{route('detalleReceta.create')}}"><input type="submit" value="Agregar Detalle a una receta" class="botones1"></a>
+        <a href="{{route('crud.listainicio')}}"><input type="submit" value="Listas de inicio registradas" class="botones1"></a>
+        <a href="{{route('crud.listafin')}}"><input type="submit" value="Listas de fin registradas" class="botones1"></a>
+        
         @endauth
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>
     </div>
 </div>
 <br><br>
+@auth
+    
 <div class="container">
     <div class="div1">
         <div class="div2">
@@ -72,7 +88,11 @@
                 </div>
             </div>
         </div>
+        <a href="{{route('usuarios.pdf')}}"><input type="submit" value="descargar usuarios pdf" class="botones1"></a>
     </div>
 </div>
+@endauth
     {{ session('confirm-user') }}
     @endsection
+
+    
