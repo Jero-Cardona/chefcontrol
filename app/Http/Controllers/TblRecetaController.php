@@ -170,15 +170,20 @@ class TblRecetaController extends Controller
 
     public function pdf()
     {
-        // obtiene todos los 
+        // obtiene todos los registros
         $recetas = tbl_receta::all();
+        $imageName = [];
         // obtener el paht de la imagen
-        $imagenUrl = $recetas[0]->imagen;
-        $urlComponentes = parse_url($imagenUrl);
-        $imageName = $urlComponentes['path'];
-
+        for ($i = 0; $i < count($recetas); $i++) {
+            $imagenUrl = $recetas[$i]->imagen;
+            // Hacer algo con $imagenUrl
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName[] = $urlComponentes['path'];
+        }
+        // elimina el servidor de la url
+        // return dd($imageName);
         // mostrar pdf
-        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas'));
+        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas','imageName'));
         // descarga el pdf
         return $pdf->download('recetas.pdf');
     }

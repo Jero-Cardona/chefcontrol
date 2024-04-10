@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>pdf productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
     <style>
         table{
             font-family: arial, sans-serif;
@@ -19,49 +21,67 @@
         tr:nth-child(even){
             background-color: #dddddd;
         }
+        .card {
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            margin-top: 0;
+        }
+        
+        .card-content p {
+            margin-bottom: 0;
+        }
+        .imagen{
+            width: 400px;
+            height: 500px;
+            border: solid black 2px;
+        }
     </style>
-</head>
 <body>
+    <?php
+    $i = 0;
+    ?>
     <h1>Registros Productos</h1>
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Imagen</th>
-            <th>S Maximo</th>
-            <th>S Minimo</th>
-            <th>Fecha V</th>
-            <th>Costo</th>
-            <th>Tipo</th>
-            <th>Ubicacion</th>
-            <th>Medida</th>
-            <th>Precio</th>
-            <th>Existencia</th>
-            <th>Iva</th>
-            <!-- Agrega más columnas según tus necesidades -->
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($productos as $producto)
-        <tr> 
-            <th>{{ $producto->Cod_Producto }}</th>
-            <th>{{ $producto->Nombre }}</th>
-            <td><img src="{{ public_path('imagenes/productos' . $producto->imagen) }}" alt="Producto"></td>
-                <th>{{ $producto->Stock_Minimo }}</th>
-                <th>{{ $producto->Stock_Maximo }}</th>
-                <th>{{ $producto->Fecha_Vencimiento}}</th>
-                <th>{{ $producto->Costo }}</th>
-                <th>{{ $producto->tipoProducto->Tipo }}</th>
-                <th>{{ $producto->Ubicacion }}</th>
-                <th>{{ $producto->tipoMedida->Unidad_Medida }}</th>
-                <th>{{ $producto->Precio_Venta }}</th>
-                <th>{{ $producto->Existencia }}</th>
-                <th>{{ $producto->IVA }}</th>
-                <!-- Agrega más columnas según tus necesidades -->
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+    @foreach ($productos as $producto)
+    <div class="row">
+        <div class="col-md-6">
+        <div class="card">
+                <img class="imagen" src="{{ public_path($imageName[$i]) }}" alt="Imagen"></td>
+            <div class="card-content">
+                <h3>Nombre: {{ $producto->Nombre }}</h3>
+                <p>Stock Maximo: {{ $producto->Stock_Maximo }}</p>
+                <p>Stock Minimo: {{ $producto->Stock_Minimo }}</p>
+                <p>Fecha Vencimiento: {{ $producto->Fecha_Vencimiento }}</p>
+                <p>Costo Total: {{ $producto->Costo }}</p>
+                <p>Tipo de Producto: {{ $producto->Cod_Tipo }}</p>
+                <p>Ubicacion: {{ $producto->Ubicacion }}</p>
+                <p>Medida del Producto: {{ $producto->Cod_UMedida }}</p>
+                <p>Precio de Venta: {{ $producto->Precio_Venta }}</p>
+                <p>Existencia del producto: {{ $producto->Existencia }}</p>
+                <p>Iva del Producto: {{ $producto->IVA }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <?php
+    $i++;
+    ?>
+    @endforeach
 </body>
 </html>

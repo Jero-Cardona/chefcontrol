@@ -60,7 +60,7 @@ class TblProductoController extends Controller
         $producto->imagen = $urlproducto;
         $producto->Stock_Minimo = $request->Stock_Minimo;
         $producto->Stock_Maximo = $request->Stock_Maximo;
-        $producto->Fecha_Vencimiento = $request->Fecha_Vencimento;
+        $producto->Fecha_Vencimiento = $request->Fecha_Vencimiento;
         $producto->Costo = $request->Costo;
         $producto->Cod_Tipo = $request->Cod_Tipo;
         $producto->Ubicacion = $request->Ubicacion;
@@ -152,18 +152,21 @@ class TblProductoController extends Controller
 
     public function pdf()
     {
+        // obtiene todos los registros
         $productos = tbl_producto::all();
+        $imageName = [];
+        // obtener el paht de la imagen
+        for ($i = 0; $i < count($productos); $i++) {
+            $imagenUrl = $productos[$i]->imagen;
+            // Hacer algo con $imagenUrl
+            $urlComponentes = parse_url($imagenUrl);
+            $imageName[] = $urlComponentes['path'];
+        }
+        // elimina el servidor de la url
+        // return dd($imageName);
         // mostrar pdf
-        $pdf = Pdf::loadView('pdf.pdfproductos',compact('productos'));
+        $pdf = Pdf::loadView('pdf.pdfproductos',compact('productos','imageName'));
         // descarga el pdf
         return $pdf->download('producto.pdf');
-        
-        // // Ejemplo usando el método header()
-        // $response = Response::make($pdf);
-        // $response->header('Content-Type', 'application/pdf');
-        // return $response;
-
-        // // Ejemplo usando el método header() de la respuesta de Laravel
-        // return response($pdf)->header('Content-Type', 'application/pdf');
     }
 }

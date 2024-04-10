@@ -23,11 +23,11 @@
                 <div>
                     <img class="logoHIndex" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 </div>
-                @auth
+                {{-- @auth --}}
                 {{-- <div class="NombreProyectoIndex">
                     <h2>{{Auth::user()->Id_Empleado}}</h2>
                 </div> --}}
-                @endauth
+                {{-- @endauth --}}
                 <div class="NombreProyectoIndex">
                     <h2>ChefControl</h2>
                 </div>
