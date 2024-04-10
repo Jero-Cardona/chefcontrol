@@ -15,10 +15,6 @@
             @method('PUT')
             @csrf
             <div class="formRegistro">
-                <input value="{{$producto[0]->Cod_Producto }}" id="Cod_Producto" name="Cod_Producto" type="number" required>
-                <label for="Cod_Producto">Identificador producto</label>
-            </div>
-            <div class="formRegistro">
                 <input value="{{$producto[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
                 <label for="Nombre"> Nombre del producto</label>
             </div>
@@ -77,8 +73,7 @@
                 <input value="{{$producto[0]->IVA }}" id="IVA" name="IVA" type="number" required>
                 <label for="IVA">Iva del producto</label>
             </div>
-            <div class="formRegistro">
-            </div>
+           
             <div class="btn1Registro">
                 <input type="submit" value="Guardar Cambios" class="enviarRegistro">
             </div>

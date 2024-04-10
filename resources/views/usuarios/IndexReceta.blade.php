@@ -37,8 +37,12 @@
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuRecetas">
                     <a href="#">Recetas</a>
+                    <a href="#">Productos</a>
+                    <a href="#">Orden de Produccion</a>
+                    <a href="#">Usuarios</a>
                     <a href="#">Sugerir</a>
-                    <a href="{{route('crudrecetas')}}">Listado de recetas</a>
+                    <a href="#">Listado de recetas</a>
+                    <a href="{{route('crudrecetas')}}">Inicio</a>
                 </nav>
             </div>
         </header>

@@ -3,6 +3,7 @@
      <link rel="stylesheet" href="{{asset('/css/estiloCrudProducto.css')}}">
      @endsection
      @section('content')
+<a href="{{route('producto.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
 <div class="contenedor1CrudP">
     <div class="div1CrudP">
         <div class="div2CrudP">
@@ -36,10 +37,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
                             @foreach ($productos as $producto)
                             <tr>
-                                
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>

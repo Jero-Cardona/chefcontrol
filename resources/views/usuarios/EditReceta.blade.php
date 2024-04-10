@@ -39,10 +39,6 @@
                     @csrf
                     @method('PUT')
                     <div class="formRegistro">
-                        <input value="{{$receta[0]->Id_Receta }}" id="Id_Receta" name="Id_Receta" type="number" required>
-                        <label for="Id_Receta">Identificador Receta</label>
-                    </div>
-                    <div class="formRegistro">
                         <input value="{{$receta[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
                         <label for="Nombre"> Nombre Receta</label>
                     </div>
@@ -70,9 +66,7 @@
                         <input value="{{$receta[0]->imagen }}" id="imagen1" name="imagen1" type="file" required>
                         <label for="imagen1"></label>
                     </div>
-                    <div class="formRegistro">
-                        <input id="" name="" type="hidden">
-                    </div>
+                   
                     <div class="btn1Registro">
                         <input type="submit" value="Guardar Cambios" class="enviarRegistro">
                     </div>
