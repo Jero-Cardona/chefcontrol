@@ -12,7 +12,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                
                                 <th>Nombres</th>
                                 <th>Imagen</th>
                                 <th>Stock min</th>
@@ -32,7 +32,7 @@
                             
                             @foreach ($productos as $producto)
                             <tr>
-                                <td>{{ $producto->Cod_Producto }}</td>
+                                
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>

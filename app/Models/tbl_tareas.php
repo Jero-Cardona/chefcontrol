@@ -14,4 +14,8 @@ class tbl_tareas extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function tareascompletadas() {
+        return $this->hasMany(tbl_tareascompletadas::class, 'id_tarea');
+      }
+
 }

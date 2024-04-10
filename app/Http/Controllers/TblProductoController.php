@@ -29,7 +29,7 @@ class TblProductoController extends Controller
     {
         // codigo de validacion
         $request->validate([
-            'Cod_Producto'=>'required',
+           
             'Nombre'=>'required',
             'imagen'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'Stock_Minimo'=>'required',
@@ -55,7 +55,7 @@ class TblProductoController extends Controller
 
         // Instancia de la clase Producto
         $producto = new tbl_producto;
-        $producto->Cod_Producto = $request->Cod_Producto;
+        
         $producto->Nombre = $request->Nombre;
         $producto->imagen = $urlproducto;
         $producto->Stock_Minimo = $request->Stock_Minimo;

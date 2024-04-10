@@ -25,6 +25,9 @@
         <a href="{{route('ordenes.preparacion')}}"><input type="submit" value="Ordenes en Preparación" class="botones1"></a>
         <a href="{{route('ordenes.entregadas')}}"><input type="submit" value="Ordenes Entregadas" class="botones1"></a>
         <a href="{{route('detalleReceta.create')}}"><input type="submit" value="Agregar Detalle a una receta" class="botones1"></a>
+        <a href="{{route('crud.listainicio')}}"><input type="submit" value="Listas de inicio registradas" class="botones1"></a>
+        <a href="{{route('crud.listafin')}}"><input type="submit" value="Listas de fin registradas" class="botones1"></a>
+        
         @endauth
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>

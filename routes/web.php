@@ -110,6 +110,8 @@ Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('listainicio.store');
+Route::get("/CrudListaInicio",[TblTareascompletadasController::class, 'indexInicio'])->name('crud.listainicio');
+Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])->name('crud.listafin');
 
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
 Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');

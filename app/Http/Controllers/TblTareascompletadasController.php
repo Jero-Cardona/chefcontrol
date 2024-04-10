@@ -19,12 +19,34 @@ class TblTareascompletadasController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function indexInicio()
     {
         
-        $tareasCompletadas = tbl_tareas::all();
-        return view('usuarios.LIstaInicio', ['tareasCompletadas' => $tareasCompletadas]);
+        // Obtener los registros de tareas completadas agrupados por fecha y filtrados por id_tarea <= 23
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '<=', 22);
+        })
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+
+        return view('usuarios.CrudListaInicio', compact('tareasCompletadasPorFecha'));
     }
+    
+    public function indexFin()
+    {
+        // Obtener los registros de tareas completadas agrupados por fecha y filtrados por id_tarea <= 23
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '>=', 23);
+        })
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+
+        return view('usuarios.CrudListaFin', compact('tareasCompletadasPorFecha'));
+        }
 
    
     public function store(Request $request)
@@ -54,9 +76,9 @@ class TblTareascompletadasController extends Controller
                     $tareaCompletada->save();
                 }
     
-                return redirect()->route('usuarios.index')->with('status', 'Tareas completadas guardadas exitosamente.');
+                return redirect()->route('usuarios.index')->with('status', 'Lista Incio de Jornada guardada correctamente.');
             } else {
-                return redirect()->route('lista.inicio')->with('status', 'no se estan registrando las tareas.');
+                return redirect()->route('lista.inicio')->with('status', 'No fue posible guardar la Lista de Inicio de Jornada.');
         }
     }
     

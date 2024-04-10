@@ -586,6 +586,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\tbl_cliente' => __DIR__ . '/../..' . '/app/Models/tbl_cliente.php',
+        'App\\Models\\tbl_detalleordenproduccion' => __DIR__ . '/../..' . '/app/Models/tbl_detalleordenproduccion.php',
         'App\\Models\\tbl_detallereceta' => __DIR__ . '/../..' . '/app/Models/tbl_detallereceta.php',
         'App\\Models\\tbl_formatos' => __DIR__ . '/../..' . '/app/Models/tbl_formatos.php',
         'App\\Models\\tbl_ordenproduccion' => __DIR__ . '/../..' . '/app/Models/tbl_ordenproduccion.php',

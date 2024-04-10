@@ -18,13 +18,9 @@
             <div class="tituloRegistro">
                 <h2>Nueva Receta</h2>
             </div>
-            {{-- formulario de recetas resposive --}}
-            <form action="{{route('receta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
+                {{-- formulario de recetas resposive --}}
+                <form action="{{route('receta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
                 @csrf
-                <div class="formRegistro">
-                    <input id="Id_Receta" name="Id_Receta" type="number" required>
-                    <label for="Id_Receta">Identificador Receta</label>
-                </div>
                 <div class="formRegistro">
                     <input id="Nombre" name="Nombre" type="text" required>
                     <label for="Nombre"> Nombre Receta</label>
@@ -51,9 +47,6 @@
                 <div class="formRegistro">
                     <input id="imagen" name="imagen" type="file" required>
                     <label for="imagen"></label>
-                </div>
-                <div class="formRegistro">
-                    <input id="" name="" type="hidden">
                 </div>
                 <div class="btn1Registro">
                     <input type="submit" class="enviarRegistro">

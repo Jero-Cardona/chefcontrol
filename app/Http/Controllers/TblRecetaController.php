@@ -48,7 +48,7 @@ class TblRecetaController extends Controller
 
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Id_Receta'=>'required',
+            
             'Nombre'=>'required',
             'Descripcion'=>'required',
             'Costo_Total'=>'required',
@@ -68,7 +68,7 @@ class TblRecetaController extends Controller
 
         // se instancia la clase
         $receta= new tbl_receta;
-        $receta->Id_Receta = $request->Id_Receta;
+       
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
