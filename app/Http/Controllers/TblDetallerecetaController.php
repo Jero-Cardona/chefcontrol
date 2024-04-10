@@ -15,7 +15,7 @@ class TblDetallerecetaController extends Controller
         return view('receta');
     }
     public function create(){
-        return view('usuarios.FormReceta');
+        return view('usuarios.frmDetalleReceta');
     }
 
     // Almacena datos del formulario
@@ -34,7 +34,7 @@ class TblDetallerecetaController extends Controller
         return to_route('detalleReceta.create');
 
         //parte Edilberto
-        session()->flash('confirm-detalle-receta','El detalle de la receta fue guardado correctamente');
+        session()->flash('success','El detalle de la receta fue guardado correctamente');
     }
 
     // Carga el formulario de edicion

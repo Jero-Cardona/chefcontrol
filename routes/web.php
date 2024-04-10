@@ -65,8 +65,9 @@ Route::put('/ordenes/{orden}/detalles',[TblOrdenproduccionController::class,'upd
 Route::view('/Orden-Produccion','usuarios.OrdenProduccion')->name('orden.produccion');
 Route::post('/orden/{ordenId}/preparacion-iniciar', [TblOrdenproduccionController::class  ,'iniciarPreparacion'])->name('orden.preparacion.iniciar');
 Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class,'marcarComoEntregado'])->name('orden.entregado');
-Route::get('/ordenes-en-espera', [TblOrdenproduccionController::class,'indexOrdenEspera'])->name('ordenes.indexEspera');
-
+Route::get('/ordenes/espera', [TblOrdenproduccionController::class,'indexOrdenesEspera'])->name('ordenes.espera');
+Route::get('/ordenes/preparacion', [TblOrdenProduccionController::class ,'indexOrdenesPreparacion'])->name('ordenes.preparacion');
+Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class ,'indexOrdenesEntegadas'])->name('ordenes.entregadas');
 
 
 
@@ -75,6 +76,7 @@ Route::get('/ordenes-en-espera', [TblOrdenproduccionController::class,'indexOrde
 
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
+
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
 Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
@@ -96,6 +98,8 @@ Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('produc
 
 
 
+
+
 // Rutas de Cliente
 Route::get('/RegistrarCliente', [TblClienteController::class, 'create'])->name('clienteCrear');
 Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.store');
@@ -107,7 +111,10 @@ Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.
 
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.inicio'));
-Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'storeInicio'])->name('listainicio.store');
+Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('listainicio.store');
+Route::get("/CrudListaInicio",[TblTareascompletadasController::class, 'indexInicio'])->name('crud.listainicio');
+Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])->name('crud.listafin');
+
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
-Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'storeFin'])->name('listafin.store');
+Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
 

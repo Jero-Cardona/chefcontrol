@@ -42,12 +42,13 @@ class TblRecetaController extends Controller
     public function create(){
         return view('usuarios.FormReceta');
     }
+
     // Almacena los datos del registro en la BD
     public function store(Request $request){
 
         // codigo de validacion formulario desde el backend
         $request->validate([
-            'Id_Receta'=>'required',
+            
             'Nombre'=>'required',
             'Descripcion'=>'required',
             'Costo_Total'=>'required',
@@ -67,7 +68,7 @@ class TblRecetaController extends Controller
 
         // se instancia la clase
         $receta= new tbl_receta;
-        $receta->Id_Receta = $request->Id_Receta;
+       
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
@@ -78,9 +79,9 @@ class TblRecetaController extends Controller
         // guardar datos
         $receta->save();
         //parte Edilberto
-        session()->flash('confirm-receta','La receta fue registrada correctamente');
+        session()->flash('success','La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
         // retorna a la vista de las recetas
-        return to_route('receta.create');
+        return view('usuarios.frmDetalleReceta');
 
     }
 

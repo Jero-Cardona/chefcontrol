@@ -15,7 +15,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Identificador</th>
                                 <th>Nombre</th>
                                 <th>Descipcion</th>
                                 <th>Costo total</th>
@@ -29,14 +28,13 @@
                             {{-- {{$usuarios = tbl_usuarios::all();}} --}}
                             @foreach ($recetas as $receta)
                             <tr>
-                                <td>{{ $receta->Id_Receta }}</td>
+                                
                                 <td>{{ $receta->Nombre }}</td>
                                 <td>{{ $receta->Descripcion }}</td>
                                 <td>{{ $receta->Costo_Total }}</td>
                                 <td>{{ $receta->Contribucion }}</td>
                                 <td>{{ $receta->Estado }}</td>
                                 <td> <img class="imagen-crud" src="{{$receta->imagen}}" alt=""> </td>
-
                                 <td>
                                     <form action="{{ route('receta.destroy', $receta->Id_Receta) }}" method="POST">
                                         <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btn btn-sm btn-primary">Editar Datos</a>

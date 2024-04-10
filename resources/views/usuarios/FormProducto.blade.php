@@ -14,10 +14,6 @@
         <form action="{{route('producto.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
             @csrf
             <div class="formRegistro">
-                <input id="Cod_Producto" name="Cod_Producto" type="number" required>
-                <label for="Cod_Producto">Identificador producto</label>
-            </div>
-            <div class="formRegistro">
                 <input id="Nombre" name="Nombre" type="text" required>
                 <label for="Nombre"> Nombre del producto</label>
             </div>
@@ -76,8 +72,7 @@
                 <input id="IVA" name="IVA" type="number" required>
                 <label for="IVA">Iva del producto</label>
             </div>
-            <div class="formRegistro">
-            </div>
+            
             <div class="btn1Registro">
                 <input type="submit" class="enviarRegistro">
             </div>

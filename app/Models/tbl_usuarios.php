@@ -21,5 +21,10 @@ class tbl_usuarios extends Model
     public function tipoRol() {
         return $this->belongsTo(tbl_rol::class, 'Id_Rol');
       }
-  
+
+      public function tareascompletadas() {
+        return $this->hasMany(tbl_tareascompletadas::class, 'Id_Empleado');
+      }
+
+      
 }

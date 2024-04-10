@@ -20,7 +20,7 @@ class TblOrdenproduccionController extends Controller
             return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
         });
 
-        return view('usuarios.CrudOrden', compact('ordenesPorCliente'));
+        return view('usuarios.CrudOrden', compact ('ordenesPorCliente'));
        
     }
 
@@ -117,15 +117,33 @@ class TblOrdenproduccionController extends Controller
         return redirect()->back()->with('success', 'La orden ha sido marcada como entregada.');
     }
 
-    public function indexOrdenEspera()
+    public function indexOrdenesEspera()
     {
         $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
+        
+        $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+        ->get()
+        ->groupBy(function ($orden) {
+            return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+        });
+
+        return view('usuarios.ordenesEspera', compact ('ordenesPorCliente','ordenesEnEspera'));
+            
+            
+    }
+
+    public function indexOrdenesPreparacion()
+    {
         $ordenesEnPreparacion = tbl_ordenproduccion::where('estado', 'En preparación')->get();
+
+        return view('usuarios.ordenesPreparacion', compact('ordenesEnPreparacion'));
+    }
+
+    public function indexOrdenesEntegadas()
+    {
         $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->get();
 
-        return view('usuarios.ordenesEspera', compact('ordenesEnEspera'))
-            ->with('ordenesEnPreparacion', $ordenesEnPreparacion)
-            ->with('ordenesEntregadas', $ordenesEntregadas);
+        return view('usuarios.ordenesEntregadas', compact('ordenesEntregadas'));
     }
 
     public function editDetalles($ordenId)

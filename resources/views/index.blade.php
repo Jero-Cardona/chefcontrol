@@ -1,7 +1,15 @@
 @extends('layouts.app')
-@section('content')
+@section('style')
+     <link rel="stylesheet" href="{{asset('/css/estiloListaUsuarios.css')}}">
+     @endsection
+     @section('content')
 <div class="contenedor" >
     @auth
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="caja1">
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Nuevo Usuario" class="botones1"></a>
         <a href="{{route('receta.create')}}"><input type="submit" value="Nueva Receta" class="botones1"></a>
@@ -16,7 +24,13 @@
         <a href="{{route('lista.fin')}}"><input type="submit" value="Lista Fin Jornada" class="botones1"></a>
         <a href="{{route('orden.produccion')}}"><input type="submit" value="Crear Orden Producción" class="botones1"></a>
         <a href="{{route('orden.index')}}"><input type="submit" value="Ordenes de Producción" class="botones1"></a>
-        <a href="{{route('ordenes.indexEspera')}}"><input type="submit" value="Ordenes en Espera" class="botones1"></a>
+        <a href="{{route('ordenes.espera')}}"><input type="submit" value="Ordenes en Espera" class="botones1"></a>
+        <a href="{{route('ordenes.preparacion')}}"><input type="submit" value="Ordenes en Preparación" class="botones1"></a>
+        <a href="{{route('ordenes.entregadas')}}"><input type="submit" value="Ordenes Entregadas" class="botones1"></a>
+        <a href="{{route('detalleReceta.create')}}"><input type="submit" value="Agregar Detalle a una receta" class="botones1"></a>
+        <a href="{{route('crud.listainicio')}}"><input type="submit" value="Listas de inicio registradas" class="botones1"></a>
+        <a href="{{route('crud.listafin')}}"><input type="submit" value="Listas de fin registradas" class="botones1"></a>
+        
         @endauth
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
         <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>
@@ -26,13 +40,17 @@
 @auth
     
 <div class="container">
-    <div class="row">
-        <div class="col-md-12"> 
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Usuarios</h3>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Usuarios</h3>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
                             <tr>
@@ -57,10 +75,10 @@
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
                                 <td>
                                     <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST">
-                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

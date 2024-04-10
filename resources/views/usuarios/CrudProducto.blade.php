@@ -1,18 +1,25 @@
 @extends('layouts.app')
-@section('content')
-<a href="{{route('producto.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Productos</h3>
+@section('style')
+     <link rel="stylesheet" href="{{asset('/css/estiloCrudProducto.css')}}">
+     @endsection
+     @section('content')
+<div class="contenedor1CrudP">
+    <div class="div1CrudP">
+        <div class="div2CrudP">
+            <div class="div3CrudP">
+                <div class="divHeaderCrudP">
+                    <h3 class="titulo1CrudP">Lista de Productos</h3>
+                    <form action="#" class="buscadorCrudP">
+                        @csrf
+                        <input type="text" name="buscar" placeholder="¿Qué desea buscar?">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="divBodyCrudP">
+                    <table class="tableCrudP">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                
                                 <th>Nombres</th>
                                 <th>Imagen</th>
                                 <th>Stock min</th>
@@ -32,7 +39,7 @@
                             
                             @foreach ($productos as $producto)
                             <tr>
-                                <td>{{ $producto->Cod_Producto }}</td>
+                                
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>
@@ -46,11 +53,11 @@
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
                                 <td>
-                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST" class="crud-form">
+                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="editarCrudP">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="eliminarCrudP" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
