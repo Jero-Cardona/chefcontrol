@@ -6,6 +6,9 @@
     text-decoration: none;
 }
 
+
+
+
 .contenedorRecetas{
     display: grid;
     min-width: 320px;
@@ -475,4 +478,39 @@
         display: none;
     }
 }
+
+.menuRecetas {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: rgba(154, 0, 15); /* Color de fondo rojo oscuro */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    left: 0;
+}
+.submenu a {
+    color: rgba(255, 255, 255); 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.menu-item:hover .submenu {
+    display: block;
+}
+
+
+.menu-item:last-child .submenu {
+    left: auto; 
+    right: 0; 
+}
+
 

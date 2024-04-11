@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="{{asset('/css/estilosReceta.css')}}" >
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
         <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
-        <title>Recetario</title>
+        <title>Chef Control | Recetario</title>
 </head>
 <body>
     @if (session('status'))
@@ -36,14 +37,66 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuRecetas">
-                    <a href="#">Recetas</a>
-                    <a href="#">Productos</a>
-                    <a href="#">Orden de Produccion</a>
-                    <a href="#">Usuarios</a>
-                    <a href="#">Sugerir</a>
-                    <a href="#">Listado de recetas</a>
-                    <a href="{{route('crudrecetas')}}">Inicio</a>
+                    <div class="menu-item">
+                        <a href="{{route('receta.recetario')}}">Inicio</a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Recetas</a>
+                        <div class="submenu">
+                            <a href="{{route('receta.create')}}">Nueva Receta</a>
+                            <a href="{{route('detalleReceta.create')}}">Agregar Detalle a una Receta</a>
+                            <a href="{{route('crudrecetas')}}">Lista de Recetas</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Productos</a>
+                        <div class="submenu">
+                            <a href="{{route('producto.create')}}">Nuevo Producto</a>
+                            <a href="{{route('crudproductos')}}">Lista de Productos</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Listas de Chequeo</a>
+                        <div class="submenu">
+                            <a href="{{route('lista.inicio')}}">Lista Inicio de Jornada</a>
+                            <a href="{{route('lista.fin')}}">Lista Fin de Jornada</a>
+                            <a href="{{route('crud.listainicio')}}">Listas Inicio de Jornada Registradas</a>
+                            <a href="{{route('crud.listafin')}}">Listas Fin de Jornada Registradas</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Orden de Producción</a>
+                        <div class="submenu">
+                            <a href="{{route('orden.produccion')}}">Nueva Orden</a>
+                            <a href="route('ordenes.espera')}}">Ordenes en Espera</a>
+                            <a href="{{route('ordenes.preparacion')}}">Ordenes en Preparación</a>
+                            <a href="{{route('ordenes.entregadas')}}">Ordenes Entregadas</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Clientes</a>
+                        <div class="submenu">
+                            <a href="{{route('clienteCrear')}}">Nuevo Cliente</a>
+                            <a href="{{route('crudclientes')}}">Lista de Clientes</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Usuarios</a>
+                        <div class="submenu">
+                            <a href="{{route('usuarios.create')}}">Nuevo Usuario</a>
+                            <a href="{{route('usuarios.index')}}">Lista de Usuarios</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#">Opciones</a>
+                        <div class="submenu">
+                            
+                            <a href="{{route('logout')}}">Cerrar Sesión</a>
+                            
+                        </div>
+                    </div>
                 </nav>
+  
             </div>
         </header>
         <div class="contenedor1Recetas">

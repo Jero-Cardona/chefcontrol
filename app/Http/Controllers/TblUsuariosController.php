@@ -25,7 +25,7 @@ class TblUsuariosController extends Controller
     public function index()
     {
         $usuarios = tbl_usuarios::all();
-        return view('index',compact('usuarios'));
+        return view('index',compact ('usuarios'));
     }
 
     //Carga el formulario para el registro de Usuarios
@@ -93,8 +93,8 @@ class TblUsuariosController extends Controller
             }
         // Identificador de sesion
         $request->session()->regenerate();
-            return redirect()->intended('usuarios')->
-            with('logout', '¡Has cerrado sesión correctamente!');
+            return redirect()->intended('Recetario')->
+            with('success', '¡Has iniciado sesión correctamente!');
     }
     
     // funcion para salir de la sesion
