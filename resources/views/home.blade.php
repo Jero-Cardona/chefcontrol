@@ -25,7 +25,7 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
-                    <a class="activeIndex" href="{{route('receta.recetario')}}">Inicio</a>
+                    <a href="{{route('receta.recetario')}}">Inicio</a>
                     <a href="{{route('login')}}">Iniciar sesión</a>
                     <a href="{{route('usuarios.create')}}">Registrarse</a>
                 </nav>

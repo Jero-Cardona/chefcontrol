@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('/css/estilosRegister.css')}}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
-    <title>Registro</title>
-</head>
+@extends('layouts.app')
+{{ session('confirm-producto')}}
+@section('style')
+@endsection
+@section('content')
 <body>
     {{session ('confirm-user')}}
-    <div class="contenedorRegistro">
-        <header class="headerIndex">
-            <div class="contenedorHIndex">
-                <div>
-                    <img class="logoHIndex" src="{{asset('imagenes/proyecto/logo.svg')}}">
-                </div>
-                <div class="NombreProyectoIndex">
-                    <h2>ChefControl</h2>
-                </div>
-                <div class="btnMenuHIndex">
-                    <label for="btnMenu">Menú</label>
-                </div>
-                <input type="checkbox" id="btnMenu">
-                <nav class="menuHIndex">
-                    <a href="{{route('usuarios.index')}}">Inicio</a>
-                    <a href="../vistas/login.html">Iniciar sesión</a>
-                    <a class="activeIndex" href="../vistas/register.html">Registrarse</a>
-                </nav>
-            </div>
-        </header>
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
@@ -87,4 +61,4 @@
         </footer>
     </div>
 </body>
-</html>
+@endsection

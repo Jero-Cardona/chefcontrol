@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<a href="{{route('clientes.pdf')}}"><input type="submit" value="descargar clientes pdf" class="botones1"></a>
 <div class="container">
     <div class="div1">
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Usuarios</h3>
+                    <h3 class="titulo">Lista de Clientes</h3>
+                    <a href="{{route('clientes.pdf')}}" class="btnEditar" >Descargar pdf</a>
                     <form class="buscador">
                         <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
@@ -15,7 +15,7 @@
                 <div class="divBody">
                     <table class="table">
                         <thead>
-                            <tr>
+                           <tr>
                                 <th>Documento</th>
                                 <th>Tipo Documento</th>
                                 <th>Nombres</th>

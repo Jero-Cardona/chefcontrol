@@ -56,7 +56,10 @@
     <?php
     $i = 0;
     ?>
-    <h1>Registros Recetas</h1>
+    <h2>Registros Recetas</h2>
+    <p>El siguiente documento pdf contiene un listado de todos 
+        los registros que hay en el aplicativo hasta el momento, 
+        dichos registros se hacen apartir bajo el uso del sistema y sus diferentes formularios</p>
     @foreach ($recetas as $receta)
     <div class="row">
         <div class="col-md-6">

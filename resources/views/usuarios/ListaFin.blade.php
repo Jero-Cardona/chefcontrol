@@ -17,7 +17,7 @@ $fechaActual = Carbon::now();
 <body>
     <div class="formulario">
         <div class="tittle">
-            <h2>Lista de chequeo de Fin jornada</h2>
+            <h2>Lista de chequeo  Fin jornada</h2>
         </div>
         <div class="content">
             <form id="form-verificacion" action="{{ route('listafin.store') }}" method="POST">

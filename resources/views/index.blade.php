@@ -46,11 +46,11 @@
             <div class="div3">
                 <div class="divHeader">
                     <h3 class="titulo">Lista de Usuarios</h3>
+                    <a href="{{route('usuarios.pdf')}}" class="btnEditar" >Descargar pdf</a>
                     <form class="buscador">
                         <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
                     </form>
-                    <a href="{{route('usuarios.pdf')}}">Descargar pdf<button value="Descargar pdf"></button></a>
                 </div>
                 <div class="divBody">
                     <table class="table">

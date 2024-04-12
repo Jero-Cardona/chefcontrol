@@ -6,8 +6,6 @@
 @section('content')
 <body>
     {{session ('confirm-user')}}
-    <div class="contenedorRegistro">
-        
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
@@ -32,7 +30,7 @@
                         </select>
                     </div>
                     <div class="formRegistro">
-                        <input value="{{$cliente[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
+                        <input value="{{$cliente[0]->Nombre }}" id="Nombre" name="Nombre" type="text">
                         <label for="Nombre"> Nombre Usuario</label>
                     </div>
                     <div class="formRegistro">
@@ -57,11 +55,11 @@
             </div>
         </div>
     </div>
+    <footer class="footerLogin">
+        <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+        <p><b>Servicio nacional de aprendizaje <br>
+            Centro de la Innovacion, agroindustria y aviacion</b></p>
+        <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+    </footer>
 </body>
-<footer class="footerLogin">
-    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
-    <p><b>Servicio nacional de aprendizaje <br>
-        Centro de la Innovacion, agroindustria y aviacion</b></p>
-    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
-</footer>
 @endsection

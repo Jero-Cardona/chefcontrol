@@ -108,17 +108,17 @@
             </div>
         </div>
         <div class="contenedor2Recetas">
-                <a class="a1Recetas" href="#">
+                <a class="a1Recetas" href="{{route('crudrecetas')}}">
                     <img src="{{asset('imagenes/proyecto/image21.png')}}">
-                    <b>Estandarizar</b>
+                    <b>Recetas Estandarizadas</b>
                 </a>
-                <a class="a2Recetas" href="#">
+                <a class="a2Recetas" href="{{route('receta.create')}}">
                     <img src="{{asset('imagenes/proyecto/image4.png')}}">
-                    <b>Sugerir</b>
+                    <b>Sugerir Receta</b>
                 </a>
-                <a class="a3Recetas" href="#">
+                <a class="a3Recetas" href="#recetario">
                     <img src="{{asset('imagenes/proyecto/image22.png')}}">
-                    <b>Recetario</b>
+                    <b>Ver Recetario</b>
                 </a>
                 <p><b>Las siguientes opciones permiten distintas funcionalidades de acuerdo a el perfil de usuario y el uso que este mismo desde, las
                     opciones son: Estandarizar, Sugerir, Ver listado (Editar, Borrar),etc... 
@@ -142,8 +142,10 @@
         @endforeach
     </div>
 </div> --}}
+
+{{-- contenedor de las recetas del aplicativo --}}
 <div class="contenedorRecetario">
-    <h2 class="tituloRecetario">Recetario</h2>
+    <h2 class="tituloRecetario" id="recetario">Recetario</h2>
     <div class="recetario1">
         @foreach ($recetas as $receta)
         <div class="hover1Recetas">
@@ -152,15 +154,15 @@
                     <img src="{{ $receta->imagen }}">
                     <div class="hoverDiv1Recetas">
                         <h2>{{ $receta->Nombre }}</h2>
-                        <p>Descripcion breve de la receta: <br>
-                            {{ $receta->Descripcion }}</p>
+                        <p>Costo de la receta: <br>
+                            {{ $receta->Costo_Total }}</p>
                         </div>
                     </a>
                 </figure>
                 <div class="hoverDiv2Recetas">
                     <h2>{{ $receta->Nombre }}</h2>
-                    <p>Descripcion breve de la receta: <br>
-                        {{ $receta->Descripcion }}</p>
+                    <p>costo de la receta: <br>
+                        {{ $receta->Costo_Total }}</p>
                     </div>
                 </div>
         @endforeach
@@ -168,10 +170,10 @@
         {{-- footer de la vista --}}
     </div>
     <footer class="footerRecetas">
-        <img class="logo1SenaRecetas" src="{{asset('imagenes/')}}">
+        <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
         <p><b>Servicio nacional de aprendizaje <br>
             Centro de la Innovacion, agroindustria y aviacion</b></p>
-        <img class="logo3Recetas" src="../img/logo.svg">
+        <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
     </footer>  
 </div>
 </body>

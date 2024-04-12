@@ -25,7 +25,7 @@
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
                     <a href="{{route('home')}}">Inicio</a>
-                    <a class="activeIndex" href="{{route('login')}}">Iniciar sesión</a>
+                    <a href="{{route('login')}}">Iniciar sesión</a>
                     <a href="{{route('usuarios.create')}}">Registrarse</a>
                 </nav>
             </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="btn1Login">
                         <input type="submit" class="enviarLogin">
-                        <a href="{{route('usuarios.index')}}">Volver</a>
+                        <a href="{{route('home')}}">Volver</a>
                     </div>
                 </form>
                 <img id="imagenlogin" src="{{asset('imagenes/proyecto/cocineros.png')}}">

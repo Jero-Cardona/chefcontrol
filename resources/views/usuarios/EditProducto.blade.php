@@ -16,7 +16,7 @@
             @csrf
             <div class="formRegistro">
                 <input value="{{$producto[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
-                <label for="Nombre"> Nombre del producto</label>
+                <label for="Nombre"> Nombre del Producto</label>
             </div>
             <div class="formRegistro">
                 {{-- <img style="width: 200px" src="{{asset($producto[0]->imagen)}}" alt="imagen"> --}}
@@ -25,11 +25,11 @@
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Stock_Minimo }}" id="Stock_Minimo" name="Stock_Minimo" type="number" required>
-                <label for="Stock_Minimo"> Stock Minimo Receta</label>
+                <label for="Stock_Minimo"> Stock Minimo Producto</label>
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Stock_Maximo }}" id="Stock_Maximo" name="Stock_Maximo" type="number" required>
-                <label for="Stock_Maximo"> Stock Maximo del Receta</label>
+                <label for="Stock_Maximo"> Stock Maximo  Producto</label>
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Fecha_Vencimiento }}" id="Fecha_Vencimento" name="Fecha_Vencimiento" type="date" required>
@@ -37,7 +37,7 @@
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Costo }}" id="Costo" name="Costo" type="number" required>
-                <label for="Costo">Costo del producto</label>
+                <label for="Costo">Costo del Producto</label>
             </div>
             <div class="form1Registro">
                 <select value="{{$producto[0]->Cod_Tipo }}" id="Cod_Tipo" name="Cod_Tipo" required>
@@ -48,7 +48,7 @@
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Ubicacion }}" id="Ubicacion" name="Ubicacion" type="text" required>
-                <label for="Ubicacion">Ubicacion del producto</label>
+                <label for="Ubicacion">Ubicacion del Producto</label>
             </div>
             <div class="form1Registro">
                 <select value="{{$producto[0]->Cod_UMedida}}" id="Cod_UMedida" name="Cod_UMedida" required>
@@ -59,6 +59,8 @@
                     <option value="4">Onzas</option>
                     <option value="5">Porcion</option>
                     <option value="6">Unidad</option>
+                    <option value="7">Litros</option>
+                    <option value="8">Mililitros</option>
                 </select>
             </div>
             <div class="formRegistro">
@@ -67,11 +69,11 @@
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Existencia }}" id="Existencia" name="Existencia" type="number" required>
-                <label for="Existencia">Existencia del producto</label>
+                <label for="Existencia">Existencia del Producto</label>
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->IVA }}" id="IVA" name="IVA" type="number" required>
-                <label for="IVA">Iva del producto</label>
+                <label for="IVA">Iva del Producto</label>
             </div>
            
             <div class="btn1Registro">

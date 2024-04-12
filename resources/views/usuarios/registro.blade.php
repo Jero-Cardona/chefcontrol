@@ -30,9 +30,9 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
-                    <a href="{{route('receta.recetario')}}">Inicio</a>
+                    <a href="{{route('home')}}">Inicio</a>
                     <a href="{{route('login')}}">Iniciar sesión</a>
-                    <a class="activeIndex" href="../vistas/register.html">Registrarse</a>
+                    <a href="../vistas/register.html">Registrarse</a>
                 </nav>
             </div>
         </header>
@@ -102,8 +102,8 @@
                     <div class="form1Registro">
                         <select id="Id_Rol" name="Id_Rol" value="{{old('Id_Rol')}}" required>
                             <option value="" disabled selected hidden>Tipo de Usuario</option>
-                            <option value="1" @if(old('tipo_documento') == '1') selected @endif>Usuario Cocinero</option>
-                            <option value="2" @if(old('tipo_documento') == '2') selected @endif>Usuario Administrador</option>
+                            <option value="1" @if(old('tipo_documento') == '1') selected @endif>Administrador</option>
+                            <option value="2" @if(old('tipo_documento') == '2') selected @endif>Cocinero</option>
                         </select>
                          @error('Id_Rol')
                         <div class="alert alert-danger">{{ $message }}</div>

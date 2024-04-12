@@ -1,8 +1,7 @@
-
 @extends('layouts.app')
 @section('style')
 {{-- en esta seccion irian los estilos necesarios para el archivo --}}
-<link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}">
+{{-- <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}"> --}}
 @endsection
 @section('content')
 @auth

@@ -1,15 +1,12 @@
 @extends('layouts.app')
-@section('style')
-    <link rel="stylesheet" href="{{ asset('/css/estiloCrudReceta.css')}}">
-@endsection
 @section('content')
-<a href="{{route('recetas.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
 <div class="container">
     <div class="div1">
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
                     <h3 class="titulo">Lista de Recetas</h3>
+                    <a href="{{route('recetas.pdf')}}" class="btnEditar" >Descargar pdf</a>
                     <form class="buscador">
                         <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
@@ -22,7 +19,7 @@
                                 <th>Nombre</th>
                                 <th>Descipcion</th>
                                 <th>Costo</th>
-                                <th>Contribucion</th>
+                                <th>Aporte</th>
                                 <th>Estado</th>
                                 <th>imagen</th>
                                 <th>Acciones</th>

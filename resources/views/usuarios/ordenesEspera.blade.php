@@ -1,8 +1,19 @@
 @extends('layouts.app')
 @section('style')
-    {{-- link de boostrap 5 --}}
+{{-- link de boostrap 5 --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @endsection
 @section('content')
+<style>
+    body{
+    margin: 0px;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+</style>
 @auth
 @if (session('success'))
     <div class="alert alert-success">

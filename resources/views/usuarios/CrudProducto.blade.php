@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('style')
-     @endsection
+{{-- link de boostrap 5 --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+@endsection
      @section('content')
-<a href="{{route('producto.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
 <div class="container">
     <div class="div1">
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
                     <h3 class="titulo">Lista de Productos</h3>
+                    <a href="{{route('producto.pdf')}}" class="btnEditar" >Descargar pdf</a>
                     <form class="buscador">
                         <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
@@ -37,6 +39,7 @@
                             {{-- registros de los productos --}}
                             @foreach ($productos as $producto)
                             <tr>
+                            
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>

@@ -1,3 +1,4 @@
+
 *{
     margin: 0px;
     font-family: "literata", serif;
@@ -65,11 +66,6 @@
     font-size: 16px;
     transition: all 500ms ease;
     border-bottom: 4px solid transparent;
-}
-
-.menuHIndex .activeIndex{
-    color: rgba(255, 102, 0);
-    border-bottom: 4px solid rgba(255, 102, 0);
 }
 
 .menuHIndex a:hover{
@@ -534,7 +530,7 @@ input[type="file"], input[type="date"] {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #efefef;
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0.25rem;
@@ -592,13 +588,17 @@ input[type="file"], input[type="date"] {
 
 .table thead tr th{
     border-bottom: 1px solid black;
-    padding: 10px;
+    padding: 20px 5px;
     text-align: center;
 }
 
-.tabletbody tr td{
+tbody tr td{
     flex-shrink: 1;
+    text-align: center;
     padding: 10px;
+}
+tr:nth-child(even){
+    background-color: #dddddd;
 }
 
 .crud-form{

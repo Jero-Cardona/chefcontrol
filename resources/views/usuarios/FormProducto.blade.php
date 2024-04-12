@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{ session('confirm-producto')}}
 @section('style')
-    <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}"> --}}
 @endsection
 @section('content')
 <body>
@@ -78,7 +78,8 @@
                     <option value="4"  @if(old('Cod_UMedida') == '4') selected @endif>Onzas</option>
                     <option value="5"  @if(old('Cod_UMedida') == '5') selected @endif>Porcion</option>
                     <option value="6"  @if(old('Cod_UMedida') == '6') selected @endif>Unidad</option>
-                    <option value="7"  @if(old('Cod_UMedida') == '7') selected @endif>Mililitro</option>
+                    <option value="7"  @if(old('Cod_UMedida') == '7') selected @endif>Litros</option>
+                    <option value="8"  @if(old('Cod_UMedida') == '8') selected @endif>Mililitros</option>
                 </select>
                  @error('Cod_UMedida')
                         <div class="alert alert-danger">{{ $message }}</div>

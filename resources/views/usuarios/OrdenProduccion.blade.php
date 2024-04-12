@@ -9,10 +9,6 @@ $clientes = tbl_cliente::all();
 ?>
 
 @extends('layouts.app')
-    @section('style')
-       <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}">
-
-        @endsection
 @section('content')
 @auth
 <div class="contenedorFormRegistro">
@@ -51,13 +47,9 @@ $clientes = tbl_cliente::all();
                 <div class="formRegistro">
                 <input autofocus type="hidden" name="estado" value="En espera" >
                  {{-- <label for="Cantidad"> Cantidad del producto</label> --}}
-               
-                
             </div>
-
              <div class="btn1Registro">
                 <input type="submit" value="Enviar" class="enviarRegistro">
-                <a href="{{route('receta.create')}}" class="enviarRegistro" style="text-decoration: none"> Volver</a>
             </div>
     </form>
     </div>
