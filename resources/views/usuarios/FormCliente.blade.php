@@ -40,37 +40,55 @@
                 <form action="{{route('cliente.store')}}" method="POST" class="formularioRegistro">
                     @csrf
                     <div class="formRegistro">
-                        <input id="Id_Cliente" name="Id_Cliente" type="number" required>
+                        <input id="Id_Cliente" name="Id_Cliente" type="number" value="{{old('Id_Cliente')}}">
                         <label for="Id_Cliente">Numero de documento</label>
+                         @error('Id_Cliente')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form1Registro">
-                        <select id="Tipo_identificacion" name="Tipo_identificacion" required>
+                        <select id="Tipo_identificacion" name="Tipo_identificacion" value="{{old('Tipo_identificacion')}}">
                             <option value="" disabled selected hidden>Tipo de documento</option>
-                            <option value="Cédula de Ciudadanía">Cédula de Ciudadanía (CC)</option>
-                            <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
-                            <option value="Cédula de Extranjería ">Cédula de Extranjería (CE)</option>
-                            <option value="NIT">NIT (Número de Identificación Tributaria)</option>
-                            <option value="Pasaporte">Pasaporte</option>
+                            <option value="Cédula de Ciudadanía"  @if(old('Tipo_identificacion') == 'Cédula de Ciudadanía') selected @endif>Cédula de Ciudadanía (CC)</option>
+                            <option value="Tarjeta de Identidad"  @if(old('Tipo_identificacion') == 'Tarjeta de Identidad') selected @endif>Tarjeta de Identidad (TI)</option>
+                            <option value="Cédula de Extranjería "  @if(old('Tipo_identificacion') == 'Cédula de Extranjería ') selected @endif>Cédula de Extranjería (CE)</option>
+                            <option value="NIT"  @if(old('Tipo_identificacion') == 'NIT') selected @endif>NIT (Número de Identificación Tributaria)</option>
+                            <option value="Pasaporte"  @if(old('Tipo_identificacion') == 'Pasaporte') selected @endif>Pasaporte</option>
                         </select>
+                        @error('Tipo_identificacion')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="formRegistro">
-                        <input id="Nombre" name="Nombre" type="text" required>
+                        <input id="Nombre" name="Nombre" type="text" value="{{old('Nombre')}}">
                         <label for="Nombre"> Nombre Usuario</label>
+                        @error('Nombre')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="formRegistro">
-                        <input id="Apellido" name="Apellido" type="text" required>
+                        <input id="Apellido" name="Apellido" type="text" value="{{old('Apellido')}}">
                         <label for="Apellido"> Apellido Usuario</label>
+                        @error('Apellido')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="formRegistro">
-                        <input id="Telefono" name="Telefono" type="text" required>
+                        <input id="Telefono" name="Telefono" type="text" value="{{old('Telefono')}}">
                         <label for="Telefono"> Telefono Usuario</label>
+                        @error('Telefono')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form1Registro">
-                        <select id="estado" name="estado" required>
+                        <select id="estado" name="estado" value="{{old('estado')}}">
                             <option value="" disabled selected hidden>Tipo de Usuario</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
+                            <option value="1"  @if(old('estado') == '1') selected @endif>Activo</option>
+                            <option value="2"  @if(old('estado') == '2') selected @endif>Inactivo</option>
                         </select>
+                        @error('estado')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="btn1Registro">
                         <input type="submit" class="enviarRegistro">

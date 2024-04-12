@@ -24,29 +24,37 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
-                    <a href="{{route('usuarios.index')}}">Index</a>
+                    <a href="{{route('home')}}">Inicio</a>
+                    <a class="activeIndex" href="{{route('login')}}">Iniciar sesión</a>
                     <a href="{{route('usuarios.create')}}">Registrarse</a>
                 </nav>
             </div>
         </header>
         @if (session('logout'))
-        <div class="alert alert-success">
+        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        
             {{ session('logout') }}
         </div>
-    @endif
+        @endif
         <div class="contenedorFormLogin">
+        @if ($errors->any())
+        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        @if ($errors->has('credentials'))
+            {{ $errors->first('credentials') }}
+        @else
+            Por favor, complete todos los campos.
+        @endif
+        </div>
+        @endif
             <div class="contenedor1Login">
                 <div class="tituloFormLogin">
                     <h2>Iniciar sesión</h2>
                 </div>
+                 
                 <form class="formularioLogin" method="POST" action="{{route('login.store')}}">
                     @csrf
-                    <div class="form2Login">
-                        <input autofocus type="number" name="Id_Empleado" id="Id_Empleado" required>
-                        <label for="Id_Empleado">Numero de documento</label>
-                    </div>
                     <div class="form1Login">
-                        <select id="tipo_documento" name="tipo_documento" required>
+                        <select id="tipo_documento" name="tipo_documento" >
                             <option value="" disabled selected hidden>Tipo de documento</option>
                             <option value="Cédula de Ciudadanía">Cédula de Ciudadanía (CC)</option>
                             <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
@@ -56,11 +64,15 @@
                         </select>
                     </div>
                     <div class="form2Login">
+                        <input autofocus type="number" name="Id_Empleado" id="Id_Empleado" required>
+                        <label for="Id_Empleado">Numero de documento</label>
+                    </div>
+                    <div class="form2Login">
                         <input type="password" name="password" id="password" required>
                         <label for="password">Contraseña</label>
                     </div>
                     <div style="margin: 0 auto;">
-                        <input type="checkbox" name="remember" required>
+                        <input type="checkbox" name="remember" >
                         <span>Recuerdame</span>
                     </div>
                     <div class="btn1Login">

@@ -25,12 +25,19 @@ class TblClienteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Id_Cliente'=>'required',
-            'Tipo_identificacion'=>'required',
-            'Nombre'=>'required',
-            'Apellido'=>'required',
-            'Telefono'=>'required',
-            'estado'=>'required'
+            'Id_Cliente' => 'required',
+            'Tipo_identificacion' => 'required',
+            'Nombre' => 'required',
+            'Apellido' => 'required',
+            'Telefono' => 'required',
+            'estado' => 'required'
+        ], [
+            'Id_Cliente.required' => 'El campo Numero de Documento es obligatorio.',
+            'Tipo_identificacion.required' => 'El campo Tipo de Identificación es obligatorio.',
+            'Nombre.required' => 'El campo Nombre es obligatorio.',
+            'Apellido.required' => 'El campo Apellido es obligatorio.',
+            'Telefono.required' => 'El campo Teléfono es obligatorio.',
+            'estado.required' => 'El campo Estado es obligatorio.'
         ]);
 
         $cliente = new tbl_cliente();
@@ -46,6 +53,7 @@ class TblClienteController extends Controller
         return to_route('usuarios.index');
 
     }
+    
     // formulario para editar clientes
     public function edit($Id_Cliente){
 

@@ -43,47 +43,59 @@ class TblRecetaController extends Controller
         return view('usuarios.FormReceta');
     }
 
-    // Almacena los datos del registro en la BD
-    public function store(Request $request){
-
-        // codigo de validacion formulario desde el backend
+    
+    public function store(Request $request)
+    {
+        // Validaciones
         $request->validate([
-            
-            'Nombre'=>'required',
-            'Descripcion'=>'required',
-            'Costo_Total'=>'required',
-            'Contribucion'=>'required',
-            'Estado'=>'required',
-            'imagen'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-
-        ]);
-
-        if($request->hasFile('imagen')){
-            $imageName = time().'.'.$request->imagen->extension();
+        'Nombre' => 'required',
+        'Descripcion' => 'required',
+        'Costo_Total' => 'required|integer',
+        'Contribucion' => 'required|integer',
+        'Estado' => 'required',
+        'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ], [
+        'Nombre.required' => 'El campo Nombre es obligatorio.',
+        'Descripcion.required' => 'El campo Descripción es obligatorio.',
+        'Costo_Total.required' => 'El campo Costo Total es obligatorio.',
+        'Costo_Total.integer' => 'El campo Costo Total debe ser un número entero.',
+        'Contribucion.required' => 'El campo Contribución es obligatorio.',
+        'Contribucion.integer' => 'El campo Contribución debe ser un número entero.',
+        'Estado.required' => 'El campo Estado es obligatorio.',
+        'imagen.required' => 'El campo Imagen es obligatorio.',
+        'imagen.image' => 'El archivo debe ser una imagen.',
+        'imagen.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg o gif.',
+        'imagen.max' => 'La imagen no debe ser mayor de 2MB.'
+    ]);
+    
+        // Procesamiento de la imagen
+        if ($request->hasFile('imagen')) {
+            $imageName = time() . '.' . $request->imagen->extension();
             $request->imagen->move(public_path('imagenes/recetas/'), $imageName);
-            $urlreceta = asset('imagenes/recetas/'. $imageName);
-        }else{
+            $urlreceta = asset('imagenes/recetas/' . $imageName);
+        } else {
             $urlreceta = "";
         }
-
-        // se instancia la clase
-        $receta= new tbl_receta;
+    
+        // Instanciación de la clase
+        $receta = new tbl_receta;
        
+        // Asignación de valores
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
         $receta->Costo_Total = $request->Costo_Total;
         $receta->Contribucion = $request->Contribucion;
         $receta->Estado = $request->Estado;
         $receta->imagen = $urlreceta;
-
-        // guardar datos
+    
+        // Guardado de datos
         $receta->save();
-        //parte Edilberto
-        session()->flash('success','La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
-        // retorna a la vista de las recetas
+    
+        // Redireccionamiento y mensaje de éxito
+        session()->flash('success', 'La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
         return view('usuarios.frmDetalleReceta');
-
     }
+    
 
     // Carga el formulario de editar receta
     public function edit($Id_Receta){

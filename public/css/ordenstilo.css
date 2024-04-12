@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: inline-flexbox;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1; 
+}
+
+.cuadro {
+    background-color: #D5D5D5; 
+    padding: 40px; /* Aumentamos el espacio alrededor del formulario */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 90%; /* Ajustamos el ancho del contenedor */
+    max-width: 800px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo-cuadro {
+    background-color: #9A000F; 
+    padding: 10px;
+    border-radius: 8px 8px 0 0; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    width: 100%;
+    color: white;
+}
+
+form {
+    width: 100%; /* Ajustamos el ancho del formulario */
+    max-width: 600px; /* Limitamos el ancho máximo del formulario */
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+label {
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input {
+    padding: 12px; /* Aumentamos el tamaño del campo de entrada */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 24px); /* El ancho del 24px es el padding izquierdo y derecho */
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #FF6600; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px; /* Aumentamos el tamaño del botón */
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #9A000F; 
+}

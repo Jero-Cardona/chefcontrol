@@ -68,7 +68,7 @@
                         <a href="#">Orden de Producción</a>
                         <div class="submenu">
                             <a href="{{route('orden.produccion')}}">Nueva Orden</a>
-                            <a href="route('ordenes.espera')}}">Ordenes en Espera</a>
+                            <a href="{{route('ordenes.espera')}}">Ordenes en Espera</a>
                             <a href="{{route('ordenes.preparacion')}}">Ordenes en Preparación</a>
                             <a href="{{route('ordenes.entregadas')}}">Ordenes Entregadas</a>
                         </div>
@@ -104,9 +104,7 @@
             <div class="caja1Recetas">
                 <img class="logo2Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
                 <h2 class="textRecetas1">Bienvenidos a nuestro sitio web</h2>
-                <p class="textRecetas2">El recetario es un libro que contiene recetas culinarias. La receta se
-                    caracteriza por indicar los elementos que entran en la composición y <br>
-                    elaboración de un plato de cocina y la manera en que se prepara.</p>
+                <p class="textRecetas2">El recetario es un libro que contiene recetas culinarias. La receta se caracteriza por indicar los elementos que entran en la composición y elaboración de un plato de cocina y la manera en que se prepara.</p>
             </div>
         </div>
         <div class="contenedor2Recetas">
@@ -122,33 +120,60 @@
                     <img src="{{asset('imagenes/proyecto/image22.png')}}">
                     <b>Recetario</b>
                 </a>
-                <p><b>Las siguientes opciones permiten distintas funcionalidades de acuerdo a el perfil de usuario y el uso que este mismo desde, las <br>
-                    opciones son: Estandarizar, Sugerir, Ver listado (Editar, Borrar),etc...</b></p>
+                <p><b>Las siguientes opciones permiten distintas funcionalidades de acuerdo a el perfil de usuario y el uso que este mismo desde, las
+                    opciones son: Estandarizar, Sugerir, Ver listado (Editar, Borrar),etc... 
+                en la siguiente seccion se encuentrarn las recetas que ya han sido registradas y estan estandarizadas para mostrar al usuario, 
+            una vez visites cada receta tienes la opcion de calcular para cuantas personas es necesaria la receta. </b></p>
         </div>
-        <div class="contenedorRecetario">
-                <h2 class="tituloRecetario">Recetario</h2>
-            <div class="recetario1">
-                
-                <div class="hover1Recetas">
-                    @foreach ($recetas as $receta)
-                        <figure>
-                            <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
-                                <h2>{{ $receta->Nombre }}</h2>
-                                <p>{{ $receta->Descripcion }}</p>
-                                <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
-                            </a>
-                        </figure>
-                    @endforeach
-                </div>  
+            
+        {{-- <div class="contenedorRecetario">
+    <h2 class="tituloRecetario">Recetario</h2>
+    <div class="recetario-columnas">
+        @foreach ($recetas as $receta)
+            <div class="receta">
+                <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
+                    <div class="infoReceta">
+                        <h2>{{ $receta->Nombre }}</h2>
+                        <p>{{ $receta->Descripcion }}</p>
+                    </div>
+                    <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
+                </a>
             </div>
-        </div>
-        {{-- <footer class="footerRecetas">
-            <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
-            <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la Innovacion, agroindustria y aviacion</b></p>
-            <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
-        </footer> --}}
+        @endforeach
     </div>
+</div> --}}
+<div class="contenedorRecetario">
+    <h2 class="tituloRecetario">Recetario</h2>
+    <div class="recetario1">
+        @foreach ($recetas as $receta)
+        <div class="hover1Recetas">
+            <figure>
+                <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
+                    <img src="{{ $receta->imagen }}">
+                    <div class="hoverDiv1Recetas">
+                        <h2>{{ $receta->Nombre }}</h2>
+                        <p>Descripcion breve de la receta: <br>
+                            {{ $receta->Descripcion }}</p>
+                        </div>
+                    </a>
+                </figure>
+                <div class="hoverDiv2Recetas">
+                    <h2>{{ $receta->Nombre }}</h2>
+                    <p>Descripcion breve de la receta: <br>
+                        {{ $receta->Descripcion }}</p>
+                    </div>
+                </div>
+        @endforeach
+        
+        {{-- footer de la vista --}}
+    </div>
+    <footer class="footerRecetas">
+        <img class="logo1SenaRecetas" src="{{asset('imagenes/')}}">
+        <p><b>Servicio nacional de aprendizaje <br>
+            Centro de la Innovacion, agroindustria y aviacion</b></p>
+        <img class="logo3Recetas" src="../img/logo.svg">
+    </footer>  
+</div>
 </body>
 </html>
 

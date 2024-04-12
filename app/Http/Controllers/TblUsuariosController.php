@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Controllers\Controller;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules;
@@ -37,30 +36,41 @@ class TblUsuariosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Id_Empleado'=>'required',
-            'tipo_documento'=>'required',
-            'Nombre'=>'required',
-            'Apellido'=>'required',
-            'Telefono'=>'required',
-            'password'=>['required', 'confirmed', Rules\Password::defaults()],
-            'Id_Rol'=>'required'
+            'Id_Empleado' => 'required',
+            'tipo_documento' => 'required',
+            'Nombre' => 'required',
+            'Apellido' => 'required',
+            'Telefono' => 'required',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'Id_Rol' => 'required'
+        ], [
+            'Id_Empleado.required' => 'El campo Numero de documento es obligatorio.',
+            'tipo_documento.required' => 'El campo Tipo de Documento es obligatorio.',
+            'Nombre.required' => 'El campo Nombre es obligatorio.',
+            'Apellido.required' => 'El campo Apellido es obligatorio.',
+            'Telefono.required' => 'El campo Teléfono es obligatorio.',
+            'password.required' => 'El campo Contraseña es obligatorio.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+            'Id_Rol.required' => 'El campo Rol es obligatorio.'
         ]);
 
-        // esto es una instancia
-        $usuario = new User;
-        // aqui se guardan los datos
-        $usuario->Id_Empleado = $request->input('Id_Empleado');
-        $usuario->tipo_documento = $request->input('tipo_documento');
-        $usuario->Nombre = $request->input('Nombre');
-        $usuario->Apellido = $request->input('Apellido');
-        $usuario->Telefono = $request->input('Telefono');
-        $usuario->password = bcrypt($request->input('password')); 
-        $usuario->Id_Rol = $request->input('Id_Rol');
-        $usuario->save();
+         // Crear una nueva instancia de usuario
+            $usuario = new User;
 
-        // autentificar el usuario
+            // Asignar los valores
+            $usuario->Id_Empleado = $request->input('Id_Empleado');
+            $usuario->tipo_documento = $request->input('tipo_documento');
+            $usuario->Nombre = $request->input('Nombre');
+            $usuario->Apellido = $request->input('Apellido');
+            $usuario->Telefono = $request->input('Telefono');
+            $usuario->password = bcrypt($request->input('password')); 
+            $usuario->Id_Rol = $request->input('Id_Rol');
 
-        return to_route('login')->with('status','Usuario Registrado Exitosamente');
+            // Guardar el usuario
+            $usuario->save();
+
+            // Redirigir a la ruta de inicio de sesión con un mensaje de éxito
+            return redirect()->route('login')->with('status', 'Usuario Registrado Exitosamente');
         
     }
     
@@ -76,25 +86,23 @@ class TblUsuariosController extends Controller
     public function storeLogin(Request $request)
     {
         $credentials = $request->validate([
-            'Id_Empleado'=>['required','int'],
-            'tipo_documento'=>'required',
-            'password'=>['required', 'string']
+            'Id_Empleado' => ['required', 'int'],
+            'tipo_documento' => 'required',
+            'password' => ['required', 'string']
         ]);
-        
-        // $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
-
-            // validacion de Datos
-            if ( ! Auth::attempt($credentials, $request->boolean('remember')))
-            {
-                // indica error de validacion
-                throw ValidationException::withMessages([
-                    'password'=>__('auth.failed')
-                ]);
-            }
-        // Identificador de sesion
+    
+        // Validación de credenciales
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+            // Indicar error de validación genérico
+            throw ValidationException::withMessages([
+                'credentials' => __('auth.failed')
+            ]);
+        }
+    
+        // Identificador de sesión
         $request->session()->regenerate();
-            return redirect()->intended('Recetario')->
-            with('success', '¡Has iniciado sesión correctamente!');
+    
+        return redirect()->intended('Recetario');
     }
     
     // funcion para salir de la sesion
@@ -105,7 +113,7 @@ class TblUsuariosController extends Controller
         $request->session()->regenerateToken();
 
         return to_route('login')
-        ->with('logout','Has cerrado session correctamente');
+        ->with('logout','Has cerrado sesión correctamente.');
     }
 
 

@@ -24,60 +24,57 @@ class TblProductoController extends Controller
         return view('usuarios.FormProducto');
     }
 
-    // Almacena los datos en la Base de Datos
     public function store(Request $request)
-    {
-        // codigo de validacion
-        $request->validate([
-           
-            'Nombre'=>'required',
-            'imagen'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'Stock_Minimo'=>'required',
-            'Stock_Maximo'=>'required',
-            'Fecha_Vencimiento'=>'date',
-            'Costo'=>'required',
-            'Cod_Tipo'=>'required',
-            'Ubicacion'=>'required',
-            'Cod_UMedida'=>'required',
-            'Precio_Venta'=>'required',
-            'Existencia'=>'required',
-            'IVA'=>'required'
-        ]);
-        
-        // condicional de imagen
-        if($request->hasFile('imagen')){
-            $imageName = time().'.'.$request->imagen->extension();
-            $request->imagen->move(public_path('imagenes/productos/'), $imageName);
-            $urlproducto = asset('imagenes/productos/'. $imageName);
-        }else{
-            $urlproducto = "";
-        }
-
-        // Instancia de la clase Producto
-        $producto = new tbl_producto;
-        
-        $producto->Nombre = $request->Nombre;
-        $producto->imagen = $urlproducto;
-        $producto->Stock_Minimo = $request->Stock_Minimo;
-        $producto->Stock_Maximo = $request->Stock_Maximo;
-        $producto->Fecha_Vencimiento = $request->Fecha_Vencimiento;
-        $producto->Costo = $request->Costo;
-        $producto->Cod_Tipo = $request->Cod_Tipo;
-        $producto->Ubicacion = $request->Ubicacion;
-        $producto->Cod_UMedida = $request->Cod_UMedida;
-        $producto->Precio_Venta = $request->Precio_Venta;
-        $producto->Existencia = $request->Existencia;
-        $producto->IVA = $request->IVA;
-
-        if($producto){
-            $producto->save();
-            session()->flash('confirm-producto','El producto ha sido registrado correctamente');
-            return to_route('usuarios.index');
-        }else{
-            return "datos no enviados";
-        }
-
+{
+    // Código de validación
+    $request->validate([
+        'Nombre' => 'required',
+        'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'Stock_Minimo' => 'required|numeric', 
+        'Stock_Maximo' => 'required|numeric', 
+        'Fecha_Vencimiento' => 'nullable|date',
+        'Costo' => 'required|numeric', 
+        'Cod_Tipo' => 'required',
+        'Ubicacion' => 'required',
+        'Cod_UMedida' => 'required',
+        'Precio_Venta' => 'required|numeric', 
+        'Existencia' => 'required|numeric', 
+        'IVA' => 'required|numeric' 
+    ]);
+    
+    // Condición para manejar la imagen
+    if ($request->hasFile('imagen')) {
+        $imageName = time() . '.' . $request->imagen->extension();
+        $request->imagen->move(public_path('imagenes/productos/'), $imageName);
+        $urlproducto = asset('imagenes/productos/' . $imageName);
+    } else {
+        $urlproducto = "";
     }
+
+    // Instancia de la clase Producto
+    $producto = new tbl_producto;
+    
+    $producto->Nombre = $request->Nombre;
+    $producto->imagen = $urlproducto;
+    $producto->Stock_Minimo = $request->Stock_Minimo;
+    $producto->Stock_Maximo = $request->Stock_Maximo;
+    $producto->Fecha_Vencimiento = $request->Fecha_Vencimiento;
+    $producto->Costo = $request->Costo;
+    $producto->Cod_Tipo = $request->Cod_Tipo;
+    $producto->Ubicacion = $request->Ubicacion;
+    $producto->Cod_UMedida = $request->Cod_UMedida;
+    $producto->Precio_Venta = $request->Precio_Venta;
+    $producto->Existencia = $request->Existencia;
+    $producto->IVA = $request->IVA;
+
+    if ($producto->save()) {
+        session()->flash('confirm-producto', 'El producto ha sido registrado correctamente');
+        return redirect()->route('usuarios.index');
+    } else {
+        return "datos no enviados";
+    }
+}
+
 
 
 

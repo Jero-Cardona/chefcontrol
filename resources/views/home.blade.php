@@ -7,22 +7,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
-    <title>Index</title>
+    <title>ChefControl</title>
 </head>
 <body>
     <div class="contenedorIndex">
         <div class="div-index">
-        <header>
-                <img class="logo-index" src="{{asset('imagenes/proyecto/logo.svg')}}" alt="">
-                <nav class="barra-index">
-                    <a href="{{route('usuarios.index')}}"><input type="submit" value="Inicio" class="botones1"></a>
-                    <a class="a-index" href="#inicio">Inicio</a>
-                    <a class="a-index" href="{{route('login')}}">Iniciar sesión</a>
-                    <a class="a-index" href="{{route('usuarios.create')}}">Registrarme</a>
+        <header class="headerIndex">
+            <div class="contenedorHIndex">
+                <div>
+                    <img class="logoHIndex" src="{{asset('imagenes/proyecto/logo.svg')}}">
+                </div>
+                <div class="NombreProyectoIndex">
+                    <h2>ChefControl</h2>
+                </div>
+                <div class="btnMenuHIndex">
+                    <label for="btnMenu">Menú</label>
+                </div>
+                <input type="checkbox" id="btnMenu">
+                <nav class="menuHIndex">
+                    <a class="activeIndex" href="{{route('receta.recetario')}}">Inicio</a>
+                    <a href="{{route('login')}}">Iniciar sesión</a>
+                    <a href="{{route('usuarios.create')}}">Registrarse</a>
                 </nav>
-            </header>
+            </div>
+        </header>
         </div>
-
         <div class="caja2">
             <img class="logo"src="{{asset('imagenes/proyecto/logo.svg')}}" alt="">
         </div>

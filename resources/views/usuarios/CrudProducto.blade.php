@@ -1,33 +1,30 @@
 @extends('layouts.app')
 @section('style')
-     <link rel="stylesheet" href="{{asset('/css/estiloCrudProducto.css')}}">
      @endsection
      @section('content')
 <a href="{{route('producto.pdf')}}"><input type="submit" value="descargar pdf" class="botones1"></a>
-<div class="contenedor1CrudP">
-    <div class="div1CrudP">
-        <div class="div2CrudP">
-            <div class="div3CrudP">
-                <div class="divHeaderCrudP">
-                    <h3 class="titulo1CrudP">Lista de Productos</h3>
-                    <form action="#" class="buscadorCrudP">
-                        @csrf
-                        <input type="text" name="buscar" placeholder="¿Qué desea buscar?">
+<div class="container">
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Productos</h3>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
                     </form>
                 </div>
-                <div class="divBodyCrudP">
-                    <table class="tableCrudP">
+                <div class="divBody">
+                    <table class="table">
                         <thead>
                             <tr>
-                                
-                                <th>Nombres</th>
+                                <th>Nombre</th>
                                 <th>Imagen</th>
                                 <th>Stock min</th>
-                                <th>Sotck max</th>
-                                <th>Vencimento</th>
+                                <th>Stock Max</th>
+                                <th>Vencimiento</th>
                                 <th>Costo</th>
-                                <th>Tipo P</th>
+                                <th>Tipo</th>
                                 <th>Ubicacion</th>
                                 <th>Medida</th>
                                 <th>Precio</th>
@@ -37,13 +34,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- registros de los productos --}}
                             @foreach ($productos as $producto)
                             <tr>
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>
                                 <td>{{ $producto->Stock_Maximo }}</td>
-                                <td>{{ $producto->Fecha_Vencimiento}}</td>
+                                <td>{{ $producto->Fecha_Vencimiento }}</td>
                                 <td>{{ $producto->Costo }}</td>
                                 <td>{{ $producto->tipoProducto->Tipo }}</td>
                                 <td>{{ $producto->Ubicacion }}</td>
@@ -51,12 +49,13 @@
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
+
                                 <td>
                                     <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST" class="crud-form">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="editarCrudP">Editar</a>
+                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="eliminarCrudP" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

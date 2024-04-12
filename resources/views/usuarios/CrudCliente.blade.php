@@ -2,20 +2,24 @@
 @section('content')
 <a href="{{route('clientes.pdf')}}"><input type="submit" value="descargar clientes pdf" class="botones1"></a>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Clientes</h3>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Usuarios</h3>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Documento</th>
-                                <th>Tipo de Documento</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
+                                <th>Tipo Documento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Estado</th>
                                 <th>Acciones Admin</th>
@@ -30,13 +34,13 @@
                                 <td>{{ $cliente->Nombre }}</td>
                                 <td>{{ $cliente->Apellido }}</td>
                                 <td>{{ $cliente->Telefono }}</td>
-                                <td>{{ $cliente->estado }}</td>
+                                <td>{{ $cliente->Estado }}</td>
                                 <td>
-                                    <form action="{{ route('cliente.destroy', $cliente->Id_Cliente) }}" method="POST">
-                                        <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btn btn-sm btn-primary">Editar Datos</a>
+                                    <form action="{{ route('cliente.destroy', ['Id_Cliente' => $cliente->Id_Cliente]) }}" method="POST">
+                                        <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btnEditar">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{ session('confirm-producto')}}
 @section('style')
-    <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css')}}"> --}}
 @endsection
 @section('content')
 <body>
@@ -80,5 +80,11 @@
         </form>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 </body>
 @endsection

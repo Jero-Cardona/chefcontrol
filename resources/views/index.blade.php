@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('style')
-     <link rel="stylesheet" href="{{asset('/css/estiloListaUsuarios.css')}}">
+     <link rel="stylesheet" href="{{asset('/css/estilosCruds.css')}}">
      @endsection
      @section('content')
 <div class="contenedor" >
-    @auth
+
     @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
-@endif
+    @endif
+    {{-- @auth
     <div class="caja1">
         <a href=""><input type="submit" value="Nuevo Usuario" class="botones1"></a>
         <a href=""><input type="submit" value="Nueva Receta" class="botones1"></a>
@@ -33,7 +34,7 @@
         
         @endauth
         <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
-        <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>
+        <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a> --}}
     </div>
 </div>
 <br><br>
@@ -49,6 +50,7 @@
                         <input type="text" placeholder="Buscar">
                         <button>Buscar</button>
                     </form>
+                    <a href="{{route('usuarios.pdf')}}">Descargar pdf<button value="Descargar pdf"></button></a>
                 </div>
                 <div class="divBody">
                     <table class="table">
@@ -88,7 +90,6 @@
                 </div>
             </div>
         </div>
-        <a href="{{route('usuarios.pdf')}}"><input type="submit" value="descargar usuarios pdf" class="botones1"></a>
     </div>
 </div>
 @endauth

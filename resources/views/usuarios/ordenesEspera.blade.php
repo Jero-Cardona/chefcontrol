@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('style')
+    {{-- link de boostrap 5 --}}
+@endsection
 @section('content')
 @auth
 @if (session('success'))

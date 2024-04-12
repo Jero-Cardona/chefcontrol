@@ -21,20 +21,24 @@ class TblDetallerecetaController extends Controller
     // Almacena datos del formulario
     public function store(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'Id_Receta' => 'required|exists:tbl_receta,Id_Receta',
+            'Cod_Producto' => 'required|exists:tbl_producto,Cod_Producto',
+            'Cantidad' => 'required|numeric|min:0',
+            'Cod_UMedida' => 'required|exists:tbl_umedida,Cod_UMedida',
+        ]);
+    
+        // Crear nueva instancia de tbl_detallereceta y asignar valores
         $detalleReceta = new tbl_detallereceta;
         $detalleReceta->Id_Receta = $request->input('Id_Receta');
         $detalleReceta->Cod_Producto = $request->input('Cod_Producto');
         $detalleReceta->Cantidad = $request->input('Cantidad');
         $detalleReceta->Cod_UMedida = $request->input('Cod_UMedida');
         $detalleReceta->save();
-
-        $productos= tbl_producto::findOrFail($request->Cod_Producto);
-        $recetas= tbl_receta::findOrFail($request->Id_Receta);
-        // Retorna a la vista de las recetas
-        return to_route('detalleReceta.create');
-
-        //parte Edilberto
-        session()->flash('success','El detalle de la receta fue guardado correctamente');
+    
+        // Retornar a la vista de creación de detalleReceta
+        return redirect()->route('detalleReceta.create')->with('success', 'El detalle de la receta fue guardado correctamente');
     }
 
     // Carga el formulario de edicion
