@@ -42,7 +42,7 @@
 
                                 <td>
                                     <form action="{{ route('receta.destroy', $receta->Id_Receta) }}" method="POST">
-                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="editarCrudR">Editar Datos</a>
+                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="editarCrudR">Editar</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="eliminarCrudR" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
