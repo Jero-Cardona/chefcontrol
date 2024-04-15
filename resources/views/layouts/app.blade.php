@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
     <title>ChefControl</title>
     {{-- enlace a boostrap 5 css --}}
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/cssclsbootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     {{-- enlace a estilos de css personalizados --}}
     @yield('style')
     {{-- <link rel="stylesheet" href="{{ asset('/css/style.css')}}"> --}}

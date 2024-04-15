@@ -73,7 +73,7 @@ $productos = tbl_producto::all();
             </div>
             <div class="btn1Registro">
                 <input type="submit" value="Enviar Detalle" class="enviarRegistro">
-                {{-- <a href="{{route('receta.create')}}" class="enviarRegistro" style="text-decoration: none"> Volver</a> --}}
+                <a href="{{route('receta.create')}}" class="enviarRegistro" style="text-decoration: none"> Volver</a>
             </div>
         </form>
     </div>
