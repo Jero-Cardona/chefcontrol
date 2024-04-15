@@ -96,6 +96,7 @@ class TblOrdenproduccionController extends Controller
         $produccion->save();
 
         
+        
         // retorna a la vista de las recetas
         return to_route('orden.produccion');
     }

@@ -43,34 +43,36 @@
                     </div>
                     <div class="formRegistro">
                         <input id="Nombre" name="Nombre" type="text" value="{{old('Nombre')}}">
-                        <label for="Nombre"> Nombre Usuario</label>
+                        <label for="Nombre"> Nombre Cliente</label>
                         @error('Nombre')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="formRegistro">
                         <input id="Apellido" name="Apellido" type="text" value="{{old('Apellido')}}">
-                        <label for="Apellido"> Apellido Usuario</label>
+                        <label for="Apellido"> Apellido Cliente</label>
                         @error('Apellido')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="formRegistro">
                         <input id="Telefono" name="Telefono" type="text" value="{{old('Telefono')}}">
-                        <label for="Telefono"> Telefono Usuario</label>
+                        <label for="Telefono"> Telefono Cliente</label>
                         @error('Telefono')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                  
                     <div class="form1Registro">
-                        <select id="estado" name="estado" value="{{old('estado')}}">
+                        <input type="hidden" value="1" name="estado">
+                        {{-- <select id="estado" name="estado" value="{{old('estado')}}">
                             <option value="" disabled selected hidden>Tipo de Usuario</option>
                             <option value="1"  @if(old('estado') == '1') selected @endif>Activo</option>
                             <option value="2"  @if(old('estado') == '2') selected @endif>Inactivo</option>
                         </select>
                         @error('estado')
                         <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @enderror --}}
                     </div>
                     <div class="btn1Registro">
                         <input type="submit" class="enviarRegistro">

@@ -74,16 +74,28 @@ class TblClienteController extends Controller
     };
     }
 
-    public function destroy($Id_Cliente)
+    //función para inactivar el cliente
+    public function inactive($Id_Cliente)
     {
-         // codigo para eliminar los datos
-         $cliente = DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->get();
-         if($cliente){
-             DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->delete();
-             return to_route('crudclientes')->with('success','se elimino el cliente de manera existosa');
-         }else{
-             return "no se lograron eliminar los datos";
-         }
+        //Cambiar de estado al cliente (inactivo)
+        $cliente = tbl_cliente::findOrFail($Id_Cliente);
+        $cliente->estado = false;
+        $cliente->save();
+
+        return redirect()->route('crudclientes')->with('success', 'Cliente inactivado correctamente.');
+    
+    }
+
+    //función para activar el cliente
+    public function active($Id_Cliente)
+    {
+        //Cambiar de estado al cliente (activo)
+        $cliente = tbl_cliente::findOrFail($Id_Cliente);
+        $cliente->estado = true;
+        $cliente->save();
+
+        return redirect()->route('crudclientes')->with('success', 'Cliente activado correctamente.');
+    
     }
 
     public function getClientes()
