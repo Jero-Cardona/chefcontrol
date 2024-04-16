@@ -103,16 +103,16 @@
     }
     const handleEliminar = () =>{
         Swal.fire({
-            title: "Do you want to save the changes?",
+            title: "¿Quieres inactivar la receta?",
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`
+            confirmButtonText: "Sí",
+            denyButtonText: `No`
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit()
                 } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "", "info");
+                    Swal.fire("La receta no fue inactivada", "", "info");
                 }
         });
     }
@@ -121,5 +121,3 @@
 @endauth
     {{ session('confirm-user') }}
     @endsection
-
-    

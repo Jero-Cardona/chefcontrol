@@ -18,7 +18,7 @@ class TblRecetaController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except'=>'index']);
-        // $this->middleware('admin');
+        $this->middleware('AdminRol', ['only'=>'edit','update','destroy']);
     }
 
     public function Mostrarimagen(Request $request, $id ){
