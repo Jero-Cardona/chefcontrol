@@ -105,7 +105,11 @@ Route::get('/RegistrarCliente', [TblClienteController::class, 'create'])->name('
 Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.store');
 Route::get('/Cliente/{Id_Cliente}/editar', [TblClienteController::class, 'edit'])->name('cliente.edit');
 Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->name('cliente.update');
-Route::delete('/Cliente/{Id_Cliente}', [TblClienteController::class, 'destroy'])->name('cliente.destroy');
+
+Route::get('/Cliente/{Id_Cliente}/inactive', [TblClienteController::class, 'inactive'])->name('cliente.inactive');
+Route::get('/Cliente/{Id_Cliente}/active', [TblClienteController::class, 'active'])->name('cliente.active');
+
+
 // descargar pdf de registros de cliente
 Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.pdf');
 
