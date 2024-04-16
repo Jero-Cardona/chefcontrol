@@ -73,13 +73,15 @@ Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class ,'indexOr
 
 
 
-
+//Rutas recetas
 Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('receta.create');
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
-
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
-Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
+// Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
+//Inactivas y activar receyas
+Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
+Route::get('/recetas/{Id_Receta}/active', [TblRecetaController::class, 'active'])->name('receta.active');
 // descargar registros de recetas
 Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
 

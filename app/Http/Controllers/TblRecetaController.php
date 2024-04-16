@@ -88,6 +88,7 @@ class TblRecetaController extends Controller
         $receta->Contribucion = $request->Contribucion;
         $receta->Estado = $request->Estado;
         $receta->imagen = $urlreceta;
+        $receta->etapa = $request->etapa;
     
         // Guardado de datos
         $receta->save();
@@ -142,30 +143,51 @@ class TblRecetaController extends Controller
            return "no se pudo actulizar";
        }
     }
-    // elimina registros de la base de datos
-    public function destroy($Id_Receta){
+    // // elimina registros de la base de datos
+    // public function destroy($Id_Receta){
 
-        // codigo para eliminar los datos
-        $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
-        if($receta){
-            $imagenUrl = $receta[0]->imagen;
-            $urlComponentes = parse_url($imagenUrl);
-            $imageName = $urlComponentes['path'];
-            DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->delete();
+    //     // codigo para eliminar los datos
+    //     $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
+    //     if($receta){
+    //         $imagenUrl = $receta[0]->imagen;
+    //         $urlComponentes = parse_url($imagenUrl);
+    //         $imageName = $urlComponentes['path'];
+    //         DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->delete();
 
-             // codigo para borrar la imagen del directorio
-             $urlreceta = public_path($imageName);
+    //          // codigo para borrar la imagen del directorio
+    //          $urlreceta = public_path($imageName);
 
-             // Verifica si el archivo existe antes de intentar eliminarlo
-             if (file_exists($urlreceta)) {
-                 unlink($urlreceta);
-             }
+    //          // Verifica si el archivo existe antes de intentar eliminarlo
+    //          if (file_exists($urlreceta)) {
+    //              unlink($urlreceta);
+    //          }
 
-            return to_route('crudrecetas')->with('success','se elimino la receta de manera existosa');
-        }else{
-            return "no se lograron eliminar los datos";
-        }
+    //         return to_route('crudrecetas')->with('success','se elimino la receta de manera existosa');
+    //     }else{
+    //         return "no se lograron eliminar los datos";
+    //     }
         
+    // }
+
+    //función para inactivar la receta
+    public function inactive($Id_Receta)
+    {
+            //Cambiar de estado al cliente (inactivo)
+            $receta = tbl_receta::findOrFail($Id_Receta);
+            $receta->etapa = false;
+            $receta->save();
+
+            return redirect()->route('crudrecetas')->with('success', 'Receta inactivada correctamente.');
+    }
+    //función para activar la receta
+    public function active($Id_Receta)
+    {
+            //Cambiar de estado al cliente (inactivo)
+            $receta = tbl_receta::findOrFail($Id_Receta);
+            $receta->etapa = true;
+            $receta->save();
+
+            return redirect()->route('crudrecetas')->with('success', 'Receta activada correctamente.');
     }
 
     //muestra todas las recetas en el recetario
