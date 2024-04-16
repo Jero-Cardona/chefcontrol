@@ -65,6 +65,7 @@
                     @error('imagen')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <input name="etapa" type="hidden" value="1"  >
                 </div>
                 <div class="btn1Registro">
                     <input type="submit" class="enviarRegistro">
