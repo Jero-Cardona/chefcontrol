@@ -76,11 +76,11 @@
                                 <td>{{ $usuario->Telefono }}</td>
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
                                 <td>
-                                    <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST">
+                                    <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST" id="form">
                                         <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar">Editar</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
+                                        <button class="btnEliminar" id="btnEliminar">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -92,6 +92,32 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">        
+</script>
+<script>
+    const buttonEliminar = document.getElementById("btnEliminar")
+    const form = document.getElementById("form")
+    const handleSubmit = e =>{
+        e.preventDefault()
+        form.submit()
+    }
+    const handleEliminar = () =>{
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit()
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+        });
+    }
+    buttonEliminar.addEventListener("click",handleEliminar)
+</script>
 @endauth
     {{ session('confirm-user') }}
     @endsection
