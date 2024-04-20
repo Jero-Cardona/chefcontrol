@@ -25,7 +25,8 @@ class User extends Authenticatable
         'Apellido',
         'Telefono',
         'password',
-        'Id_Rol'
+        'Id_Rol',
+        'estado'
     ];
     // indica la llave primaria 
     protected $primaryKey = 'Id_Empleado';

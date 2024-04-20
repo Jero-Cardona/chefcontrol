@@ -76,14 +76,18 @@
                     <div class="menu-item">
                         <a href="#">Clientes</a>
                         <div class="submenu">
-                            <a href="{{route('clienteCrear')}}">Nuevo Cliente</a>
+                            @if (Auth::user()->Id_Rol == '1')
+                            <a href="{{route('clienteCrear')}}">Registar Cliente</a>
+                            @endif
                             <a href="{{route('crudclientes')}}">Lista de Clientes</a>
                         </div>
                     </div>
                     <div class="menu-item">
                         <a href="#">Usuarios</a>
                         <div class="submenu">
-                            <a href="{{route('usuarios.create')}}">Nuevo Usuario</a>
+                            @if (Auth::user()->Id_Rol == '1')
+                            <a href="{{route('Admin.create')}}">Registrar Usuario</a>
+                            @endif
                             <a href="{{route('usuarios.index')}}">Lista de Usuarios</a>
                         </div>
                     </div>
@@ -114,7 +118,11 @@
                 </a>
                 <a class="a2Recetas" href="{{route('receta.create')}}">
                     <img src="{{asset('imagenes/proyecto/image4.png')}}">
-                    <b>Sugerir Receta</b>
+                    @if (Auth::user()->Id_Rol == '1')
+                        <b>Estandarizar una Receta</b>
+                    @else
+                        <b>Sugerir Receta</b>
+                    @endif
                 </a>
                 <a class="a3Recetas" href="#recetario">
                     <img src="{{asset('imagenes/proyecto/image22.png')}}">
@@ -125,24 +133,6 @@
                 en la siguiente seccion se encuentrarn las recetas que ya han sido registradas y estan estandarizadas para mostrar al usuario, 
             una vez visites cada receta tienes la opcion de calcular para cuantas personas es necesaria la receta. </b></p>
         </div>
-            
-        {{-- <div class="contenedorRecetario">
-    <h2 class="tituloRecetario">Recetario</h2>
-    <div class="recetario-columnas">
-        @foreach ($recetas as $receta)
-            <div class="receta">
-                <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
-                    <div class="infoReceta">
-                        <h2>{{ $receta->Nombre }}</h2>
-                        <p>{{ $receta->Descripcion }}</p>
-                    </div>
-                    <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
-                </a>
-            </div>
-        @endforeach
-    </div>
-</div> --}}
-
 {{-- contenedor de las recetas del aplicativo --}}
 <div class="contenedorRecetario">
     <h2 class="tituloRecetario" id="recetario">Recetario</h2>

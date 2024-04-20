@@ -12,6 +12,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblProductoController extends Controller
 {
+    // constructor para los middleware
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>'index']);
+        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+    }
+
     // Retorna el crud 
     public function index()
     {
@@ -66,6 +73,8 @@ class TblProductoController extends Controller
     $producto->Precio_Venta = $request->Precio_Venta;
     $producto->Existencia = $request->Existencia;
     $producto->IVA = $request->IVA;
+    $producto->estado = $request->estado;
+
 
     if ($producto->save()) {
         session()->flash('confirm-producto', 'El producto ha sido registrado correctamente');
@@ -148,6 +157,31 @@ class TblProductoController extends Controller
              return "no se lograron eliminar los datos";
          }
     }
+
+     //función para inactivar el producto
+     public function inactive($Cod_Producto)
+     {
+         //Cambiar de estado al producto (inactivo)
+         $producto = tbl_producto::findOrFail($Cod_Producto);
+         $producto->estado = false;
+         $producto->save();
+ 
+         return redirect()->route('crudproductos')->with('success', 'Producto inactivado correctamente.');
+     
+     }
+ 
+     //función para activar el producto
+     public function active($Cod_Producto)
+     {
+         //Cambiar de estado al producto (activo)
+         $producto = tbl_producto::findOrFail($Cod_Producto);
+         $producto->estado = true;
+         $producto->save();
+ 
+         return redirect()->route('crudproductos')->with('success', 'Producto activado correctamente.');
+     
+     }
+ 
 
     public function pdf()
     {

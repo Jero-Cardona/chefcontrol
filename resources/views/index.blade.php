@@ -2,7 +2,7 @@
 @section('style')
      <link rel="stylesheet" href="{{asset('/css/estilosCruds.css')}}">
      @endsection
-     @section('content')
+@section('content')
 <div class="contenedor" >
 
     @if (session('status'))
@@ -62,7 +62,9 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Rol de Usuario</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -75,14 +77,16 @@
                                 <td>{{ $usuario->Apellido }}</td>
                                 <td>{{ $usuario->Telefono }}</td>
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
-                                <td>
-                                    <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST" id="form">
-                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar">Editar</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btnEliminar" id="btnEliminar">Eliminar</button>
-                                    </form>
-                                </td>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-active">   
+                                    <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar swal-edit">Editar</a>
+                                    @if($usuario->estado)
+                                    <a href="{{ route('usuario.inactive', $usuario->Id_Empleado) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                    @else
+                                    <a href="{{ route('usuario.active', $usuario->Id_Empleado) }}" class="btnEliminar swal-confirm">Activar</a>
+                                    @endif   
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -92,32 +96,12 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">        
-</script>
-<script>
-    const buttonEliminar = document.getElementById("btnEliminar")
-    const form = document.getElementById("form")
-    const handleSubmit = e =>{
-        e.preventDefault()
-        form.submit()
-    }
-    const handleEliminar = () =>{
-        Swal.fire({
-            title: "¿Quieres inactivar la receta?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Sí",
-            denyButtonText: `No`
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit()
-                } else if (result.isDenied) {
-                    Swal.fire("La receta no fue inactivada", "", "info");
-                }
-        });
-    }
-    buttonEliminar.addEventListener("click",handleEliminar)
-</script>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endauth
     {{ session('confirm-user') }}
-    @endsection
+@endsection

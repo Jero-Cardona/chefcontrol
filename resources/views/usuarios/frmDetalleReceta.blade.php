@@ -24,7 +24,7 @@ $productos = tbl_producto::all();
             <h2>Detalle de Receta</h2>
         </div>
         {{-- formulario de detalle receta resposive recetas resposive --}}
-        <form action="{{route('detalleReceta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
+        <form action="{{route('detalleReceta.store')}}" enctype="multipart/form-data" method="POST" id="form" class="formularioRegistro">
             @csrf
             <div class="form1Registro">
                 <select name="Id_Receta" id="Id_Receta" value="{{ old('Id_Receta') }}">
@@ -72,11 +72,17 @@ $productos = tbl_producto::all();
                 @enderror
             </div>
             <div class="btn1Registro">
-                <input type="submit" value="Enviar Detalle" class="enviarRegistro">
-                <a href="{{route('receta.create')}}" class="enviarRegistro" style="text-decoration: none"> Volver</a>
+                <input type="submit" class="enviarRegistro">
+                <a href="{{route('receta.create')}}" class="enviarRegistro" style="text-decoration: none; padding-top: 10px;"> Volver</a>
             </div>
         </form>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endauth
 @endsection

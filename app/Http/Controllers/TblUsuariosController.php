@@ -14,6 +14,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblUsuariosController extends Controller
 {
+    // constructor para los middleware
+    public function __construct()
+    {
+        // $this->middleware('auth', ['except'=>'index']);
+        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+    }
+
     // sobreescribe el metodo
     public function username()
     {
@@ -31,6 +38,11 @@ class TblUsuariosController extends Controller
     public function create(){
         return view('usuarios.registro');
     }
+
+     //Carga el formulario para el registro de Usuarios Admin
+     public function createAdmin(){
+        return view('usuarios.registroAdmin');
+    }
     
     // Guarda a los usuarios en la base de datoswq
     public function store(Request $request)
@@ -42,7 +54,8 @@ class TblUsuariosController extends Controller
             'Apellido' => 'required',
             'Telefono' => 'required',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'Id_Rol' => 'required'
+            'Id_Rol' => 'required',
+            'estado' => 'required'
         ], [
             'Id_Empleado.required' => 'El campo Numero de documento es obligatorio.',
             'tipo_documento.required' => 'El campo Tipo de Documento es obligatorio.',
@@ -65,6 +78,8 @@ class TblUsuariosController extends Controller
             $usuario->Telefono = $request->input('Telefono');
             $usuario->password = bcrypt($request->input('password')); 
             $usuario->Id_Rol = $request->input('Id_Rol');
+            $usuario->estado = $request->input('estado');
+
 
             // Guardar el usuario
             $usuario->save();
@@ -148,6 +163,30 @@ class TblUsuariosController extends Controller
             return "no se lograron eliminar los datos";
         }
     }
+
+     //función para inactivar el cliente
+     public function inactive($Id_Empleado)
+     {
+         //Cambiar de estado al cliente (inactivo)
+         $usuario = tbl_usuarios::findOrFail($Id_Empleado);
+         $usuario->estado = false;
+         $usuario->save();
+ 
+         return redirect()->route('usuarios.index')->with('success', 'Cliente inactivado correctamente.');
+     
+     }
+ 
+     //función para activar el usuario
+     public function active($Id_Empleado)
+     {
+         //Cambiar de estado al usuario (activo)
+         $usuario = tbl_usuarios::findOrFail($Id_Empleado);
+         $usuario->estado = true;
+         $usuario->save();
+ 
+         return redirect()->route('usuarios.index')->with('success', 'Cliente activado correctamente.');
+     
+     }
 
     public function pdf()
     {

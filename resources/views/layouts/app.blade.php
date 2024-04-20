@@ -59,8 +59,10 @@
                         <div class="submenu">
                             <a href="{{route('lista.inicio')}}">Lista Inicio de Jornada</a>
                             <a href="{{route('lista.fin')}}">Lista Fin de Jornada</a>
+                            @if (Auth::user()->Id_Rol == '1')
                             <a href="{{route('crud.listainicio')}}">Listas Inicio de Jornada Registradas</a>
-                            <a href="{{route('crud.listafin')}}">Listas Fin de Jornada Registradas</a>
+                            <a href="{{route('crud.listafin')}}">Listas Fin de Jornada Registradas</a>    
+                            @endif
                         </div>
                     </div>
                     <div class="menu-item">
@@ -75,14 +77,18 @@
                     <div class="menu-item">
                         <a href="#">Clientes</a>
                         <div class="submenu">
-                            <a href="{{route('clienteCrear')}}">Nuevo Cliente</a>
+                            @if (Auth::user()->Id_Rol == '1')
+                            <a href="{{route('clienteCrear')}}">Registrar Cliente</a>
+                            @endif
                             <a href="{{route('crudclientes')}}">Lista de Clientes</a>
                         </div>
                     </div>
                     <div class="menu-item">
                         <a href="#">Usuarios</a>
                         <div class="submenu">
-                            <a href="{{route('usuarios.create')}}">Nuevo Usuario</a>
+                            @if (Auth::user()->Id_Rol == '1')
+                            <a href="{{route('Admin.create')}}">Registrar Usuario</a>
+                            @endif
                             <a href="{{route('usuarios.index')}}">Lista de Usuarios</a>
                         </div>
                     </div>
@@ -99,13 +105,14 @@
             </div>
         </header>
     {{-- </div> --}}
-    <div class="container mt-4">
+    {{-- <div class="container mt-4"> --}}
         @yield('content')
-    </div>
-    <!-- enlace SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">        
-    </script>
-
+    {{-- </div> --}}
+    <!-- enlace de la libreria de SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    {{-- enalce a scripts personalizados del aplicativo --}}
+    <script src="{{asset('js/SweetAlerts.js')}}">
+    </script>     
     {{-- enlace a boostrap 5 js --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>

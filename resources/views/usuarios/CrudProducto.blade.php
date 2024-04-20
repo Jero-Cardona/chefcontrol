@@ -5,6 +5,11 @@
 @endsection
      @section('content')
 <div class="container">
+    @if (session('success'))
+    <div style="padding: 20px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="div1">
         <div class="div2">
             <div class="div3">
@@ -32,7 +37,9 @@
                                 <th>Precio</th>
                                 <th>Existencia</th>
                                 <th>Iva</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -52,15 +59,16 @@
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
-
-                                <td>
-                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST" class="crud-form">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar">Editar</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btnEliminar" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-form">
+                                    <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar swal-edit">Editar</a>
+                                    @if($producto->estado)
+                                    <a href="{{ route('producto.inactive', $producto->Cod_Producto) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                    @else
+                                    <a href="{{ route('producto.active', $producto->Cod_Producto) }}" class="btnEliminar swal-confirm">Activar</a>
+                                    @endif 
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -70,4 +78,10 @@
         </div>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endsection

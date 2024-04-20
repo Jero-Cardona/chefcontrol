@@ -15,6 +15,7 @@
         {{session ('confirm-user')}}
     </div>
 @endif
+   
     <div class="contenedorRegistro">
         <header class="headerIndex">
             <div class="contenedorHIndex">
@@ -29,8 +30,8 @@
                 </div>
                 <input type="checkbox" id="btnMenu">
                 <nav class="menuHIndex">
-                    <a href="{{route('home')}}">Inicio</a>
-                    <a href="{{route('login')}}">Iniciar sesión</a>
+                    <a href="{{route('receta.recetario')}}">Inicio</a>
+                    {{-- <a href="{{route('login')}}">Iniciar sesión</a> --}}
                     {{-- <a href="../vistas/register.html">Registrarse</a> --}}
                 </nav>
             </div>
@@ -99,16 +100,16 @@
                         @enderror
                     </div>
                     <div class="form1Registro">
-                        {{-- <select id="Id_Rol" name="Id_Rol" value="{{old('Id_Rol')}}" required>
+                        <select id="Id_Rol" name="Id_Rol" value="{{old('Id_Rol')}}" required>
                             <option value="" disabled selected hidden>Tipo de Usuario</option>
                             <option value="1" @if(old('tipo_documento') == '1') selected @endif>Administrador</option>
                             <option value="2" @if(old('tipo_documento') == '2') selected @endif>Cocinero</option>
                         </select>
                          @error('Id_Rol')
                         <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror --}}
-                        <input type="hidden" name="Id_Rol" id="Id_Rol" value="2">
-                        <input type="hidden" name="estado" id="estado" value="0">
+                        @enderror
+                        {{-- <input type="hidden" name="Id_Rol" id="Id_Rol" value="2"> --}}
+                        <input type="hidden" name="estado" id="estado" value="1">
                     </div>
                     <div class="btn1Registro">
                         <input type="submit" class="enviarRegistro">

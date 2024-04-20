@@ -28,7 +28,9 @@
                                 <th>Aporte</th>
                                 <th>Estado</th>
                                 <th>imagen</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -41,14 +43,16 @@
                                 <td>{{ $receta->Contribucion }}</td>
                                 <td>{{ $receta->Estado }}</td>
                                 <td> <img style="height: 100px; width: 100px" src="{{$receta->imagen}}" alt=""> </td>
-                                <td>
-                                <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btnEditar">Editar</a>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-form">
+                                <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btnEditar swal-edit">Editar</a>
                                 @if($receta->etapa)
-                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar">Inactivar</a>
+                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Inactivar</a>
                                 @else
-                                <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar">Activar</a>
+                                <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Activar</a>
                                 @endif 
-                                </td>
+                            </td>
+                            @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -58,51 +62,10 @@
         </div>
     </div>
 </div>
-{{-- <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Recetas</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descipcion</th>
-                                <th>Costo total</th>
-                                <th>Contribucion</th>
-                                <th>Estado</th>
-                                <th>imagen</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($recetas as $receta)
-                            <tr>
-                                
-                                <td>{{ $receta->Nombre }}</td>
-                                <td>{{ $receta->Descripcion }}</td>
-                                <td>{{ $receta->Costo_Total }}</td>
-                                <td>{{ $receta->Contribucion }}</td>
-                                <td>{{ $receta->Estado }}</td>
-                                <td> <img class="imagen-crud" src="{{$receta->imagen}}" alt=""> </td>
-                                <td>
-                                    <form action="{{ route('receta.destroy', $receta->Id_Receta) }}" method="POST">
-                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btn btn-sm btn-primary">Editar Datos</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endsection

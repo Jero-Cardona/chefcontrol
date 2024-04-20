@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/estilosLogin.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-0kI1HjxgLveGKz6cuwDSMN4wr1jUnslm2L1qLYF5bDOcVvU7kU0/73RbVhqGpjU/" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
     <title>Document</title>
@@ -42,7 +43,7 @@
         @if ($errors->has('credentials'))
             {{ $errors->first('credentials') }}
         @else
-            Por favor, complete todos los campos.
+            <p>Por favor, complete todos los campos.</p>
         @endif
         </div>
         @endif
@@ -70,6 +71,11 @@
                     <div class="form2Login">
                         <input type="password" name="password" id="password" required>
                         <label for="password">Contraseña</label>
+                        {{-- <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <i class="fas fa-eye"></i>
+                            ver contraseña
+                          </span> --}}
+                        {{-- <button onclick="ShowPassword()">Mostrar contraseña</button> --}}
                     </div>
                     <div style="margin: 0 auto;">
                         <input type="checkbox" name="remember" >
@@ -79,16 +85,22 @@
                         <input type="submit" class="enviarLogin">
                         <a href="{{route('home')}}">Volver</a>
                     </div>
+                    {{-- ver contraseña funcion --}}
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye"></i>
+                        ver contraseña
+                      </span>
                 </form>
                 <img id="imagenlogin" src="{{asset('imagenes/proyecto/cocineros.png')}}">
             </div>
         </div>
+        <footer class="footerLogin">
+            <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+            <p><b>Servicio nacional de aprendizaje <br>
+                Centro de la Innovacion, agroindustria y aviacion</b></p>
+            <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+        </footer>
     </div>
-    <footer class="footerLogin">
-        <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
-        <p><b>Servicio nacional de aprendizaje <br>
-            Centro de la Innovacion, agroindustria y aviacion</b></p>
-        <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
-    </footer>
+    <script src="{{asset('js/SweetAlerts.js')}}"></script>
 </body>
 </html>

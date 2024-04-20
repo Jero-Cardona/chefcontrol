@@ -7,7 +7,7 @@ use App\Models\tbl_receta;
 $recetas = tbl_receta::all();
 $fechaActual = Carbon::now();
 $clientes = tbl_cliente::all(); 
-
+// para obtener los clientes activos
 $clientesActivos = tbl_cliente::where('estado', true)->get();
 ?>
 
@@ -19,10 +19,9 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
         <div class="tituloRegistro">
             <h1>Orden de producción</h1>
         </div>
-    <form id="formularioLogin" action="{{route('orden.store')}}" method="POST" class="formularioRegistro">
+    <form action="{{route('orden.store')}}" method="POST" id="form" class="formularioRegistro">
         @csrf
             <input type="hidden" name="Fecha" value="{{ Carbon::now()->format('Y-m-d H:i:s') }}">
-
             <div class="form1Registro">
                 <select class="input" name="Id_Cliente" required>
                 <option value="" disabled selected hidden>Cliente al que se dirige la orden</option>
@@ -31,9 +30,8 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
                     @endforeach
                 </select>
             </div>
-
+            {{-- Usuario que registra el formulario --}}
             <input type="hidden" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}">
-
             <div class="form1Registro">
                 <select class="input" name="Id_Receta" required>
                 <option value="" disabled selected hidden>Seleccione la receta</option>
@@ -44,8 +42,8 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
             </div>
 
              <div class="formRegistro">
-               <input name="Cantidad" id="Cantidad" type="text"  required>
-                <label for="Cantidad"> Cantidad del producto</label>
+               <input name="cantidad" id="cantidad" type="text"  required>
+                <label for="cantidad"> Cantidad del producto</label>
             </div>
                 <div class="formRegistro">
                 <input autofocus type="hidden" name="estado" value="En espera" >
@@ -57,5 +55,11 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
     </form>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endauth
 @endsection

@@ -39,10 +39,14 @@ Route::get("/CrudProductos",[TblProductoController::class, 'index'])->name('crud
 // Route::view("/listaUsuarios","usuarios.CrudUsuario")->name("usuarios.crud");
 Route::get('/usuarios', [TblUsuariosController::class, 'index'])->name('usuarios.index');
 Route::get('/crear', [TblUsuariosController::class, 'create'])->name('usuarios.create');
+Route::get('/crearUsuarioAdmin', [TblUsuariosController::class, 'createAdmin'])->name('Admin.create');
 Route::post('/registro', [TblUsuariosController::class, 'store'])->name('usuarios.store');
 Route::get('/Usuario/{Id_Empleado}/edit', [TblUsuariosController::class, 'edit'])->name('usuarios.edit');
 Route::put('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'update'])->name('usuarios.update');
 Route::delete('/Usuario/{Id_Empleado}', [TblUsuariosController::class, 'destroy'])->name('usuarios.destroy');
+// activar y desactivar cliente
+Route::get('/Usuario/{Id_Empleado}/inactive', [TblUsuariosController::class, 'inactive'])->name('usuario.inactive');
+Route::get('/Usuario/{Id_Empleado}/active', [TblUsuariosController::class, 'active'])->name('usuario.active');
 // descarga usuarios pdf
 Route::get('Usuariospdf',[TblUsuariosController::class, 'pdf'])->name('usuarios.pdf');
 
@@ -55,14 +59,17 @@ Route::view("/Recetas", 'usuarios.IndexReceta')->name('recetas.index');
 Route::get('/Recetario',[TblRecetaController::class, 'recetario'])->name('receta.recetario');
 Route::get('/Receta-Ingredientes/{Id_Receta}', [TblRecetaController::class, 'showingrediente'])->name('receta.ingrediente');
 Route::post('/Receta-Ingredientes/{Id_Receta}/Calcular-Porciones', [TblRecetaController::class, 'cantidadmultiplicada'])->name('recetas.cantidadmultiplicada');
-Route::post('/Orden-Produccion/crear', [TblOrdenproduccionController::class, 'store'])->name('orden.store');
+
+//Rutas de las Ordenes de produccion 
+Route::get('/Orden-Produccion', [TblOrdenproduccionController::class, 'create'])->name('orden.produccion');
+// Route::view('/Orden-Produccion','usuarios.OrdenProduccion')->name('orden.produccion');
+Route::post('/crearOrden', [TblOrdenproduccionController::class, 'store'])->name('orden.store');
 Route::get('/Ordenes-De-Produccion',[TblOrdenproduccionController::class, 'index'])->name('orden.index');
 Route::post('/ordenes/{orden}/detalles', [TblOrdenproduccionController::class,'storeDetalles'])->name('ordenes.detalles.store');
 Route::post('/ordenes/detalles/bulk', [TblOrdenproduccionController::class,'storeBulkDetalles'])->name('ordenes.detalles.bulk');
 Route::view('/Receta','usuarios.Receta');
 Route::get('/ordenes/{orden}/detalles/edit',[TblOrdenproduccionController::class, 'editDetalles'])->name('ordenes.detalles.edit');
 Route::put('/ordenes/{orden}/detalles',[TblOrdenproduccionController::class,'updateDetalles'])->name('ordenes.detalles.update');
-Route::view('/Orden-Produccion','usuarios.OrdenProduccion')->name('orden.produccion');
 Route::post('/orden/{ordenId}/preparacion-iniciar', [TblOrdenproduccionController::class  ,'iniciarPreparacion'])->name('orden.preparacion.iniciar');
 Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class,'marcarComoEntregado'])->name('orden.entregado');
 Route::get('/ordenes/espera', [TblOrdenproduccionController::class,'indexOrdenesEspera'])->name('ordenes.espera');
@@ -78,10 +85,10 @@ Route::get("/FormularioReceta", [TblRecetaController::class, 'create'])->name('r
 Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.store");
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
-// Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
-//Inactivas y activar receyas
+Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
+//Inactivas y activar recetas
 Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
-Route::get('/recetas/{Id_Receta}/active', [TblRecetaController::class, 'active'])->name('receta.active');
+Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'active'])->name('receta.active');
 // descargar registros de recetas
 Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
 
@@ -95,6 +102,9 @@ Route::post('Producto', [TblProductoController::class, 'store'])->name('producto
 Route::get('/Producto/{Cod_Producto}/Editar', [TblProductoController::class, 'edit'])->name('producto.edit');
 Route::put('/Producto/{Cod_Producto}', [TblProductoController::class, 'update'])->name('producto.update');
 Route::delete('/Producto/{Cod_Producto}', [TblProductoController::class, 'destroy'])->name('producto.destroy');
+// Activar e Inactivar Productos
+Route::get('/Producto/{Cod_Producto}/inactive', [TblProductoController::class, 'inactive'])->name('producto.inactive');
+Route::get('/Producto/{Cod_Producto}/active', [TblProductoController::class, 'active'])->name('producto.active');
 // descargar pdf de registros de producto
 Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('producto.pdf');
 
@@ -107,7 +117,7 @@ Route::get('/RegistrarCliente', [TblClienteController::class, 'create'])->name('
 Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.store');
 Route::get('/Cliente/{Id_Cliente}/editar', [TblClienteController::class, 'edit'])->name('cliente.edit');
 Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->name('cliente.update');
-
+// activar y desactivar cliente
 Route::get('/Cliente/{Id_Cliente}/inactive', [TblClienteController::class, 'inactive'])->name('cliente.inactive');
 Route::get('/Cliente/{Id_Cliente}/active', [TblClienteController::class, 'active'])->name('cliente.active');
 

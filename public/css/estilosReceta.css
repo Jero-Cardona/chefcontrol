@@ -254,11 +254,12 @@
     grid-template: 450px 450px 450px / 1fr 1fr;
     margin-top: 100px;
     justify-items: center;
+    margin-bottom: 75px;
 }
 
 .hover1Recetas figure{
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 350px;
     position: relative;
     overflow: hidden;
     border: 1px solid black;

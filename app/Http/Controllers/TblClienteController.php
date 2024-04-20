@@ -10,7 +10,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblClienteController extends Controller
 {
-    
+    // constructor para los middleware
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>'index']);
+        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+    }
+
     public function index()
     {
         $clientes = tbl_cliente::all();

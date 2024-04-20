@@ -7,19 +7,16 @@
 @auth
 @if (session('success'))
      <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-        
         {{ session('success') }}
     </div>
 @endif    
-
-<body>
     <div class="contenedorFormRegistro">
         <div class="contenedorFormRegistro1">
             <div class="tituloRegistro">
                 <h2>Nueva Receta</h2>
             </div>
                 {{-- formulario de recetas resposive --}}
-                <form action="{{route('receta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
+                <form action="{{route('receta.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro" id="form">
                 @csrf
                 <div class="formRegistro">
                     <input id="Nombre" name="Nombre" type="text"  value="{{old('Nombre')}}" required>
@@ -49,6 +46,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                @if (Auth::user()->Id_Rol == '1')
                 <div class="form1Registro">
                     <select id="Estado" name="Estado"  value="{{old('Estado')}}" required>
                         <option value="" disabled selected hidden>Estado de la Receta</option>
@@ -58,13 +56,20 @@
                      @error('Estado')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                </div>    
+                @else
+                <div class="form1Registro">
+                    <input type="hidden" name="Estado" id="Estado" value="2">
                 </div>
+                @endif
+                
                 <div class="formRegistro">
                     <input id="imagen" name="imagen" type="file"  >
                     <label for="imagen"></label>
                     @error('imagen')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    {{-- campo para el manejo de estados --}}
                     <input name="etapa" type="hidden" value="1"  >
                 </div>
                 <div class="btn1Registro">
@@ -73,5 +78,11 @@
             </form>
         </div>
     </div>
+    <footer class="footerLogin">
+        <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+        <p><b>Servicio nacional de aprendizaje <br>
+            Centro de la Innovacion, agroindustria y aviacion</b></p>
+        <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+    </footer>
     @endauth
 @endsection

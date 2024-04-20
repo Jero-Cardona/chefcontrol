@@ -11,7 +11,7 @@
                 <h2>Nuevo Producto</h2>
             </div>
         {{-- formulario de registro de producto--}}
-        <form action="{{route('producto.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro">
+        <form action="{{route('producto.store')}}" enctype="multipart/form-data" method="POST" class="formularioRegistro" id="form">
             @csrf
             <div class="formRegistro">
                 <input required id="Nombre" name="Nombre" type="text" value="{{ old('Nombre') }}" >
@@ -106,12 +106,19 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            
+            {{-- campo para el estado de la receta --}}
+            <input type="hidden" value="1" name="estado">
             <div class="btn1Registro">
                 <input type="submit" class="enviarRegistro">
             </div>
         </form>
     </div>
 </div>
-</body>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
+{{-- </body> --}}
 @endsection

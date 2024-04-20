@@ -19,7 +19,7 @@
                     <h2>Registrar Clientes</h2>
                 </div>
                 {{-- formulario de registro de usuarios resposive --}}
-                <form action="{{route('cliente.store')}}" method="POST" class="formularioRegistro">
+                <form action="{{route('cliente.store')}}" method="POST" class="formularioRegistro" id="form">
                     @csrf
                     <div class="formRegistro">
                         <input id="Id_Cliente" name="Id_Cliente" type="number" value="{{old('Id_Cliente')}}">
@@ -86,7 +86,7 @@
                 Centro de la Innovacion, agroindustria y aviacion</b></p>
             <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
         </footer>
-    </div>
+    {{-- </div> --}}
 </body>
 @endauth
 @endsection

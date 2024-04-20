@@ -3,7 +3,6 @@
 <div class="container">
     @if (session('success'))
     <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-    
         {{ session('success') }}
     </div>
     @endif
@@ -28,7 +27,9 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Estado</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -40,15 +41,17 @@
                                 <td>{{ $cliente->Nombre }}</td>
                                 <td>{{ $cliente->Apellido }}</td>
                                 <td>{{ $cliente->Telefono }}</td>
-                                <td>{{ $cliente->Estado }}</td>
-                                <td>   
-                                <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btnEditar">Editar</a>
+                                <td>{{ $cliente->estado }}</td>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-active">   
+                                <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btnEditar swal-edit">Editar</a>
                                 @if($cliente->estado)
-                                <a href="{{ route('cliente.inactive', $cliente->Id_Cliente) }}" class="btnEliminar">Inactivar</a>
+                                <a href="{{ route('cliente.inactive', $cliente->Id_Cliente) }}" class="btnEliminar swal-confirm">Inactivar</a>
                                 @else
-                                <a href="{{ route('cliente.active', $cliente->Id_Cliente) }}" class="btnEliminar">Activar</a>
+                                <a href="{{ route('cliente.active', $cliente->Id_Cliente) }}" class="btnEliminar swal-confirm">Activar</a>
                                 @endif   
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -58,4 +61,10 @@
         </div>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endsection

@@ -14,7 +14,7 @@ class tbl_usuarios extends Model
     use HasFactory;
 
     protected $table = 'tbl_usuarios';
-    protected $fillable = ['Id_Empleado','tipo_documento','Nombre','Apellido','Telefono', 'password','Id_Rol'];
+    protected $fillable = ['Id_Empleado','tipo_documento','Nombre','Apellido','Telefono', 'password','Id_Rol','estado'];
     protected $primaryKey = 'Id_Empleado';
     public $timestamps = false;
 

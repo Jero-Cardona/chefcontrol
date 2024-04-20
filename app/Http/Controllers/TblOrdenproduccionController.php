@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class TblOrdenproduccionController extends Controller
 {
+    // constructor para los middleware
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>'index']);
+        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+    }
+    
     public function index()
     {
         $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
@@ -78,6 +85,7 @@ class TblOrdenproduccionController extends Controller
             'estado'=>'required'
         ]);
 
+        
         $fecha = $request->input('Fecha');
 
         // Crear una instancia de Carbon para obtener la fecha y hora actual
@@ -98,7 +106,7 @@ class TblOrdenproduccionController extends Controller
         
         
         // retorna a la vista de las recetas
-        return to_route('orden.produccion');
+        return to_route('receta.recetario');
     }
 
     public function iniciarPreparacion($ordenId)

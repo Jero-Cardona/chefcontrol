@@ -14,11 +14,11 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblRecetaController extends Controller
 {
-    // funcion de autentificacion de usuario
+    // constructor para los middleware
     public function __construct()
     {
         $this->middleware('auth', ['except'=>'index']);
-        $this->middleware('AdminRol', ['only'=>'edit','update','destroy']);
+        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
     }
 
     public function Mostrarimagen(Request $request, $id ){
