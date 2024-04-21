@@ -1,55 +1,104 @@
 @extends('layouts.app')
 @section('style')
     {{-- link de boostrap 5 --}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+
+<link rel="stylesheet" href="{{ asset('/css/calcular.css')}}">
 @endsection
 @section('content')
 @auth
-<div>
-    <div class="card border-danger mb-3">
-        <div class="card-header text-center">
+
+    {{-- <div>
+        <div>
+            <h2>Calcular Porciones</h2>
+        </div>
+        <div>
             <h1>{{ $receta->Nombre }}</h1>
         </div>
-        <div class="card-body">
+        <div>
             <p>{{ $receta->Descripcion }}</p>
-            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}" class="img-fluid">
+            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
             <h2>Ingredientes</h2>
-            <ul class="list-unstyled">
+            <ul>
                 @foreach ($receta->detallesReceta as $detalle)
                     <li>
                         {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }} {{ $detalle->unidadMedida->Unidad_Medida }}
                     </li>
                 @endforeach
             </ul>
-            <hr>
+            
             <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
                 @csrf
-                <div class="form-group">
+                <div>
                     <label for="cantidad">Cantidad de la receta:</label>
-                    <input class="form-control" type="number" name="cantidad" min="1" required>
+                    <input type="number" name="cantidad" min="1" required>
                 </div>
-                <div class="row">
-                <div class="col">
-                <button class="btn btn-primary" type="submit">Calcular</button>
+                
+                
+                <button  type="submit">Calcular</button>
                 </div>
-                <div class="col text-right">
-                    <a href="{{ route('receta.recetario') }}" class="btn btn-success">Volver</a>
-                </div>
-            </div>
+                
             </form>
             <br>
             @if(isset($cantidadesAjustadas))
                 <h2>Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
-                <ul class="list-unstyled">
+                <ul>
                     @foreach($cantidadesAjustadas as $detalle)
                         <li>
                             {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
                         </li>
                     @endforeach
                 </ul>
-            @endif     
+            @endif 
+                
+        </div> --}}
+        
+        <div class="container">
+            <div class="titulo">
+                <h2>Calcular Porciones</h2>
+            </div>
+            <div class="receta-info">
+                <div>
+                    <h2 class="nombre-ingredientes">{{ $receta->Nombre }}</h3>
+                    <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
+                </div>
+                <div class="descripcion">
+                    <p>{{ $receta->Descripcion }}</p>
+                </div>
+            </div>
+            <div class="receta-info">
+                <div class="ingredientes">
+                    <h2 class="nombre-ingredientes">Ingredientes</h2>
+                    <ul>
+                        @foreach ($receta->detallesReceta as $detalle)
+                            <li>
+                                {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }} {{ $detalle->unidadMedida->Unidad_Medida }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
+                        @csrf
+                        <div>
+                            <label for="cantidad">Cantidad de la receta:</label>
+                            <input type="number" name="cantidad" min="1" required>
+                        </div>
+                        <button type="submit">Calcular</button>
+                    </form>
+                </div>
+            </div>
+            @if(isset($cantidadesAjustadas))
+                <h2 class="nombre-ingredientes">Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
+                <ul>
+                    @foreach($cantidadesAjustadas as $detalle)
+                        <li>
+                            {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                        </li>
+                    @endforeach
+                </ul>
+            @endif 
         </div>
-    </div>
     
 @endauth            
 @endsection
