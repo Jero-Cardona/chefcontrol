@@ -134,3 +134,4 @@ Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])-
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
 Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');
 
+

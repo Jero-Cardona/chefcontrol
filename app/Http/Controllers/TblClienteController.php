@@ -23,6 +23,8 @@ class TblClienteController extends Controller
         return view('usuarios.CrudCliente',compact('clientes'));
     }
 
+    
+
     public function create()
     {
         return view('usuarios.FormCliente');

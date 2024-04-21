@@ -41,7 +41,13 @@
                                 <td>{{ $cliente->Nombre }}</td>
                                 <td>{{ $cliente->Apellido }}</td>
                                 <td>{{ $cliente->Telefono }}</td>
-                                <td>{{ $cliente->estado }}</td>
+                                <td>
+                                @if($cliente->estado == 0)
+                                    Inactivo
+                                @elseif($cliente->estado == 1)
+                                    Activo
+                                @endif
+                                </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-active">   
                                 <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btnEditar swal-edit">Editar</a>
