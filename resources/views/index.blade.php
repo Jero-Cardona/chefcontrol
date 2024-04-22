@@ -62,6 +62,7 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Rol de Usuario</th>
+                                <th>Estado</th>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
                                 @endif
@@ -77,6 +78,13 @@
                                 <td>{{ $usuario->Apellido }}</td>
                                 <td>{{ $usuario->Telefono }}</td>
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
+                                <td>
+                                @if ($usuario->estado == 1)
+                                    Activo
+                                @else
+                                    Inactivo    
+                                @endif
+                                </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-active">   
                                     <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar swal-edit">Editar</a>

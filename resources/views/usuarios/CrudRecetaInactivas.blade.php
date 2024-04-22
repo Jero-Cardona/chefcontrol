@@ -50,12 +50,12 @@
                                 @endif
                                 </td>
                                 <td>
-                               @if($receta->etapa == true)
-                                   Activo
-                               @else
-                                   Inactivo
-                               @endif
-                               </td>
+                                @if($receta->etapa == true)
+                                    Activa
+                                @else
+                                    Inactiva
+                                @endif
+                                </td>
                                 <td> <img style="height: 100px; width: 100px" src="{{$receta->imagen}}" alt=""> </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
@@ -65,9 +65,8 @@
                                 @else
                                 <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Activar</a>
                                 @endif 
-                                </td>
+                            </td>
                             @endif
-                            
                             </tr>
                             @endforeach
                         </tbody>

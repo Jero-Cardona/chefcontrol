@@ -37,6 +37,7 @@
                                 <th>Precio</th>
                                 <th>Existencia</th>
                                 <th>Iva</th>
+                                <th>Estado</th>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
                                 @endif
@@ -59,6 +60,13 @@
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
+                                <td>
+                                @if ($producto->estado == 1)
+                                    Activo
+                                    @else
+                                    Inactivo
+                                @endif
+                                </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
                                     <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar swal-edit">Editar</a>

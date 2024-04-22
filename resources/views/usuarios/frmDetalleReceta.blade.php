@@ -4,6 +4,11 @@ use App\Models\tbl_receta;
 
 $recetas = tbl_receta::all();
 $productos = tbl_producto::all(); 
+
+$recetasActivas = tbl_receta::where('Estado', 1)
+                          ->where('etapa', true)
+                          ->get();
+$productosActivos = tbl_producto::where('estado', 1)->get();
 ?>
 @extends('layouts.app')
 @section('style')
@@ -29,7 +34,7 @@ $productos = tbl_producto::all();
             <div class="form1Registro">
                 <select name="Id_Receta" id="Id_Receta" value="{{ old('Id_Receta') }}">
                     <option value="" disabled selected hidden>Selecione la receta</option>
-                    @foreach ($recetas as $receta)
+                    @foreach ($recetasActivas as $receta)
                          <option value="{{ $receta->Id_Receta }}" {{ old('Id_Receta') == $receta->Id_Receta ? 'selected' : '' }}>{{$receta->Nombre}}</option>
                     @endforeach
                 </select>
@@ -41,7 +46,7 @@ $productos = tbl_producto::all();
             <div class="form1Registro">
                 <select name="Cod_Producto" id="Cod_Producto" value="{{ old('Cod_Producto') }}">
                     <option value="" disabled selected hidden>Selecione el producto que lleva esa receta</option>
-                    @foreach ($productos as $producto)
+                    @foreach ($productosActivos as $producto)
                         <option value="{{ $producto->Cod_Producto }}" {{ old('Cod_Producto') == $producto->Cod_Producto ? 'selected' : '' }}>{{$producto->Nombre}}</option>
                     @endforeach
                 </select>

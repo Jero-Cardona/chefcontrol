@@ -8,17 +8,13 @@
 @section('content')
 @auth
 
-    {{-- <div>
-        <div>
-            <h2>Calcular Porciones</h2>
-        </div>
-        <div>
-            <h1>{{ $receta->Nombre }}</h1>
-        </div>
-        <div>
-            <p>{{ $receta->Descripcion }}</p>
-            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">
-            <h2>Ingredientes</h2>
+   {{-- <section class="modal">
+        <div class="modal__container">
+            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}" class="modal_img">
+            <h2 class="modal__title">{{ $receta->Nombre }}</h2>
+            <p class="modal__parrafo">{{ $receta->Descripcion }}</p>
+            <a href="#" class="cerrarModal">Cerrar</a>
+            <h3 class="modal__title">Ingredientes de la receta</h3>
             <ul>
                 @foreach ($receta->detallesReceta as $detalle)
                     <li>
@@ -26,32 +22,26 @@
                     </li>
                 @endforeach
             </ul>
-            
             <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
                 @csrf
                 <div>
                     <label for="cantidad">Cantidad de la receta:</label>
                     <input type="number" name="cantidad" min="1" required>
                 </div>
-                
-                
-                <button  type="submit">Calcular</button>
-                </div>
-                
+                <button type="submit">Calcular</button>
             </form>
-            <br>
             @if(isset($cantidadesAjustadas))
-                <h2>Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
-                <ul>
-                    @foreach($cantidadesAjustadas as $detalle)
-                        <li>
-                            {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
-                        </li>
-                    @endforeach
-                </ul>
-            @endif 
-                
-        </div> --}}
+            <h2 class="nombre-ingredientes">Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
+            <ul>
+                @foreach($cantidadesAjustadas as $detalle)
+                    <li>
+                        {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif 
+        </div>
+   </section> --}}
         
         <div class="container">
             <div class="titulo">

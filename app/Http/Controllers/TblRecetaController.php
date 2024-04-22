@@ -39,6 +39,15 @@ class TblRecetaController extends Controller
         $recetas = tbl_receta::paginate(4);
         return view('usuarios.CrudReceta',compact('recetas'));
     }
+
+     // Carga la vista de Recetas Inactivas
+     public function indexInactivas(){
+        // paginate para mostrar X elementos por pagina
+        $recetas = tbl_receta::where('etapa', false)
+                                ->paginate(4);
+        return view('usuarios.CrudRecetaInactivas',compact('recetas'));
+    }
+
     // Carga el formulario de Recetas
     public function create(){
         return view('usuarios.FormReceta');

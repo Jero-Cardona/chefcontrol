@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{asset('/css/estilosReceta.css')}}" >
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
+        <link rel="icon" href="{{asset('imagenes/proyecto/logo.svg') }}">
         <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
         <title>Chef Control | Recetario</title>
 </head>
@@ -139,7 +139,7 @@
         @foreach ($recetasActivas as $receta)
         <div class="hover1Recetas">
             <figure>
-                <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
+                <a class="" href="{{route('receta.ingrediente', $receta->Id_Receta)}}">
                     <img src="{{ $receta->imagen }}">
                     <div class="hoverDiv1Recetas">
                         <h2>{{ $receta->Nombre }}</h2>
@@ -205,7 +205,7 @@
                 @endif
                 </ul>
                 @endif
-    </div>
+        </div>
             {{-- footer de la vista --}}
             <footer class="footerRecetas">
                 <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
@@ -213,7 +213,44 @@
             Centro de la Innovacion, agroindustria y aviacion</b></p>
         <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
     </footer>  
-</div>
+    </div>
+    {{-- modal para calcular la cantidad de Recetas --}}
+    <section class="modal">
+        <div class="modal__container">
+            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}" class="modal__img">
+            <h2 class="modal__title">{{ $receta->Nombre }}</h2>
+            <p class="modal__parrafo">{{ $receta->Descripcion }}</p>
+            <a href="#" class="cerrarModal">Cerrar</a>
+            <h3 class="modal__title">Ingredientes de la receta</h3>
+            <ul>
+                @foreach ($receta->detallesReceta as $detalle)
+                    <li>
+                        {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }} {{ $detalle->unidadMedida->Unidad_Medida }}
+                    </li>
+                @endforeach
+            </ul>
+            <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
+                @csrf
+                <div>
+                    <label for="cantidad">Cantidad de la receta:</label>
+                    <input type="number" name="cantidad" min="1" required>
+                </div>
+                <button type="submit">Calcular</button>
+            </form>
+            @if(isset($cantidadesAjustadas))
+            <h2 class="nombre-ingredientes">Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
+            <ul>
+                @foreach($cantidadesAjustadas as $detalle)
+                    <li>
+                        {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif 
+        <a href="#" class="cerrarModal">Cerrar</a>
+        </div>
+    </section>
+<script src="{{asset('js/SweetAlerts.js')}}"></script>
 </body>
 </html>
 
