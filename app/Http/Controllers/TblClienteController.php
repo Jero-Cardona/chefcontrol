@@ -19,7 +19,7 @@ class TblClienteController extends Controller
 
     public function index()
     {
-        $clientes = tbl_cliente::all();
+        $clientes = tbl_cliente::paginate(4);
         return view('usuarios.CrudCliente',compact('clientes'));
     }
 

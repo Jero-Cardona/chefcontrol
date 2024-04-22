@@ -649,5 +649,41 @@ tr:nth-child(even){
     color: rgba(255, 255, 255);
 }
 
-/* estilos del login */
+/* estilos de la paginacion  */
 
+.pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
+
+.pagination .active span {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.pagination .disabled span {
+    color: #ccc;
+}

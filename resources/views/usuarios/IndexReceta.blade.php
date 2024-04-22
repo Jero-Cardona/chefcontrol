@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -137,7 +136,7 @@
 <div class="contenedorRecetario">
     <h2 class="tituloRecetario" id="recetario">Recetario</h2>
     <div class="recetario1">
-        @foreach ($recetas as $receta)
+        @foreach ($recetasActivas as $receta)
         <div class="hover1Recetas">
             <figure>
                 <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
@@ -156,11 +155,60 @@
                     </div>
                 </div>
         @endforeach
-        
-        {{-- footer de la vista --}}
     </div>
-    <footer class="footerRecetas">
-        <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <div class="paginas">
+        {{-- agregar paginacion al Recetario --}}
+        {{-- Links de paginación --}}
+        @if ($recetasActivas->hasPages())
+        <ul class="pagination">
+            {{-- Botón "Primero" --}}
+            @if (!$recetasActivas->onFirstPage())
+                <li><a href="{{ $recetasActivas->url(1) }}">Primero</a></li>
+            @endif
+    
+            {{-- Botón "Anterior" --}}
+            @if ($recetasActivas->onFirstPage())
+                <li class="disabled"><span>Anterior</span></li>
+            @else
+                <li><a href="{{ $recetasActivas->previousPageUrl() }}">Anterior</a></li>
+            @endif
+            {{-- para mostrar el numero de Items --}}
+            {{$recetasActivas->firstItem()}}
+            de
+            {{$recetasActivas->total()}}
+            {{-- Páginas --}}
+            @foreach ($recetasActivas->items() as $item)
+                @if (is_string($item))
+                    <li class="disabled"><span>{{ $item }}</span></li>
+                @endif
+                @if (is_array($item))
+                    @foreach ($item as $page => $url)
+                        @if ($page == $recetasActivas->currentPage())
+                            <li class="active"><span>{{ $page }}</span></li>
+                        @else
+                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+    
+            {{-- Botón "Siguiente" --}}
+            @if ($recetasActivas->hasMorePages())
+                <li><a href="{{ $recetasActivas->nextPageUrl() }}">Siguiente</a></li>
+            @else
+                <li class="disabled"><span>Siguiente</span></li>
+                @endif
+                
+                {{-- Botón "Último" --}}
+                @if ($recetasActivas->hasMorePages())
+                <li><a href="{{ $recetasActivas->url($recetasActivas->lastPage()) }}">Último</a></li>
+                @endif
+                </ul>
+                @endif
+    </div>
+            {{-- footer de la vista --}}
+            <footer class="footerRecetas">
+                <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
         <p><b>Servicio nacional de aprendizaje <br>
             Centro de la Innovacion, agroindustria y aviacion</b></p>
         <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">

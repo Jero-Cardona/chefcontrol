@@ -55,7 +55,7 @@
         
         <div class="container">
             <div class="titulo">
-                <h2>Calcular Porciones</h2>
+                <h2 class="nombreR">Calcular Porciones</h2>
             </div>
             <div class="receta-info">
                 <div>

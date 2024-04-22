@@ -57,6 +57,54 @@
                             @endforeach
                         </tbody>
                     </table>
+                     {{-- Links de paginación --}}
+                    @if ($recetas->hasPages())
+                    <ul class="pagination">
+                        {{-- Botón "Primero" --}}
+                        @if (!$recetas->onFirstPage())
+                            <li><a href="{{ $recetas->url(1) }}">Primero</a></li>
+                        @endif
+                
+                        {{-- Botón "Anterior" --}}
+                        @if ($recetas->onFirstPage())
+                            <li class="disabled"><span>Anterior</span></li>
+                        @else
+                            <li><a href="{{ $recetas->previousPageUrl() }}">Anterior</a></li>
+                        @endif
+                        {{-- para mostrar el numero de Items --}}
+                        {{$recetas->firstItem()}}
+                        de
+                        {{$recetas->total()}}
+                        {{-- Páginas --}}
+                        @foreach ($recetas->items() as $item)
+                            @if (is_string($item))
+                                <li class="disabled"><span>{{ $item }}</span></li>
+                            @endif
+                            @if (is_array($item))
+                                @foreach ($item as $page => $url)
+                                    @if ($page == $recetas->currentPage())
+                                        <li class="active"><span>{{ $page }}</span></li>
+                                    @else
+                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+                
+                        {{-- Botón "Siguiente" --}}
+                        @if ($recetas->hasMorePages())
+                            <li><a href="{{ $recetas->nextPageUrl() }}">Siguiente</a></li>
+                        @else
+                            <li class="disabled"><span>Siguiente</span></li>
+                        @endif
+                
+                        {{-- Botón "Último" --}}
+                        @if ($recetas->hasMorePages())
+                            <li><a href="{{ $recetas->url($recetas->lastPage()) }}">Último</a></li>
+                        @endif
+                    </ul>
+                @endif
+                
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class TblProductoController extends Controller
     // Retorna el crud 
     public function index()
     {
-        $productos = tbl_producto::all();
+        $productos = tbl_producto::paginate(4);
         return view('usuarios.CrudProducto',compact('productos'));
     }
 
