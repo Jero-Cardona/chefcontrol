@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Bogota',
 
     /*
     |--------------------------------------------------------------------------
@@ -193,5 +193,17 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
     ])->toArray(),
+
+    // 'aliases' => [
+    //     // ...
+    //     'Carbon' => Carbon\Carbon::class,
+    //     // ...
+    // ],
+
+    // 'aliases' => [
+    //     // ...
+    //     'Carbon' => Carbon\Carbon::class,
+    //     // ...
+    // ],
 
 ];

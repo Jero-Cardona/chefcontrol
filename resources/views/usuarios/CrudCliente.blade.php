@@ -1,23 +1,35 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Clientes</h3>
+    @if (session('success'))
+    <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Clientes</h3>
+                    <a href="{{route('clientes.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
-                            <tr>
+                           <tr>
                                 <th>Documento</th>
-                                <th>Tipo de Documento</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
+                                <th>Tipo Documento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Estado</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -29,15 +41,23 @@
                                 <td>{{ $cliente->Nombre }}</td>
                                 <td>{{ $cliente->Apellido }}</td>
                                 <td>{{ $cliente->Telefono }}</td>
-                                <td>{{ $cliente->estado }}</td>
                                 <td>
-                                    <form action="{{ route('cliente.destroy', $cliente->Id_Cliente) }}" method="POST">
-                                        <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btn btn-sm btn-primary">Editar Datos</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
+                                @if($cliente->estado == 0)
+                                    Inactivo
+                                @elseif($cliente->estado == 1)
+                                    Activo
+                                @endif
                                 </td>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-active">   
+                                <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}" class="btnEditar swal-edit">Editar</a>
+                                @if($cliente->estado)
+                                <a href="{{ route('cliente.inactive', $cliente->Id_Cliente) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                @else
+                                <a href="{{ route('cliente.active', $cliente->Id_Cliente) }}" class="btnEliminar swal-confirm">Activar</a>
+                                @endif   
+                                </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -47,4 +67,10 @@
         </div>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endsection

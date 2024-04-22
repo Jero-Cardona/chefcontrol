@@ -1,31 +1,58 @@
 @extends('layouts.app')
+@section('style')
+     <link rel="stylesheet" href="{{asset('/css/estilosCruds.css')}}">
+     @endsection
 @section('content')
 <div class="contenedor" >
-    <div class="caja1">
-        <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a>
-        <a href="{{route('receta.create')}}"><input type="submit" value="Recetas" class="botones1"></a>
-        <a href="{{route('producto.create')}}"><input type="submit" value="Productos" class="botones1"></a>
-        <a href="{{route('clienteCrear')}}"><input type="submit" value="Clientes" class="botones1"></a>
-        <a href="{{route('recetas.index')}}"><input type="submit" value="Recetas Index" class="botones1"></a>
-        <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
-        <a href="{{route('crudrecetas')}}"><input type="submit" value="Crud Recetas" class="botones1"></a>
-        <a href="{{route('crudproductos')}}"><input type="submit" value="Crud Productos" class="botones1"></a>
-        <a href="{{route('crudclientes')}}"><input type="submit" value="Crud Clientes" class="botones1"></a>
-        <a href="{{route('lista.inicio')}}"><input type="submit" value="Lista Incio Jornada" class="botones1"></a>
-        <a href="{{route('indexInicio')}}"><input type="submit" value="Index Inicio" class="botones1"></a>
 
-        {{-- <a href="{{route('lista.fin')}}"><input type="submit" value="Lista Fin Jornada" class="botones1"></a> --}}
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+    {{-- @auth
+    <div class="caja1">
+        <a href=""><input type="submit" value="Nuevo Usuario" class="botones1"></a>
+        <a href=""><input type="submit" value="Nueva Receta" class="botones1"></a>
+        <a href=""><input type="submit" value="Nuevo Producto" class="botones1"></a>
+        <a href=""><input type="submit" value=" Nuevo Cliente" class="botones1"></a>
+        <a href="{{route('receta.recetario')}}"><input type="submit" value="Recetario" class="botones1"></a>
+        <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
+        <a href=""><input type="submit" value="Lista Recetas" class="botones1"></a>
+        <a href=""><input type="submit" value="Lista Productos" class="botones1"></a>
+        <a href=""><input type="submit" value="Lista Clientes" class="botones1"></a>
+        <a href=""><input type="submit" value="Lista Incio Jornada" class="botones1"></a>
+        <a href=""><input type="submit" value="Lista Fin Jornada" class="botones1"></a>
+        <a href=""><input type="submit" value="Crear Orden Producción" class="botones1"></a>
+        <a href="{{route('orden.index')}}"><input type="submit" value="Ordenes de Producción" class="botones1"></a>
+        <a href=""><input type="submit" value="Ordenes en Espera" class="botones1"></a>
+        <a href=""><input type="submit" value="Ordenes en Preparación" class="botones1"></a>
+        <a href=""><input type="submit" value="Ordenes Entregadas" class="botones1"></a>
+        <a href=""><input type="submit" value="Agregar Detalle a una receta" class="botones1"></a>
+        <a href=""><input type="submit" value="Listas de inicio registradas" class="botones1"></a>
+        <a href=""><input type="submit" value="Listas de fin registradas" class="botones1"></a>
+        
+        @endauth
+        <a href="{{route('login')}}"><input type="submit" value="Iniciar sesion" class="botones1"></a>
+        <a href="{{route('usuarios.create')}}"><input type="submit" value="Usuarios" class="botones1"></a> --}}
     </div>
 </div>
 <br><br>
+@auth
+    
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Usuarios</h3>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Usuarios</h3>
+                    <a href="{{route('usuarios.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
                             <tr>
@@ -35,7 +62,9 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Rol de Usuario</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -47,15 +76,17 @@
                                 <td>{{ $usuario->Nombre }}</td>
                                 <td>{{ $usuario->Apellido }}</td>
                                 <td>{{ $usuario->Telefono }}</td>
-                                <td>{{ $usuario->Id_Rol }}</td>
-                                <td>
-                                    <form action="{{ route('usuarios.destroy', ['Id_Empleado' => $usuario->Id_Empleado])}}" method="POST">
-                                        <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btn btn-sm btn-primary">Editar Datos</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
-                                </td>
+                                <td>{{ $usuario->tipoRol->Rol }}</td>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-active">   
+                                    <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar swal-edit">Editar</a>
+                                    @if($usuario->estado)
+                                    <a href="{{ route('usuario.inactive', $usuario->Id_Empleado) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                    @else
+                                    <a href="{{ route('usuario.active', $usuario->Id_Empleado) }}" class="btnEliminar swal-confirm">Activar</a>
+                                    @endif   
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -65,5 +96,12 @@
         </div>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
+@endauth
     {{ session('confirm-user') }}
-    @endsection
+@endsection

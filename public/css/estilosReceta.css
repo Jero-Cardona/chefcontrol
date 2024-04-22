@@ -6,6 +6,52 @@
     text-decoration: none;
 }
 
+.recetario-columnas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre las recetas */
+}
+
+.receta {
+    width: calc(50% - 20px); /* Ajustamos el ancho para dos recetas por columna */
+    max-width: 400px; /* Establecemos un ancho máximo para evitar que las recetas sean demasiado anchas */
+    background-color: #f9f9f9;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+
+.receta a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.infoReceta {
+    padding: 20px;
+}
+
+.infoReceta h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px; /* Ajustamos el tamaño del título */
+}
+
+.infoReceta p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px; /* Ajustamos el tamaño del texto de la descripción */
+}
+
+.receta img {
+    width: 100%; /* Ajustamos el ancho de la imagen para que se adapte al contenedor de la receta */
+    border-radius: 10px 10px 0 0; /* Mantenemos el redondeo en la parte superior de la imagen */
+}
+
+
 .contenedorRecetas{
     display: grid;
     min-width: 320px;
@@ -174,11 +220,12 @@
 
 .contenedor2Recetas p{
     grid-column: 1 / span 3;
-    text-align: center;
+    text-align: justify;
     padding: 30px;
     font-size: 20px;
     background-color: rgba(217, 217, 217);
     width: 100%;
+    height: fit-content;
     box-sizing: border-box;
     border-top: 1px solid black;
 }
@@ -188,6 +235,7 @@
 
 .contenedorRecetario{
     position: relative;
+    padding: 40px 0px 0px 0px;
     top: 500px;
 }
 
@@ -206,11 +254,12 @@
     grid-template: 450px 450px 450px / 1fr 1fr;
     margin-top: 100px;
     justify-items: center;
+    margin-bottom: 75px;
 }
 
 .hover1Recetas figure{
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 350px;
     position: relative;
     overflow: hidden;
     border: 1px solid black;
@@ -260,11 +309,11 @@
 
 /*Footer css*/
 
-.footerRecetas{
+.footerRecetas {
     height: 150px;
     width: 100%;
     position: relative;
-    top: 450px;
+    bottom: 0;
     background-color: rgba(217, 217, 217);
     border-top: 1px solid black;
     display: grid;
@@ -272,19 +321,19 @@
     align-items: center;
 }
 
-.footerRecetas p{
+.footerRecetas p {
     font-size: 25px;
     text-align: left;
     margin: 20px;
 }
 
-.logo1SenaRecetas{
+.logo1SenaRecetas {
     height: 100px;
     width: 100px;
     margin: 10px;
 }
 
-.logo3Recetas{
+.logo3Recetas {
     height: 140px;
     width: 140px;
     background-color: rgba(255, 255, 255);
@@ -292,12 +341,13 @@
     object-fit: cover;
 }
 
+
 /*Media querys Footer*/
 
 @media only screen and (min-width:320px) and (max-width:768px){
     .footerRecetas{
         height: 80px;
-        top: 50px;
+        /* top: 50px; */
         grid-template: 80px / 50px 1fr 80px;
     }
 
@@ -475,4 +525,39 @@
         display: none;
     }
 }
+
+.menuRecetas {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: rgba(154, 0, 15); /* Color de fondo rojo oscuro */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    left: 0;
+}
+.submenu a {
+    color: rgba(255, 255, 255); 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.menu-item:hover .submenu {
+    display: block;
+}
+
+
+.menu-item:last-child .submenu {
+    left: auto; 
+    right: 0; 
+}
+
 

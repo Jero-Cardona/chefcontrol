@@ -1,57 +1,74 @@
 @extends('layouts.app')
-@section('content')
+@section('style')
+{{-- link de boostrap 5 --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+@endsection
+     @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Productos</h3>
+    @if (session('success'))
+    <div style="padding: 20px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="divHeader">
+                    <h3 class="titulo">Lista de Productos</h3>
+                    <a href="{{route('producto.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    <form class="buscador">
+                        <input type="text" placeholder="Buscar">
+                        <button>Buscar</button>
+                    </form>
                 </div>
-                <div class="card-body">
+                <div class="divBody">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>Nombres</th>
+                                <th>Nombre</th>
                                 <th>Imagen</th>
                                 <th>Stock min</th>
-                                <th>Sotck max</th>
-                                <th>Vencimento</th>
+                                <th>Stock Max</th>
+                                <th>Vencimiento</th>
                                 <th>Costo</th>
-                                <th>Tipo P</th>
+                                <th>Tipo</th>
                                 <th>Ubicacion</th>
                                 <th>Medida</th>
                                 <th>Precio</th>
                                 <th>Existencia</th>
                                 <th>Iva</th>
+                                @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- {{$usuarios = tbl_usuarios::all();}} --}}
+                            {{-- registros de los productos --}}
                             @foreach ($productos as $producto)
                             <tr>
-                                <td>{{ $producto->Cod_Producto }}</td>
+                            
                                 <td>{{ $producto->Nombre }}</td>
                                 <td><img style="height: 100px; width: 100px; border-radius: 10px;" src="{{ $producto->imagen }}" alt="imagen"></td>
                                 <td>{{ $producto->Stock_Minimo }}</td>
                                 <td>{{ $producto->Stock_Maximo }}</td>
-                                <td>{{ $producto->Fecha_Vencimiento}}</td>
+                                <td>{{ $producto->Fecha_Vencimiento }}</td>
                                 <td>{{ $producto->Costo }}</td>
-                                <td>{{ $producto->Cod_Tipo }}</td>
+                                <td>{{ $producto->tipoProducto->Tipo }}</td>
                                 <td>{{ $producto->Ubicacion }}</td>
-                                <td>{{ $producto->Cod_UMedida }}</td>
+                                <td>{{ $producto->tipoMedida->Unidad_Medida }}</td>
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
-                                <td>
-                                    <form action="{{ route('producto.destroy', ['Cod_Producto' => $producto->Cod_Producto, 'imagen'=> $producto->imageName]) }}" method="POST">
-                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btn btn-sm btn-primary">Editar Datos</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
+                                @if(Auth::user()->Id_Rol == '1')
+                                <td class="crud-form">
+                                    <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar swal-edit">Editar</a>
+                                    @if($producto->estado)
+                                    <a href="{{ route('producto.inactive', $producto->Cod_Producto) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                    @else
+                                    <a href="{{ route('producto.active', $producto->Cod_Producto) }}" class="btnEliminar swal-confirm">Activar</a>
+                                    @endif 
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -61,4 +78,10 @@
         </div>
     </div>
 </div>
+<footer class="footerLogin">
+    <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <p><b>Servicio nacional de aprendizaje <br>
+        Centro de la Innovacion, agroindustria y aviacion</b></p>
+    <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+</footer>
 @endsection

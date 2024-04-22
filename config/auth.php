@@ -63,8 +63,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'table' => 'tbl_usuarios',
+            'primaryKey' => 'Id_Empleado', // Aquí se define la clave primaria
         ],
-
+        
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

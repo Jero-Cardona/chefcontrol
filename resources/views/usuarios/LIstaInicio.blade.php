@@ -1,58 +1,38 @@
-
+<?php
+use Carbon\Carbon;
+$fechaActual = Carbon::now();
+?>
 @extends('layouts.app')
-    @section('style')
-        <link rel="stylesheet" href="{{asset('/css/estilosListasChequeo.css')}}">
-    @endsection
-    @section('content')
+@section('style')
+    <link rel="stylesheet" href="{{asset('/css/estilosListasChequeo.css')}}">
+@endsection
+@section('content')
+@auth
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <body>
-{{-- <div class="container-check">
-    <div class="dashboard"> 
-        <ul>
-        <div class="buttons">
-            <div class="button1">
-                <a href="#"><h1>Recetas</h1></a>
-            </div>
-            <div class="button2">
-                <a href="#"><h1>Sugerencias</h1></a>
-            </div>
-            <div class="button3">
-                <a href="#"><h1>Autorización</h1></a>
-            </div>
-            <div class="button4">
-                <a href="#"><h1>Formatos</h1></a>
-            </div>
-            <div class="button5">
-                <a href="#"><h1>Asignación</h1></a>
-            </div>
-            <div class="button6">
-               <a href="#"><h1>Configuración</h1></a>
-            </div>
-        </div>
-        </ul>
-    </div> --}}
-
     <div class="formulario">
         <div class="tittle">
-            <h2>Lista inicio jornada</h2>
-        </div><br>
+            <h2>Lista de chequeo Inicio jornada</h2>
+        </div>
         <div class="content">
-            <form id="form-verificacion" action="{{ route('lista.store') }}" method="POST">
+            <form id="form-verificacion" action="{{route('listainicio.store')}}" method="POST">
                 @csrf
-                <label class="tittle-items">Selecciona los elementos:</label><br><br>
-                <label class="items-tareas">
-                    @foreach ($estado as $tarea)
-                    <input type="checkbox" name="items" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
+                <input type="hidden" name="Id_Empleado" value="{{Auth::user()->Id_Empleado}}">
+                <label style="margin: 5px 40px;" class="tittle-items">Selecciona los elementos:</label><br><br>
+                    @foreach ($formato as $tarea)
+                    <input style="margin: 10px 15px;" type="checkbox" name="id_tarea[]" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
                     @endforeach
-    
-                </label>
-                <input class="btn-submit" type="submit" value="Enviar"> --}}
-                {{-- @foreach($tareasCompletadas as $tareaCompletada) --}}
-                {{-- <input type="checkbox" name="tareas[]" value="{{ $tareaCompletada->id }}"> {{ $tareaCompletada->nombre }}<br> --}}
-                {{-- @endforeach --}}
-                <input class="btn-submit" type="submit" value="Enviar">
-                {{-- <input type="hidden" name="Id_Empleado" value="{{ $Id_Empleado }}"> --}}
+                    
+                    <input type="hidden" name="fecha" value="{{Carbon::now()->format('Y-m-d H:i:s')}}">
+                   
+                <input style="margin: 20px 40px; background-color:rgba(154, 0, 15); color:white" class="btn-submit" type="submit" value="Enviar">
             </form>
         </div>
     </div>
 </body>
+@endauth
 @endsection

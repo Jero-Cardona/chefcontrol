@@ -1,0 +1,653 @@
+
+*{
+    margin: 0px;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.contenedorRegistro{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template: 90px 1fr 1fr / 100%;
+}
+
+/*Header registro css*/
+
+.headerIndex{
+    background-color: rgba(154, 0, 15);
+    width: 100%;
+    height: 110px;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    padding: 5px;
+}
+
+.contenedorHIndex{
+    width: 98%;
+}
+
+.logoHIndex{
+    height: 90px;
+    width: 90px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    object-fit: cover;
+}
+
+.NombreProyectoIndex{
+    float: left;
+    height: 100px;
+    width: 100px;
+    padding-left: 20px;
+    color: rgba(255, 255, 255);
+    line-height: 100px;
+}
+
+.menuHIndex{
+    float: right;
+    line-height: 100px;
+}
+
+.menuHIndex a{
+    color: rgba(255, 255, 255);
+    padding: 15px;
+    display: inline-block;
+    line-height: normal;
+    font-size: 16px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
+}
+
+.menuHIndex a:hover{
+    color: rgba(255, 102, 0);
+    border-bottom: 4px solid rgba(255, 102, 0);
+}
+
+#btnMenu{
+    display: none;
+}
+
+.btnMenuHIndex{
+    float: right;
+    display: none;
+}
+
+.btnMenuHIndex label{
+    background-color: rgba(255, 102, 0);
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: rgba(255, 255, 255);
+    transition: all 500ms ease;
+}
+
+/*Header css*/
+
+.menuRecetas {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: rgba(154, 0, 15); /* Color de fondo rojo oscuro */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    left: 0;
+}
+.submenu a {
+    color: rgba(255, 255, 255); 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.menu-item:hover .submenu {
+    display: block;
+}
+
+
+.menu-item:last-child .submenu {
+    left: auto; 
+    right: 0; 
+}
+
+.headerRecetas{
+    background-color: rgba(154, 0, 15);
+    width: 100%;
+    height: 100px;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.contenedorHR{
+    width: 100%;
+}
+
+.usuarioRecetas{
+    float: left;
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    color: rgba(255, 255, 255);
+}
+
+.logo1Recetas{
+    height: 90px;
+    width: 90px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    float: left;
+    margin-left: 5px;
+    object-fit: cover;
+}
+
+.menuRecetas{
+    float: right;
+    line-height: 90px;
+}
+
+.menuRecetas a{
+    color: rgba(255, 255, 255);
+    padding: 15px;
+    display: inline-block;
+    line-height: normal;
+    font-size: 16px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
+    font-size: 18px;
+}
+
+.menuRecetas a:hover{
+    color: rgba(255, 102, 0);
+    border-bottom: 4px solid rgba(255, 102, 0);
+}
+
+#btnMenu{
+    display: none;
+}
+
+.btnMenuR{
+    float: right;
+    display: none;
+}
+
+.btnMenuR label{
+    background-color: rgba(255, 102, 0);
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: rgba(255, 255, 255);
+    transition: all 500ms ease;
+}
+
+/*contenedorRegistro CSS*/
+
+.contenedorFormRegistro{
+    display: grid;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorFormRegistro1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217);
+    width: 100%;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    margin: 40px;
+}
+
+.tituloRegistro{
+    grid-column: 1 / span 2;
+    margin: 20px;
+    background-color: rgba(154, 0, 15);
+    height: 80px;
+    border-radius: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255);
+    line-height: 80px;
+}
+
+.formularioRegistro{
+    display: grid;
+    margin: 20px;
+    justify-items: center;
+    justify-content: center;
+    grid-template: repeat(5, 100px) / 400px 400px;
+}
+
+.formRegistro{
+    position: relative;
+}
+
+input[type="file"], input[type="date"] {
+    text-decoration: none;
+  }
+
+.formRegistro input, .form1Registro select{
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid rgba(154, 0, 15);
+    background: transparent;
+    color: rgba(0, 0, 0);
+    outline: none;
+    margin: 10px;
+}
+
+.form1Registro select:focus{
+    border: 2px solid rgba(255, 102, 0);
+}
+
+.formRegistro label{
+    padding: 0px 15px;
+    position: absolute;
+    top: 15%;
+    left: 15px;
+    transform: translateY(30%);
+    color: rgba(0, 0, 0);
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.formRegistro input::-webkit-inner-spin-button,
+.formRegistro input::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formRegistro input:focus{
+    border: 2px solid rgba(255, 102, 0);
+}
+
+.formRegistro input:focus ~ label,
+.formRegistro input:valid ~ label{
+    top: -10px;
+    font-size: 16px;
+    padding: 0px 15px;
+    background-color: rgba(217, 217, 217);
+}
+
+.btn1Registro{
+    padding-top: 20px;
+    display: grid;
+    justify-items: center;
+    width: 100%;
+}
+
+.enviarRegistro{
+    background-color: rgba(154, 0, 15);
+    width: 750px;
+    height: 50px;
+    text-align: center;
+    color: rgba(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0);
+    border-radius: 6px;
+    font-size: 18px;
+    position: relative;
+    left: 25px;
+    transition: all 500ms ease;
+}
+
+.btn1Registro .enviarRegistro:hover{
+    background-color: rgba(255, 102, 0);
+    cursor: pointer;
+}
+
+/*Footer css*/
+
+.footerLogin{
+    height: 160px;
+    background-color: rgba(217, 217, 217);
+    border-top: 1px solid black;
+    display: grid;
+    grid-template: 150px / 110px 1fr 150px;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.footerLogin p{
+    font-size: 25px;
+    text-align: left;
+    margin: 20px;
+}
+
+.logo1SenaLogin{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.logo3Login{
+    height: 140px;
+    width: 140px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*Media querys footer*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .footerLogin{
+        height: 80px;
+        bottom: 0;
+        display: flex;
+    }
+
+    .footerLogin p{
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .logo1SenaLogin{
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+    }
+
+    .logo3Login{
+        height: 65px;
+        width: 65px;
+    }
+
+}
+
+/*Media querys contenedorRegistro*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .contenedorFormRegistro{
+        min-width: 320px;
+        max-width: 768px;
+    }
+
+    .contenedorFormRegistro1{
+        margin: 30px;
+        width: auto;
+        min-width: 300px;
+    }
+
+    .tituloRegistro{
+        height: 65px;
+        line-height: 65px;
+        margin: 10px;
+    }
+
+    .formularioRegistro{
+        margin: 10px;
+        grid-template: repeat(9, 80px)/ 400px;
+    }
+
+    .formRegistro input, .form1Registro select{
+        width: 250px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .formRegistro label{
+        font-size: 13px;
+        top: 20%;
+    }
+
+    .formRegistro input:focus ~ label,
+    .formRegistro input:valid ~ label{
+        top: -2px;
+        font-size: 11px;
+    }
+
+    .btn1Registro .enviarRegistro{
+        height: 50px;
+        width: 250px;
+        font-size: 13px;
+        line-height: 40px;
+        left: 0;
+        padding-bottom: 10px;
+    }
+
+}
+
+/*Media querys header*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .menuHIndex, .btnMenuH1{
+        line-height: 65px;
+    }
+
+    .logoHIndex{
+        height: 55px;
+        width: 55px;
+        margin-left: 5px;
+    }
+
+    .NombreProyectoIndex{
+        line-height: 65px;
+    }
+
+    .headerIndex{
+        height: 75px;
+    }
+
+    .menuHIndex{
+        position: absolute;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 75px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+
+    #btnMenu:checked ~ .menuHIndex{
+        transform: translateX(0);
+    }
+
+    .menuHIndex a{
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .btnMenuHIndex{
+        display: block;
+        padding-right: 10px;
+        line-height: 60px;
+    }
+} 
+
+/* estilos para las listas */
+
+/* *{
+    margin: 0px;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
+    text-decoration: none;
+} */
+
+
+
+.container{
+    width: 100%;
+    padding: 0 50px 50px;
+}
+
+.div1{
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.div2{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.div3{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #efefef;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    overflow: auto;
+}
+
+.divHeader{
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    display: flex;
+    justify-content: space-between;
+}
+
+.buscador input{
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.buscador button{
+    border-radius: 6px;
+    color: rgba(255, 255, 255);
+    background-color: rgba(255, 102, 0);
+    border: none;
+    height: 28px;
+    margin: 10px;
+    padding: 0px 5px 0px 5px;
+    transition: all 500ms ease-out;
+}
+
+.buscador button:hover{
+    background-color: rgb(200, 80, 0);
+}
+
+.titulo{
+    font-size: 24px;
+    color: rgba(154, 0, 15);
+    line-height: 50px;
+}
+
+.divBody{
+    display: grid;
+    padding: 1rem 1rem;
+    grid-template: 120px / repeat(8 1fr) minmax(150px 200px);
+}
+
+.table{
+    margin: 20px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.table thead tr th{
+    border-bottom: 1px solid black;
+    padding: 20px 5px;
+    text-align: center;
+}
+
+tbody tr td{
+    flex-shrink: 1;
+    text-align: center;
+    padding: 10px;
+}
+tr:nth-child(even){
+    background-color: #dddddd;
+}
+
+.crud-form{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+.crud-active{
+    display: flex;
+    justify-content: center;
+}
+
+.btnEliminar{
+    /* display: inline-flexbox; */
+    background-color: rgba(154, 0, 15);
+    color: rgba(255, 255, 255);
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 8px;
+    border: none;
+    transition: all 500ms ease-out;
+    height: 1%;
+    margin: 5px;
+}
+
+.btnEditar{
+    /* display: inline-flexbox; */
+    background-color: rgba(255, 102, 0);
+    color: rgba(255, 255, 255);
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 8px;
+    border: none;
+    text-decoration: none;
+    transition: all 500ms ease-out;
+    margin: 5px;
+    
+}
+
+.btnEliminar:hover{
+    background-color: rgb(96, 0, 10);
+}
+
+.btnEditar:hover{
+    background-color: rgba(200, 80, 0);
+    color: rgba(255, 255, 255);
+}
+
+/* estilos del login */
+

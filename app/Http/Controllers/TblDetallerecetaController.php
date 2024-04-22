@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\tbl_detallereceta;
+use App\Models\tbl_producto;
+use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 
 class TblDetallerecetaController extends Controller
@@ -13,23 +15,30 @@ class TblDetallerecetaController extends Controller
         return view('receta');
     }
     public function create(){
-        return view('usuarios.FormReceta');
+        return view('usuarios.frmDetalleReceta');
     }
 
     // Almacena datos del formulario
     public function store(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'Id_Receta' => 'required|exists:tbl_receta,Id_Receta',
+            'Cod_Producto' => 'required|exists:tbl_producto,Cod_Producto',
+            'Cantidad' => 'required|numeric|min:0',
+            'Cod_UMedida' => 'required|exists:tbl_umedida,Cod_UMedida',
+        ]);
+    
+        // Crear nueva instancia de tbl_detallereceta y asignar valores
         $detalleReceta = new tbl_detallereceta;
         $detalleReceta->Id_Receta = $request->input('Id_Receta');
         $detalleReceta->Cod_Producto = $request->input('Cod_Producto');
         $detalleReceta->Cantidad = $request->input('Cantidad');
         $detalleReceta->Cod_UMedida = $request->input('Cod_UMedida');
         $detalleReceta->save();
-        // Retorna a la vista de las recetas
-        return to_route('detalleReceta.create');
-
-        //parte Edilberto
-        session()->flash('confirm-detalle-receta','El detalle de la receta fue guardado correctamente');
+    
+        // Retornar a la vista de creación de detalleReceta
+        return redirect()->route('detalleReceta.create')->with('success', 'El detalle de la receta fue guardado correctamente');
     }
 
     // Carga el formulario de edicion

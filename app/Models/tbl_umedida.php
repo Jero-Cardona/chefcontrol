@@ -10,8 +10,12 @@ class tbl_umedida extends Model
     use HasFactory;
 
     protected $table = 'tbl_umedida';
-    protected $fillabel = ['Unidad_Medida'];
-    protected $primarykey = 'Cod_UMedida';
+    protected $fillable = ['Unidad_Medida'];
+    protected $primaryKey = 'Cod_UMedida';
     public $timestamps = false;
     
+
+    public function productos() {
+        return $this->hasMany(tbl_producto::class, 'Cod_Producto');
+      }
 }

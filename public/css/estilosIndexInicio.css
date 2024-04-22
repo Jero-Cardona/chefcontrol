@@ -1,26 +1,92 @@
-/** Css Laura*/
-
-.div-index{
-    background-color: #9A000F;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-.logo-index{
-    background-color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-}
-.barra-index{
+*{
+    margin: 0 auto;
+    font-family: "literata", serif;
+    font-style: italic;
+    padding: 0px;
     text-decoration: none;
-    font-size: 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
 }
+/*Header reg css*/
+
+.headerIndex{
+    background-color: rgba(154, 0, 15);
+    width: 100%;
+    height: 110px;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    padding: 5px;
+}
+
+.contenedorHIndex{
+    width: 98%;
+}
+
+.logoHIndex{
+    height: 90px;
+    width: 90px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    object-fit: cover;
+}
+
+.NombreProyectoIndex{
+    float: left;
+    height: 100px;
+    width: 100px;
+    padding-left: 20px;
+    color: rgba(255, 255, 255);
+    line-height: 100px;
+}
+
+.menuHIndex{
+    float: right;
+    line-height: 100px;
+}
+
+.menuHIndex a{
+    color: rgba(255, 255, 255);
+    padding: 15px;
+    display: inline-block;
+    line-height: normal;
+    font-size: 16px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
+}
+
+.menuHIndex .activeIndex{
+    color: rgba(255, 102, 0);
+    border-bottom: 4px solid rgba(255, 102, 0);
+}
+
+.menuHIndex a:hover{
+    color: rgba(255, 102, 0);
+    border-bottom: 4px solid rgba(255, 102, 0);
+}
+
+#btnMenu{
+    display: none;
+}
+
+.btnMenuHIndex{
+    float: right;
+    display: none;
+}
+
+.btnMenuHIndex label{
+    background-color: rgba(255, 102, 0);
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: rgba(255, 255, 255);
+    transition: all 500ms ease;
+}
+
 .a-index{
     color: #fff;
     text-decoration: none;
@@ -54,9 +120,10 @@
     margin-top: 50px;
     border-top: 1px solid white;
     gap: 40px;
-    padding: 50px;
+    padding: 40px;
     text-align: center;
     justify-content: center;
+    /* font-size: 15px; */
     font-size: larger;
 
 }
@@ -67,20 +134,24 @@
     border-top: 1px solid white;
     gap: 40px;
     text-align: center; 
-    text-align: center;
     justify-content: center;
     background-color: #aaa;
     padding: 50px;
+    /* font-size: 15px; */
     font-size: larger;
+
 }
 .tittle{
-    font-size: 50px;
+    font-size: 30px;
 }
+
+/*footer css*/
+
 .footerIndex{
+    margin-top: -50px;
     height: 150px;
     width: 100%;
     position: relative;
-    top: 450px;
     background-color: rgba(217, 217, 217);
     border-top: 1px solid black;
     display: grid;
@@ -106,4 +177,126 @@
     background-color: rgba(255, 255, 255);
     border-radius: 50%;
     object-fit: cover;
+}
+
+/*Media querys Footer*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .footerIndex{
+        height: 80px;
+        top: 50px;
+        grid-template: 80px / 50px 1fr 80px;
+    }
+
+    .footerIndex p{
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .logo1SenaIndex{
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+    }
+
+    .logo3Index{
+        height: 65px;
+        width: 65px;
+    }
+
+} 
+
+/*Media querys ContenedorRecetario*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .contenedorIndex{
+        top: 80px;
+    }
+
+}  
+
+/*Media querys Caja4*/
+
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .caja4{
+        top: 80px;
+        grid-template: 150px 60px / 1fr 1fr 1fr;
+    }
+
+    .sena img{
+        height: 100px;
+        width: 100px;
+        top: 10px;
+    }
+
+    .sena b{
+        font-size: 15px;
+    }
+
+    .caja4 p{
+        font-size: 10px;
+        padding: 10px;
+    }
+
+}
+
+/*Media querys Contenedor1*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .logo{
+        height: 300px;
+        width: 400px;
+        bottom: 70px;
+        left: -10px;
+    }
+
+    .caja1 p{
+        padding: 10px;
+        font-size: 10px;
+        bottom: 130px;
+    }
+
+}
+
+/*Media querys header*/
+
+@media only screen and (min-width:320px) and (max-width:768px){
+
+    .barrindex{
+        line-height: 55px;
+    }
+
+    .a-index{
+        position: relative;
+        top: -15px;
+    }
+
+    header{
+        height: 65px;
+    }
+
+    .barra-index{
+        position: absolute;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 65px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+
+    .barra-index a{
+        display: block;
+        margin-top: 5px;
+    }
+
+} 
+
+@media only screen and (min-width:0px) and (max-width:320px){
+    *{
+        display: none;
+    }
 }
