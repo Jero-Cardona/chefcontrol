@@ -127,19 +127,24 @@ class TblOrdenproduccionController extends Controller
     }
 
     public function indexOrdenesEspera()
-    {
-        $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
-        
-        $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+{
+    // Obtener todas las órdenes en espera
+    $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
+    
+    // Obtener las órdenes agrupadas por cliente con sus detalles
+    $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+        ->where('estado', 'En espera')
         ->get()
         ->groupBy(function ($orden) {
             return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
         });
 
-        return view('usuarios.ordenesEspera', compact ('ordenesPorCliente','ordenesEnEspera'));
-            
-            
-    }
+    // Obtener los Consecutivos de las órdenes que tienen detalles
+    $ordenesConDetalles = tbl_detalleordenproduccion::pluck('Consecutivo')->toArray();
+
+    return view('usuarios.ordenesEspera', compact('ordenesPorCliente', 'ordenesEnEspera', 'ordenesConDetalles'));
+}
+    
 
     public function indexOrdenesPreparacion()
     {

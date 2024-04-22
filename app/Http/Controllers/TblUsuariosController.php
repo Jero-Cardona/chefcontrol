@@ -33,6 +33,7 @@ class TblUsuariosController extends Controller
         $usuarios = tbl_usuarios::paginate(4);
         return view('index',compact ('usuarios'));
     }
+    
 
     //Carga el formulario para el registro de Usuarios
     public function create(){

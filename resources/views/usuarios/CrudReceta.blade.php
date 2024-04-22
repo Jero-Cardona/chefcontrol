@@ -41,7 +41,13 @@
                                 <td>{{ $receta->Descripcion }}</td>
                                 <td>{{ $receta->Costo_Total }}</td>
                                 <td>{{ $receta->Contribucion }}</td>
-                                <td>{{ $receta->Estado }}</td>
+                                <td>
+                                @if($receta->Estado == 1)
+                                    Estandarizada
+                                @elseif($receta->Estado == 2)
+                                    En espera
+                                @endif
+                                </td>
                                 <td> <img style="height: 100px; width: 100px" src="{{$receta->imagen}}" alt=""> </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
