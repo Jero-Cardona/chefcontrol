@@ -1,4 +1,3 @@
-
 *{
     margin: 0px;
     font-family: "literata", serif;
@@ -203,7 +202,147 @@
     transition: all 500ms ease;
 }
 
-/*contenedorRegistro CSS*/
+/* Nueva orden CSS */
+
+.contenedorFormRegistro-{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+/* .contenedorFormRegistro1-{
+    display: grid;
+    grid-template: 150px 500px / 1fr 1fr;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217);
+    width: 100%;
+    margin-top: 30px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+} */
+
+.contenedorFormRegistro1-{
+    display: grid;
+    grid-template-columns: 1fr; /* Cambia el grid-template a una sola columna */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217);
+    width: 100%; /* Ajusta el ancho según tu diseño */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    margin-top: 30px; /* Mantén el margen superior */
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.tituloRegistro-{
+    grid-column: 1 / span 2;
+    margin: 20px;
+    background-color: rgba(154, 0, 15);
+    height: 80px;
+    border-radius: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255);
+    line-height: 80px;
+}
+
+.formularioRegistro-{
+    display: grid;
+    margin: 20px;
+    justify-items: center;
+}
+
+.contenedorFormRegistro- img{
+    height: 450px;
+    width: 500px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: 10px 30px 10px 10px; 
+}
+
+.formRegistro-{
+    position: relative;
+}
+
+.formRegistro- input, .form1Registro- select{
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid rgba(154, 0, 15);
+    background: transparent;
+    color: rgba(0, 0, 0);
+    outline: none;
+}
+
+.form1Registro- select:focus{
+    border: 2px solid rgba(255, 102, 0);
+}
+
+.formRegistro- label{
+    position: absolute;
+    top: 15%;
+    left: 15px;
+    transform: translateY(-15%);
+    color: rgba(0, 0, 0);
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.formRegistro- input::-webkit-inner-spin-button,
+.formRegistro- input::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formRegistro- input:focus{
+    border: 2px solid rgba(255, 102, 0);
+}
+
+.formRegistro- input:focus ~ label,
+.formRegistro- input:valid ~ label{
+    top: -10px;
+    font-size: 16px;
+    padding: 0px 15px;
+    background-color: rgba(217, 217, 217);
+}
+
+.btn1Registro-{
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+}
+
+.btn1Registro- a, .enviarRegistro-{
+    height: 50px;
+    width: 150px;
+    color: rgba(255, 255, 255);
+    background-color: rgba(154, 0, 15);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0);
+    transition: all 500ms ease;
+    font-size: 18px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.btn1Registro- a:hover{
+    background-color: rgba(255, 102, 0);
+    cursor: pointer;
+}
+
+.btn1Registro- .enviarRegistro-:hover{
+    background-color: rgba(255, 102, 0);
+    cursor: pointer;
+}
+
+/* Nueva receta y nuevo producto CSS */
 
 .contenedorFormRegistro{
     display: grid;
@@ -243,6 +382,15 @@
     grid-template: repeat(5, 100px) / 400px 400px;
 }
 
+.contenedor1Registro img{
+    height: 450px;
+    width: 500px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: 10px 30px 10px 10px; 
+}
+
 .formRegistro{
     position: relative;
 }
@@ -266,6 +414,7 @@ input[type="file"], input[type="date"] {
 
 .form1Registro select:focus{
     border: 2px solid rgba(255, 102, 0);
+    flex-direction: column;
 }
 
 .formRegistro label{
@@ -689,3 +838,111 @@ tr:nth-child(even){
 }
 
 /* estilos para los modales */
+
+/*Lista inicio de jornada registradas*/
+
+.tituloListasR{
+    color: #8B0000; 
+    font-weight: bold; 
+    text-align: center; 
+    text-transform: uppercase; 
+    padding-top: 30px;
+}
+
+.rowListasR{
+    display: grid;
+    grid-template: auto / 1fr 1fr 1fr;
+}
+
+.contenedorListasR{
+    margin: 30px;
+}
+
+.contenedor1ListaR{
+    padding: 30px 0px;
+    margin: 20px;
+    height: 350px;
+}
+
+.cardListaR{
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: #efefef;
+    height: 350px;
+}
+
+.cardHeaderListaR{
+    background-color: #8B0000; 
+    color: #fff; border-bottom: none; 
+    border-radius: 10px 10px 0 0; 
+    text-align: center; 
+    padding: 20px;
+}
+
+.cardTitleListaR{
+    height: 40px;
+}
+
+.cardBodyListaR{
+    padding: 20px;
+}
+
+.tablaResponsiveListaR{
+    display: grid;
+}
+
+.tablaListaR{
+    width: 100%; 
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: row;
+}
+
+.trListaR th{
+    max-width: 300px; 
+    padding: 10px;
+    text-align: left; 
+    border-bottom: 1px solid #dee2e6; 
+    background-color: #f8f9fa; 
+    color: #495057; 
+    font-weight: bold;
+}
+
+.tr2ListaR td{
+    max-width: 300px; 
+    padding: 10px; 
+    text-align: left; 
+    border-bottom: 1px solid #dee2e6; 
+    word-wrap: break-word;
+}
+
+.pListaR{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    line-height: 45px;
+    text-align: center;
+}
+
+.buttonListaR{
+    background-color: rgba(255, 102, 0);
+    width: 120px;
+    border: none;
+    transition: all 500ms ease;
+    border-radius: 5px;
+    color: #dee2e6;
+    line-height: 30px;
+}
+
+.buttonListaR:hover{
+    background-color: rgb(172, 69, 0);
+    cursor: pointer;
+}
+
+.divButtonListaR{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px;
+}

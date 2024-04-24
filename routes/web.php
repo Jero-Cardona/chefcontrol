@@ -36,6 +36,9 @@ Route::get("/CrudClientes",[TblClienteController::class, 'index'])->name('crudcl
 Route::get("/CrudRecetas", [TblRecetaController::class, 'index'])->name('crudrecetas');
 Route::get("/CrudRecetasInactivas", [TblRecetaController::class, 'indexInactivas'])->name('crudrecetas.inactivas');
 Route::get("/CrudProductos",[TblProductoController::class, 'index'])->name('crudproductos');
+Route::get("/CrudRecetasEnEspera", [TblRecetaController::class, 'indexEspera'])->name('crudrecetas.espera');
+Route::get('/recetas/{Id_Receta}/Estandarizar', [TblRecetaController::class, 'estandarizar'])->name('receta.estandarizar');
+
 
 // Route::view("/listaUsuarios","usuarios.CrudUsuario")->name("usuarios.crud");
 Route::get('/usuarios', [TblUsuariosController::class, 'index'])->name('usuarios.index');
@@ -90,6 +93,7 @@ Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->n
 //Inactivas y activar recetas
 Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
 Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'active'])->name('receta.active');
+
 // descargar registros de recetas
 Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
 
@@ -131,6 +135,9 @@ Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.i
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('listainicio.store');
 Route::get("/CrudListaInicio",[TblTareascompletadasController::class, 'indexInicio'])->name('crud.listainicio');
 Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])->name('crud.listafin');
+Route::get('VerTareas/Inicio/{fecha}', [TblTareascompletadasController::class, 'verTareasInicio'])->name('tareasInicio');
+Route::get('VerTareas/Fin/{fecha}', [TblTareascompletadasController::class, 'verTareasFin'])->name('tareasFin');
+
 
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));
 Route::post('/EnviodeTareas',[TblTareascompletadasController::class, 'store'])->name('listafin.store');

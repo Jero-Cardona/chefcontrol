@@ -46,6 +46,7 @@
                             <a href="{{route('detalleReceta.create')}}">Agregar Detalle a una Receta</a>
                             <a href="{{route('crudrecetas')}}">Recetas Activas</a>
                             <a href="{{route('crudrecetas.inactivas')}}">Recetas Inactivas</a>
+                            <a href="{{route('crudrecetas.espera')}}">Recetas en espera </a>
                         </div>
                     </div>
                     <div class="menu-item">

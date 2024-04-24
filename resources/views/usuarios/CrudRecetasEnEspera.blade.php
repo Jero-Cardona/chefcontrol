@@ -27,7 +27,6 @@
                                 <th>Costo</th>
                                 <th>Aporte</th>
                                 <th>Estado</th>
-                                <th>Etapa</th>
                                 <th>imagen</th>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
@@ -43,29 +42,20 @@
                                 <td>{{ $receta->Costo_Total }}</td>
                                 <td>{{ $receta->Contribucion }}</td>
                                 <td>
-                                @if($receta->Estado == 1)
-                                    Estandarizada
-                                @elseif($receta->Estado == 2)
+                                @if($receta->Estado == 2)
                                     En espera
                                 @endif
                                 </td>
-                                <td>
-                               @if($receta->etapa == true)
-                                   Activo
-                               @else
-                                   Inactivo
-                               @endif
-                               </td>
+
                                 <td> <img style="height: 100px; width: 100px" src="{{$receta->imagen}}" alt=""> </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
                                 <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btnEditar swal-edit">Editar</a>
                                 @if($receta->etapa)
-                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Inactivar</a>
-                                @else
-                                <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Activar</a>
+                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Eliminar</a>
+                                <a href="{{ route('receta.estandarizar', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Estandarizar</a>
                                 @endif 
-                                </td>
+                            </td>
                             @endif
                             </tr>
                             @endforeach

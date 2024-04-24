@@ -66,7 +66,7 @@
                     </div>
                     <div class="form2Login">
                         <input autofocus type="number" name="Id_Empleado" id="Id_Empleado" required>
-                        <label for="Id_Empleado">Numero de documento</label>
+                        <label for="Id_Empleado">Número de documento</label>
                     </div>
                     <div class="form2Login">
                         <input type="password" name="password" id="password" required>

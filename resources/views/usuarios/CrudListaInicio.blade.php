@@ -5,29 +5,29 @@
 @endsection
 @section('content')
 @auth
-<div class="container">
-    <h2 class="mb-4" style="color: #8B0000; font-weight: bold; text-align: center; text-transform: uppercase; padding-top: 30px;">Listas Inicio de Jornada Registradas</h2>
-    <div class="row">
+<div class="contenedorListasR">
+    <h2 class="tituloListasR">Listas Inicio de Jornada Registradas</h2>
+    <div class="rowListasR">
         @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
-        <div class="col-md-6 mb-4" style="padding: 30px 0px;">
-            <div class="card" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #efefef">
-                <div class="card-header" style="background-color: #8B0000; color: #fff; border-bottom: none; border-radius: 10px 10px 0 0; text-align: center; padding: 20px;">
-                    <h3 class="card-title" style="height: 40px;">Lista realizada en la fecha: {{ $fecha }}  -  Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</h3>
+        <div class="contenedor1ListaR">
+            <div class="cardListaR">
+                <div class="cardHeaderListaR">
+                    <h3 class="cardTitleListaR">Lista cosa</h3>
                 </div>
-                <div class="card-body" style="padding: 20px;">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr>
-                                    <th style="max-width: 300px; padding: 10px; text-align: left; border-bottom: 1px solid #dee2e6; background-color: #f8f9fa; color: #495057; font-weight: bold;">Tarea</th>
-                                </tr>
-                            </thead>
+                <div class="cardBodyListaR">
+                    <div class="tablaResponsiveListaR">
+                        <table class="tablaListaR">
                             <tbody>
-                                @foreach ($tareasCompletadas as $tareaCompletada)
-                                <tr>
-                                    <td style="max-width: 300px; padding: 10px; text-align: left; border-bottom: 1px solid #dee2e6; word-wrap: break-word;">{{ $tareaCompletada->tarea->nombre }}</td>
+                                {{-- <img style="width: 100px; height: 70px;" src="{{asset('imagenes/proyecto/image21.png')}}"> --}}
+                                {{--@foreach ($tareasCompletadas as $tareaCompletada)
+                                <tr class="tr2ListaR">
+                                    <td>{{ $tareaCompletada->tarea->nombre }}</td>
                                 </tr>
-                                @endforeach
+                                @endforeach --}}
+                                <p class="pListaR">Lista realizada en la fecha: {{ $fecha }}  <br>  Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</p>
+                                <div class="divButtonListaR">
+                                    <a style="text-decoration: none; color: #fff;" href="{{route('tareasInicio' , $fecha)}}"><button class="buttonListaR">Ver detalles</button></a>
+                                </div>
                             </tbody>
                         </table>
                     </div>
@@ -36,6 +36,7 @@
         </div>
         @endforeach
     </div>
+    
 </div>
 @endauth
 @endsection

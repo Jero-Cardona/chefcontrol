@@ -21,18 +21,34 @@ class TblTareascompletadasController extends Controller
 
     public function indexInicio()
     {
-        
         // Obtener los registros de tareas completadas agrupados por fecha y filtrados por id_tarea <= 23
         $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
         ->whereHas('tarea', function ($query) {
-            $query->where('id_tarea', '<=', 22);
+            $query->where('id_formato', '=', 0);
         })
         ->orderBy('fecha')
         ->get()
         ->groupBy('fecha');
+        // ->paginate(6);
 
         return view('usuarios.CrudListaInicio', compact('tareasCompletadasPorFecha'));
     }
+
+    public function verTareasInicio($fecha)
+    {
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '<=', 22);
+        })
+        ->where('fecha', $fecha)
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+
+        // return dd($tareasCompletadasPorFecha);
+        return view('usuarios.VerTareasInicio', compact('tareasCompletadasPorFecha'));
+    }
+    
     
     public function indexFin()
     {
@@ -44,10 +60,26 @@ class TblTareascompletadasController extends Controller
         ->orderBy('fecha')
         ->get()
         ->groupBy('fecha');
-
+        
         return view('usuarios.CrudListaFin', compact('tareasCompletadasPorFecha'));
-        }
+    }
+    
+    public function verTareasFin($fecha)
+    {
+        $tareasCompletadasPorFecha = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '>=', 23);
+        })
+        ->where('fecha', $fecha)
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
 
+        // return $fecha;
+
+        // return dd($tareasCompletadasPorFecha);
+        return view('usuarios.VerTareasFin', compact('tareasCompletadasPorFecha'));
+    }
    
     public function store(Request $request)
     {
