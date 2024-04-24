@@ -24,7 +24,7 @@
                                     <td>{{ $tareaCompletada->tarea->nombre }}</td>
                                 </tr>
                                 @endforeach --}}
-                                <p class="pListaR">Lista realizada en la fecha: {{ $fecha }}  <br>  Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</p>
+                                <p class="pListaR">Realizada en {{ $fecha }}<br>  Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</p>
                                 <div class="divButtonListaR">
                                     <a style="text-decoration: none; color: #fff;" href="{{route('tareasInicio' , $fecha)}}"><button class="buttonListaR">Ver detalles</button></a>
                                 </div>

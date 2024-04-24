@@ -20,8 +20,13 @@
             </div>
             <div class="formRegistro">
                 {{-- <img style="width: 200px" src="{{asset($producto[0]->imagen)}}" alt="imagen"> --}}
-                <input value="{{$producto[0]->imagen }}" id="imagen1" name="imagen1" type="file" required>
-                <label for="imagen1"></label>
+                {{-- <input value="{{$producto[0]->imagen }}" id="imagen1" name="imagen1" type="file" required>
+                <label for="imagen1"></label> --}}
+                <div class="fileR">
+                    <input id="imagen" name="imagen" type="file" class="fileRI">
+                    <p class="textoFile">Adjuntar archivo</p>
+                    <label for="imagen"></label>
+                </div>
             </div>
             <div class="formRegistro">
                 <input value="{{$producto[0]->Stock_Minimo }}" id="Stock_Minimo" name="Stock_Minimo" type="number" required>

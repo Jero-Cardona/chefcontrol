@@ -837,7 +837,37 @@ tr:nth-child(even){
     color: #ccc;
 }
 
-/* estilos para los modales */
+/* estilos para el file */
+.fileR{
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid rgba(154, 0, 15);
+    background: transparent;
+    color: rgba(0, 0, 0);
+    outline: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.fileRI{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: -10px;
+    cursor: pointer;
+}
+
+.textoFile{
+    margin: 15px 5px;
+}
 
 /*Lista inicio de jornada registradas*/
 
