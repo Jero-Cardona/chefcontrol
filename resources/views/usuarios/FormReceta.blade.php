@@ -64,8 +64,11 @@
                 @endif
                 
                 <div class="formRegistro">
-                    <input id="imagen" name="imagen" type="file"  >
-                    <label for="imagen"></label>
+                    <div class="fileR">
+                        <input id="imagen" name="imagen" type="file" class="fileRI">
+                        <p class="textoFile">Adjuntar archivo</p>
+                        <label for="imagen"></label>
+                    </div>
                     @error('imagen')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
