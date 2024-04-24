@@ -106,7 +106,7 @@ class TblOrdenproduccionController extends Controller
         
         
         // retorna a la vista de las recetas
-        return to_route('receta.recetario');
+        return to_route('orden.produccion');
     }
 
     public function iniciarPreparacion($ordenId)

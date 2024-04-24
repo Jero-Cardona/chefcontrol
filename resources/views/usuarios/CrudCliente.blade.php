@@ -62,6 +62,53 @@
                             @endforeach
                         </tbody>
                     </table>
+                     {{-- Links de paginación --}}
+                     @if ($clientes->hasPages())
+                     <ul class="pagination">
+                         {{-- Botón "Primero" --}}
+                         @if (!$clientes->onFirstPage())
+                             <li><a href="{{ $clientes->url(1) }}">Primero</a></li>
+                         @endif
+                 
+                         {{-- Botón "Anterior" --}}
+                         @if ($clientes->onFirstPage())
+                             <li class="disabled"><span>Anterior</span></li>
+                         @else
+                             <li><a href="{{ $clientes->previousPageUrl() }}">Anterior</a></li>
+                         @endif
+                         {{-- para mostrar el numero de Items --}}
+                         {{$clientes->firstItem()}}
+                         de
+                         {{$clientes->total()}}
+                         {{-- Páginas --}}
+                         @foreach ($clientes->items() as $item)
+                             @if (is_string($item))
+                                 <li class="disabled"><span>{{ $item }}</span></li>
+                             @endif
+                             @if (is_array($item))
+                                 @foreach ($item as $page => $url)
+                                     @if ($page == $clientes->currentPage())
+                                         <li class="active"><span>{{ $page }}</span></li>
+                                     @else
+                                         <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                     @endif
+                                 @endforeach
+                             @endif
+                         @endforeach
+                 
+                         {{-- Botón "Siguiente" --}}
+                         @if ($clientes->hasMorePages())
+                             <li><a href="{{ $clientes->nextPageUrl() }}">Siguiente</a></li>
+                         @else
+                             <li class="disabled"><span>Siguiente</span></li>
+                         @endif
+                 
+                         {{-- Botón "Último" --}}
+                         @if ($clientes->hasMorePages())
+                             <li><a href="{{ $clientes->url($clientes->lastPage()) }}">Último</a></li>
+                         @endif
+                     </ul>
+                 @endif
                 </div>
             </div>
         </div>

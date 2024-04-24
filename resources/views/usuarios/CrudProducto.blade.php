@@ -37,6 +37,7 @@
                                 <th>Precio</th>
                                 <th>Existencia</th>
                                 <th>Iva</th>
+                                <th>Estado</th>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones</th>
                                 @endif
@@ -59,6 +60,13 @@
                                 <td>{{ $producto->Precio_Venta }}</td>
                                 <td>{{ $producto->Existencia }}</td>
                                 <td>{{ $producto->IVA }}</td>
+                                <td>
+                                @if ($producto->estado == 1)
+                                    Activo
+                                    @else
+                                    Inactivo
+                                @endif
+                                </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
                                     <a href="{{ route('producto.edit', $producto->Cod_Producto) }}" class="btnEditar swal-edit">Editar</a>
@@ -73,6 +81,53 @@
                             @endforeach
                         </tbody>
                     </table>
+                        {{-- Links de paginación --}}
+                        @if ($productos->hasPages())
+                        <ul class="pagination">
+                            {{-- Botón "Primero" --}}
+                            @if (!$productos->onFirstPage())
+                                <li><a href="{{ $productos->url(1) }}">Primero</a></li>
+                            @endif
+                    
+                            {{-- Botón "Anterior" --}}
+                            @if ($productos->onFirstPage())
+                                <li class="disabled"><span>Anterior</span></li>
+                            @else
+                                <li><a href="{{ $productos->previousPageUrl() }}">Anterior</a></li>
+                            @endif
+                            {{-- para mostrar el numero de Items --}}
+                            {{$productos->firstItem()}}
+                            de
+                            {{$productos->total()}}
+                            {{-- Páginas --}}
+                            @foreach ($productos->items() as $item)
+                                @if (is_string($item))
+                                    <li class="disabled"><span>{{ $item }}</span></li>
+                                @endif
+                                @if (is_array($item))
+                                    @foreach ($item as $page => $url)
+                                        @if ($page == $productos->currentPage())
+                                            <li class="active"><span>{{ $page }}</span></li>
+                                        @else
+                                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                    
+                            {{-- Botón "Siguiente" --}}
+                            @if ($productos->hasMorePages())
+                                <li><a href="{{ $productos->nextPageUrl() }}">Siguiente</a></li>
+                            @else
+                                <li class="disabled"><span>Siguiente</span></li>
+                            @endif
+                    
+                            {{-- Botón "Último" --}}
+                            @if ($productos->hasMorePages())
+                                <li><a href="{{ $productos->url($productos->lastPage()) }}">Último</a></li>
+                            @endif
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>

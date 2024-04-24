@@ -6,7 +6,7 @@ use App\Models\tbl_receta;
 
 $recetas = tbl_receta::all();
 $fechaActual = Carbon::now();
-$clientes = tbl_cliente::all(); 
+
 // para obtener los clientes activos
 $clientesActivos = tbl_cliente::where('estado', true)->get();
 ?>

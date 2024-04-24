@@ -30,7 +30,7 @@ class TblUsuariosController extends Controller
     // Consulta los usuarios y retorna la vista con todos
     public function index()
     {
-        $usuarios = tbl_usuarios::all();
+        $usuarios = tbl_usuarios::paginate(4);
         return view('index',compact ('usuarios'));
     }
     

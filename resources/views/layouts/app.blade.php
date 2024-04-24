@@ -44,7 +44,8 @@
                         <div class="submenu">
                             <a href="{{route('receta.create')}}">Nueva Receta</a>
                             <a href="{{route('detalleReceta.create')}}">Agregar Detalle a una Receta</a>
-                            <a href="{{route('crudrecetas')}}">Lista de Recetas</a>
+                            <a href="{{route('crudrecetas')}}">Recetas Activas</a>
+                            <a href="{{route('crudrecetas.inactivas')}}">Recetas Inactivas</a>
                         </div>
                     </div>
                     <div class="menu-item">

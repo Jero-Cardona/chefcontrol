@@ -62,6 +62,7 @@
                                 <th>Apellidos</th>
                                 <th>Telefono</th>
                                 <th>Rol de Usuario</th>
+                                <th>Estado</th>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <th>Acciones Admin</th>
                                 @endif
@@ -77,6 +78,13 @@
                                 <td>{{ $usuario->Apellido }}</td>
                                 <td>{{ $usuario->Telefono }}</td>
                                 <td>{{ $usuario->tipoRol->Rol }}</td>
+                                <td>
+                                @if ($usuario->estado == 1)
+                                    Activo
+                                @else
+                                    Inactivo    
+                                @endif
+                                </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-active">   
                                     <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}" class="btnEditar swal-edit">Editar</a>
@@ -91,6 +99,53 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{-- Links de paginación --}}
+                    @if ($usuarios->hasPages())
+                    <ul class="pagination">
+                        {{-- Botón "Primero" --}}
+                        @if (!$usuarios->onFirstPage())
+                            <li><a href="{{ $usuarios->url(1) }}">Primero</a></li>
+                        @endif
+                
+                        {{-- Botón "Anterior" --}}
+                        @if ($usuarios->onFirstPage())
+                            <li class="disabled"><span>Anterior</span></li>
+                        @else
+                            <li><a href="{{ $usuarios->previousPageUrl() }}">Anterior</a></li>
+                        @endif
+                        {{-- para mostrar el numero de Items --}}
+                        {{$usuarios->firstItem()}}
+                        de
+                        {{$usuarios->total()}}
+                        {{-- Páginas --}}
+                        @foreach ($usuarios->items() as $item)
+                            @if (is_string($item))
+                                <li class="disabled"><span>{{ $item }}</span></li>
+                            @endif
+                            @if (is_array($item))
+                                @foreach ($item as $page => $url)
+                                    @if ($page == $usuarios->currentPage())
+                                        <li class="active"><span>{{ $page }}</span></li>
+                                    @else
+                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+                
+                        {{-- Botón "Siguiente" --}}
+                        @if ($usuarios->hasMorePages())
+                            <li><a href="{{ $usuarios->nextPageUrl() }}">Siguiente</a></li>
+                        @else
+                            <li class="disabled"><span>Siguiente</span></li>
+                        @endif
+                
+                        {{-- Botón "Último" --}}
+                        @if ($usuarios->hasMorePages())
+                            <li><a href="{{ $usuarios->url($usuarios->lastPage()) }}">Último</a></li>
+                        @endif
+                    </ul>
+                @endif
                 </div>
             </div>
         </div>

@@ -21,12 +21,13 @@ body{
     background-color: rgba(154, 0, 15);
     border-radius: 20px;
     color: white;
+    height: 100px;
 }
-h2 {
+/* h2 {
     text-align: center;
     color: white;
-    margin-top: 20px; /* Añadir espacio en la parte superior */
-}
+    margin-top: 20px; 
+} */
 
 img {
     max-width: 100%;
@@ -96,11 +97,12 @@ button:hover {
     background-color: rgba(154, 0, 15);
 }
 
-h2 {
+.nombreR {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 15px;
     color: white;
+    padding-top: 20px;
 }
 
 .nombre-ingredientes{

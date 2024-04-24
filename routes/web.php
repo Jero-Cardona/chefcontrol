@@ -34,6 +34,7 @@ Route::get('logout', [TblUsuariosController::class, 'logout'])->name('logout');
 // Rutas del Crud
 Route::get("/CrudClientes",[TblClienteController::class, 'index'])->name('crudclientes');
 Route::get("/CrudRecetas", [TblRecetaController::class, 'index'])->name('crudrecetas');
+Route::get("/CrudRecetasInactivas", [TblRecetaController::class, 'indexInactivas'])->name('crudrecetas.inactivas');
 Route::get("/CrudProductos",[TblProductoController::class, 'index'])->name('crudproductos');
 
 // Route::view("/listaUsuarios","usuarios.CrudUsuario")->name("usuarios.crud");

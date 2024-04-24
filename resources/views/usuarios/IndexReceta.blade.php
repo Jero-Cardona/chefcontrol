@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,7 +6,7 @@
         <link rel="stylesheet" href="{{asset('/css/estilosReceta.css')}}" >
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
+        <link rel="icon" href="{{asset('imagenes/proyecto/logo.svg') }}">
         <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
         <title>Chef Control | Recetario</title>
 </head>
@@ -137,10 +136,10 @@
 <div class="contenedorRecetario">
     <h2 class="tituloRecetario" id="recetario">Recetario</h2>
     <div class="recetario1">
-        @foreach ($recetas as $receta)
+        @foreach ($recetasActivas as $receta)
         <div class="hover1Recetas">
             <figure>
-                <a href="{{ route('receta.ingrediente', $receta->Id_Receta) }}">
+                <a class="" href="{{route('receta.ingrediente', $receta->Id_Receta)}}">
                     <img src="{{ $receta->imagen }}">
                     <div class="hoverDiv1Recetas">
                         <h2>{{ $receta->Nombre }}</h2>
@@ -156,16 +155,102 @@
                     </div>
                 </div>
         @endforeach
-        
-        {{-- footer de la vista --}}
     </div>
-    <footer class="footerRecetas">
-        <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+    <div class="paginas">
+        {{-- agregar paginacion al Recetario --}}
+        {{-- Links de paginación --}}
+        @if ($recetasActivas->hasPages())
+        <ul class="pagination">
+            {{-- Botón "Primero" --}}
+            @if (!$recetasActivas->onFirstPage())
+                <li><a href="{{ $recetasActivas->url(1) }}">Primero</a></li>
+            @endif
+    
+            {{-- Botón "Anterior" --}}
+            @if ($recetasActivas->onFirstPage())
+                <li class="disabled"><span>Anterior</span></li>
+            @else
+                <li><a href="{{ $recetasActivas->previousPageUrl() }}">Anterior</a></li>
+            @endif
+            {{-- para mostrar el numero de Items --}}
+            {{$recetasActivas->firstItem()}}
+            de
+            {{$recetasActivas->total()}}
+            {{-- Páginas --}}
+            @foreach ($recetasActivas->items() as $item)
+                @if (is_string($item))
+                    <li class="disabled"><span>{{ $item }}</span></li>
+                @endif
+                @if (is_array($item))
+                    @foreach ($item as $page => $url)
+                        @if ($page == $recetasActivas->currentPage())
+                            <li class="active"><span>{{ $page }}</span></li>
+                        @else
+                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+    
+            {{-- Botón "Siguiente" --}}
+            @if ($recetasActivas->hasMorePages())
+                <li><a href="{{ $recetasActivas->nextPageUrl() }}">Siguiente</a></li>
+            @else
+                <li class="disabled"><span>Siguiente</span></li>
+                @endif
+                
+                {{-- Botón "Último" --}}
+                @if ($recetasActivas->hasMorePages())
+                <li><a href="{{ $recetasActivas->url($recetasActivas->lastPage()) }}">Último</a></li>
+                @endif
+                </ul>
+                @endif
+        </div>
+            {{-- footer de la vista --}}
+            <footer class="footerRecetas">
+                <img class="logo1SenaRecetas" src="{{asset('imagenes/proyecto/logoSena.png')}}">
         <p><b>Servicio nacional de aprendizaje <br>
             Centro de la Innovacion, agroindustria y aviacion</b></p>
         <img class="logo3Recetas" src="{{asset('imagenes/proyecto/logo.svg')}}">
     </footer>  
-</div>
+    </div>
+    {{-- modal para calcular la cantidad de Recetas --}}
+    <section class="modal">
+        <div class="modal__container">
+            <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}" class="modal__img">
+            <h2 class="modal__title">{{ $receta->Nombre }}</h2>
+            <p class="modal__parrafo">{{ $receta->Descripcion }}</p>
+            <a href="#" class="cerrarModal">Cerrar</a>
+            <h3 class="modal__title">Ingredientes de la receta</h3>
+            <ul>
+                @foreach ($receta->detallesReceta as $detalle)
+                    <li>
+                        {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }} {{ $detalle->unidadMedida->Unidad_Medida }}
+                    </li>
+                @endforeach
+            </ul>
+            <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
+                @csrf
+                <div>
+                    <label for="cantidad">Cantidad de la receta:</label>
+                    <input type="number" name="cantidad" min="1" required>
+                </div>
+                <button type="submit">Calcular</button>
+            </form>
+            @if(isset($cantidadesAjustadas))
+            <h2 class="nombre-ingredientes">Cantidades ajustadas para {{ number_format($cantidad, 0, '.' , ',' )}} porciones:</h2>
+            <ul>
+                @foreach($cantidadesAjustadas as $detalle)
+                    <li>
+                        {{ $detalle['producto']->Nombre }} - {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }} {{ $detalle['unidadMedida']->Unidad_Medida }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif 
+        <a href="#" class="cerrarModal">Cerrar</a>
+        </div>
+    </section>
+<script src="{{asset('js/SweetAlerts.js')}}"></script>
 </body>
 </html>
 

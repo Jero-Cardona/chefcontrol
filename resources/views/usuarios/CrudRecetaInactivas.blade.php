@@ -1,20 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-<<<<<<< HEAD
-    <div class="div1CrudR">
-        <div class="div2CrudR">
-            <div class="div3CrudR">
-                <div class="divHeaderCrudR">
-                    <h3 class="titulo1CrudR">Lista de Recetas</h3>
-                    <form class="buscadorCrudR">
-                        <input type="text" placeholder="Buscar">
-                        <button>Enviar</button>
-                    </form>
-                </div>
-                <div class="divBodyCrudR">
-                    <table class="tableCrudR">
-=======
     @if (session('success'))
     <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
     
@@ -34,7 +20,6 @@
                 </div>
                 <div class="divBody">
                     <table class="table">
->>>>>>> main
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -57,33 +42,20 @@
                                 <td>{{ $receta->Descripcion }}</td>
                                 <td>{{ $receta->Costo_Total }}</td>
                                 <td>{{ $receta->Contribucion }}</td>
-<<<<<<< HEAD
-                                <td>{{ $receta->Estado }}</td>
-                                <td> <img class="imagenCrudR" src="{{$receta->imagen}}" alt=""> </td>
-
-                                <td>
-                                    <form action="{{ route('receta.destroy', $receta->Id_Receta) }}" method="POST">
-                                        <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="editarCrudR">Editar</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="eliminarCrudR" onclick="return confirm('¿Estás seguro de querer eliminar estos datos?')">Eliminar</button>
-                                    </form>
-=======
                                 <td>
                                 @if($receta->Estado == 1)
                                     Estandarizada
                                 @elseif($receta->Estado == 2)
                                     En espera
                                 @endif
->>>>>>> main
                                 </td>
                                 <td>
-                               @if($receta->etapa == true)
-                                   Activo
-                               @else
-                                   Inactivo
-                               @endif
-                               </td>
+                                @if($receta->etapa == true)
+                                    Activa
+                                @else
+                                    Inactiva
+                                @endif
+                                </td>
                                 <td> <img style="height: 100px; width: 100px" src="{{$receta->imagen}}" alt=""> </td>
                                 @if(Auth::user()->Id_Rol == '1')
                                 <td class="crud-form">
@@ -93,9 +65,8 @@
                                 @else
                                 <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Activar</a>
                                 @endif 
-                                </td>
+                            </td>
                             @endif
-                            
                             </tr>
                             @endforeach
                         </tbody>
