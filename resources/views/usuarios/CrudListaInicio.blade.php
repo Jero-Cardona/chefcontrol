@@ -8,7 +8,7 @@
 <div class="contenedorListasR">
     <h2 class="tituloListasR">Listas Inicio de Jornada Registradas</h2>
     <div class="rowListasR">
-        @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
+        @foreach ($tareasCompletadasPorFecha->groupBy('fecha') as $fecha => $tareasCompletadas)
         <div class="contenedor1ListaR">
             <div class="cardListaR">
                 <div class="cardHeaderListaR">
@@ -38,5 +38,52 @@
     </div>
     
 </div>
+{{-- Links de paginación --}}
+@if ($tareasCompletadasPorFecha->hasPages())
+<ul class="pagination">
+    {{-- Botón "Primero" --}}
+    @if (!$tareasCompletadasPorFecha->onFirstPage())
+        <li><a href="{{ $tareasCompletadasPorFecha->url(1) }}">Primero</a></li>
+    @endif
+
+    {{-- Botón "Anterior" --}}
+    @if ($tareasCompletadasPorFecha->onFirstPage())
+        <li class="disabled"><span>Anterior</span></li>
+    @else
+        <li><a href="{{ $tareasCompletadasPorFecha->previousPageUrl() }}">Anterior</a></li>
+    @endif
+    {{-- para mostrar el numero de Items --}}
+    {{$tareasCompletadasPorFecha->firstItem()}}
+    de
+    {{$tareasCompletadasPorFecha->total()}}
+    {{-- Páginas --}}
+    @foreach ($tareasCompletadasPorFecha->items() as $item)
+        @if (is_string($item))
+            <li class="disabled"><span>{{ $item }}</span></li>
+        @endif
+        @if (is_array($item))
+            @foreach ($item as $page => $url)
+                @if ($page == $tareasCompletadasPorFecha->currentPage())
+                    <li class="active"><span>{{ $page }}</span></li>
+                @else
+                    <li><a href="{{ $url }}">{{ $page }}</a></li>
+                @endif
+            @endforeach
+        @endif
+    @endforeach
+
+    {{-- Botón "Siguiente" --}}
+    @if ($tareasCompletadasPorFecha->hasMorePages())
+        <li><a href="{{ $tareasCompletadasPorFecha->nextPageUrl() }}">Siguiente</a></li>
+    @else
+        <li class="disabled"><span>Siguiente</span></li>
+    @endif
+
+    {{-- Botón "Último" --}}
+    @if ($tareasCompletadasPorFecha->hasMorePages())
+        <li><a href="{{ $tareasCompletadasPorFecha->url($tareasCompletadasPorFecha->lastPage()) }}">Último</a></li>
+    @endif
+</ul>
+@endif
 @endauth
 @endsection

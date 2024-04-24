@@ -28,7 +28,6 @@ $fechaActual = Carbon::now();
                     @endforeach
                     
                     <input type="hidden" name="fecha" value="{{Carbon::now()->format('Y-m-d H:i:s')}}">
-                   
                 <input style="margin: 20px 40px; background-color:rgba(154, 0, 15); color:white" class="btn-submit" type="submit" value="Enviar">
             </form>
         </div>

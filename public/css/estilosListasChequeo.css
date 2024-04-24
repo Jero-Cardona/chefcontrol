@@ -1,4 +1,4 @@
-.tittle{
+/* .tittle{
     background-color: firebrick ;
     text-align: center;
     color: white;
@@ -33,4 +33,67 @@ input{
 }
 .content{
     background-color: darkgray;
+} */
+
+
+
+.contenedorTotalLista{
+    display: flex;
+}
+.menu-lista{
+    background-color: rgba(154, 0, 15);
+    align-items: flex-start;
+    padding: 30px;
+}
+.botonesMenuLista{
+    width: 150px;
+    display: flex;
+    clip-path: polygon(100% 0%, 88% 51%, 100% 100%, 0 100%, 0% 50%, 0 0);
+    justify-content: center;
+    background-color: white;
+    padding: 7px 20px;
+    color: rgba(154, 0, 15);
+    font-size: 15px;
+}
+.formularioLista{
+    margin: 40px 0px 40px 40px;
+}
+.divLista{
+    background-color: rgba(154, 0, 15);
+    text-align: center;
+    color: white;
+    padding: 25px;     
+}
+.tittleLista{
+    font-size: 45px;
+}
+.contentLista{
+    padding: 40px;
+    background-color: darkgray;
+}
+.btn-submit{
+    width: 120px;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    background-color: rgba(255, 102, 0);
+    color: white;
+    outline: none; 
+    border: none;
+} 
+.items-tareas{
+    display: inline-block;
+    margin-right: 10px; 
+    padding-bottom: 10px;
+    
+}
+
+.tittle-items{
+    font-size: 35px;
+}
+
+input{
+    height: 20px;
+    width: 18px;
 }
