@@ -37,6 +37,10 @@ input{
 
 
 
+.contenedorPrincipalLista{
+    margin: 0%;
+}
+
 .contenedorTotalLista{
     display: flex;
 }

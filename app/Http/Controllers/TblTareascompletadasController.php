@@ -28,6 +28,9 @@ class TblTareascompletadasController extends Controller
         })
         ->orderBy('fecha')
         ->paginate(65);
+        // ->get();
+
+        // return $tareasCompletadasPorFecha;
         // ->groupBy('fecha');
         // ->paginate(6);
     
@@ -108,7 +111,7 @@ class TblTareascompletadasController extends Controller
                     $tareaCompletada->save();
                 }
     
-                return redirect()->route('usuarios.index')->with('status', 'Lista Incio de Jornada guardada correctamente.');
+                return redirect()->route('receta.recetario')->with('status', 'Lista Incio de Jornada guardada correctamente.');
             } else {
                 return redirect()->route('lista.inicio')->with('status', 'No fue posible guardar la Lista de Inicio de Jornada.');
         }

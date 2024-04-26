@@ -270,5 +270,14 @@ class TblRecetaController extends Controller
         
         return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
     }
+
+    public function buscar(Request $request){
+        // funcion para buscar registros
+        $searchTerm = $request->input('buscar');
+        $resultados = tbl_receta::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
+        
+        // return $resultados;
+        return view('usuarios.BuscarReceta', compact('resultados','searchTerm')); 
+    }
     
 }

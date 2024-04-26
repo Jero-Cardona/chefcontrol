@@ -53,6 +53,9 @@ Route::get('/Usuario/{Id_Empleado}/inactive', [TblUsuariosController::class, 'in
 Route::get('/Usuario/{Id_Empleado}/active', [TblUsuariosController::class, 'active'])->name('usuario.active');
 // descarga usuarios pdf
 Route::get('Usuariospdf',[TblUsuariosController::class, 'pdf'])->name('usuarios.pdf');
+// buscar registros de usuarios
+Route::get('/buscarUsuarios', [TblUsuariosController::class, 'buscar'])->name('buscar.usuarios');
+
 
 
 // Rutas del modulo Recetas
@@ -93,7 +96,8 @@ Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->n
 //Inactivas y activar recetas
 Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
 Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'active'])->name('receta.active');
-
+// buscar registros
+Route::get('/buscarReceta', [TblRecetaController::class, 'buscar'])->name('buscar.recetas');
 // descargar registros de recetas
 Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
 
@@ -110,6 +114,8 @@ Route::delete('/Producto/{Cod_Producto}', [TblProductoController::class, 'destro
 // Activar e Inactivar Productos
 Route::get('/Producto/{Cod_Producto}/inactive', [TblProductoController::class, 'inactive'])->name('producto.inactive');
 Route::get('/Producto/{Cod_Producto}/active', [TblProductoController::class, 'active'])->name('producto.active');
+// Buscar registro de productos
+Route::get('/buscarProducto', [TblProductoController::class, 'buscar'])->name('buscar.productos');
 // descargar pdf de registros de producto
 Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('producto.pdf');
 
@@ -125,8 +131,8 @@ Route::put('/Cliente/{Id_Cliente}', [TblClienteController::class, 'update'])->na
 // activar y desactivar cliente
 Route::get('/Cliente/{Id_Cliente}/inactive', [TblClienteController::class, 'inactive'])->name('cliente.inactive');
 Route::get('/Cliente/{Id_Cliente}/active', [TblClienteController::class, 'active'])->name('cliente.active');
-
-
+// buscar registros de clientes
+Route::get('/buscarCliente', [TblClienteController::class, 'buscar'])->name('buscar.clientes');
 // descargar pdf de registros de cliente
 Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.pdf');
 

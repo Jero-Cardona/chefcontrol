@@ -36,7 +36,6 @@
         </div>
         @endforeach
     </div>
-    
 </div>
 {{-- Links de paginación --}}
 @if ($tareasCompletadasPorFecha->hasPages())
@@ -85,5 +84,6 @@
     @endif
 </ul>
 @endif
+
 @endauth
 @endsection

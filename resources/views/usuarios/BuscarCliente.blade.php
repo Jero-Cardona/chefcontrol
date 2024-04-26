@@ -10,8 +10,12 @@
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Clientes</h3>
-                    <a href="{{route('clientes.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    @if ($resultados->isEmpty())
+                    <h3 class="titulo">No se encontro : <b>{{$searchTerm}}</b></h3>
+                    @else
+                    <h3 class="titulo">Resultados para la busqueda de <b>{{$searchTerm}}</b></h3>
+                    @endif
+                    {{-- <a href="{{route('clientes.pdf')}}" class="btnEditar" >Descargar pdf</a> --}}
                     <form class="buscador" action="{{route('buscar.clientes')}}" method="GET">
                         <input type="text" id="buscar" name="buscar" value="{{request('buscar')}}" placeholder="Buscar">
                         <button>Buscar</button>
@@ -34,7 +38,7 @@
                         </thead>
                         <tbody>
                             {{-- {{$usuarios = tbl_usuarios::all();}} --}}
-                            @foreach ($clientes as $cliente)
+                            @foreach ($resultados as $cliente)
                             <tr>
                                 <td>{{ $cliente->Id_Cliente }}</td>
                                 <td>{{ $cliente->Tipo_identificacion }}</td>
@@ -62,53 +66,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                     {{-- Links de paginación --}}
-                     @if ($clientes->hasPages())
-                     <ul class="pagination">
-                         {{-- Botón "Primero" --}}
-                         @if (!$clientes->onFirstPage())
-                             <li><a href="{{ $clientes->url(1) }}">Primero</a></li>
-                         @endif
-                 
-                         {{-- Botón "Anterior" --}}
-                         @if ($clientes->onFirstPage())
-                             <li class="disabled"><span>Anterior</span></li>
-                         @else
-                             <li><a href="{{ $clientes->previousPageUrl() }}">Anterior</a></li>
-                         @endif
-                         {{-- para mostrar el numero de Items --}}
-                         {{$clientes->firstItem()}}
-                         de
-                         {{$clientes->total()}}
-                         {{-- Páginas --}}
-                         @foreach ($clientes->items() as $item)
-                             @if (is_string($item))
-                                 <li class="disabled"><span>{{ $item }}</span></li>
-                             @endif
-                             @if (is_array($item))
-                                 @foreach ($item as $page => $url)
-                                     @if ($page == $clientes->currentPage())
-                                         <li class="active"><span>{{ $page }}</span></li>
-                                     @else
-                                         <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                     @endif
-                                 @endforeach
-                             @endif
-                         @endforeach
-                 
-                         {{-- Botón "Siguiente" --}}
-                         @if ($clientes->hasMorePages())
-                             <li><a href="{{ $clientes->nextPageUrl() }}">Siguiente</a></li>
-                         @else
-                             <li class="disabled"><span>Siguiente</span></li>
-                         @endif
-                 
-                         {{-- Botón "Último" --}}
-                         @if ($clientes->hasMorePages())
-                             <li><a href="{{ $clientes->url($clientes->lastPage()) }}">Último</a></li>
-                         @endif
-                     </ul>
-                 @endif
+                
                 </div>
             </div>
         </div>

@@ -202,4 +202,13 @@ class TblProductoController extends Controller
         // descarga el pdf
         return $pdf->download('producto.pdf');
     }
+
+    public function buscar(Request $request){
+        // funcion para buscar registros
+        $searchTerm = $request->input('buscar');
+        $resultados = tbl_producto::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->paginate(3);
+        
+        // return $resultados;
+        return view('usuarios.BuscarProducto', compact('resultados','searchTerm')); 
+    }
 }

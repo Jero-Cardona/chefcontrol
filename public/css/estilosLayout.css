@@ -211,7 +211,7 @@
     padding-bottom: 50px;
 }
 
-/* .contenedorFormRegistro1-{
+.contenedorFormRegistro1-{
     display: grid;
     grid-template: 150px 500px / 1fr 1fr;
     justify-content: center;
@@ -220,20 +220,7 @@
     width: 100%;
     margin-top: 30px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
-} */
-
-.contenedorFormRegistro1-{
-    display: grid;
-    grid-template-columns: 1fr; /* Cambia el grid-template a una sola columna */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    border-radius: 20px;
-    background-color: rgba(217, 217, 217);
-    width: 100%; /* Ajusta el ancho según tu diseño */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    margin-top: 30px; /* Mantén el margen superior */
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
-}
+} 
 
 
 
@@ -397,7 +384,7 @@
 
 input[type="file"], input[type="date"] {
     text-decoration: none;
-  }
+}
 
 .formRegistro input, .form1Registro select{
     width: 350px;
@@ -701,6 +688,7 @@ input[type="file"], input[type="date"] {
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 6px;
     padding: 4px;
+    margin: 0 0 0 20px;
 }
 
 .buscador button{

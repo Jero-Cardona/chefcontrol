@@ -197,4 +197,13 @@ class TblUsuariosController extends Controller
         // descarga el pdf
         return $pdf->download('usuarios.pdf');
     }
+
+    public function buscar(Request $request){
+        // funcion para buscar registros
+        $searchTerm = $request->input('buscar');
+        $resultados = tbl_usuarios::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
+        
+        // return $resultados;
+        return view('usuarios.BuscarUsuario', compact('resultados','searchTerm')); 
+    }
 }

@@ -119,4 +119,13 @@ class TblClienteController extends Controller
         // descarga el pdf
         return $pdf->download('clientes.pdf');
     }
+
+    public function buscar(Request $request){
+        // funcion para buscar registros
+        $searchTerm = $request->input('buscar');
+        $resultados = tbl_cliente::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
+        
+        // return $resultados;
+        return view('usuarios.BuscarCliente', compact('resultados','searchTerm')); 
+    }
 }

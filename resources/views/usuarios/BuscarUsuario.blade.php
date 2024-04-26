@@ -13,13 +13,17 @@
 </div>
 <br><br>
 @auth
+    
 <div class="container">
     <div class="div1">
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Usuarios</h3>
-                    <a href="{{route('usuarios.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    @if ($resultados->isEmpty())
+                    <h3 class="titulo">No se encontro : <b>{{$searchTerm}}</b></h3>
+                    @else
+                    <h3 class="titulo">Resultados para la busqueda de <b>{{$searchTerm}}</b></h3>
+                    @endif
                     <form class="buscador" action="{{route('buscar.usuarios')}}" method="GET">
                         <input type="text" name="buscar" id="buscar" value="{{request('buscar')}}" placeholder="Buscar">
                         <button>Buscar</button>
@@ -43,7 +47,7 @@
                         </thead>
                         <tbody>
                             {{-- {{$usuarios = tbl_usuarios::all();}} --}}
-                            @foreach ($usuarios as $usuario)
+                            @foreach ($resultados as $usuario)
                             <tr>
                                 <td>{{ $usuario->Id_Empleado }}</td>
                                 <td>{{ $usuario->tipo_documento }}</td>
@@ -72,53 +76,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- Links de paginación --}}
-                    @if ($usuarios->hasPages())
-                    <ul class="pagination">
-                        {{-- Botón "Primero" --}}
-                        @if (!$usuarios->onFirstPage())
-                            <li><a href="{{ $usuarios->url(1) }}">Primero</a></li>
-                        @endif
-                
-                        {{-- Botón "Anterior" --}}
-                        @if ($usuarios->onFirstPage())
-                            <li class="disabled"><span>Anterior</span></li>
-                        @else
-                            <li><a href="{{ $usuarios->previousPageUrl() }}">Anterior</a></li>
-                        @endif
-                        {{-- para mostrar el numero de Items --}}
-                        {{$usuarios->firstItem()}}
-                        de
-                        {{$usuarios->total()}}
-                        {{-- Páginas --}}
-                        @foreach ($usuarios->items() as $item)
-                            @if (is_string($item))
-                                <li class="disabled"><span>{{ $item }}</span></li>
-                            @endif
-                            @if (is_array($item))
-                                @foreach ($item as $page => $url)
-                                    @if ($page == $usuarios->currentPage())
-                                        <li class="active"><span>{{ $page }}</span></li>
-                                    @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
-                
-                        {{-- Botón "Siguiente" --}}
-                        @if ($usuarios->hasMorePages())
-                            <li><a href="{{ $usuarios->nextPageUrl() }}">Siguiente</a></li>
-                        @else
-                            <li class="disabled"><span>Siguiente</span></li>
-                        @endif
-                
-                        {{-- Botón "Último" --}}
-                        @if ($usuarios->hasMorePages())
-                            <li><a href="{{ $usuarios->url($usuarios->lastPage()) }}">Último</a></li>
-                        @endif
-                    </ul>
-                @endif
                 </div>
             </div>
         </div>

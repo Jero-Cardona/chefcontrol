@@ -41,7 +41,7 @@
                     <div class="formRegistro">
                         {{-- <img style="width: 200px" src="{{asset($receta[0]->imagen)}}" alt="imagen"> --}}
                         <div class="fileR">
-                            <input id="imagen" name="imagen" type="file" class="fileRI">
+                            <input id="imagen" name="imagen1" type="file" class="fileRI">
                             <p class="textoFile">Adjuntar archivo</p>
                             <label for="imagen"></label>
                         </div>

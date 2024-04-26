@@ -11,8 +11,11 @@
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Recetas</h3>
-                    <a href="{{route('recetas.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    @if ($resultados->isEmpty())
+                    <h3 class="titulo">No se encontro : <b>{{$searchTerm}}</b></h3>
+                    @else
+                    <h3 class="titulo">Resultados para la busqueda de <b>{{$searchTerm}}</b></h3>
+                    @endif
                     <form class="buscador" action="{{route('buscar.recetas')}}" method="GET">
                         <input type="text" placeholder="Buscar" name="buscar" value="{{ request('buscar')}}">
                         <button>Buscar</button>
@@ -35,8 +38,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- registros de las recetas --}}
-                            @foreach ($recetas as $receta)
+                            {{-- registros de las encontradas --}}
+                            @foreach ($resultados as $receta)
                             <tr>
                                 <td>{{ $receta->Nombre }}</td>
                                 <td>{{ $receta->Descripcion }}</td>
@@ -83,53 +86,7 @@
                             </div>
                         @endforeach
                     @endif --}}
-                    {{-- Links de paginación --}}
-                    @if ($recetas->hasPages())
-                    <ul class="pagination">
-                        {{-- Botón "Primero" --}}
-                        @if (!$recetas->onFirstPage())
-                            <li><a href="{{ $recetas->url(1) }}">Primero</a></li>
-                        @endif
-                
-                        {{-- Botón "Anterior" --}}
-                        @if ($recetas->onFirstPage())
-                            <li class="disabled"><span>Anterior</span></li>
-                        @else
-                            <li><a href="{{ $recetas->previousPageUrl() }}">Anterior</a></li>
-                        @endif
-                        {{-- para mostrar el numero de Items --}}
-                        {{$recetas->firstItem()}}
-                        de
-                        {{$recetas->total()}}
-                        {{-- Páginas --}}
-                        @foreach ($recetas->items() as $item)
-                            @if (is_string($item))
-                                <li class="disabled"><span>{{ $item }}</span></li>
-                            @endif
-                            @if (is_array($item))
-                                @foreach ($item as $page => $url)
-                                    @if ($page == $recetas->currentPage())
-                                        <li class="active"><span>{{ $page }}</span></li>
-                                    @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
-                
-                        {{-- Botón "Siguiente" --}}
-                        @if ($recetas->hasMorePages())
-                            <li><a href="{{ $recetas->nextPageUrl() }}">Siguiente</a></li>
-                        @else
-                            <li class="disabled"><span>Siguiente</span></li>
-                        @endif
-                
-                        {{-- Botón "Último" --}}
-                        @if ($recetas->hasMorePages())
-                            <li><a href="{{ $recetas->url($recetas->lastPage()) }}">Último</a></li>
-                        @endif
-                    </ul>
-                @endif
+                    
                 
                 </div>
             </div>

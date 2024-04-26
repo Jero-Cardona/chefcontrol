@@ -14,8 +14,12 @@
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Productos</h3>
-                    <a href="{{route('producto.pdf')}}" class="btnEditar" >Descargar pdf</a>
+                    @if ($resultados->isEmpty())
+                    <h3 class="titulo">No Hay Resultados para {{$searchTerm}}</h3>
+                    @else
+                    <h3 class="titulo">Resultados para : {{$searchTerm}}</h3>
+                    @endif
+                    {{-- <a href="{{route('producto.pdf')}}" class="btnEditar" >Descargar pdf</a> --}}
                     <form class="buscador" action="{{route('buscar.productos')}}" method="GET">
                         <input type="text" name="buscar" value="{{ request('buscar')}}" placeholder="Buscar">
                         <button>Buscar</button>
@@ -45,7 +49,7 @@
                         </thead>
                         <tbody>
                             {{-- registros de los productos --}}
-                            @foreach ($productos as $producto)
+                            @foreach ($resultados as $producto)
                             <tr>
                             
                                 <td>{{ $producto->Nombre }}</td>
@@ -82,31 +86,31 @@
                         </tbody>
                     </table>
                         {{-- Links de paginación --}}
-                        @if ($productos->hasPages())
+                        @if ($resultados->hasPages())
                         <ul class="pagination">
                             {{-- Botón "Primero" --}}
-                            @if (!$productos->onFirstPage())
-                                <li><a href="{{ $productos->url(1) }}">Primero</a></li>
+                            @if (!$resultados->onFirstPage())
+                                <li><a href="{{ $resultados->url(1) }}">Primero</a></li>
                             @endif
                     
                             {{-- Botón "Anterior" --}}
-                            @if ($productos->onFirstPage())
+                            @if ($resultados->onFirstPage())
                                 <li class="disabled"><span>Anterior</span></li>
                             @else
-                                <li><a href="{{ $productos->previousPageUrl() }}">Anterior</a></li>
+                                <li><a href="{{ $resultados->previousPageUrl() }}">Anterior</a></li>
                             @endif
                             {{-- para mostrar el numero de Items --}}
-                            {{$productos->firstItem()}}
+                            {{$resultados->firstItem()}}
                             de
-                            {{$productos->total()}}
+                            {{$resultados->total()}}
                             {{-- Páginas --}}
-                            @foreach ($productos->items() as $item)
+                            @foreach ($resultados->items() as $item)
                                 @if (is_string($item))
                                     <li class="disabled"><span>{{ $item }}</span></li>
                                 @endif
                                 @if (is_array($item))
                                     @foreach ($item as $page => $url)
-                                        @if ($page == $productos->currentPage())
+                                        @if ($page == $resultados->currentPage())
                                             <li class="active"><span>{{ $page }}</span></li>
                                         @else
                                             <li><a href="{{ $url }}">{{ $page }}</a></li>
@@ -116,15 +120,15 @@
                             @endforeach
                     
                             {{-- Botón "Siguiente" --}}
-                            @if ($productos->hasMorePages())
-                                <li><a href="{{ $productos->nextPageUrl() }}">Siguiente</a></li>
+                            @if ($resultados->hasMorePages())
+                                <li><a href="{{ $resultados->nextPageUrl() }}">Siguiente</a></li>
                             @else
                                 <li class="disabled"><span>Siguiente</span></li>
                             @endif
                     
                             {{-- Botón "Último" --}}
-                            @if ($productos->hasMorePages())
-                                <li><a href="{{ $productos->url($productos->lastPage()) }}">Último</a></li>
+                            @if ($resultados->hasMorePages())
+                                <li><a href="{{ $resultados->url($resultados->lastPage()) }}">Último</a></li>
                             @endif
                         </ul>
                     @endif
