@@ -209,6 +209,39 @@ class TblOrdenproduccionController extends Controller
         $usuario->delete();
         return to_route('usuarios.index');
     }
+
+    public function buscarEspera(Request $request){
+
+        // ordenes en espera
+        $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
+        // funcion para buscar registros de las ordenes
+        $searchTerm = $request->input('buscar');        
+        $resultados = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+            ->whereHas('cliente', function ($query) use ($searchTerm) {
+                $query->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+                // ->where('estado', 'En espera');
+            })
+            ->orWhereHas('receta', function ($query) use ($searchTerm) {
+                $query->where('Nombre', 'LIKE', '%' . $searchTerm . '%'); // Filtro por nombre de la receta
+                // ->where('estado', 'En espera');
+            })
+            ->get()
+            ->groupBy(function ($orden) {
+                return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+            });
+
+
+        // return $resultados;
+        return view('buscar.BuscarOrdenEspera', compact('resultados','searchTerm', 'ordenesEnEspera')); 
+    }
+
+    public function buscarPreparacion(Request $request){
+
+    }
+
+    public function buscarEntregadas(Request $request){
+
+    }
 }
 
 

@@ -209,6 +209,6 @@ class TblProductoController extends Controller
         $resultados = tbl_producto::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->paginate(3);
         
         // return $resultados;
-        return view('usuarios.BuscarProducto', compact('resultados','searchTerm')); 
+        return view('buscar.BuscarProducto', compact('resultados','searchTerm')); 
     }
 }

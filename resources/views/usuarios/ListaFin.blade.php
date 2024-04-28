@@ -34,13 +34,15 @@ $fechaActual = Carbon::now();
                     <label class="tittle-items">Selecciona los elementos:</label><br><br>
                     <label class="items-tareas">
                         @foreach ($formato as $tarea)
-                        <input type="checkbox" name="id_tarea[]" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
+                        <input class="cuadro" type="checkbox" name="id_tarea[]" value="{{$tarea['id']}}">{{$tarea['nombre']}}<br>
                         @endforeach
-                        <input type="hidden" name="fecha" value="{{Carbon::now()->format('Y-m-d H:i:s')}}">
+                        <input class="cuadro" type="hidden" name="fecha" value="{{Carbon::now()->format('Y-m-d H:i:s')}}">
                     </label>
                     <input class="btn-submit" type="submit" value="Enviar">
                 </form>
             </div>
+        </div>
+    </div>
 
     <footer class="footerLogin">
         <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">

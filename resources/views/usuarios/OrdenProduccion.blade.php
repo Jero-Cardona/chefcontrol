@@ -41,15 +41,15 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
                 </select>
             </div>
 
-             <div class="formRegistro-">
-               <input name="cantidad" id="cantidad" type="text"  required>
+            <div class="formRegistro-">
+                <input name="cantidad" id="cantidad" type="text"  required>
                 <label for="cantidad"> Cantidad del producto</label>
             </div>
                 <div class="formRegistro-">
                 <input autofocus type="hidden" name="estado" value="En espera" >
-                 {{-- <label for="Cantidad"> Cantidad del producto</label> --}}
+                {{-- <label for="Cantidad"> Cantidad del producto</label> --}}
             </div>
-             <div class="btn1Registro-">
+            <div class="btn1Registro-">
                 <input type="submit" value="Enviar" class="enviarRegistro-">
             </div>
     </form>

@@ -15,6 +15,10 @@
 <div class="container">
     <div class="title-container">
         <h1>Órdenes de Producción en Preparacción</h1>
+        <form class="buscador" style="display: inline-flex; float: end;" action="{{route('buscar.ordenesEspera')}}" method="GET">
+            <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
+            <button>Buscar</button>
+        </form>
     </div>
 
     <div class="orden-container">

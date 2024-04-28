@@ -22,7 +22,7 @@
                     </form>
                 </div>
                 <div class="orden-container">
-                    @foreach($ordenesPorCliente as $cliente => $ordenesDelCliente)
+                    @foreach($resultados as $cliente => $ordenesDelCliente)
                         <div class="orden">
                             <h2>Cliente: {{ $cliente }}</h2>
                             @foreach($ordenesDelCliente as $orden)
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <hr>
-            <div class="form-container">
+            {{-- <div class="form-container">
                 <div>
                     <h2 style="color: black;">Agregar detalles a múltiples recetas</h2>
                     
@@ -107,7 +107,7 @@
                         <button type="submit">Agregar Detalles</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div> 
 @endauth
 @endsection

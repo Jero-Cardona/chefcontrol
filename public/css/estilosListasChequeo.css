@@ -1,53 +1,13 @@
-/* .tittle{
-    background-color: firebrick ;
-    text-align: center;
-    color: white;
-    padding: 10px;
-  
-    
-}
-.btn-submit{
-    width: 120px;
-    height: 30px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid rgba(154, 0, 15);
-    background: transparent;
-    color: rgba(0, 0, 0);
-    outline: none; 
-} 
-.items-tareas{
-    display: inline-block;
-  margin-right: 10px; 
-  padding-bottom: 10px;
-}
-
-.tittle-items{
-    font-size: 35px;
-}
-
-input{
-    height: 20px;
-    width: 18px;
-}
-.content{
-    background-color: darkgray;
-} */
-
-
-
-.contenedorPrincipalLista{
-    margin: 0%;
-}
-
 .contenedorTotalLista{
-    display: flex;
+    display: inline-flex;
+    margin-right: 70px;
+    margin-bottom: 0%;
 }
 .menu-lista{
     background-color: rgba(154, 0, 15);
     align-items: flex-start;
     padding: 30px;
+    margin-top: 0%;
 }
 .botonesMenuLista{
     width: 150px;
@@ -72,7 +32,7 @@ input{
     font-size: 45px;
 }
 .contentLista{
-    padding: 40px;
+    padding: 50px;
     background-color: darkgray;
 }
 .btn-submit{
@@ -100,4 +60,5 @@ input{
 input{
     height: 20px;
     width: 18px;
+    margin: 10px;
 }

@@ -204,6 +204,6 @@ class TblUsuariosController extends Controller
         $resultados = tbl_usuarios::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
         
         // return $resultados;
-        return view('usuarios.BuscarUsuario', compact('resultados','searchTerm')); 
+        return view('buscar.BuscarUsuario', compact('resultados','searchTerm')); 
     }
 }

@@ -277,7 +277,7 @@ class TblRecetaController extends Controller
         $resultados = tbl_receta::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
         
         // return $resultados;
-        return view('usuarios.BuscarReceta', compact('resultados','searchTerm')); 
+        return view('buscar.BuscarReceta', compact('resultados','searchTerm')); 
     }
     
 }

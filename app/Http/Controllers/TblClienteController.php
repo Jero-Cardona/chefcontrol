@@ -126,6 +126,6 @@ class TblClienteController extends Controller
         $resultados = tbl_cliente::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
         
         // return $resultados;
-        return view('usuarios.BuscarCliente', compact('resultados','searchTerm')); 
+        return view('buscar.BuscarCliente', compact('resultados','searchTerm')); 
     }
 }

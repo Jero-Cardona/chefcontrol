@@ -82,6 +82,11 @@ Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class,'
 Route::get('/ordenes/espera', [TblOrdenproduccionController::class,'indexOrdenesEspera'])->name('ordenes.espera');
 Route::get('/ordenes/preparacion', [TblOrdenProduccionController::class ,'indexOrdenesPreparacion'])->name('ordenes.preparacion');
 Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class ,'indexOrdenesEntegadas'])->name('ordenes.entregadas');
+// buscar ordenes 
+Route::get('/buscarOrdenesEnEspera', [TblOrdenproduccionController::class, 'buscarEspera'])->name('buscar.ordenesEspera');
+Route::get('/buscarOrdenesEnPreparacion', [TblOrdenproduccionController::class, 'buscarPreparacion'])->name('buscar.ordenesPreparacion');
+Route::get('/buscarOrdenesEntregadas', [TblOrdenproduccionController::class, 'buscarEntregadas'])->name('buscar.ordenesEntregadas');
+
 
 
 
