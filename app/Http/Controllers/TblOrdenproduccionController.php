@@ -217,30 +217,60 @@ class TblOrdenproduccionController extends Controller
         // funcion para buscar registros de las ordenes
         $searchTerm = $request->input('buscar');        
         $resultados = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
-            ->whereHas('cliente', function ($query) use ($searchTerm) {
-                $query->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
-                // ->where('estado', 'En espera');
-            })
-            ->orWhereHas('receta', function ($query) use ($searchTerm) {
-                $query->where('Nombre', 'LIKE', '%' . $searchTerm . '%'); // Filtro por nombre de la receta
-                // ->where('estado', 'En espera');
-            })
-            ->get()
-            ->groupBy(function ($orden) {
-                return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+        ->where('estado', 'En espera')  // Esta condición siempre debe ser cumplida
+        ->where(function ($query) use ($searchTerm) {  // Usamos un agrupamiento lógico para encapsular los OR
+            $query->whereHas('cliente', function ($subQuery) use ($searchTerm) {
+                $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
             });
-
-
-        // return $resultados;
+            $query->orWhereHas('receta', function ($subQuery) use ($searchTerm) {
+                $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+            });
+        })
+        ->get()
+        ->groupBy(function ($orden) {
+            return $orden->cliente->Nombre;  // Agrupa por el nombre del cliente
+        });
         return view('buscar.BuscarOrdenEspera', compact('resultados','searchTerm', 'ordenesEnEspera')); 
     }
 
     public function buscarPreparacion(Request $request){
+          // ordenes en Preparacion
+          $ordenesPreparacion = tbl_ordenproduccion::where('estado', 'En preparacion')->get();
+          // funcion para buscar registros de las ordenes
+          $searchTerm = $request->input('buscar');        
+          $resultados = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+          ->where('estado', 'En preparacion')
+          ->where(function ($query) use ($searchTerm) {  // Usamos un agrupamiento lógico para encapsular los OR
+            $query->whereHas('cliente', function ($subQuery) use ($searchTerm) {
+                $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+            });
+            $query->orWhereHas('receta', function ($subQuery) use ($searchTerm) {
+                $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+            });
+        })
+        ->get();
 
+          return view('buscar.BuscarOrdenPreparacion', compact('resultados', 'ordenesPreparacion', 'searchTerm'));
     }
 
     public function buscarEntregadas(Request $request){
-
+            // ordenes en Preparacion
+            $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->get();
+            // funcion para buscar registros de las ordenes
+            $searchTerm = $request->input('buscar');        
+            $resultados = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+            ->where('estado', 'Entregado')
+            ->where(function ($query) use ($searchTerm) {  // Usamos un agrupamiento lógico para encapsular los OR
+                $query->whereHas('cliente', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+                });
+                $query->orWhereHas('receta', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('Nombre', 'LIKE', '%' . $searchTerm . '%');
+                });
+            })
+            ->get();
+  
+            return view('buscar.BuscarOrdenEntregada', compact('resultados', 'ordenesEntregadas', 'searchTerm'));
     }
 }
 

@@ -14,7 +14,7 @@
 @endif
 <div class="container">
     <div class="title-container">
-        <h1>Órdenes de Producción en Preparacción</h1>
+        <h1>Resultados de {{$searchTerm}}</h1>
         <form class="buscador" style="display: inline-flex; float: end;" action="{{route('buscar.ordenesPreparacion')}}" method="GET">
             <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
             <button>Buscar</button>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="orden-container">
-        @foreach($ordenesEnPreparacion->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
+        @foreach($resultados->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
             <div class="orden">
                 <h2>Cliente: {{ $cliente }}</h2>
                 

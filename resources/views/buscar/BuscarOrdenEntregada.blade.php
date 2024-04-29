@@ -13,14 +13,14 @@
 @endif
 <div class="container">
         <div class="title-container">
-            <h1>Órdenes de Producción Entregadas</h1>
+            <h1>Resultados de {{$searchTerm}}</h1>
             <form class="buscador" style="display: inline-flex; float: end;" action="{{route('buscar.ordenesEntregadas')}}" method="GET">
                 <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
                 <button>Buscar</button>
             </form>
         </div>
         <div class="orden-container">
-            @foreach($ordenesEntregadas->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
+            @foreach($resultados->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
             <div class="orden">
                 <h2>Cliente: {{ $cliente }}</h2>
                     @foreach($ordenesDelCliente as $orden)
