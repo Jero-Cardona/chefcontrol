@@ -11,11 +11,7 @@
         <title>Chef Control | Recetario</title>
 </head>
 <body>
-    @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-    @endif
+   
     
     <div class="contenedorRecetas">
         <header class="headerRecetas">
@@ -46,6 +42,9 @@
                             <a href="{{route('detalleReceta.create')}}">Agregar Detalle a una Receta</a>
                             <a href="{{route('crudrecetas')}}">Lista de Recetas</a>
                             <a href="{{route('crudrecetas.espera')}}">Recetas en espera </a>
+                            @if(Auth::user()->Id_Rol == '2')
+                            <a href="{{route('recetas.sugeridas')}}">Mis recetas sugeridas</a>
+                            @endif
                         </div>
                     </div>
                     <div class="menu-item">
@@ -103,6 +102,11 @@
   
             </div>
         </header>
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
         <div class="contenedor1Recetas">
             <img class="fondo1Recetas" src="{{asset('imagenes/proyecto/image33.png')}}">
             <div class="caja1Recetas">

@@ -47,6 +47,10 @@
                             <a href="{{route('crudrecetas')}}">Recetas Activas</a>
                             <a href="{{route('crudrecetas.inactivas')}}">Recetas Inactivas</a>
                             <a href="{{route('crudrecetas.espera')}}">Recetas en espera </a>
+                            @if(Auth::user()->Id_Rol == '2')
+                            <a href="{{route('recetas.sugeridas')}}">Mis recetas sugeridas</a>
+                            @endif
+                    
                         </div>
                     </div>
                     <div class="menu-item">

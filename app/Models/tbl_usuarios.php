@@ -26,5 +26,12 @@ class tbl_usuarios extends Model
         return $this->hasMany(tbl_tareascompletadas::class, 'Id_Empleado');
       }
 
-      
+      public function recetas() {
+        return $this->hasMany(tbl_receta::class, 'Id_Empleado');
+    }
+
+    public function recetasLog()
+{
+    return $this->hasMany(tbl_receta_usuario::class, 'usuario_id');
+}
 }

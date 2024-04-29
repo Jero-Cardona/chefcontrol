@@ -98,6 +98,8 @@ Route::post("/FormularioR",[TblRecetaController::class, 'store'])->name("receta.
 Route::get('/Receta/{Id_Receta}/Editar', [TblRecetaController::class, 'edit'])->name('receta.edit');
 Route::put('/Receta/{Id_Receta}', [TblRecetaController::class, 'update'])->name('receta.update');
 Route::delete('/Receta/{Id_Receta}', [TblRecetaController::class, 'destroy'])->name('receta.destroy');
+//recetas sugeridas index
+Route::get('/recetassugeridas', [TblRecetaController::class, 'indexSugeridas'])->name('recetas.sugeridas');
 //Inactivas y activar recetas
 Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
 Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'active'])->name('receta.active');
