@@ -52,5 +52,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function recetas() {
+        return $this->hasMany(tbl_receta::class, 'Id_Empleado');
+    }
+    public function recetasLog()
+    {
+        return $this->hasMany(tbl_receta_usuario::class, 'usuario_id');
+    }
 
 }

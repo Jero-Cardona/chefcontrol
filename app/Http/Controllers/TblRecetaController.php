@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\tbl_receta;
 use App\Models\tbl_cliente;
+use App\Models\tbl_receta_usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\tbl_usuarios;
+
 
 
 
@@ -54,6 +57,16 @@ class TblRecetaController extends Controller
         return view('usuarios.CrudRecetasEnEspera',compact('recetas'));
     }
 
+    public function indexSugeridas()
+{
+    $recetasLog = auth()->user()->recetasLog;
+    $recetasIds = $recetasLog->pluck('receta_id');
+    $recetas = tbl_receta::whereIn('Id_Receta', $recetasIds)
+        ->with('detallesReceta.producto', 'detallesReceta.unidadMedida')
+        ->get();
+
+    return view('usuarios.recetasSugeridas', compact('recetas'));
+}
     // Carga el formulario de Recetas
     public function create(){
         return view('usuarios.FormReceta');
@@ -107,6 +120,13 @@ class TblRecetaController extends Controller
     
         // Guardado de datos
         $receta->save();
+
+        // Registrar quién ingresó la receta
+        $recetaLog = new tbl_receta_usuario();
+        
+        $recetaLog->receta_id = $receta->Id_Receta;
+        $recetaLog->usuario_id = auth()->user()->Id_Empleado;
+        $recetaLog->save();
     
         // Redireccionamiento y mensaje de éxito
         session()->flash('success', 'La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');

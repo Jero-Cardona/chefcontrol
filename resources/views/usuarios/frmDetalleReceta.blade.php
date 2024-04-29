@@ -5,8 +5,8 @@ use App\Models\tbl_receta;
 $recetas = tbl_receta::all();
 $productos = tbl_producto::all(); 
 
-$recetasActivas = tbl_receta::where('Estado', 1)
-                          ->where('etapa', true)
+$recetasActivas = tbl_receta::where('etapa', true)
+                        //   ->where('Estado', 1)
                           ->get();
 $productosActivos = tbl_producto::where('estado', 1)->get();
 ?>

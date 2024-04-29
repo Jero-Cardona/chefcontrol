@@ -175,7 +175,7 @@ class TblOrdenproduccionController extends Controller
         $detalles->Presentacion = $request->input('Presentacion');
         $detalles->save();
     
-        return redirect()->route('orden.index')->with('success', 'Detalle actualizado correctamente.');
+        return redirect()->route('receta.recetario')->with('success', 'Detalle actualizado correctamente.');
     }
 
     public function show()

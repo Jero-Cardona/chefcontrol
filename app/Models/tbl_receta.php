@@ -19,4 +19,10 @@ class tbl_receta extends Model
         return $this->hasMany(tbl_detallereceta::class, 'Id_Receta', 'Id_Receta');
     }
    
+    public function user()
+    {
+        return $this->belongsTo(tbl_usuarios::class, 'Id_Empleado');
+    }
+   
+
 }
