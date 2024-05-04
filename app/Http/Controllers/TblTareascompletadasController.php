@@ -49,7 +49,7 @@ class TblTareascompletadasController extends Controller
         ->groupBy('fecha');
 
         // return dd($tareasCompletadasPorFecha);
-        return view('usuarios.VerTareasInicio', compact('tareasCompletadasPorFecha'));
+        return view('usuarios.VerTareasInicio', compact('tareasCompletadasPorFecha','fecha'));
     }
     
     
@@ -78,21 +78,16 @@ class TblTareascompletadasController extends Controller
         ->get()
         ->groupBy('fecha');
 
-        // return $fecha;
-
-        // return dd($tareasCompletadasPorFecha);
-        return view('usuarios.VerTareasFin', compact('tareasCompletadasPorFecha'));
+        return view('usuarios.VerTareasFin', compact('tareasCompletadasPorFecha','fecha'));
     }
    
     public function store(Request $request)
     {
-       
         // Validar los datos recibidos del formulario
         $request->validate([
             'Id_Empleado' => 'required',
             'id_tarea' => 'required|array', // Se espera un arreglo de tareas
             'fecha' => ['required', 'date_format:Y-m-d H:i:s'],
-            
         ]);
     
         $fecha = $request->input('fecha');
@@ -116,5 +111,46 @@ class TblTareascompletadasController extends Controller
                 return redirect()->route('lista.inicio')->with('status', 'No fue posible guardar la Lista de Inicio de Jornada.');
         }
     }
+
+    public function buscarInicio(Request $request)
+    {
+        //buscar listas inicio
+        $searchTerm = $request->input('buscar');
+        $resultados = tbl_tareascompletadas::with('usuario', 'tarea')
+        ->where('fecha', 'LIKE', '%' . $searchTerm . '%')
+        ->whereHas('tarea', function ($query) {
+            $query->where('id_tarea', '<=', 22);
+        })
+        ->orderBy('fecha')
+        ->get()
+        ->groupBy('fecha');
+         
+        if ($resultados->isEmpty()) {
+            return redirect()->route('crud.listainicio')
+            ->with('mensaje', '¡No se encuentra!');
+        } else {
+        return view('buscar.BuscarListaInicio', compact('resultados','searchTerm'));
+        }
+    }
     
+    public function buscarFin(Request $request)
+    {
+            //buscar listas inicio
+            $searchTerm = $request->input('buscar');
+            $resultados = tbl_tareascompletadas::with('usuario', 'tarea')
+            ->where('fecha', 'LIKE', '%' . $searchTerm . '%')
+            ->whereHas('tarea', function ($query) {
+                $query->where('id_tarea', '>=', 23);
+            })
+            ->orderBy('fecha')
+            ->get()
+            ->groupBy('fecha');
+             
+            if ($resultados->isEmpty()) {
+                return redirect()->route('crud.listafin')
+                ->with('mensaje', '¡No se encuentra!');
+            } else {
+            return view('buscar.BuscarListaFin', compact('resultados','searchTerm'));
+            }
+    }
 }

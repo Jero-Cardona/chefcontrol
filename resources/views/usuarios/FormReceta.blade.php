@@ -48,14 +48,15 @@
                 </div>
                 @if (Auth::user()->Id_Rol == '1')
                 <div class="form1Registro">
-                    <select id="Estado" name="Estado"  value="{{old('Estado')}}" required>
+                    {{-- <select id="Estado" name="Estado"  value="{{old('Estado')}}" required>
                         <option value="" disabled selected hidden>Estado de la Receta</option>
                         <option value="1" @if(old('Estado') == '1') selected @endif>Estandarizada</option>
                         <option value="2" @if(old('Estado') == '2') selected @endif>En Espera</option>
                     </select>
                      @error('Estado')
                     <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    @enderror --}}
+                    <input type="hidden" name="Estado" id="Estado" value="1">
                 </div>    
                 @else
                 <div class="form1Registro">

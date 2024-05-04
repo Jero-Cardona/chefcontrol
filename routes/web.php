@@ -104,9 +104,11 @@ Route::get('/recetassugeridas', [TblRecetaController::class, 'indexSugeridas'])-
 Route::get('/recetas/{Id_Receta}/inactive', [TblRecetaController::class, 'inactive'])->name('receta.inactive');
 Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'active'])->name('receta.active');
 // buscar registros
-Route::get('/buscarReceta', [TblRecetaController::class, 'buscar'])->name('buscar.recetas');
+Route::get('/buscarReceta/{buscar}', [TblRecetaController::class, 'buscar'])->name('buscar.recetas');
 // descargar registros de recetas
-Route::get('Recetaspdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
+Route::get('Recetas/{button_id}/pdf',[TblRecetaController::class, 'pdf'])->name('recetas.pdf');
+
+
 
 // Rutas de detalle receta
 Route::get("/FDetalleReceta", [TblDetallerecetaController::class, 'create'])->name('detalleReceta.create');
@@ -150,6 +152,9 @@ Route::get("/CrudListaInicio",[TblTareascompletadasController::class, 'indexInic
 Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])->name('crud.listafin');
 Route::get('VerTareas/Inicio/{fecha}', [TblTareascompletadasController::class, 'verTareasInicio'])->name('tareasInicio');
 Route::get('VerTareas/Fin/{fecha}', [TblTareascompletadasController::class, 'verTareasFin'])->name('tareasFin');
+// buscar listas de jornada registros
+Route::get('/buscarListaInicio', [TblTareascompletadasController::class, 'buscarInicio'])->name('buscar.listasInicio');
+Route::get('/buscarListaFin', [TblTareascompletadasController::class, 'buscarFin'])->name('buscar.listasFin');
 
 
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));

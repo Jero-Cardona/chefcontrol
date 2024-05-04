@@ -22,7 +22,7 @@
             </div>
             <div class="formRegistro">
                 <div class="fileR">
-                    <input id="imagen" name="imagen" type="file" class="fileRI">
+                    <input id="imagen" name="imagen" type="file" class="fileRI" required>
                     <p class="textoFile">Adjuntar archivo</p>
                     <label for="imagen"></label>
                 </div>

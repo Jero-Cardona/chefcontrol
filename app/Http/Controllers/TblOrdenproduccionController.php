@@ -60,11 +60,8 @@ class TblOrdenproduccionController extends Controller
             $detalle->Presentacion = $presentacion;
             $detalle->save();
         }
-       
         return redirect()->back()->with('success', 'Detalles agregados correctamente.');
     }
-
-
 
     public function create(){
         // vista del formulario de orden de produccion 
@@ -103,8 +100,6 @@ class TblOrdenproduccionController extends Controller
         // $produccion->imagen = $urlreceta;
         $produccion->save();
 
-        
-        
         // retorna a la vista de las recetas
         return to_route('orden.produccion');
     }
@@ -127,36 +122,33 @@ class TblOrdenproduccionController extends Controller
     }
 
     public function indexOrdenesEspera()
-{
-    // Obtener todas las órdenes en espera
-    $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
-    
-    // Obtener las órdenes agrupadas por cliente con sus detalles
-    $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
-        ->where('estado', 'En espera')
-        ->get()
-        ->groupBy(function ($orden) {
-            return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
-        });
+    {
+        // Obtener todas las órdenes en espera
+        $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
+        
+        // Obtener las órdenes agrupadas por cliente con sus detalles
+        $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+            ->where('estado', 'En espera')
+            ->get()
+            ->groupBy(function ($orden) {
+                return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+            });
 
-    // Obtener los Consecutivos de las órdenes que tienen detalles
-    $ordenesConDetalles = tbl_detalleordenproduccion::pluck('Consecutivo')->toArray();
+        // Obtener los Consecutivos de las órdenes que tienen detalles
+        $ordenesConDetalles = tbl_detalleordenproduccion::pluck('Consecutivo')->toArray();
 
-    return view('usuarios.ordenesEspera', compact('ordenesPorCliente', 'ordenesEnEspera', 'ordenesConDetalles'));
-}
-    
+        return view('usuarios.ordenesEspera', compact('ordenesPorCliente', 'ordenesEnEspera', 'ordenesConDetalles'));
+    }
 
     public function indexOrdenesPreparacion()
     {
         $ordenesEnPreparacion = tbl_ordenproduccion::where('estado', 'En preparación')->get();
-
         return view('usuarios.ordenesPreparacion', compact('ordenesEnPreparacion'));
     }
 
     public function indexOrdenesEntegadas()
     {
         $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->get();
-
         return view('usuarios.ordenesEntregadas', compact('ordenesEntregadas'));
     }
 
@@ -209,9 +201,8 @@ class TblOrdenproduccionController extends Controller
         $usuario->delete();
         return to_route('usuarios.index');
     }
-
+    
     public function buscarEspera(Request $request){
-
         // ordenes en espera
         $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
         // funcion para buscar registros de las ordenes
@@ -230,7 +221,13 @@ class TblOrdenproduccionController extends Controller
         ->groupBy(function ($orden) {
             return $orden->cliente->Nombre;  // Agrupa por el nombre del cliente
         });
+
+        if ($resultados->isEmpty()) {
+            return redirect()->route('ordenes.espera')
+            ->with('mensaje', '¡No se encuentra!');
+        } else {
         return view('buscar.BuscarOrdenEspera', compact('resultados','searchTerm', 'ordenesEnEspera')); 
+        }
     }
 
     public function buscarPreparacion(Request $request){
@@ -250,7 +247,12 @@ class TblOrdenproduccionController extends Controller
         })
         ->get();
 
-          return view('buscar.BuscarOrdenPreparacion', compact('resultados', 'ordenesPreparacion', 'searchTerm'));
+        if ($resultados->isEmpty()) {
+            return redirect()->route('ordenes.preparacion')
+            ->with('mensaje', '¡No se encuentra!');
+        } else {
+        return view('buscar.BuscarOrdenPreparacion', compact('resultados', 'ordenesPreparacion', 'searchTerm'));
+        }
     }
 
     public function buscarEntregadas(Request $request){
@@ -270,7 +272,12 @@ class TblOrdenproduccionController extends Controller
             })
             ->get();
   
+            if ($resultados->isEmpty()) {
+                return redirect()->route('ordenes.entregadas')
+                ->with('mensaje', '¡No se encuentra!');
+            } else {
             return view('buscar.BuscarOrdenEntregada', compact('resultados', 'ordenesEntregadas', 'searchTerm'));
+            }
     }
 }
 

@@ -16,12 +16,12 @@ $fechaActual = Carbon::now();
 <body class="contenedorPrincipalLista">
     <div class="contenedorTotalLista">
         <div class="menu-lista">
-            <button class="botonesMenuLista" href="">Recetas</button><br>
+            <!-- <button class="botonesMenuLista" href="">Recetas</button><br>
             <button class="botonesMenuLista" href="">Sugerencias</button><br>
             <button class="botonesMenuLista" href="">Autorización</button><br>
             <button class="botonesMenuLista" href="">Formatos</button><br>
             <button class="botonesMenuLista" href="">Asignación</button><br>
-            <button class="botonesMenuLista" href="">Configuración</button>
+            <button class="botonesMenuLista" href="">Configuración</button> -->
         </div>
         <div class="formularioLista">    
             <div class="divLista">

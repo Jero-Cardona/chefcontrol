@@ -3,8 +3,7 @@
 <div class="container">
     @if (session('success'))
     <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-    
-        {{ session('success') }}
+    {{ session('success') }}
     </div>
     @endif
     <div class="div1">
@@ -16,7 +15,8 @@
                     @else
                     <h3 class="titulo">Resultados para la busqueda de <b>{{$searchTerm}}</b></h3>
                     @endif
-                    <form class="buscador" action="{{route('buscar.recetas')}}" method="GET">
+                    <form class="buscador" action="{{route('buscar.recetas', ['buscar' => $buscar]) }}" method="GET">
+                        @csrf
                         <input type="text" placeholder="Buscar" name="buscar" value="{{ request('buscar')}}">
                         <button>Buscar</button>
                     </form>
@@ -74,20 +74,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- resultados de la busqueda
-                    @if($resultados->isEmpty())
-                        <p>No se encontraron resultados para "{{ request('search') }}".</p>
-                    @else
-                        @foreach($resultados as $resultado)
-                            <!-- Muestra la información del resultado -->
-                            <div>
-                                <h3>{{ $resultado->nombre_del_campo }}</h3>
-                                <!-- Otros campos que quieras mostrar -->
-                            </div>
-                        @endforeach
-                    @endif --}}
-                    
-                
                 </div>
             </div>
         </div>

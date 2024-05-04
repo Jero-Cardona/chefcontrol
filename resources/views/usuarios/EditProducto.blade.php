@@ -23,9 +23,9 @@
                 {{-- <input value="{{$producto[0]->imagen }}" id="imagen1" name="imagen1" type="file" required>
                 <label for="imagen1"></label> --}}
                 <div class="fileR">
-                    <input id="imagen" name="imagen1" type="file" class="fileRI">
+                    <input id="imagen1" name="imagen1" type="file" class="fileRI" required>
                     <p class="textoFile">Adjuntar archivo</p>
-                    <label for="imagen"></label>
+                    <label for="imagen1"></label>
                 </div>
             </div>
             <div class="formRegistro">

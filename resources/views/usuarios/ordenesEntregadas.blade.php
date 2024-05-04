@@ -24,7 +24,6 @@
             <div class="orden">
                 <h2>Cliente: {{ $cliente }}</h2>
                     @foreach($ordenesDelCliente as $orden)
-                        
                                 <div>
                                     <h3>Orden #{{ $orden->Consecutivo }}</h3>
                                     <hr>
@@ -68,12 +67,10 @@
                                         </form>
                                     @endif
                                 </div>
-                           
                     @endforeach
                 </div>
             @endforeach
         </div>
 </div>
-
 @endauth   
 @endsection

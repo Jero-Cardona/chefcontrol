@@ -32,11 +32,11 @@
                         <label for="Contribucion">Contribucion</label>
                     </div>
                     <div class="form1Registro">
-                        <select value="{{$receta[0]->Estado}} "id="Estado" name="Estado" required>
+                        {{-- <select value="{{$receta[0]->Estado}} "id="Estado" name="Estado" required>
                             <option value="" disabled selected hidden>Estado de la Receta {{$receta[0]->Estado}}</option>
                             <option value="1">Estandarizada (1)</option>
                             <option value="2">En Espera (2)</option>
-                        </select>
+                        </select> --}}
                     </div>
                     <div class="formRegistro">
                         {{-- <img style="width: 200px" src="{{asset($receta[0]->imagen)}}" alt="imagen"> --}}

@@ -2,7 +2,7 @@
 @section('content')
 @auth
 <div class="container">
-    <h2 class="mb-4" style="color: #8B0000; font-weight: bold; text-align: center; text-transform: uppercase; padding-top: 30px;">Listas Inicio de Jornada Registradas</h2>
+    <h2 class="mb-4" style="color: #8B0000; font-weight: bold; text-align: center; text-transform: uppercase; padding-top: 30px;">Tareas Completadas en la fecha: {{$fecha}}</h2>
     <div class="row">
         @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
         <div class="col-md-6 mb-4" style="padding: 30px 0px;">

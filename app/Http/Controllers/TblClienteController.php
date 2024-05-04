@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
+
 class TblClienteController extends Controller
 {
     // constructor para los middleware
@@ -121,11 +122,16 @@ class TblClienteController extends Controller
     }
 
     public function buscar(Request $request){
-        // funcion para buscar registros
+       // función para buscar registros
         $searchTerm = $request->input('buscar');
         $resultados = tbl_cliente::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
-        
-        // return $resultados;
-        return view('buscar.BuscarCliente', compact('resultados','searchTerm')); 
+
+        if ($resultados->isEmpty()) {
+            return redirect()->route('crudclientes')
+            ->with('mensaje', '¡No se encuentra!');
+        } else {
+            return view('buscar.BuscarCliente', compact('resultados', 'searchTerm'));
+        }
+                
     }
 }

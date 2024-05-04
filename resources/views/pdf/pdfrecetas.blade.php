@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>pdf recetas</title>
+    <title>{{$titulo}} pdf</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
     <style>
@@ -56,7 +56,7 @@
     <?php
     $i = 0;
     ?>
-    <h2>Registros Recetas</h2>
+    <h2>Registros de las {{$titulo}}</h2>
     <p>El siguiente documento pdf contiene un listado de todos 
         los registros que hay en el aplicativo hasta el momento, 
         dichos registros se hacen apartir bajo el uso del sistema y sus diferentes formularios</p>

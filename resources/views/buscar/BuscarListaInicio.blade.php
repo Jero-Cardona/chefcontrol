@@ -1,15 +1,14 @@
 @extends('layouts.app')
+@section('style')
+    {{-- link de boostrap 5 --}}
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+@endsection
 @section('content')
 @auth
-<body class="bodyListas">
-    <div class="contenedorListasR">
-        <h2 class="tituloListasR">Listas Fin de Jornada Registradas</h2>
-        <form class="buscador" style="display: inline-flex; float: end;" action="{{route('buscar.listasFin')}}" method="GET">
-            <input type="date" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
-            <button>Buscar</button>
-        </form>
+<div class="contenedorListasR">
+    <h2 class="tituloListasR">Listas de Inicio registradas el dia : {{$searchTerm}}</h2>
     <div class="rowListasR">
-        @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
+        @foreach ($resultados as $fecha => $tareasCompletadas)
         <div class="contenedor1ListaR">
             <div class="cardListaR">
                 <div class="cardHeaderListaR">
@@ -20,6 +19,11 @@
                         <table class="tablaListaR">
                             <tbody>
                                 {{-- <img style="width: 100px; height: 70px;" src="{{asset('imagenes/proyecto/image21.png')}}"> --}}
+                                {{--@foreach ($tareasCompletadas as $tareaCompletada)
+                                <tr class="tr2ListaR">
+                                    <td>{{ $tareaCompletada->tarea->nombre }}</td>
+                                </tr>
+                                @endforeach --}}
                                 <p class="pListaR">Lista realizada en la fecha: {{ $fecha }}  <br>  Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</p>
                                 <div class="divButtonListaR">
                                     <a style="text-decoration: none; color: #fff;" href="{{route('tareasFin' , $fecha)}}"><button class="buttonListaR">Ver detalles</button></a>
@@ -33,6 +37,5 @@
         @endforeach
     </div>
 </div>
-</body>
 @endauth
 @endsection
