@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{asset('/css/estilosReceta.css')}}" >
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="icon" href="{{asset('imagenes/proyecto/logo.svg') }}">
+        <link rel="icon" href="{{asset('imagenes/proyecto/sombrerochef.svg') }}">
         <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
         <title>Chef Control | Recetario</title>
 </head>
