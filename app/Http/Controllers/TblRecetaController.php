@@ -264,7 +264,6 @@ class TblRecetaController extends Controller
             ->get();
             $titulo = 'Recetas en Espera';
         }
-
         $imageName = [];
         // obtener el paht de la imagen
         for ($i = 0; $i < count($recetas); $i++) {
@@ -283,7 +282,6 @@ class TblRecetaController extends Controller
         $cantidad = $request->cantidad;
         //se crea una variable como arreglo la cual va a contener el producto, la multiplicacion de los productos y la unida de medida
         $cantidadesAjustadas = [];
-        
         //se crea el foreach para recorrer el id de la receta en la tabla de detallereceta
         foreach ($receta->detallesReceta as $detalle) {
             $cantidadAjustada = $detalle->Cantidad * $cantidad;
@@ -293,7 +291,6 @@ class TblRecetaController extends Controller
                 'unidadMedida' => $detalle->unidadMedida
             ];
         }
-        
         return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
     }
 

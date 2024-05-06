@@ -53,7 +53,7 @@
                                 <td class="crud-form">
                                 <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btnEditar swal-edit">Editar</a>
                                 @if($receta->etapa)
-                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Eliminar</a>
+                                {{-- <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Eliminar</a> --}}
                                 <a href="{{ route('receta.estandarizar', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Estandarizar</a>
                                 @endif 
                             </td>

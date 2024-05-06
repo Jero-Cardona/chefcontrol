@@ -86,6 +86,8 @@ Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class ,'indexOr
 Route::get('/buscarOrdenesEnEspera', [TblOrdenproduccionController::class, 'buscarEspera'])->name('buscar.ordenesEspera');
 Route::get('/buscarOrdenesEnPreparacion', [TblOrdenproduccionController::class, 'buscarPreparacion'])->name('buscar.ordenesPreparacion');
 Route::get('/buscarOrdenesEntregadas', [TblOrdenproduccionController::class, 'buscarEntregadas'])->name('buscar.ordenesEntregadas');
+// descargar registros de ordenes
+Route::get('Ordenes/{button_id}/pdf',[TblOrdenproduccionController::class, 'pdf'])->name('ordenes.pdf');
 
 
 
@@ -130,8 +132,6 @@ Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('produc
 
 
 
-
-
 // Rutas de Cliente
 Route::get('/RegistrarCliente', [TblClienteController::class, 'create'])->name('clienteCrear');
 Route::post('/Clientes', [TblClienteController::class, 'store'])->name('cliente.store');
@@ -150,11 +150,9 @@ Route::get('/ListaInicio',[TblTareasController::class,'Inicio'])->name(('lista.i
 Route::post('/enviar-tareas', [TblTareascompletadasController::class, 'store'])->name('listainicio.store');
 Route::get("/CrudListaInicio",[TblTareascompletadasController::class, 'indexInicio'])->name('crud.listainicio');
 Route::get("/CrudListaFin",[TblTareascompletadasController::class, 'indexFin'])->name('crud.listafin');
-Route::get('VerTareas/Inicio/{fecha}', [TblTareascompletadasController::class, 'verTareasInicio'])->name('tareasInicio');
-Route::get('VerTareas/Fin/{fecha}', [TblTareascompletadasController::class, 'verTareasFin'])->name('tareasFin');
+Route::get('VerTareas/{verlistas}/{fecha}', [TblTareascompletadasController::class, 'vertareas'])->name('vertareas');
 // buscar listas de jornada registros
-Route::get('/buscarListaInicio', [TblTareascompletadasController::class, 'buscarInicio'])->name('buscar.listasInicio');
-Route::get('/buscarListaFin', [TblTareascompletadasController::class, 'buscarFin'])->name('buscar.listasFin');
+Route::get('/buscarListas/{buscar}', [TblTareascompletadasController::class, 'buscar'])->name('buscar.listas');
 
 
 Route::get('/ListaFin',[TblTareasController::class,'Fin'])->name(('lista.fin'));

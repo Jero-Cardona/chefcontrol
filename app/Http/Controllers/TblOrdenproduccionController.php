@@ -9,6 +9,7 @@ use App\Models\tbl_cliente;
 use App\Models\tbl_detalleordenproduccion;
 use App\Models\tbl_receta;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TblOrdenproduccionController extends Controller
 {
@@ -136,7 +137,6 @@ class TblOrdenproduccionController extends Controller
 
         // Obtener los Consecutivos de las órdenes que tienen detalles
         $ordenesConDetalles = tbl_detalleordenproduccion::pluck('Consecutivo')->toArray();
-
         return view('usuarios.ordenesEspera', compact('ordenesPorCliente', 'ordenesEnEspera', 'ordenesConDetalles'));
     }
 
@@ -154,7 +154,7 @@ class TblOrdenproduccionController extends Controller
 
     public function editDetalles($ordenId)
     {
-    $orden = tbl_ordenproduccion::findOrFail($ordenId);
+        $orden = tbl_ordenproduccion::findOrFail($ordenId);
         return view('usuarios.EditDetalle', compact('orden'));
     }
     
@@ -168,38 +168,6 @@ class TblOrdenproduccionController extends Controller
         $detalles->save();
     
         return redirect()->route('receta.recetario')->with('success', 'Detalle actualizado correctamente.');
-    }
-
-    public function show()
-    {
-        //
-    }
-
-    // Carga el formulario de edicion de los datos
-    public function edit($Consecutivo)
-    {
-        //funcion para traer el id 
-        $usuario = DB::table('tbl_ordenproduccion')->where('Consecutivo', $Consecutivo)->get();
-        return view ('usuarios.EditUsuario', compact('usuario'));
-    }
-
-    // Actualiza los datos de los usuarios en la base de datos
-    public function update(Request $request,$Consecutivo)
-    { 
-        $usuario = DB::table('tbl_ordenproduccion')->where('Consecutivo', $Consecutivo)->get();
-        if($usuario){
-            DB::table('tbl_ordenproduccion')->where('Consecutivo', $Consecutivo)->update($request->except(['_token','_method']));
-            return to_route('usuarios.index');
-    }else{
-        return "no se pudo actulizar";
-    };
-    }
-
-    // Elimina los registros de la base de datos
-    public function destroy(tbl_ordenproduccion $usuario)
-    {
-        $usuario->delete();
-        return to_route('usuarios.index');
     }
     
     public function buscarEspera(Request $request){
@@ -278,6 +246,26 @@ class TblOrdenproduccionController extends Controller
             } else {
             return view('buscar.BuscarOrdenEntregada', compact('resultados', 'ordenesEntregadas', 'searchTerm'));
             }
+    }
+
+    public function pdf ($button_id)
+    {
+        if($button_id == 1){
+            $orden = tbl_ordenproduccion::where('estado', 'En espera')
+            ->get();
+            $titulo = 'Órdenes en espera';
+        }elseif($button_id == 2) {
+            $orden = tbl_ordenproduccion::where('estado', 'En preparación')
+            ->get();
+            $titulo = 'Órdenes en preparación';
+        }else{
+            $orden = tbl_ordenproduccion::where('estado', 'Entregado')
+            ->get();
+            $titulo = 'Órdenes entregadas';
+        }
+
+        $pdf = Pdf::loadView('pdf.pdfordenes',compact('orden', 'titulo'));
+        return $pdf->download($titulo.'.pdf');
     }
 }
 
