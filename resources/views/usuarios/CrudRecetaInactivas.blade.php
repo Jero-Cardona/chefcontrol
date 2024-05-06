@@ -11,10 +11,11 @@
         <div class="div2">
             <div class="div3">
                 <div class="divHeader">
-                    <h3 class="titulo">Lista de Recetas</h3>
-                    <a href="{{route('recetas.pdf')}}" class="btnEditar" >Descargar pdf</a>
-                    <form class="buscador">
-                        <input type="text" placeholder="Buscar">
+                    <h3 class="titulo">Lista de Recetas Inactivas</h3>
+                    <a href="{{route('recetas.pdf', ['button_id' => 2]) }}" class="btnEditar" >Descargar pdf</a>
+                    <form class="buscador" action="{{route('buscar.recetas', ['buscar' => 2]) }}" method="GET">
+                        @csrf
+                        <input type="text" placeholder="Buscar" name="buscar" value="{{ request('buscar')}}">
                         <button>Buscar</button>
                     </form>
                 </div>
@@ -61,7 +62,7 @@
                                 <td class="crud-form">
                                 <a href="{{ route('receta.edit', $receta->Id_Receta) }}" class="btnEditar swal-edit">Editar</a>
                                 @if($receta->etapa)
-                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Inactivar</a>
+                                <a href="{{ route('receta.inactive', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Desactivar</a>
                                 @else
                                 <a href="{{ route('receta.active', $receta->Id_Receta) }}" class="btnEliminar swal-confirm">Activar</a>
                                 @endif 

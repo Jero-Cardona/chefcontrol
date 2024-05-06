@@ -21,6 +21,9 @@
                         <button>Buscar</button>
                     </form>
                 </div>
+                
+                <a href="{{route('ordenes.pdf', ['button_id' => 1]) }}" class="btnEditar" >Descargar pdf</a>
+
                 <div class="orden-container">
                     @foreach($ordenesPorCliente as $cliente => $ordenesDelCliente)
                         <div class="orden">

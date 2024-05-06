@@ -1,84 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>pdf recetas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+    <title>{{ $titulo }} - PDF</title>
     <style>
-        table{
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        th,td{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
+
+        h2 {
+            text-align: center;
         }
-        tr:nth-child(even){
-            background-color: #dddddd;
+
+        p {
+            text-align: justify;
+            margin: 0 0 15px 0;
         }
+
         .card {
-        width: 300px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .card img {
-            width: 100%;
-            height: 150px;
+            max-width: 100%;
+            height: auto;
             display: block;
+            border-radius: 5px;
         }
-        
-        .card-content {
-            padding: 20px;
+
+        .card h3 {
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
-        
-        .card-content h3 {
-            margin-top: 0;
-        }
-        
-        .card-content p {
-            margin-bottom: 0;
-        }
-        .imagen{
-            width: 400px;
-            height: 500px;
-            border: solid black 2px;
+
+        .card p {
+            margin: 0;
         }
     </style>
+</head>
 <body>
-    <?php
-    $i = 0;
-    ?>
-    <h2>Registros Recetas</h2>
-    <p>El siguiente documento pdf contiene un listado de todos 
-        los registros que hay en el aplicativo hasta el momento, 
-        dichos registros se hacen apartir bajo el uso del sistema y sus diferentes formularios</p>
-    @foreach ($recetas as $receta)
-    <div class="row">
-        <div class="col-md-6">
-        <div class="card">
-                <img class="imagen" src="{{ public_path($imageName[$i]) }}" alt="Imagen"></td>
-            <div class="card-content">
-                <h3>Nombre: {{ $receta->Nombre }}</h3>
-                <p>Descripcion de la Receta: {{ $receta->Descripcion }}</p>
-                <p>Costo Total de la Receta: {{ $receta->Costo_Total }}</p>
-                <p>Contribucion: {{ $receta->Contribucion }}</p>
-                <p>Estado de la Receta: {{ $receta->Estado }}</p>
-            </div>
-        </div>
+    <h2>{{ $titulo }}</h2>
+    <p>Este documento contiene un listado de las {{ $titulo }}. Aquí se detallan sus atributos y características principales.</p>
+
+    @foreach ($recetas as $index => $receta)
+    <div class="card">
+        <img src="{{ public_path($imageName[$index]) }}" alt="Imagen de {{ $receta->Nombre }}">
+        <h3>{{ $receta->Nombre }}</h3>
+        <p>Descripción: {{ $receta->Descripcion }}</p>
+        <p>Costo total: {{ $receta->Costo_Total }}</p>
+        <p>Contribución: {{ $receta->Contribucion }}</p>
+        <p>Estado: {{ $receta->Estado }}</p>
     </div>
-    </div>
-    <br>
-    <?php
-    $i++;
-    ?>
     @endforeach
 </body>
 </html>

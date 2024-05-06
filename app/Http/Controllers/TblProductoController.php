@@ -22,7 +22,7 @@ class TblProductoController extends Controller
     // Retorna el crud 
     public function index()
     {
-        $productos = tbl_producto::paginate(4);
+        $productos = tbl_producto::paginate(5);
         return view('usuarios.CrudProducto',compact('productos'));
     }
 
@@ -208,7 +208,11 @@ class TblProductoController extends Controller
         $searchTerm = $request->input('buscar');
         $resultados = tbl_producto::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->paginate(3);
         
-        // return $resultados;
+        if ($resultados->isEmpty()) {
+            return redirect()->route('crudproductos')
+            ->with('mensaje', '¡No existe el producto: '. $searchTerm.'!');
+        } else {
         return view('buscar.BuscarProducto', compact('resultados','searchTerm')); 
+        }
     }
 }

@@ -17,7 +17,6 @@ class TblUsuariosController extends Controller
     // constructor para los middleware
     public function __construct()
     {
-        // $this->middleware('auth', ['except'=>'index']);
         $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
     }
 
@@ -118,7 +117,8 @@ class TblUsuariosController extends Controller
         // Identificador de sesión
         $request->session()->regenerate();
     
-        return redirect()->intended('Recetario');
+        return redirect()->intended('Recetario')
+        ->with('inicio','!Bienvenido de nuevo¡');
     }
     
     // funcion para salir de la sesion
@@ -203,7 +203,11 @@ class TblUsuariosController extends Controller
         $searchTerm = $request->input('buscar');
         $resultados = tbl_usuarios::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
         
-        // return $resultados;
+        if ($resultados->isEmpty()) {
+            return redirect()->route('usuarios.index')
+            ->with('mensaje', '¡Usuario '.$searchTerm.' no encontrado!');
+        } else {
         return view('buscar.BuscarUsuario', compact('resultados','searchTerm')); 
+        }
     }
 }

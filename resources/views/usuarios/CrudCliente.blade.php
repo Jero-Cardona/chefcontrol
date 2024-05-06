@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    @if (session('success'))
-    <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-        {{ session('success') }}
-    </div>
-    @endif
     <div class="div1">
         <div class="div2">
             <div class="div3">
@@ -120,4 +115,17 @@
         Centro de la Innovacion, agroindustria y aviacion</b></p>
     <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
 </footer>
+            @if(session('success'))
+                <script>
+                Swal.fire({
+                position: "center",
+                icon: "warning",
+                text: "Intenta buscar de nuevo, este registro no existe",
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+                });
+                </script>
+            @endif
 @endsection

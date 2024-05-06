@@ -10,12 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
     <link rel="icon" href="{{asset('imagenes/proyecto/sombrerochef.svg')}}">
+    <link rel="icon" href="{{asset('imagenes/proyecto/logo.svg')}}">
     <title>ChefControl</title>
     {{-- enlace a boostrap 5 css --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/cssclsbootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     {{-- enlace a estilos de css personalizados --}}
     @yield('style')
     {{-- <link rel="stylesheet" href="{{ asset('/css/style.css')}}"> --}}
+    <!-- enlace de la libreria de SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 </head>
 <body>
     {{-- <div class="contenedorRegistro"> --}}
@@ -45,7 +48,7 @@
                         <div class="submenu">
                             <a href="{{route('receta.create')}}">Nueva Receta</a>
                             <a href="{{route('detalleReceta.create')}}">Agregar Detalle a una Receta</a>
-                            <a href="{{route('crudrecetas')}}">Recetas Activas</a>
+                            <a href="{{route('crudrecetas')}}">Lista de Recetas</a>
                             <a href="{{route('crudrecetas.inactivas')}}">Recetas Inactivas</a>
                             <a href="{{route('crudrecetas.espera')}}">Recetas en espera </a>
                             @if(Auth::user()->Id_Rol == '2')
@@ -111,12 +114,21 @@
   
             </div>
         </header>
-    {{-- </div> --}}
-    {{-- <div class="container mt-4"> --}}
         @yield('content')
-    {{-- </div> --}}
-    <!-- enlace de la libreria de SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    {{-- link de error de busqueda --}}
+    @if(session('mensaje'))
+                <script>
+                Swal.fire({
+                position: "center",
+                icon: "info",
+                title: "Intenta buscar de nuevo, este registro no existe",
+                text: "{{ session('mensaje') }}",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+                });
+                </script>
+            @endif
     {{-- enalce a scripts personalizados del aplicativo --}}
     <script src="{{asset('js/SweetAlerts.js')}}">
     </script>     

@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="icon" href="{{asset('imagenes/proyecto/sombrerochef.svg') }}">
         <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
         <title>Chef Control | Recetario</title>
 </head>
 <body>
@@ -256,6 +257,22 @@
         </div>
     </section>
 <script src="{{asset('js/SweetAlerts.js')}}"></script>
-</body>
+@if (session('inicio'))
+<script>
+Swal.fire({
+    text: "Es un gusto tenerte de nuevo en nuestro aplicativo web",
+    position: "center",
+    title: "¡Bienvenido de nuevo {{Auth::user()->Nombre}}!",
+    // imageUrl: "{{asset('imagenes/proyecto/image33.png')}}",
+    // imageWidth: 400,
+    // imageHeight: 200,
+    // imageAlt: "Custom image",
+    showConfirmButton: false,
+    confirmButtonColor:  'rgba(255, 102, 0)',
+    timer: 4000,
+    timerProgressBar: true,
+  });
+  </script>
+@endif
 </html>
 

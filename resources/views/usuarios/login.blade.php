@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/estilosLogin.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-0kI1HjxgLveGKz6cuwDSMN4wr1jUnslm2L1qLYF5bDOcVvU7kU0/73RbVhqGpjU/" crossorigin="anonymous">
+    <link rel="stylesheet" href="ruta/a/font-awesome.min.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-0kI1HjxgLveGKz6cuwDSMN4wr1jUnslm2L1qLYF5bDOcVvU7kU0/73RbVhqGpjU/" crossorigin="anonymous"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <title>Document</title>
 </head>
 <body>
@@ -31,22 +34,7 @@
                 </nav>
             </div>
         </header>
-        @if (session('logout'))
-        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-        
-            {{ session('logout') }}
-        </div>
-        @endif
         <div class="contenedorFormLogin">
-        @if ($errors->any())
-        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
-        @if ($errors->has('credentials'))
-            {{ $errors->first('credentials') }}
-        @else
-            <p>Por favor, complete todos los campos.</p>
-        @endif
-        </div>
-        @endif
             <div class="contenedor1Login">
                 <div class="tituloFormLogin">
                     <h2>Iniciar sesión</h2>
@@ -101,6 +89,53 @@
             <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
         </footer>
     </div>
+     {{-- link de error de busqueda --}}
+     @if(session('logout'))
+     <script>
+        Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "¡Gracias por Navegar en nuestro aplicativo web ChefControl!",
+        title: "{{ session('logout') }}",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true
+        });
+     </script>
+    @endif
+     {{-- @if ($errors->any())
+        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;" role="alert">
+        @if ($errors->has('credentials'))
+            {{ $errors->first('credentials') }}
+        @else
+            <p>Por favor, complete todos los campos.</p>
+        @endif
+        </div>
+        @endif --}}
+
+    @if ($errors->has('credentials'))
+    <script>
+        Swal.fire({
+        position: "center",
+        icon: "error",
+        text: "!Estas credenciales no coinciden con nuestros registros! Por favor intenta de nuevo. ",
+        title: "!Ups, Algo anda mal¡",
+        showConfirmButton: true,
+        confirmButtonColor:  'rgba(255, 102, 0)',
+        });
+     </script>
+    {{-- @else
+    <script>
+        Swal.fire({
+        position: "center",
+        icon: "info",
+        text: "!Por favor, complete todos los campos! ",
+        title: "Faltan Datos",
+        showConfirmButton: true,
+        confirmButtonColor:  'rgba(255, 102, 0)',
+        });
+     </script> --}}
+    @endif
     <script src="{{asset('js/SweetAlerts.js')}}"></script>
 </body>
 </html>

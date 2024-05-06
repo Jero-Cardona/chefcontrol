@@ -11,6 +11,15 @@
             <div class="div3">
                 <div class="divHeader">
                     @if ($resultados->isEmpty())
+                 <script>
+                        Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "No se encontro ningun registro",
+                        showConfirmButton: false,
+                        timer: 5000
+                        });
+                </script>
                     <h3 class="titulo">No se encontro : <b>{{$searchTerm}}</b></h3>
                     @else
                     <h3 class="titulo">Resultados para la busqueda de <b>{{$searchTerm}}</b></h3>
@@ -79,3 +88,4 @@
     <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
 </footer>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
