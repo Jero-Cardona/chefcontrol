@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/estilosLogin.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="ruta/a/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-0kI1HjxgLveGKz6cuwDSMN4wr1jUnslm2L1qLYF5bDOcVvU7kU0/73RbVhqGpjU/" crossorigin="anonymous"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,13 +57,13 @@
                         <label for="Id_Empleado">Número de documento</label>
                     </div>
                     <div class="form2Login">
+                        
                         <input type="password" name="password" id="password" required>
                         <label for="password">Contraseña</label>
-                        {{-- <span class="toggle-password" onclick="togglePasswordVisibility()">
+                         <span class="toggle-password" onclick="togglePasswordVisibility()">
                             <i class="fas fa-eye"></i>
-                            ver contraseña
-                          </span> --}}
-                        {{-- <button onclick="ShowPassword()">Mostrar contraseña</button> --}}
+                        </span>
+                       
                     </div>
                     <div style="margin: 0 auto;">
                         <input type="checkbox" name="remember" >
@@ -73,11 +73,7 @@
                         <input type="submit" class="enviarLogin">
                         <a href="{{route('home')}}">Volver</a>
                     </div>
-                    {{-- ver contraseña funcion --}}
-                    <span class="toggle-password" onclick="togglePasswordVisibility()">
-                        <i class="fas fa-eye"></i>
-                        ver contraseña
-                      </span>
+                   
                 </form>
                 <img id="imagenlogin" src="{{asset('imagenes/proyecto/cocineros.png')}}">
             </div>

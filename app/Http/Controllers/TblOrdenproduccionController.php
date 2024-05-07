@@ -9,7 +9,7 @@ use App\Models\tbl_cliente;
 use App\Models\tbl_detalleordenproduccion;
 use App\Models\tbl_receta;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class TblOrdenproduccionController extends Controller
 {
     // constructor para los middleware
@@ -248,25 +248,27 @@ class TblOrdenproduccionController extends Controller
             }
     }
 
-    public function pdf ($button_id)
-    {
-        if($button_id == 1){
-            $orden = tbl_ordenproduccion::where('estado', 'En espera')
-            ->get();
-            $titulo = 'Órdenes en espera';
-        }elseif($button_id == 2) {
-            $orden = tbl_ordenproduccion::where('estado', 'En preparación')
-            ->get();
-            $titulo = 'Órdenes en preparación';
-        }else{
-            $orden = tbl_ordenproduccion::where('estado', 'Entregado')
-            ->get();
-            $titulo = 'Órdenes entregadas';
-        }
-
-        $pdf = Pdf::loadView('pdf.pdfordenes',compact('orden', 'titulo'));
-        return $pdf->download($titulo.'.pdf');
+    public function pdf($button_id)
+{
+    if ($button_id == 1) {
+        $ordenes = tbl_ordenproduccion::where('estado', 'En espera')->get();
+        $titulo = 'Órdenes en espera';
+    } elseif ($button_id == 2) {
+        $ordenes = tbl_ordenproduccion::where('estado', 'En preparación')->get();
+        $titulo = 'Órdenes en preparación';
+    } else {
+        $ordenes = tbl_ordenproduccion::where('estado', 'Entregado')->get();
+        $titulo = 'Órdenes entregadas';
     }
+
+    $ordenesPorCliente = $ordenes->groupBy(function ($orden) {
+        return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+    });
+
+    $pdf = Pdf::loadView('pdf.pdfordenes', compact('ordenes', 'titulo', 'ordenesPorCliente'));
+    return $pdf->download($titulo . '.pdf');
+}
+
 }
 
 

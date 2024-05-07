@@ -20,9 +20,9 @@
                         <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
                         <button>Buscar</button>
                     </form>
+                    <a href="{{route('ordenes.pdf', ['button_id' => 1]) }}" class="btnEditar" >Descargar pdf</a>
                 </div>
                 
-                <a href="{{route('ordenes.pdf', ['button_id' => 1]) }}" class="btnEditar" >Descargar pdf</a>
 
                 <div class="orden-container">
                     @foreach($ordenesPorCliente as $cliente => $ordenesDelCliente)

@@ -18,6 +18,7 @@
                 <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
                 <button>Buscar</button>
             </form>
+            <a href="{{route('ordenes.pdf', ['button_id' => 3]) }}" class="btnEditar" >Descargar pdf</a>
         </div>
         <div class="orden-container">
             @foreach($ordenesEntregadas->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)

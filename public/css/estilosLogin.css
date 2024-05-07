@@ -384,17 +384,13 @@
 }
 
 /* clases para ver la contraseña */
-.toggle-password {
-    position: relative;
-    cursor: pointer;
-    float: right;
-  }
-  
-  .toggle-password i {
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translateY(-50%);
-    font-size: 16px; /* Tamaño del ícono */
-  }
 
+.toggle-password {
+    position: absolute;
+    top: 28%;
+    right: 15px;
+    
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1; /* Asegura que el icono esté sobre el input */
+}

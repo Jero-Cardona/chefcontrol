@@ -14,11 +14,13 @@
 @endif
 <div class="container">
     <div class="title-container">
-        <h1>Órdenes de Producción en Preparacción</h1>
+        <h1>Órdenes de Producción en Preparación</h1>
         <form class="buscador" style="display: inline-flex; float: end;" action="{{route('buscar.ordenesPreparacion')}}" method="GET">
             <input type="text" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar')}}">
             <button>Buscar</button>
         </form>
+        
+        <a href="{{route('ordenes.pdf', ['button_id' => 2]) }}" class="btnEditar" >Descargar pdf</a>
     </div>
 
     <div class="orden-container">
