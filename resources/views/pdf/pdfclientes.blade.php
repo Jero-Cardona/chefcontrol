@@ -1,17 +1,20 @@
 <style>
-     table{
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th,td{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 </style>
 <h1>Registros Clientes</h1>
 <table border="1">
@@ -30,12 +33,12 @@
     <tbody>
         @foreach ($clientes as $cliente)
             <tr>
-            <td>{{ $cliente->Id_Cliente }}</td>
-            <td>{{ $cliente->Tipo_identificacion }}</td>
-            <td>{{ $cliente->Nombre }}</td>
-            <td>{{ $cliente->Apellido }}</td>
-            <td>{{ $cliente->Telefono }}</td>
-            <td>{{ $cliente->estado }}</td>
+                <td>{{ $cliente->Id_Cliente }}</td>
+                <td>{{ $cliente->Tipo_identificacion }}</td>
+                <td>{{ $cliente->Nombre }}</td>
+                <td>{{ $cliente->Apellido }}</td>
+                <td>{{ $cliente->Telefono }}</td>
+                <td>{{ $cliente->estado }}</td>
                 <!-- Agrega más columnas según tus necesidades -->
             </tr>
         @endforeach

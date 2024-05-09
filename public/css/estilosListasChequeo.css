@@ -1,14 +1,16 @@
-.contenedorTotalLista{
+.contenedorTotalLista {
     display: inline-flex;
     margin-right: 70px;
     margin-bottom: 0%;
 }
-.menu-lista{
+
+.menu-lista {
     background-color: rgba(154, 0, 15);
     align-items: flex-start;
     padding: 120px;
     /* margin-top: 0%; */
 }
+
 /* .botonesMenuLista{
     width: 150px;
     display: flex;
@@ -19,23 +21,27 @@
     color: rgba(154, 0, 15);
     font-size: 15px;
 } */
-.formularioLista{
+.formularioLista {
     margin: 40px 0px 40px 40px;
 }
-.divLista{
+
+.divLista {
     background-color: rgba(154, 0, 15);
     text-align: center;
     color: white;
-    padding: 25px;     
+    padding: 25px;
 }
-.tittleLista{
+
+.tittleLista {
     font-size: 45px;
 }
-.contentLista{
+
+.contentLista {
     padding: 50px;
     background-color: darkgray;
 }
-.btn-submit{
+
+.btn-submit {
     width: 120px;
     height: 30px;
     border-radius: 6px;
@@ -43,21 +49,22 @@
     padding: 0px 15px;
     background-color: rgba(255, 102, 0);
     color: white;
-    outline: none; 
+    outline: none;
     border: none;
-} 
-.items-tareas{
-    display: inline-block;
-    margin-right: 10px; 
-    padding-bottom: 10px;
-    
 }
 
-.tittle-items{
+.items-tareas {
+    display: inline-block;
+    margin-right: 10px;
+    padding-bottom: 10px;
+
+}
+
+.tittle-items {
     font-size: 35px;
 }
 
-input{
+input {
     height: 20px;
     width: 18px;
     margin: 10px;
@@ -127,27 +134,28 @@ input{
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:768px) {
 
-    .menuRecetas, .btnMenuR{
+    .menuRecetas,
+    .btnMenuR {
         line-height: 55px;
     }
 
-    .usuarioRecetas{
+    .usuarioRecetas {
         position: relative;
         top: -15px;
     }
 
-    .logo1Recetas{
+    .logo1Recetas {
         height: 55px;
         width: 55px;
     }
 
-    .headerRecetas{
+    .headerRecetas {
         height: 65px;
     }
 
-    .menuRecetas{
+    .menuRecetas {
         position: absolute;
         background-color: rgb(119, 0, 12);
         width: 100%;
@@ -158,47 +166,46 @@ input{
         transform: translateX(-100%);
     }
 
-    #btnMenu:checked ~ .menuRecetas{
+    #btnMenu:checked~.menuRecetas {
         transform: translateX(0);
     }
 
-    .menuRecetas a{
+    .menuRecetas a {
         display: block;
         margin-top: 5px;
     }
 
-    .btnMenuR{
+    .btnMenuR {
         display: block;
         padding-right: 10px;
     }
-} 
+}
 
 /* Media querys footer*/
 
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:768px) {
 
-    .footerLogin{
+    .footerLogin {
         height: 80px;
         grid-template: 80px / 50px 1fr 80px;
         bottom: 0;
     }
 
-    .footerLogin p{
+    .footerLogin p {
         font-size: 10px;
         margin: 5px;
     }
 
-    .logo1SenaLogin{
+    .logo1SenaLogin {
         height: 50px;
         width: 50px;
         margin: 2px;
     }
 
-    .logo3Login{
+    .logo3Login {
         height: 65px;
         width: 65px;
     }
 
-} 
-
+}

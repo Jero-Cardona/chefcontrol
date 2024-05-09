@@ -1,25 +1,26 @@
 @extends('layouts.app')
-{{ session('confirm-producto')}}
-@section('style')
-@endsection
+{{ session('confirm-producto') }}
 @section('content')
-<body>
-    {{session ('confirm-user')}}
+    <body>
+        {{ session('confirm-user') }}
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
                     <h2>Actualizar Usuarios</h2>
                 </div>
                 {{-- formulario de registro de usuarios resposive --}}
-                <form action="{{route('usuarios.update', $usuario[0]->Id_Empleado)}}" method="POST" class="formularioRegistro">
+                <form action="{{ route('usuarios.update', $usuario[0]->Id_Empleado) }}" method="POST"
+                    class="formularioRegistro">
                     @csrf
                     @method('PUT')
                     <div class="formRegistro">
-                        <input value="{{$usuario[0]->Id_Empleado }}" id="Id_Empleado" name="Id_Empleado" type="text" required>
+                        <input value="{{ $usuario[0]->Id_Empleado }}" id="Id_Empleado" name="Id_Empleado" type="text"
+                            required>
                         <label for="Id_Empleado">Numero de documento</label>
                     </div>
                     <div class="form1Registro">
-                        <select value="{{$usuario[0]->tipo_documento }}" id="tipo_documento" name="tipo_documento" required>
+                        <select value="{{ $usuario[0]->tipo_documento }}" id="tipo_documento" name="tipo_documento"
+                            required>
                             <option value="" disabled selected hidden>Tipo de documento</option>
                             <option value="Cédula de Ciudadanía">Cédula de Ciudadanía (CC)</option>
                             <option value="Tarjeta de Identidad">Tarjeta de Identidad (TI)</option>
@@ -29,19 +30,19 @@
                         </select>
                     </div>
                     <div class="formRegistro">
-                        <input value="{{$usuario[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
+                        <input value="{{ $usuario[0]->Nombre }}" id="Nombre" name="Nombre" type="text" required>
                         <label for="Nombre"> Nombre Usuario</label>
                     </div>
                     <div class="formRegistro">
-                        <input value="{{$usuario[0]->Apellido }}" id="Apellido" name="Apellido" type="text" required>
+                        <input value="{{ $usuario[0]->Apellido }}" id="Apellido" name="Apellido" type="text" required>
                         <label for="Apellido"> Apellido Usuario</label>
                     </div>
                     <div class="formRegistro">
-                        <input value="{{$usuario[0]->Telefono }}" id="Telefono" name="Telefono" type="text" required>
+                        <input value="{{ $usuario[0]->Telefono }}" id="Telefono" name="Telefono" type="text" required>
                         <label for="Telefono"> Telefono Usuario</label>
                     </div>
                     <div class="form1Registro">
-                        <select value="{{$usuario[0]->Id_Rol }}" id="Id_Rol" name="Id_Rol" required>
+                        <select value="{{ $usuario[0]->Id_Rol }}" id="Id_Rol" name="Id_Rol" required>
                             <option value="" disabled selected hidden>Tipo de Usuario</option>
                             <option value="1">Usuario Cocinero</option>
                             <option value="2">Usuario Administrador</option>
@@ -54,11 +55,11 @@
             </div>
         </div>
         <footer class="footerLogin">
-            <img class="logo1SenaLogin" src="{{asset('imagenes/proyecto/logoSena.png')}}">
+            <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la Innovacion, agroindustria y aviacion</b></p>
-            <img class="logo3Login" src="{{asset('imagenes/proyecto/logo.svg')}}">
+                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+            <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
-    </div>
-</body>
+        </div>
+    </body>
 @endsection

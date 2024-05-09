@@ -46,17 +46,19 @@
 </head>
 <body>
     <h2>{{ $titulo }}</h2>
-    <p>Este documento contiene un listado de las {{ $titulo }}. Aquí se detallan sus atributos y características principales.</p>
+    <p>Este documento contiene un listado de las {{ $titulo }}. Aquí se detallan sus atributos y características
+        principales.</p>
 
     @foreach ($recetas as $index => $receta)
-    <div class="card">
-        <img src="{{ public_path($imageName[$index]) }}" alt="Imagen de {{ $receta->Nombre }}">
-        <h3>{{ $receta->Nombre }}</h3>
-        <p>Descripción: {{ $receta->Descripcion }}</p>
-        <p>Costo total: {{ $receta->Costo_Total }}</p>
-        <p>Contribución: {{ $receta->Contribucion }}</p>
-        <p>Estado: {{ $receta->Estado }}</p>
-    </div>
+        <div class="card">
+            <img src="{{ public_path($imageName[$index]) }}" alt="Imagen de {{ $receta->Nombre }}">
+            <h3>{{ $receta->Nombre }}</h3>
+            <p>Descripción: {{ $receta->Descripcion }}</p>
+            <p>Costo total: {{ $receta->Costo_Total }}</p>
+            <p>Contribución: {{ $receta->Contribucion }}</p>
+            <p>Estado: {{ $receta->Estado }}</p>
+        </div>
     @endforeach
 </body>
+
 </html>

@@ -20,85 +20,86 @@ class TblRecetaController extends Controller
     // constructor para los middleware
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>'index']);
-        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('AdminRol', ['only' => ['active', 'inactive', 'estandarizar']]);
     }
 
-    public function Mostrarimagen(Request $request, $id ){
-    $id=$request->Id_Receta;
-    $imagen=tbl_receta::find($id);
-    if($imagen)
+    public function Mostrarimagen(Request $request, $id)
     {
-        $imagenmostrada=base64_encode($imagen->imagen);
-        return view('index',['imagen'=>$imagenmostrada]);
-    }else{
-        return "NO FUNCA";
-    }
+        $id = $request->Id_Receta;
+        $imagen = tbl_receta::find($id);
+        if ($imagen) {
+            $imagenmostrada = base64_encode($imagen->imagen);
+            return view('index', ['imagen' => $imagenmostrada]);
+        } else {
+            return "NO FUNCA";
+        }
     }
 
     // Carga la vista de Recetas
     public function index()
     {
         $recetas = tbl_receta::where('etapa', true)
-        ->where('Estado', '1')
-        ->paginate(6);
-        return view('usuarios.CrudReceta',compact('recetas'));
+            ->where('Estado', '1')
+            ->paginate(6);
+        return view('usuarios.CrudReceta', compact('recetas'));
     }
 
-     // Carga la vista de Recetas Inactivas
-     public function indexInactivas()
-     {
+    // Carga la vista de Recetas Inactivas
+    public function indexInactivas()
+    {
         $recetas = tbl_receta::where('etapa', false)
-        ->paginate(4);
-        return view('usuarios.CrudRecetaInactivas',compact('recetas'));
+            ->paginate(4);
+        return view('usuarios.CrudRecetaInactivas', compact('recetas'));
     }
     public function indexEspera()
     {
         $recetas = tbl_receta::where('Estado', '2')
-        ->paginate(4);
-        return view('usuarios.CrudRecetasEnEspera',compact('recetas'));
+            ->paginate(4);
+        return view('usuarios.CrudRecetasEnEspera', compact('recetas'));
     }
 
     public function indexSugeridas()
-{
-    $recetasLog = auth()->user()->recetasLog;
-    $recetasIds = $recetasLog->pluck('receta_id');
-    $recetas = tbl_receta::whereIn('Id_Receta', $recetasIds)
-        ->with('detallesReceta.producto', 'detallesReceta.unidadMedida')
-        ->get();
+    {
+        $recetasLog = auth()->user()->recetasLog;
+        $recetasIds = $recetasLog->pluck('receta_id');
+        $recetas = tbl_receta::whereIn('Id_Receta', $recetasIds)
+            ->with('detallesReceta.producto', 'detallesReceta.unidadMedida')
+            ->get();
 
-    return view('usuarios.recetasSugeridas', compact('recetas'));
-}
+        return view('usuarios.recetasSugeridas', compact('recetas'));
+    }
     // Carga el formulario de Recetas
-    public function create(){
+    public function create()
+    {
         return view('usuarios.FormReceta');
     }
 
-    
+
     public function store(Request $request)
     {
         // Validaciones
         $request->validate([
-        'Nombre' => 'required',
-        'Descripcion' => 'required',
-        'Costo_Total' => 'required|integer',
-        'Contribucion' => 'required|integer',
-        'Estado' => 'required',
-        'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-    ], [
-        'Nombre.required' => 'El campo Nombre es obligatorio.',
-        'Descripcion.required' => 'El campo Descripción es obligatorio.',
-        'Costo_Total.required' => 'El campo Costo Total es obligatorio.',
-        'Costo_Total.integer' => 'El campo Costo Total debe ser un número entero.',
-        'Contribucion.required' => 'El campo Contribución es obligatorio.',
-        'Contribucion.integer' => 'El campo Contribución debe ser un número entero.',
-        'Estado.required' => 'El campo Estado es obligatorio.',
-        'imagen.required' => 'El campo Imagen es obligatorio.',
-        'imagen.image' => 'El archivo debe ser una imagen.',
-        'imagen.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg o gif.',
-        'imagen.max' => 'La imagen no debe ser mayor de 2MB.'
-    ]);
-    
+            'Nombre' => 'required',
+            'Descripcion' => 'required',
+            'Costo_Total' => 'required|integer',
+            'Contribucion' => 'required|integer',
+            'Estado' => 'required',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ], [
+            'Nombre.required' => 'El campo Nombre es obligatorio.',
+            'Descripcion.required' => 'El campo Descripción es obligatorio.',
+            'Costo_Total.required' => 'El campo Costo Total es obligatorio.',
+            'Costo_Total.integer' => 'El campo Costo Total debe ser un número entero.',
+            'Contribucion.required' => 'El campo Contribución es obligatorio.',
+            'Contribucion.integer' => 'El campo Contribución debe ser un número entero.',
+            'Estado.required' => 'El campo Estado es obligatorio.',
+            'imagen.required' => 'El campo Imagen es obligatorio.',
+            'imagen.image' => 'El archivo debe ser una imagen.',
+            'imagen.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg o gif.',
+            'imagen.max' => 'La imagen no debe ser mayor de 2MB.'
+        ]);
+
         // Procesamiento de la imagen
         if ($request->hasFile('imagen')) {
             $imageName = time() . '.' . $request->imagen->extension();
@@ -107,10 +108,10 @@ class TblRecetaController extends Controller
         } else {
             $urlreceta = "";
         }
-    
+
         // Instanciación de la clase
         $receta = new tbl_receta;
-       
+
         // Asignación de valores
         $receta->Nombre = $request->Nombre;
         $receta->Descripcion = $request->Descripcion;
@@ -119,38 +120,40 @@ class TblRecetaController extends Controller
         $receta->Estado = $request->Estado;
         $receta->imagen = $urlreceta;
         $receta->etapa = $request->etapa;
-    
+
         // Guardado de datos
         $receta->save();
 
         // Registrar quién ingresó la receta
         $recetaLog = new tbl_receta_usuario();
-        
+
         $recetaLog->receta_id = $receta->Id_Receta;
         $recetaLog->usuario_id = auth()->user()->Id_Empleado;
         $recetaLog->save();
-    
+
         // Redireccionamiento y mensaje de éxito
         session()->flash('success', 'La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
         return view('usuarios.frmDetalleReceta');
     }
-    
+
 
     // Carga el formulario de editar receta
-    public function edit($Id_Receta){
+    public function edit($Id_Receta)
+    {
         $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
         return view('usuarios.EditReceta', compact('receta'));
     }
     // Actualiza los datos del registro en la abla en la BD
-    public function update(Request $request, $Id_Receta){
+    public function update(Request $request, $Id_Receta)
+    {
 
-       // devuelve un array del objeto
-       $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
-       $request->validate([
-           'imagen1'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-       ]);
+        // devuelve un array del objeto
+        $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
+        $request->validate([
+            'imagen1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
         // condicional de imagen
-        if($request->hasFile('imagen1')){
+        if ($request->hasFile('imagen1')) {
 
             $imagenUrl = $receta[0]->imagen;
             $urlComponentes = parse_url($imagenUrl);
@@ -158,48 +161,47 @@ class TblRecetaController extends Controller
             $urlproducto = public_path($imageName);
 
             if (file_exists($urlproducto)) {
-            // Elimina la imagen del directorio
+                // Elimina la imagen del directorio
                 unlink($urlproducto);
             }
 
-           $imageName = time().'.'.$request->imagen1->extension();
-           $request->imagen1->move(public_path('imagenes/recetas/'), $imageName);
-           $urlreceta = asset('imagenes/recetas/'. $imageName);
-       }else{
-           $urlreceta = "";
-       }
-       // rempleza la imagen de la bd
-       $request['imagen'] = $urlreceta;
-       if($receta){
-           DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->update($request->except(['_token','_method','imagen1']));
-           return to_route('crudrecetas');
-       }else{
-           return "no se pudo actulizar";
-       }
+            $imageName = time() . '.' . $request->imagen1->extension();
+            $request->imagen1->move(public_path('imagenes/recetas/'), $imageName);
+            $urlreceta = asset('imagenes/recetas/' . $imageName);
+        } else {
+            $urlreceta = "";
+        }
+        // rempleza la imagen de la bd
+        $request['imagen'] = $urlreceta;
+        if ($receta) {
+            DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->update($request->except(['_token', '_method', 'imagen1']));
+            return to_route('crudrecetas');
+        } else {
+            return "no se pudo actulizar";
+        }
     }
     // // elimina registros de la base de datos
     public function destroy($Id_Receta)
     {
         $receta = DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->get();
-        if($receta){
+        if ($receta) {
             $imagenUrl = $receta[0]->imagen;
             $urlComponentes = parse_url($imagenUrl);
             $imageName = $urlComponentes['path'];
             DB::table('tbl_receta')->where('Id_Receta', $Id_Receta)->delete();
 
-             // codigo para borrar la imagen del directorio
-             $urlreceta = public_path($imageName);
+            // codigo para borrar la imagen del directorio
+            $urlreceta = public_path($imageName);
 
-             // Verifica si el archivo existe antes de intentar eliminarlo
-             if (file_exists($urlreceta)) {
-                 unlink($urlreceta);
-             }
+            // Verifica si el archivo existe antes de intentar eliminarlo
+            if (file_exists($urlreceta)) {
+                unlink($urlreceta);
+            }
 
-            return to_route('crudrecetas')->with('success','se elimino la receta de manera existosa');
-        }else{
+            return to_route('crudrecetas')->with('success', 'se elimino la receta de manera existosa');
+        } else {
             return "no se lograron eliminar los datos";
         }
-        
     }
 
     //función para inactivar la receta
@@ -233,14 +235,14 @@ class TblRecetaController extends Controller
     }
 
     //muestra todas las recetas en el recetario
-    public function recetario ()
+    public function recetario()
     {
         $recetasActivas = tbl_receta::where('etapa', true)
-        ->where('Estado','1')
-        ->paginate(8);
+            ->where('Estado', '1')
+            ->paginate(8);
         return view('usuarios.IndexReceta', compact('recetasActivas'));
     }
-    
+
     public function showingrediente($Id_Receta)
     {
         //se llama el modelo de recetas y se interatua con las relaciones(funciones) que se hizo en los modelos de detallereceta y receta, y se utiliza el metodo "findOrFail" para encontrar la clave promaria del modelo y obtener una instancia de dicho modelo
@@ -250,18 +252,18 @@ class TblRecetaController extends Controller
 
     public function pdf($button_id)
     {
-        if($button_id == 1){
+        if ($button_id == 1) {
             $recetas = tbl_receta::where('etapa', true)
-            ->where('Estado', '1')
-            ->get();
+                ->where('Estado', '1')
+                ->get();
             $titulo = 'Recetas Estandarizadas';
-        }elseif($button_id == 2) {
+        } elseif ($button_id == 2) {
             $recetas = tbl_receta::where('etapa', false)
-            ->get();
+                ->get();
             $titulo = 'Recetas Inactivadas';
-        }else{
-            $recetas = tbl_receta::where('Estado','2')
-            ->get();
+        } else {
+            $recetas = tbl_receta::where('Estado', '2')
+                ->get();
             $titulo = 'Recetas en Espera';
         }
         $imageName = [];
@@ -271,11 +273,11 @@ class TblRecetaController extends Controller
             $urlComponentes = parse_url($imagenUrl);
             $imageName[] = $urlComponentes['path'];
         }
-        $pdf = Pdf::loadView('pdf.pdfrecetas',compact('recetas','imageName', 'titulo'));
-        return $pdf->download($titulo.'.pdf');
+        $pdf = Pdf::loadView('pdf.pdfrecetas', compact('recetas', 'imageName', 'titulo'));
+        return $pdf->download($titulo . '.pdf');
     }
 
-     public function cantidadmultiplicada(Request $request, $Id_Receta)
+    public function cantidadmultiplicada(Request $request, $Id_Receta)
     {
         $receta = tbl_receta::with('detallesReceta.producto', 'detallesReceta.unidadMedida')->findOrFail($Id_Receta);
         //se crea una variable para obtener el numero de porciones ingresado en el input
@@ -291,33 +293,33 @@ class TblRecetaController extends Controller
                 'unidadMedida' => $detalle->unidadMedida
             ];
         }
-        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas','cantidad'));
+        return view('usuarios.Receta', compact('receta', 'cantidadesAjustadas', 'cantidad'));
     }
 
-    public function buscar(Request $request, $buscar){
+    public function buscar(Request $request, $buscar)
+    {
         // funcion para buscar registros
         $searchTerm = $request->input('buscar');
-        if($buscar == 1){
+        if ($buscar == 1) {
             $resultados = tbl_receta::where('etapa', true)
-            ->where('Estado', '1')
-            ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
-            ->get();
-        }elseif($buscar == 2) {
+                ->where('Estado', '1')
+                ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
+        } elseif ($buscar == 2) {
             $resultados = tbl_receta::where('etapa', false)
-            ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
-            ->get();
-        }else{
-            $resultados = tbl_receta::where('Estado','2')
-            ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
-            ->get();
+                ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
+        } else {
+            $resultados = tbl_receta::where('Estado', '2')
+                ->where('Nombre', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
         }
-        
+
         if ($resultados->isEmpty()) {
             return redirect()->route('crudrecetas')
-            ->with('mensaje', '!La receta '.$searchTerm.' no existe!!');
+                ->with('mensaje', '!La receta ' . $searchTerm . ' no existe!!');
         } else {
-        return view('buscar.BuscarReceta', compact('resultados','searchTerm','buscar')); 
+            return view('buscar.BuscarReceta', compact('resultados', 'searchTerm', 'buscar'));
         }
     }
-    
 }

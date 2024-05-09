@@ -17,7 +17,7 @@ class TblUsuariosController extends Controller
     // constructor para los middleware
     public function __construct()
     {
-        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+        $this->middleware('AdminRol', ['only' => ['edit', 'update', 'active', 'inactive']]);
     }
 
     // sobreescribe el metodo
@@ -30,20 +30,22 @@ class TblUsuariosController extends Controller
     public function index()
     {
         $usuarios = tbl_usuarios::paginate(4);
-        return view('index',compact ('usuarios'));
+        return view('index', compact('usuarios'));
     }
-    
+
 
     //Carga el formulario para el registro de Usuarios
-    public function create(){
+    public function create()
+    {
         return view('usuarios.registro');
     }
 
-     //Carga el formulario para el registro de Usuarios Admin
-     public function createAdmin(){
+    //Carga el formulario para el registro de Usuarios Admin
+    public function createAdmin()
+    {
         return view('usuarios.registroAdmin');
     }
-    
+
     // Guarda a los usuarios en la base de datoswq
     public function store(Request $request)
     {
@@ -67,34 +69,29 @@ class TblUsuariosController extends Controller
             'Id_Rol.required' => 'El campo Rol es obligatorio.'
         ]);
 
-         // Crear una nueva instancia de usuario
-            $usuario = new User;
+        // Crear una nueva instancia de usuario
+        $usuario = new User;
 
-            // Asignar los valores
-            $usuario->Id_Empleado = $request->input('Id_Empleado');
-            $usuario->tipo_documento = $request->input('tipo_documento');
-            $usuario->Nombre = $request->input('Nombre');
-            $usuario->Apellido = $request->input('Apellido');
-            $usuario->Telefono = $request->input('Telefono');
-            $usuario->password = bcrypt($request->input('password')); 
-            $usuario->Id_Rol = $request->input('Id_Rol');
-            $usuario->estado = $request->input('estado');
+        // Asignar los valores
+        $usuario->Id_Empleado = $request->input('Id_Empleado');
+        $usuario->tipo_documento = $request->input('tipo_documento');
+        $usuario->Nombre = $request->input('Nombre');
+        $usuario->Apellido = $request->input('Apellido');
+        $usuario->Telefono = $request->input('Telefono');
+        $usuario->password = bcrypt($request->input('password'));
+        $usuario->Id_Rol = $request->input('Id_Rol');
+        $usuario->estado = $request->input('estado');
+        $usuario->save();
 
-
-            // Guardar el usuario
-            $usuario->save();
-
-            // Redirigir a la ruta de inicio de sesión con un mensaje de éxito
-            return redirect()->route('login')->with('status', 'Usuario Registrado Exitosamente');
-        
+        // Redirigir a la ruta de inicio de sesión con un mensaje de éxito
+        return redirect()->route('login')->with('status', 'Usuario Registrado Exitosamente');
     }
-    
 
-    public function login(){
+    public function login()
+    {
         // $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
         // return view ('usuarios.login', compact('usuario'));
         return view('usuarios.login');
-
     }
 
     // Validar Datos e Iniciar Sesion
@@ -105,7 +102,7 @@ class TblUsuariosController extends Controller
             'tipo_documento' => 'required',
             'password' => ['required', 'string']
         ]);
-    
+
         // Validación de credenciales
         if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             // Indicar error de validación genérico
@@ -113,14 +110,14 @@ class TblUsuariosController extends Controller
                 'credentials' => __('auth.failed')
             ]);
         }
-    
+
         // Identificador de sesión
         $request->session()->regenerate();
-    
+
         return redirect()->intended('Recetario')
-        ->with('inicio','!Bienvenido de nuevo¡');
+            ->with('inicio', '!Bienvenido de nuevo¡');
     }
-    
+
     // funcion para salir de la sesion
     public function logout(Request $request)
     {
@@ -129,85 +126,83 @@ class TblUsuariosController extends Controller
         $request->session()->regenerateToken();
 
         return to_route('login')
-        ->with('logout','Has cerrado sesión correctamente.');
+            ->with('logout', 'Has cerrado sesión correctamente.');
     }
-
 
     // Carga el formulario de edicion de los datos
     public function edit($Id_Empleado)
     {
         //funcion para traer el id 
         $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
-        return view ('usuarios.EditUsuario', compact('usuario'));
+        return view('usuarios.EditUsuario', compact('usuario'));
     }
 
     // Actualiza los datos de los usuarios en la base de datos
-    public function update(Request $request,$Id_Empleado)
-    { 
+    public function update(Request $request, $Id_Empleado)
+    {
         $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
-        if($usuario){
-            DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->update($request->except(['_token','_method']));
+        if ($usuario) {
+            DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->update($request->except(['_token', '_method']));
             return to_route('usuarios.index');
-    }else{
-        return "no se pudo actulizar";
-    };
+        } else {
+            return "no se pudo actulizar";
+        };
     }
 
     // Elimina los registros de la base de datos
     public function destroy($Id_Empleado)
     {
         $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
-        if($usuario){
+        if ($usuario) {
             DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->delete();
             return to_route('usuarios.index');
-        }else{
+        } else {
             return "no se lograron eliminar los datos";
         }
     }
 
-     //función para inactivar el cliente
-     public function inactive($Id_Empleado)
-     {
-         //Cambiar de estado al cliente (inactivo)
-         $usuario = tbl_usuarios::findOrFail($Id_Empleado);
-         $usuario->estado = false;
-         $usuario->save();
- 
-         return redirect()->route('usuarios.index')->with('success', 'Cliente inactivado correctamente.');
-     
-     }
- 
-     //función para activar el usuario
-     public function active($Id_Empleado)
-     {
-         //Cambiar de estado al usuario (activo)
-         $usuario = tbl_usuarios::findOrFail($Id_Empleado);
-         $usuario->estado = true;
-         $usuario->save();
- 
-         return redirect()->route('usuarios.index')->with('success', 'Cliente activado correctamente.');
-     
-     }
+    //función para inactivar el cliente
+    public function inactive($Id_Empleado)
+    {
+        //Cambiar de estado al cliente (inactivo)
+        $usuario = tbl_usuarios::findOrFail($Id_Empleado);
+        $usuario->estado = false;
+        $usuario->save();
+
+        return redirect()->route('usuarios.index')->with('success', 'Cliente inactivado correctamente.');
+    }
+
+    //función para activar el usuario
+    public function active($Id_Empleado)
+    {
+        //Cambiar de estado al usuario (activo)
+        $usuario = tbl_usuarios::findOrFail($Id_Empleado);
+        $usuario->estado = true;
+        $usuario->save();
+
+        return redirect()->route('usuarios.index')->with('success', 'Cliente activado correctamente.');
+    }
 
     public function pdf()
     {
         $usuarios = tbl_usuarios::all();
         // mostrar pdf
-        $pdf = Pdf::loadView('pdf.pdfusuarios',compact('usuarios'));
+        $pdf = Pdf::loadView('pdf.pdfusuarios', compact('usuarios'));
         // descarga el pdf
         return $pdf->download('usuarios.pdf');
     }
 
-    public function buscar(Request $request){
+    public function buscar(Request $request)
+    {
         // funcion para buscar registros
         $searchTerm = $request->input('buscar');
         $resultados = tbl_usuarios::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
-        
+
         if ($resultados->isEmpty()) {
             return redirect()->route('usuarios.index')
-            ->with('mensaje', '¡Usuario '.$searchTerm.' no encontrado!');
+                ->with('mensaje', '¡Usuario ' . $searchTerm . ' no encontrado!');
         } else {
-        return view('buscar.BuscarUsuario', compact('resultados','searchTerm')); 
+            return view('buscar.BuscarUsuario', compact('resultados', 'searchTerm'));
         }
     }
 }
