@@ -12,21 +12,22 @@
         @endif
         <div class="container">
             <div class="title-container">
-                <h1>Órdenes de Producción Entregadas</h1>
-                <form class="buscador" style="display: inline-flex; float: end;"
-                    action="{{ route('buscar.ordenes', ['buscar' => 3]) }}" method="GET">
-                    <input type="text" placeholder="Buscar por cliente o receta" name="buscar"
-                        value="{{ request('buscar') }}">
-                    <button>Buscar</button>
-                </form>
-                <a href="{{ route('ordenes.pdf', ['button_id' => 3]) }}" class="btnEditar">Descargar pdf</a>
+                <h1>Órdenes de producción entregadas</h1>
+                <div class="search-download-container">
+                    <form class="buscador" action="{{ route('buscar.ordenes', ['buscar' => 3]) }}" method="GET">
+                        <input type="text" placeholder="Buscar por cliente o receta" name="buscar"
+                            value="{{ request('buscar') }}">
+                        <button>Buscar</button>
+                    </form>
+                    <a href="{{ route('ordenes.pdf', ['button_id' => 3]) }}" class="btnEditar">Descargar PDF</a>
+                </div>
             </div>
             <div class="orden-container">
                 @foreach ($ordenesEntregadas->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
-                    <div class="orden">
-                        <h2>Cliente: {{ $cliente }}</h2>
-                        @foreach ($ordenesDelCliente as $orden)
-                            <div>
+                    @foreach ($ordenesDelCliente as $orden)
+                        <div class="orden">
+                            <h2>Cliente: {{ $cliente }}</h2>
+                            <div class="orden-details">
                                 <h3>Orden #{{ $orden->Consecutivo }}</h3>
                                 <hr>
                                 <h4>Fecha creación: {{ $orden->Fecha }}</h4>
@@ -52,26 +53,31 @@
                                     <hr>
                                 @else
                                     <hr>
-                                    <h3>Agregar Detalle</h3>
+                                    <h3>Agregar detalle</h3>
                                     <form action="{{ route('ordenes.detalles.store', $orden->Consecutivo) }}" method="POST">
                                         @csrf
                                         <div>
-                                            <label for="fecha_pedido">Fecha Pedido:</label>
+                                            <label para="fecha_pedido">Fecha pedido:</label>
                                             <input type="datetime-local" name="Fecha_Pedido" required>
                                         </div>
                                         <div>
                                             <label>Presentación:</label>
-                                            <input type="text" name="Presentacion" required>
+                                            <input type="text" name="Presentación" required>
                                         </div>
-                                        <br>
-                                        <button type="submit">Agregar Detalle</button>
+                                        <button type="submit">Agregar detalle</button>
                                     </form>
                                 @endif
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 @endforeach
             </div>
         </div>
+        <footer class="footerLogin">
+            <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+            <p><b>Servicio nacional de aprendizaje <br>
+                    Centro de la innovación, agroindustria y aviación</b></p>
+            <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+        </footer>
     @endauth
 @endsection

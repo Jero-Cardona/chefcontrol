@@ -20,16 +20,16 @@ class TblOrdenproduccionController extends Controller
         $this->middleware('AdminRol', ['only' => ['edit', 'update', 'active', 'inactive']]);
     }
 
-    public function index()
-    {
-        $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
-            ->get()
-            ->groupBy(function ($orden) {
-                return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
-            });
+    // public function index()
+    // {
+    //     $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
+    //         ->get()
+    //         ->groupBy(function ($orden) {
+    //             return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+    //         });
 
-        return view('usuarios.CrudOrden', compact('ordenesPorCliente'));
-    }
+    //     return view('usuarios.CrudOrden', compact('ordenesPorCliente'));
+    // }
 
     public function storeDetalles(Request $request, $ordenId)
     {
@@ -126,7 +126,6 @@ class TblOrdenproduccionController extends Controller
     {
         // Obtener todas las órdenes en espera
         $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
-
         // Obtener las órdenes agrupadas por cliente con sus detalles
         $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
             ->where('estado', 'En espera')

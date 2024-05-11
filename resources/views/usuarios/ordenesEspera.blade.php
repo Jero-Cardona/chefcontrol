@@ -13,20 +13,21 @@
         <div class="container">
             <div>
                 <div class="title-container">
-                    <h1>Órdenes de Producción en Espera</h1>
-                    <form class="buscador" style="display: inline-flex; float: end;"
-                        action="{{ route('buscar.ordenes', ['buscar' => 1]) }}" method="GET">
-                        <input type="text" placeholder="Buscar por cliente o receta" name="buscar"
-                            value="{{ request('buscar') }}">
-                        <button>Buscar</button>
-                    </form>
-                    <a href="{{ route('ordenes.pdf', ['button_id' => 1]) }}" class="btnEditar">Descargar pdf</a>
+                    <h1>Órdenes de producción en espera</h1>
+                    <div class="search-download-container">
+                        <form class="buscador" action="{{ route('buscar.ordenes', ['buscar' => 1]) }}" method="GET">
+                            <input type="text" placeholder="Buscar por cliente o receta" name="buscar"
+                                value="{{ request('buscar') }}">
+                            <button>Buscar</button>
+                        </form>
+                        <a href="{{ route('ordenes.pdf', ['button_id' => 1]) }}" class="btnEditar"><b>Descargar PDF</b></a>
+                    </div>
                 </div>
                 <div class="orden-container">
                     @foreach ($ordenesPorCliente as $cliente => $ordenesDelCliente)
-                        <div class="orden">
-                            <h2>Cliente: {{ $cliente }}</h2>
-                            @foreach ($ordenesDelCliente as $orden)
+                        @foreach ($ordenesDelCliente as $orden)
+                            <div class="orden">
+                                <h2>Cliente: {{ $cliente }}</h2>
                                 <div>
                                     <h3>Orden #{{ $orden->Consecutivo }}</h3>
                                     <hr>
@@ -67,7 +68,7 @@
                                             method="POST">
                                             @csrf
                                             <div>
-                                                <label for="fecha_pedido">Fecha Pedido:</label>
+                                                <label for="fecha_pedido">Fecha pedido:</label>
                                                 <input type="datetime-local" name="Fecha_Pedido" required>
                                             </div>
                                             <div>
@@ -75,12 +76,12 @@
                                                 <input type="text" name="Presentacion" required>
                                             </div>
                                             <br>
-                                            <button type="submit">Agregar Detalle</button>
+                                            <button type="submit">Agregar detalle</button>
                                         </form>
                                     @endif
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     @endforeach
                 </div>
             </div>
@@ -109,10 +110,16 @@
                             @endforeach
                         </div>
                         <br>
-                        <button type="submit">Agregar Detalles</button>
+                        <button type="submit">Agregar detalles</button>
                     </form>
                 </div>
             </div>
         </div>
+        <footer class="footerLogin">
+            <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+            <p><b>Servicio nacional de aprendizaje <br>
+                    Centro de la innovación, agroindustria y aviación</b></p>
+            <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+        </footer>
     @endauth
 @endsection

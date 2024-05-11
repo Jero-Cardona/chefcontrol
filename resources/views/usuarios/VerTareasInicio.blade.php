@@ -5,7 +5,7 @@
             <div class="container">
                 <h2 class="mb-4"
                     style="color: #8B0000; font-weight: bold; text-align: center; text-transform: uppercase; padding-top: 30px;">
-                    Tareas Completadas en la fecha: {{ $fecha }}</h2>
+                    Tareas completadas en la fecha: {{ $fecha }}</h2>
                 <div class="row">
                     @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
                         <div class="col-md-6 mb-4" style="padding: 30px 0px;">
@@ -42,6 +42,12 @@
                     @endforeach
                 </div>
             </div>
+            <footer class="footerLogin">
+                <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+                <p><b>Servicio nacional de aprendizaje <br>
+                        Centro de la innovación, agroindustria y aviación</b></p>
+                <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+            </footer>
         </body>
     @endauth
 @endsection

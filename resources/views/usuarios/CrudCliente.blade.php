@@ -21,7 +21,7 @@
                                     <th>Tipo Documento</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
-                                    <th>Telefono</th>
+                                    <th>Teléfono</th>
                                     <th>Estado</th>
                                     @if (Auth::user()->Id_Rol == '1')
                                         <th>Acciones Admin</th>
@@ -114,15 +114,15 @@
     <footer class="footerLogin">
         <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
         <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la Innovacion, agroindustria y aviacion</b></p>
+                Centro de la innovación, agroindustria y aviación</b></p>
         <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
     </footer>
     @if (session('success'))
         <script>
             Swal.fire({
                 position: "center",
-                icon: "warning",
-                text: "Intenta buscar de nuevo, este registro no existe",
+                icon: "success",
+                text: "¡el estado del cliente ha cambiado!",
                 title: "{{ session('success') }}",
                 showConfirmButton: false,
                 timer: 5000,

@@ -26,8 +26,6 @@
             <th>Apellido</th>
             <th>Telefono</th>
             <th>Estado</th>
-
-            <!-- Agrega más columnas según tus necesidades -->
         </tr>
     </thead>
     <tbody>
@@ -39,7 +37,6 @@
                 <td>{{ $cliente->Apellido }}</td>
                 <td>{{ $cliente->Telefono }}</td>
                 <td>{{ $cliente->estado }}</td>
-                <!-- Agrega más columnas según tus necesidades -->
             </tr>
         @endforeach
     </tbody>

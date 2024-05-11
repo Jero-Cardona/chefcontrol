@@ -11,8 +11,8 @@
             <div class="div2">
                 <div class="div3">
                     <div class="divHeader">
-                        <h3 class="titulo">Lista de Recetas Inactivas</h3>
-                        <a href="{{ route('recetas.pdf', ['button_id' => 2]) }}" class="btnEditar">Descargar pdf</a>
+                        <h3 class="titulo">Lista de recetas inactivas</h3>
+                        <a href="{{ route('recetas.pdf', ['button_id' => 2]) }}" class="btnEditar">Descargar PDF</a>
                         <form class="buscador" action="{{ route('buscar.recetas', ['buscar' => 2]) }}" method="GET">
                             @csrf
                             <input type="text" placeholder="Buscar" name="buscar" value="{{ request('buscar') }}">
@@ -24,12 +24,12 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Descipcion</th>
+                                    <th>Descripción</th>
                                     <th>Costo</th>
                                     <th>Aporte</th>
                                     <th>Estado</th>
                                     <th>Etapa</th>
-                                    <th>imagen</th>
+                                    <th>Imagen</th>
                                     @if (Auth::user()->Id_Rol == '1')
                                         <th>Acciones</th>
                                     @endif
@@ -132,7 +132,7 @@
     <footer class="footerLogin">
         <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
         <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la Innovacion, agroindustria y aviacion</b></p>
+                Centro de la innovación, agroindustria y aviación</b></p>
         <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
     </footer>
 @endsection

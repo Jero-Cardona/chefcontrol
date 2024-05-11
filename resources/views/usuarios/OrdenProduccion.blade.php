@@ -54,7 +54,7 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovación, agroindustria y aviación</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     @endauth

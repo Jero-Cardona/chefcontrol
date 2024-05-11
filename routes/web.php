@@ -84,9 +84,6 @@ Route::get('/ordenes/preparacion', [TblOrdenProduccionController::class, 'indexO
 Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class, 'indexOrdenesEntegadas'])->name('ordenes.entregadas');
 // buscar ordenes 
 Route::get('/buscarOrdenes/{buscar}', [TblOrdenproduccionController::class, 'buscar'])->name('buscar.ordenes');
-// Route::get('/buscarOrdenesEnPreparacion', [TblOrdenproduccionController::class, 'buscarPreparacion'])->name('buscar.ordenesPreparacion');
-// Route::get('/buscarOrdenesEntregadas', [TblOrdenproduccionController::class, 'buscarEntregadas'])->name('buscar.ordenesEntregadas');
-
 // descargar registros de ordenes
 Route::get('Ordenes/{button_id}/pdf', [TblOrdenproduccionController::class, 'pdf'])->name('ordenes.pdf');
 

@@ -73,7 +73,7 @@ input {
 
 /* Styles for screens smaller than 768px */
 
-@media (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 1024px) {
     .contenedorTotalLista {
         flex-direction: column;
         margin-right: 20px;
@@ -92,6 +92,7 @@ input {
     .divLista {
         padding: 15px;
         margin-bottom: 20px;
+        margin-top: -40px;
     }
 
     .contentLista {
@@ -134,7 +135,7 @@ input {
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:768px) {
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
     .menuRecetas,
     .btnMenuR {
@@ -183,8 +184,7 @@ input {
 
 /* Media querys footer*/
 
-
-@media only screen and (min-width:320px) and (max-width:768px) {
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
     .footerLogin {
         height: 80px;
@@ -206,6 +206,7 @@ input {
     .logo3Login {
         height: 65px;
         width: 65px;
+        margin-left: auto;
     }
 
 }

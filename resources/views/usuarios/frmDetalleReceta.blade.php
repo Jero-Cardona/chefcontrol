@@ -8,21 +8,12 @@ $recetasActivas = tbl_receta::where('etapa', true)->get();
 $productosActivos = tbl_producto::where('estado', 1)->get();
 ?>
 @extends('layouts.app')
-{{-- @section('style')
-    <link rel="stylesheet" href="{{ asset('/css/estilosProducto.css') }}">
-@endsection --}}
 @section('content')
     @auth
-        @if (session('success'))
-            <div style="padding: 10px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: white; background-color: rgba(255, 102, 0); border-color: #f5c6cb;"
-                role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
-                    <h2>Detalle de Receta</h2>
+                    <h2>Detalle de receta</h2>
                 </div>
                 {{-- formulario de detalle receta resposive recetas resposive --}}
                 <form action="{{ route('detalleReceta.store') }}" enctype="multipart/form-data" method="POST" id="form"
@@ -43,7 +34,7 @@ $productosActivos = tbl_producto::where('estado', 1)->get();
                     </div>
                     <div class="form1Registro">
                         <select name="Cod_Producto" id="Cod_Producto" value="{{ old('Cod_Producto') }}">
-                            <option value="" disabled selected hidden>Selecione el producto que lleva esa receta</option>
+                            <option value="" disabled selected hidden>Seleccione el producto que lleva esa receta</option>
                             @foreach ($productosActivos as $producto)
                                 <option value="{{ $producto->Cod_Producto }}"
                                     {{ old('Cod_Producto') == $producto->Cod_Producto ? 'selected' : '' }}>
@@ -78,8 +69,8 @@ $productosActivos = tbl_producto::where('estado', 1)->get();
                     </div>
                     <div class="btn1Registro">
                         <input type="submit" class="enviarRegistro">
-                        <a href="{{ route('receta.create') }}" class="enviarRegistro"
-                            style="text-decoration: none; padding-top: 10px;"> Volver</a>
+                        {{-- <a href="{{ route('receta.create') }}" class="enviarRegistro"
+                        style="text-decoration: none; padding-top: 10px;"> Volver</a> --}}
                     </div>
                 </form>
             </div>
@@ -87,8 +78,21 @@ $productosActivos = tbl_producto::where('estado', 1)->get();
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
+        @if (session('receta'))
+        <script>
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "¡Receta resgistrada!",
+                text: "{{ session('receta') }}",
+                showConfirmButton: true,
+                confirmButtonText: 'Continuar',
+                confirmButtonColor:  'rgba(255, 102, 0)',
+            });
+        </script>
+    @endif
     @endauth
 @endsection

@@ -10,7 +10,7 @@
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
-                    <h2>Nueva Receta</h2>
+                    <h2>Nueva receta</h2>
                 </div>
                 {{-- formulario de recetas resposive --}}
                 <form action="{{ route('receta.store') }}" enctype="multipart/form-data" method="POST" class="formularioRegistro"
@@ -25,35 +25,25 @@
                     </div>
                     <div class="formRegistro">
                         <input name="Descripcion" id="Descripcion" type="text" value="{{ old('Descripcion') }}" required>
-                        <label for="Descripcion"> Descripcion Receta</label>
+                        <label for="Descripcion"> Descripción Receta</label>
                         @error('Descripcion')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="formRegistro">
                         <input id="Costo_Total" name="Costo_Total" type="text" value="{{ old('Costo_Total') }}" required>
-                        <label for="Costo_Total"> Costo Total de la Receta</label>
+                        <label for="Costo_Total"> Costo total de la receta</label>
                         @error('Costo_Total')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="formRegistro">
                         <input id="Contribucion" name="Contribucion" type="number" value="{{ old('Contribucion') }}" required>
-                        <label for="Contribucion">Contribucion</label>
+                        <label for="Contribucion">Contribución</label>
                         @error('Contribucion')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    @if (Auth::user()->Id_Rol == '1')
-                        <div class="form1Registro">
-                            <input type="hidden" name="Estado" id="Estado" value="1">
-                        </div>
-                    @else
-                        <div class="form1Registro">
-                            <input type="hidden" name="Estado" id="Estado" value="2">
-                        </div>
-                    @endif
-
                     <div class="formRegistro">
                         <div class="fileR">
                             <input id="imagen" name="imagen" type="file" class="fileRI">
@@ -66,6 +56,16 @@
                         {{-- campo para el manejo de estados --}}
                         <input name="etapa" type="hidden" value="1">
                     </div>
+                    @if (Auth::user()->Id_Rol == '1')
+                        <div class="form1Registro">
+                            <input type="hidden" name="Estado" id="Estado" value="1">
+                        </div>
+                    @else
+                        <div class="form1Registro">
+                            <input type="hidden" name="Estado" id="Estado" value="2">
+                        </div>
+                    @endif
+
                     <div class="btn1Registro">
                         <input type="submit" class="enviarRegistro">
                     </div>
@@ -75,7 +75,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     @endauth

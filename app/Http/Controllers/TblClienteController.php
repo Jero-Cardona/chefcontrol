@@ -58,8 +58,7 @@ class TblClienteController extends Controller
         $cliente->estado = $request->input('estado');
         $cliente->save();
         // retorna a la vista del index
-        session()->flash('confirm-cliente', 'Cliente registrado correctamente');
-        return to_route('usuarios.index');
+        return redirect()->back();
     }
 
     // formulario para editar clientes

@@ -28,10 +28,7 @@ class TblTareascompletadasController extends Controller
             })
             ->orderBy('fecha')
             ->paginate(65);
-        // ->get();
-        // return $tareasCompletadasPorFecha;
-        // ->groupBy('fecha');
-        // ->paginate(6);
+
         $i = 1;
         return view('usuarios.CrudListaInicio', compact('tareasCompletadasPorFecha', 'i'));
     }
@@ -98,7 +95,7 @@ class TblTareascompletadasController extends Controller
                 ]);
                 $tareaCompletada->save();
             }
-            return redirect()->route('receta.recetario')->with('status', 'Lista Incio de Jornada guardada correctamente.');
+            return redirect()->back()->with('status', 'Lista de jornada guardada correctamente.');
         } else {
             return redirect()->route('lista.inicio')->with('status', 'No fue posible guardar la Lista de Inicio de Jornada.');
         }
@@ -106,7 +103,6 @@ class TblTareascompletadasController extends Controller
 
     public function buscar(Request $request, $buscar)
     {
-
         $searchTerm = $request->input('buscar');
         if ($buscar == 1) {
             $resultados = tbl_tareascompletadas::with('usuario', 'tarea')

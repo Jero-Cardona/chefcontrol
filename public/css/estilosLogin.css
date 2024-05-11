@@ -253,7 +253,7 @@
 
 /*Media querys footer*/
 
-@media only screen and (min-width:320px) and (max-width:768px) {
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
     .footerLogin {
         height: 80px;
@@ -281,7 +281,7 @@
 
 /*Media querys contenedor1Login*/
 
-@media only screen and (min-width:320px) and (max-width:768px) {
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
     .contenedor1Login img {
         display: none;
@@ -335,7 +335,7 @@
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:768px) {
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
     .menuHIndex,
     .btnMenuH1 {

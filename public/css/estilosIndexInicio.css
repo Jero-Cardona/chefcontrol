@@ -210,8 +210,8 @@
     .logo3Index {
         height: 65px;
         width: 65px;
+        margin-left: auto;
     }
-
 }
 
 /*Media querys ContenedorRecetario*/

@@ -8,11 +8,6 @@ $fechaActual = Carbon::now();
 @endsection
 @section('content')
     @auth
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
         <body class="contenedorPrincipalLista">
             <div class="contenedorTotalLista">
                 <div class="menu-lista">
@@ -25,7 +20,7 @@ $fechaActual = Carbon::now();
                 </div>
                 <div class="formularioLista">
                     <div class="divLista">
-                        <h2 class="tittleLista">Lista inicio jornada</h2>
+                        <h2 class="tittleLista">Lista Inicio de jornada</h2>
                     </div>
                     <div class="contentLista">
                         <form id="form-verificacion" action="{{ route('listainicio.store') }}" method="POST">

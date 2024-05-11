@@ -11,7 +11,7 @@
             <div class="div2">
                 <div class="div3">
                     <div class="divHeader">
-                        <h3 class="titulo">Lista de Productos</h3>
+                        <h3 class="titulo">Lista de productos</h3>
                         <a href="{{ route('producto.pdf') }}" class="btnEditar">Descargar pdf</a>
                         <form class="buscador" action="{{ route('buscar.productos') }}" method="GET">
                             <input type="text" name="buscar" value="{{ request('buscar') }}" placeholder="Buscar">
@@ -29,7 +29,7 @@
                                     <th>Vencimiento</th>
                                     <th>Costo</th>
                                     <th>Tipo</th>
-                                    <th>Ubicacion</th>
+                                    <th>Ubicación</th>
                                     <th>Medida</th>
                                     <th>Precio</th>
                                     <th>Existencia</th>
@@ -137,7 +137,7 @@
     <footer class="footerLogin">
         <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
         <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la Innovacion, agroindustria y aviacion</b></p>
+                Centro de la innovación, agroindustria y aviación</b></p>
         <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
     </footer>
 @endsection

@@ -3,7 +3,7 @@
     @auth
         <body class="bodyListas">
             <div class="contenedorListasR">
-                <h2 class="tituloListasR">Listas Fin de Jornada Registradas</h2>
+                <h2 class="tituloListasR">Listas fin de jornada registradas</h2>
                 <form class="buscador" style="display: inline-flex; float: end;"
                     action="{{ route('buscar.listas', ['buscar' => 2]) }}" method="GET">
                     <input type="date" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar') }}">
@@ -14,7 +14,7 @@
                         <div class="contenedor1ListaR">
                             <div class="cardListaR">
                                 <div class="cardHeaderListaR">
-                                    <h3 class="cardTitleListaR">Lista numero {{ $i }}</h3>
+                                    <h3 class="cardTitleListaR">Lista número {{ $i }}</h3>
                                 </div>
                                 <div class="cardBodyListaR" data-variable-i="{{ $i++ }}">
                                     <div class="tablaResponsiveListaR">
@@ -39,6 +39,12 @@
                     @endforeach
                 </div>
             </div>
+            <footer class="footerLogin">
+                <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+                <p><b>Servicio nacional de aprendizaje <br>
+                        Centro de la innovación, agroindustria y aviación</b></p>
+                <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+            </footer>
         </body>
     @endauth
 @endsection

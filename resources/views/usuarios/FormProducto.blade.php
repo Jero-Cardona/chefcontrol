@@ -5,7 +5,7 @@
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
-                    <h2>Nuevo Producto</h2>
+                    <h2>Nuevo producto</h2>
                 </div>
                 {{-- formulario de registro de producto --}}
                 <form action="{{ route('producto.store') }}" enctype="multipart/form-data" method="POST"
@@ -31,7 +31,7 @@
                     <div class="formRegistro">
                         <input required id="Stock_Minimo" name="Stock_Minimo" type="number"
                             value="{{ old('Stock_Minimo') }}">
-                        <label for="Stock_Minimo"> Stock Minimo</label>
+                        <label for="Stock_Minimo"> Stock mínimo</label>
                         @error('Stock_Minimo')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -39,7 +39,7 @@
                     <div class="formRegistro">
                         <input required id="Stock_Maximo" name="Stock_Maximo" type="number"
                             value="{{ old('Stock_Maximo') }}">
-                        <label for="Stock_Maximo"> Stock Maximo</label>
+                        <label for="Stock_Maximo"> Stock máximo</label>
                         @error('Stock_Maximo')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -72,7 +72,7 @@
                     </div>
                     <div class="formRegistro">
                         <input required id="Ubicacion" name="Ubicacion" type="text" value="{{ old('Ubicacion') }}">
-                        <label for="Ubicacion">Ubicacion del producto</label>
+                        <label for="Ubicacion">Ubicación del producto</label>
                     </div>
                     <div class="form1Registro">
                         <select id="Cod_UMedida" name="Cod_UMedida" value="{{ old('Cod_UMedida') }}">
@@ -93,7 +93,7 @@
                     <div class="formRegistro">
                         <input required id="Precio_Venta" name="Precio_Venta" type="number"
                             value="{{ old('Precio_Venta') }}">
-                        <label for="Precio_Venta">Precio de Venta</label>
+                        <label for="Precio_Venta">Precio de venta</label>
                         @error('Precio_Venta')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -107,7 +107,7 @@
                     </div>
                     <div class="formRegistro">
                         <input required id="IVA" name="IVA" type="number" value="{{ old('IVA') }}">
-                        <label for="IVA">Iva del producto</label>
+                        <label for="IVA">IVA del producto</label>
                         @error('IVA')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -123,7 +123,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     </body>

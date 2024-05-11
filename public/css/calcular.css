@@ -148,6 +148,7 @@ body {
     /* text-align: center; */
 }
 
+
 .imgR {
     height: 300px;
     width: 100%;
@@ -155,7 +156,6 @@ body {
     border-radius: 6px;
     margin-top: 20px;
     grid-row: 1 / span 2;
-
 }
 
 .receta-info {

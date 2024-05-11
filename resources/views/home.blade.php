@@ -68,7 +68,7 @@
         <footer class="footerIndex">
             <img class="logo1SenaIndex" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovación, agroindustria y aviación</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Index" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     </div>

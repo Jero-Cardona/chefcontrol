@@ -271,6 +271,8 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 50px;
+    /* padding-left: 140px;
+    padding-bottom: 50px; */
 }
 
 .contenedorFormRegistro1- {
@@ -283,8 +285,6 @@
     margin-top: 30px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
 }
-
-
 
 .tituloRegistro- {
     grid-column: 1 / span 2;
@@ -392,6 +392,64 @@
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
+
+/* Media queries nueva orden */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    
+    .contenedorFormRegistro1- img {
+        display: none;
+    }
+
+    .contenedorFormRegistro- {
+        /* display: grid; */
+        min-width: 320px;
+        max-width: 768px;
+        /* margin-right: 300px; */
+    }
+
+    .contenedorFormRegistro1- {
+        grid-template: 100px 350px / 1fr;
+    }
+
+    .formularioRegistro- {
+        margin: 10px;
+    }
+
+    .tituloRegistro- {
+        margin: 10px;
+        height: 65px;
+        line-height: 65px;
+        font-size: small;
+    }
+
+    .formRegistro- input,
+    .form1Registro- select {
+        width: 250px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .formRegistro- label {
+        font-size: 12px;
+    }
+
+    .formRegistro- input:focus~label,
+    .formRegistro- input:valid~label {
+        top: -6px;
+        font-size: 11px;
+    }
+
+    .btn1Registro- a,
+    .enviarRegistro- {
+        height: 40px;
+        width: 100px;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+}
+
 
 /* Nueva receta y nuevo producto CSS */
 
@@ -526,6 +584,71 @@ input[type="date"] {
     cursor: pointer;
 }
 
+/* Media queries nueva receta y nuevo producto */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    
+    .contenedorFormRegistro1 img {
+        display: none;
+    }
+
+    .contenedorFormRegistro {
+        min-width: 320px;
+        max-width: 1024px;
+    }
+
+    .contenedorFormRegistro1 {
+        grid-template: 100px 350px / 1fr;
+    }
+
+    .formularioRegistro {
+        margin: 10px;
+    }
+
+    .tituloRegistro {
+        margin: 10px;
+        height: 65px;
+        line-height: 65px;
+    }
+
+    .formRegistro input,
+    .form1Registro select {
+        width: 250px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .formRegistro label {
+        font-size: 12px;
+    }
+
+    .formRegistro input:focus~label,
+    .formRegistro input:valid~label {
+        top: -6px;
+        font-size: 11px;
+    }
+
+    .fileRI {
+        width: 250px;
+        height: 45px;
+        top: -6px;
+    }
+
+    .textoFile {
+        font-size: 13px;
+    }
+
+    .btn1Registro a,
+    .enviarRegistro {
+        height: 40px;
+        width: 100px;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+}
+
+
 /*Footer css*/
 
 .footerLogin {
@@ -583,6 +706,7 @@ input[type="date"] {
     .logo3Login {
         height: 65px;
         width: 65px;
+        margin-left: auto;
     }
 
 }
@@ -1063,6 +1187,7 @@ tr:nth-child(even) {
 }
 
 .cardListaR-:hover {
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
     /* Añadido efecto de levantamiento al hacer hover */
 }
@@ -1097,4 +1222,28 @@ tr:nth-child(even) {
 
 li {
     padding-left: 40px;
+}
+
+.DivBtnEditar- {
+    margin-top: 30px;
+    align-items: center;
+}
+
+.btnEditar- {
+    text-align: center;
+    background-color: rgba(255, 102, 0);
+    color: rgba(255, 255, 255);
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 8px;
+    border: none;
+    text-decoration: none;
+    transition: all 500ms ease-out;
+    /* margin-left: 40%; */
+    margin-bottom: 20px;
+}
+
+.btnEditar-:hover {
+    background-color: #8B0000;
+    
 }

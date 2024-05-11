@@ -67,7 +67,7 @@
                     </div>
                     <div style="margin: 0 auto;">
                         <input type="checkbox" name="remember">
-                        <span>Recuerdame</span>
+                        <span>Recuérdame</span>
                     </div>
                     <div class="btn1Login">
                         <input type="submit" class="enviarLogin">
@@ -80,7 +80,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     </div>

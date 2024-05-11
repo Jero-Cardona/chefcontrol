@@ -76,12 +76,17 @@
                         <p>Stock Minimo: {{ $producto->Stock_Minimo }}</p>
                         <p>Fecha Vencimiento: {{ $producto->Fecha_Vencimiento }}</p>
                         <p>Costo Total: {{ $producto->Costo }}</p>
-                        <p>Tipo de Producto: {{ $producto->Cod_Tipo }}</p>
+                        <p>Tipo de Producto: {{ $producto->tipoProducto->Tipo }}</p>
                         <p>Ubicacion: {{ $producto->Ubicacion }}</p>
-                        <p>Medida del Producto: {{ $producto->Cod_UMedida }}</p>
+                        <p>Medida del Producto: {{ $producto->tipoMedida->Unidad_Medida }}</p>
                         <p>Precio de Venta: {{ $producto->Precio_Venta }}</p>
                         <p>Existencia del producto: {{ $producto->Existencia }}</p>
                         <p>Iva del Producto: {{ $producto->IVA }}</p>
+                        @if ($producto->estado == true)
+                        <p>Estado: Activo</p>
+                        @else
+                        <p>Estado: Desactivado</p>
+                        @endif
                     </div>
                 </div>
             </div>

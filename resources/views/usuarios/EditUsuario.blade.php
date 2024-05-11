@@ -16,7 +16,7 @@
                     <div class="formRegistro">
                         <input value="{{ $usuario[0]->Id_Empleado }}" id="Id_Empleado" name="Id_Empleado" type="text"
                             required>
-                        <label for="Id_Empleado">Numero de documento</label>
+                        <label for="Id_Empleado">Número de documento</label>
                     </div>
                     <div class="form1Registro">
                         <select value="{{ $usuario[0]->tipo_documento }}" id="tipo_documento" name="tipo_documento"
@@ -39,11 +39,11 @@
                     </div>
                     <div class="formRegistro">
                         <input value="{{ $usuario[0]->Telefono }}" id="Telefono" name="Telefono" type="text" required>
-                        <label for="Telefono"> Telefono Usuario</label>
+                        <label for="Telefono"> Teléfono Usuario</label>
                     </div>
                     <div class="form1Registro">
                         <select value="{{ $usuario[0]->Id_Rol }}" id="Id_Rol" name="Id_Rol" required>
-                            <option value="" disabled selected hidden>Tipo de Usuario</option>
+                            <option value="" disabled selected hidden>Tipo de usuario</option>
                             <option value="1">Usuario Cocinero</option>
                             <option value="2">Usuario Administrador</option>
                         </select>
@@ -57,7 +57,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
         </div>

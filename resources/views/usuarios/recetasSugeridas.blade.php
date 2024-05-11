@@ -19,10 +19,10 @@
                                             <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}"
                                                 style="height: 150px; width: auto; ">
                                             @if ($receta->Estado === 1)
-                                                <p>Estado: Estandarizada</p>
+                                                <p>Estado: estandarizada</p>
                                                 <hr>
                                             @else
-                                                <p>Estado: En espera</p>
+                                                <p>Estado: en espera</p>
                                                 <hr>
                                             @endif
                                             <p style="text-align: justify;">{{ $receta->Descripcion }}</p>
@@ -36,13 +36,25 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="DivBtnEditar-">
+                                    <a href="{{ route('receta.edit', $receta->Id_Receta) }}" style="width: 17%; text-aling: right;"
+                                        class="btnEditar- swal-edit">Editar</a>
+                                </div>
                             </div>
+                            <!-- <div class="DivBtnEditar-">
                             <a href="{{ route('receta.edit', $receta->Id_Receta) }}" style="width: 17%; text-aling: right;"
-                                class="btnEditar swal-edit">Editar</a>
+                                class="btnEditar- swal-edit">Editar</a>
+                            </div> -->
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
     </div>
+    <footer class="footerLogin">
+            <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+            <p><b>Servicio nacional de aprendizaje <br>
+                Centro de la innovación, agroindustria y aviación</b></p>
+            <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+        </footer>
 @endsection

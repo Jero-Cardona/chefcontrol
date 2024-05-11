@@ -56,7 +56,18 @@
             <p>Descripción: {{ $receta->Descripcion }}</p>
             <p>Costo total: {{ $receta->Costo_Total }}</p>
             <p>Contribución: {{ $receta->Contribucion }}</p>
-            <p>Estado: {{ $receta->Estado }}</p>
+            @if($receta->estado == 1)
+            <p>Estado: Estandarizada</p>
+            @else
+            <p>Estado: Estandarizada</p>
+            @endif
+        
+            @if($receta->etapa == true)
+            <p>Estado: Activo</p>
+            @else
+            <p>Estado: Desactivado</p>
+            @endif
+
         </div>
     @endforeach
 </body>

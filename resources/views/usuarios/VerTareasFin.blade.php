@@ -42,6 +42,12 @@
                     @endforeach
                 </div>
             </div>
+            <footer class="footerLogin">
+                <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+                <p><b>Servicio nacional de aprendizaje <br>
+                        Centro de la innovación, agroindustria y aviación</b></p>
+                <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+            </footer>
         </body>
     @endauth
 @endsection

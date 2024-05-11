@@ -6,7 +6,7 @@
     @auth
         <div class="container">
             <div class="titulo">
-                <h2 class="nombreR">Calcular Porciones</h2>
+                <h2 class="nombreR">Calcular porciones</h2>
             </div>
             <div class="receta-info">
                 <img class="imgR" src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}">

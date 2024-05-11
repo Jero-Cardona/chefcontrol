@@ -80,7 +80,7 @@ class TblRecetaController extends Controller
     {
         // Validaciones
         $request->validate([
-            'Nombre' => 'required',
+            'Nombre' => 'required|unique:tbl_receta',
             'Descripcion' => 'required',
             'Costo_Total' => 'required|integer',
             'Contribucion' => 'required|integer',
@@ -88,6 +88,7 @@ class TblRecetaController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'Nombre.required' => 'El campo Nombre es obligatorio.',
+            'Nombre.unique' => 'El nombre ya está en uso.',
             'Descripcion.required' => 'El campo Descripción es obligatorio.',
             'Costo_Total.required' => 'El campo Costo Total es obligatorio.',
             'Costo_Total.integer' => 'El campo Costo Total debe ser un número entero.',
@@ -132,7 +133,7 @@ class TblRecetaController extends Controller
         $recetaLog->save();
 
         // Redireccionamiento y mensaje de éxito
-        session()->flash('success', 'La receta fue registrada correctamente. Necesitamos que le des el detalle a la receta en este apartado, sino desea hacerlo dele click a "Volver"');
+        session()->flash('receta', 'Necesitamos que le des el detalle a la receta en este apartado.');
         return view('usuarios.frmDetalleReceta');
     }
 

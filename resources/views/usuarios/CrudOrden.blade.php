@@ -19,7 +19,7 @@
         @endif
         <div class="card border-danger mb-3">
             <div class="card-header text-center">
-                <h1 style="color: #8B0000;">Órdenes de Producción por Cliente</h1>
+                <h1 style="color: #8B0000;">Órdenes de producción por cliente</h1>
             </div>
             <div class="card-body">
                 @foreach ($ordenesPorCliente as $cliente => $ordenes)
@@ -68,20 +68,20 @@
                                             <i class="fas fa-check-circle text-success fa-3x"></i>
                                         @endif
                                         <hr>
-                                        <h3 style="color: #B22222;">Detalles de la Orden</h3>
+                                        <h3 style="color: #B22222;">Detalles de la orden</h3>
                                         @if ($orden->detalles)
                                             <h4 style="color: #000000;">Fecha Pedido: {{ $orden->detalles->Fecha_Pedido }}</h4>
                                             <h4 style="color: #000000;">Presentación: {{ $orden->detalles->Presentacion }}</h4>
                                             <a href="{{ route('ordenes.detalles.edit', ['orden' => $orden->Consecutivo]) }}"
-                                                class="btn btn-danger">Editar Detalle</a>
+                                                class="btn btn-danger">Editar detalle</a>
                                         @else
                                             <hr>
-                                            <h3 style="color: red;">Agregar Detalle</h3>
+                                            <h3 style="color: red;">Agregar detalle</h3>
                                             <form action="{{ route('ordenes.detalles.store', $orden->Consecutivo) }}"
                                                 method="POST">
                                                 @csrf
                                                 <div>
-                                                    <label for="fecha_pedido">Fecha Pedido:</label>
+                                                    <label for="fecha_pedido">Fecha pedido:</label>
                                                     <input class="form-control" type="datetime-local" name="Fecha_Pedido"
                                                         required>
                                                 </div>
@@ -89,7 +89,7 @@
                                                     <label>Presentación:</label>
                                                     <input class="form-control" type="text" name="Presentacion" required>
                                                 </div>
-                                                <button class="btn btn-danger" type="submit">Agregar Detalle</button>
+                                                <button class="btn btn-danger" type="submit">Agregar detalle</button>
                                             </form>
                                         @endif
                                     </div>
@@ -109,7 +109,7 @@
                         <form class="form-group" action="{{ route('ordenes.detalles.bulk') }}" method="POST">
                             @csrf
                             <div>
-                                <label for="fecha_pedido">Fecha Pedido:</label>
+                                <label for="fecha_pedido">Fecha pedido:</label>
                                 <input class="form-control" type="datetime-local" name="Fecha_Pedido" required>
                             </div>
                             <div>
@@ -128,11 +128,17 @@
                                 @endforeach
                             </div>
                             <br>
-                            <button class="btn btn-success" type="submit">Agregar Detalles</button>
+                            <button class="btn btn-success" type="submit">Agregar detalles</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <footer class="footerLogin">
+        <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
+        <p><b>Servicio nacional de aprendizaje <br>
+                Centro de la innovación, agroindustria y aviación</b></p>
+        <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
+        </footer>
     @endauth
 @endsection

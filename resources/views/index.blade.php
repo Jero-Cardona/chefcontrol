@@ -17,7 +17,7 @@
                 <div class="div2">
                     <div class="div3">
                         <div class="divHeader">
-                            <h3 class="titulo">Lista de Usuarios</h3>
+                            <h3 class="titulo">Lista de usuarios</h3>
                             <a href="{{ route('usuarios.pdf') }}" class="btnEditar">Descargar pdf</a>
                             <form class="buscador" action="{{ route('buscar.usuarios') }}" method="GET">
                                 <input type="text" name="buscar" id="buscar" value="{{ request('buscar') }}"
@@ -33,7 +33,7 @@
                                         <th>Tipo Documento</th>
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
-                                        <th>Telefono</th>
+                                        <th>Teléfono</th>
                                         <th>Rol de Usuario</th>
                                         <th>Estado</th>
                                         @if (Auth::user()->Id_Rol == '1')
@@ -127,7 +127,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     @endauth

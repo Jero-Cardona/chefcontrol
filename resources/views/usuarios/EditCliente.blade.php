@@ -6,7 +6,7 @@
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
-                    <h2>Actualizar Clientes</h2>
+                    <h2>Actualizar clientes</h2>
                 </div>
                 {{-- formulario de registro de usuarios resposive --}}
                 <form action="{{ route('cliente.update', $cliente[0]->Id_Cliente) }}" method="POST"
@@ -15,7 +15,7 @@
                     @method('PUT')
                     <div class="formRegistro">
                         <input value="{{ $cliente[0]->Id_Cliente }}" id="Id_Cliente" name="Id_Cliente" type="text" required>
-                        <label for="Id_Cliente">Numero de documento</label>
+                        <label for="Id_Cliente">Número de documento</label>
                     </div>
                     <div class="form1Registro">
                         <select value="{{ $cliente[0]->Tipo_identificacion }}" id="Tipo_identificacion"
@@ -38,7 +38,7 @@
                     </div>
                     <div class="formRegistro">
                         <input value="{{ $cliente[0]->Telefono }}" id="Telefono" name="Telefono" type="text" required>
-                        <label for="Telefono"> Telefono Usuario</label>
+                        <label for="Telefono"> Teléfono Usuario</label>
                     </div>
                     <div class="form1Registro">
                         <select value="{{ $cliente[0]->estado }}" id="estado" name="estado" required>
@@ -58,7 +58,7 @@
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la Innovacion, agroindustria y aviacion</b></p>
+                    Centro de la innovación, agroindustria y aviación</b></p>
             <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
         </footer>
     </body>
