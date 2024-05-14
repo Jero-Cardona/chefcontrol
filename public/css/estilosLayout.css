@@ -113,11 +113,18 @@
 
 .usuarioRecetas {
     float: left;
-    height: 100px;
-    width: 100px;
+    height: auto; 
+    width: auto; 
     padding: 10px;
     color: rgba(255, 255, 255);
+    white-space: nowrap; 
 }
+
+.usuarioRecetas h2 {
+    display: inline-block; 
+    margin: 0; 
+    padding-top: 10px;
+  }
 
 .logo1Recetas {
     height: 90px;

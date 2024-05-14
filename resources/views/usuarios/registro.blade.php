@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
-    <title>Registro</title>
+    <title>ChefControl | Registro</title>
 </head>
 <body>
     @if (session('success'))

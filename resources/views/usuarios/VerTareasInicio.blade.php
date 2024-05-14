@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Tareas completadas')
 @section('content')
     @auth
 

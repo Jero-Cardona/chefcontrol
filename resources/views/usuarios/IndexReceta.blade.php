@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Chef Control | Recetario</title>
+    <title>ChefControl | Recetario</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="usuarioRecetas">
 
-                    <h2>{{ Auth::user()->Nombre }}</h2>
+                    <h2>{{ Auth::user()->Nombre .''. Auth::user()->Apellido }}</h2>
                     <?php
                     $rol = App\Models\tbl_rol::where('Id_Rol', Auth::user()->Id_Rol)->first();
                     ?>
@@ -70,9 +70,9 @@
                         <a href="#">Orden de producción</a>
                         <div class="submenu">
                             <a href="{{ route('orden.produccion') }}">Nueva orden</a>
-                            <a href="{{ route('ordenes.espera') }}">Órdenes en espera</a>
-                            <a href="{{ route('ordenes.preparacion') }}">Órdenes en preparación</a>
-                            <a href="{{ route('ordenes.entregadas') }}">Órdenes entregadas</a>
+                            <a href="{{ route('ordenes.espera') }}">ordenes en espera</a>
+                            <a href="{{ route('ordenes.preparacion') }}">Ordenes en preparación</a>
+                            <a href="{{ route('ordenes.entregadas') }}">Ordenes entregadas</a>
                         </div>
                     </div>
                     <div class="menu-item">

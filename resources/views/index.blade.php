@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Lista de usuarios')
 @section('style')
     <link rel="stylesheet" href="{{ asset('/css/estilosCruds.css') }}">
 @endsection

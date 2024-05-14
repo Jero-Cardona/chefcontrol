@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title','ChefControl | Nueva receta')
+
 @section('content')
     @auth
         @if (session('success'))

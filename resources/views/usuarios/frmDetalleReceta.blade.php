@@ -8,6 +8,8 @@ $recetasActivas = tbl_receta::where('etapa', true)->get();
 $productosActivos = tbl_producto::where('estado', 1)->get();
 ?>
 @extends('layouts.app')
+@section('title','ChefControl | Agregar detalle')
+    
 @section('content')
     @auth
         <div class="contenedorFormRegistro">

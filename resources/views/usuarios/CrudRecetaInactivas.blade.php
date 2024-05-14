@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Recetas Inactivas')
 @section('content')
     <div class="container">
         @if (session('success'))

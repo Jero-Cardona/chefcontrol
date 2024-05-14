@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Ordenes en preparación')
 @section('style')
     <link rel="stylesheet" href="{{ asset('/css/ordenes.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -13,7 +14,7 @@
         <div class="container">
             <div>
             <div class="title-container">
-                <h1>Órdenes de producción en preparación</h1>
+                <h1>Ordenes de producción en preparación</h1>
                 <div class="search-download-container">
                 <form class="buscador"
                     action="{{ route('buscar.ordenes', ['buscar' => 2]) }}" method="GET">

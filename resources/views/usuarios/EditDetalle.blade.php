@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Editar detalle orden')
 @section('style')
     <link rel="stylesheet" href="{{ asset('/css/ordenes.css') }}">
 
@@ -26,7 +27,7 @@
                     </div>
                     <br>
                     <div class="">
-                        <button class="" type="submit">Actualizar detalle</button>
+                        <button class="btnOrdenes" type="submit">Actualizar detalle</button>
                     </div>
                 </form>
             </div>

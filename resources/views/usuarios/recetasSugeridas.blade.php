@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Mis recetas')
 @section('content')
     <div class="contenedorListasR-">
         <h2 class="tituloListasR-">Mis recetas sugeridas</h2>

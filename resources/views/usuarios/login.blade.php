@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Document</title>
+    <title>ChefControl | Inicio de sesión</title>
 </head>
 <body>
     <div class="contenedorLogin">
