@@ -34,7 +34,9 @@
                                 @if ($orden->receta)
                                     @php $precioOrden = $orden->receta->Costo_Total * $orden->cantidad; $precioFormato = number_format($precioOrden, 0, '.', ','); @endphp
                                     <h5>Precio de la orden: {{ $precioFormato }}</h5>
-                                @endif
+                        
+                        
+                                    @endif
                             </div>
                         </div>
                 @if ($index % 2 == 1 || $index == count($ordenesDelCliente) - 1)
