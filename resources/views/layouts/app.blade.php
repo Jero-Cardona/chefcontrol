@@ -12,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
-    <link rel="icon" href="{{ asset('imagenes/proyecto/sombrerochef.svg') }}">
     <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
     <title>ChefControl</title>
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/cssclsbootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
@@ -144,6 +143,19 @@
             });
         </script>
     @endif
+    @if (session('ordenes'))
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "¡Listo!",
+            text: "{{ session('ordenes') }}",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true
+        });
+    </script>
+@endif
     {{-- enalce a scripts personalizados del aplicativo --}}
     <script src="{{ asset('js/SweetAlerts.js') }}"></script>
     {{-- enlace a boostrap 5 js --}}

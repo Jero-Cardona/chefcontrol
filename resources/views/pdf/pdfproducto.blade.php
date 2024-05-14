@@ -10,11 +10,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <style>
-    @page {
-        size: letter; /* Tamaño de la página */
-        margin: 1cm; /* Margen de la página */
-    }
-
            /* Estilos para el encabezado */
            .footerLogin {
             height: 160px;
@@ -46,9 +41,26 @@
             margin: 10px;
             align-content: flex-end;
         }
+        
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 
     .card {
-        margin-bottom: 20px; /* Espaciado inferior entre las tarjetas */
+        width: 300px;
         border: 1px solid #ccc;
         border-radius: 5px;
         overflow: hidden;
@@ -58,8 +70,8 @@
 
     .card img {
         width: 100%;
-        height: 300px; /* Altura fija para la imagen */
-        object-fit: cover; /* Para mantener la relación de aspecto */
+        height: auto;
+        display: block;
     }
 
     .card-content {
@@ -72,6 +84,12 @@
 
     .card-content p {
         margin-bottom: 0;
+    }
+
+    .imagen {
+        width: 400px;
+        height: 500px;
+        border: solid black 2px;
     }
 </style>
 
@@ -88,46 +106,36 @@
             </tr>
         </table>
     </div>
-    <?php
-    $i = 0;
-    ?>
+    
     <h1>Registros Productos</h1>
-    <p>Este documento PDF contiene todos los registros de los productos que se encuentran en el aplicativo de ChefControl</p>
-    <table>
-        <tr>
-            @foreach ($productos as $producto)
-                @if ($i % 2 == 0 && $i != 0)
-                    </tr><tr>
-                @endif
-                <td style="width: 50%; vertical-align: top;">
-                    <div class="card">
-                        <img class="imagen" src="{{ public_path($imageName[$i]) }}" alt="Imagen de {{ $producto->Nombre }}">
-                        <div class="card-content">
-                            <h3>Nombre: {{ $producto->Nombre }}</h3>
-                            <p>Stock Maximo: {{ $producto->Stock_Maximo }}</p>
-                            <p>Stock Minimo: {{ $producto->Stock_Minimo }}</p>
-                            <p>Fecha Vencimiento: {{ $producto->Fecha_Vencimiento }}</p>
-                            <p>Costo Total: $COP {{ number_format($producto->Costo, 0, '.', ',') }}</p>
-                            <p>Tipo de Producto: {{ $producto->tipoProducto->Tipo }}</p>
-                            <p>Ubicacion: {{ $producto->Ubicacion }}</p>
-                            <p>Medida del Producto: {{ $producto->tipoMedida->Unidad_Medida }}</p>
-                            <p>Precio de Venta: {{ $producto->Precio_Venta }}</p>
-                            <p>Existencia del producto: {{ $producto->Existencia }}</p>
-                            <p>Iva del Producto: {{ $producto->IVA }}</p>
-                            @if ($producto->estado == true)
-                                <p>Estado: Activo</p>
-                            @else
-                                <p>Estado: Desactivado</p>
-                            @endif
-                        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img class="imagen" src="{{ public_path($imageName) }}" alt="Imagen"></td>
+                    <div class="card-content">
+                        <h3>Nombre: {{ $producto->Nombre }}</h3>
+                        <p>Stock Maximo: {{ $producto->Stock_Maximo }}</p>
+                        <p>Stock Minimo: {{ $producto->Stock_Minimo }}</p>
+                        <p>Fecha Vencimiento: {{ $producto->Fecha_Vencimiento }}</p>
+                        <p>Costo Total: $COP {{number_format( $producto->Costo, 0, '.',',' )}}</p>
+                        <p>Tipo de Producto: {{ $producto->tipoProducto->Tipo }}</p>
+                        <p>Ubicacion: {{ $producto->Ubicacion }}</p>
+                        <p>Medida del Producto: {{ $producto->tipoMedida->Unidad_Medida }}</p>
+                        <p>Precio de Venta: {{ $producto->Precio_Venta }}</p>
+                        <p>Existencia del producto: {{ $producto->Existencia }}</p>
+                        <p>Iva del Producto: {{ $producto->IVA }}</p>
+                        @if ($producto->estado == true)
+                        <p>Estado: Activo</p>
+                        @else
+                        <p>Estado: Desactivado</p>
+                        @endif
                     </div>
-                </td>
-                <?php
-                $i++;
-                ?>
-            @endforeach
-        </tr>
-    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+    
 </body>
-
 </html>

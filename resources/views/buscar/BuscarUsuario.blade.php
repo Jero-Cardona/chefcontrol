@@ -80,6 +80,62 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="tabla-mobile">
+                                <div class="fila">
+                                    @foreach ($resultados as $usuario)
+                                    <div class="columna">
+                                        <div class="header">Numero de documento</div>
+                                        <div class="contenido"><b>{{$usuario->Id_Empleado}}</b></div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Tipo de Documento</div>
+                                        <div class="contenido">{{$usuario->tipo_documento}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Nombre</div>
+                                        <div class="contenido">{{$usuario->Nombre}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Apellido</div>
+                                        <div class="contenido">{{$usuario->Apellido}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Telefono</div>
+                                        <div class="contenido">{{$usuario->Telefono}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Rol de usuario</div>
+                                        <div class="contenido">{{$usuario->tipoRol->Rol}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Estado</div>
+                                        <div class="contenido">
+                                            @if ($usuario->estado == 1)
+                                            Activo
+                                        @else
+                                            Inactivo
+                                        @endif
+                                        </div>
+                                    </div>
+                                    @if (Auth::user()->Id_Rol == '1')
+                                    <div class="columna">
+                                        <div class="header">Acciones</div>
+                                        <div class="contenido">
+                                            <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}"
+                                                class="btnEditar swal-edit">Editar</a>
+                                            @if ($usuario->estado)
+                                                <a href="{{ route('usuario.inactive', $usuario->Id_Empleado) }}"
+                                                    class="btnEliminar swal-confirm">Inactivar</a>
+                                            @else
+                                                <a href="{{ route('usuario.active', $usuario->Id_Empleado) }}"
+                                                    class="btnEliminar swal-confirm">Activar</a>
+                                            @endif
+                                            </div>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

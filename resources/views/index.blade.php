@@ -18,7 +18,7 @@
                     <div class="div3">
                         <div class="divHeader">
                             <h3 class="titulo">Lista de usuarios</h3>
-                            <a href="{{ route('usuarios.pdf') }}" class="btnEditar">Descargar pdf</a>
+                            <a href="{{ route('usuarios.pdf') }}" class="btnEditar swal-pdfs">Descargar pdf</a>
                             <form class="buscador" action="{{ route('buscar.usuarios') }}" method="GET">
                                 <input type="text" name="buscar" id="buscar" value="{{ request('buscar') }}"
                                     placeholder="Buscar">
@@ -36,9 +36,7 @@
                                         <th>Teléfono</th>
                                         <th>Rol de Usuario</th>
                                         <th>Estado</th>
-                                        @if (Auth::user()->Id_Rol == '1')
-                                            <th>Acciones Admin</th>
-                                        @endif
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,12 +67,81 @@
                                                         <a href="{{ route('usuario.active', $usuario->Id_Empleado) }}"
                                                             class="btnEliminar swal-confirm">Activar</a>
                                                     @endif
+                                                    <a href="{{ route('usuario.pdf', ['Id_Empleado' => $usuario->Id_Empleado]) }}"
+                                                        class="btnEditar swal-descargar">Descargar</a>
+                                                </td>
+                                                @else
+                                                <td class="crud-active">
+                                                <a href="{{ route('usuario.pdf', ['Id_Empleado' => $usuario->Id_Empleado]) }}"
+                                                        class="btnEditar swal-descargar">Descargar</a>
                                                 </td>
                                             @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="tabla-mobile">
+                                <div class="fila">
+                                    @foreach ($usuarios as $usuario)
+                                    <div class="columna">
+                                        <div class="header">Numero de documento</div>
+                                        <div class="contenido"><b>{{$usuario->Id_Empleado}}</b></div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Tipo de Documento</div>
+                                        <div class="contenido">{{$usuario->tipo_documento}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Nombre</div>
+                                        <div class="contenido">{{$usuario->Nombre}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Apellido</div>
+                                        <div class="contenido">{{$usuario->Apellido}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Telefono</div>
+                                        <div class="contenido">{{$usuario->Telefono}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Rol de usuario</div>
+                                        <div class="contenido">{{$usuario->tipoRol->Rol}}</div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Estado</div>
+                                        <div class="contenido">
+                                            @if ($usuario->estado == 1)
+                                            Activo
+                                        @else
+                                            Inactivo
+                                        @endif
+                                        </div>
+                                    </div>
+                                    <div class="columna">
+                                        <div class="header">Acciones</div>
+                                        <div class="contenido">
+                                            @if (Auth::user()->Id_Rol == '1')
+                                            <a href="{{ route('usuarios.edit', $usuario->Id_Empleado) }}"
+                                                class="btnEditar swal-edit">Editar</a>
+                                            @if ($usuario->estado)
+                                                <a href="{{ route('usuario.inactive', $usuario->Id_Empleado) }}"
+                                                    class="btnEliminar swal-confirm">Inactivar</a>
+                                            @else
+                                                <a href="{{ route('usuario.active', $usuario->Id_Empleado) }}"
+                                                    class="btnEliminar swal-confirm">Activar</a>
+                                            @endif
+                                            <a href="{{ route('usuario.pdf', ['Id_Empleado' => $usuario->Id_Empleado]) }}"
+                                                class="btnEditar swal-descargar">Descargar</a>
+                                                @else
+                                                <a href="{{ route('usuario.pdf', ['Id_Empleado' => $usuario->Id_Empleado]) }}"
+                                                    class="btnEditar swal-descargar">Descargar</a>
+                                                @endif
+                                            </div>
+                                    </div>
+                                    
+                                    @endforeach
+                                </div>
+                            </div>
                             {{-- Links de paginación --}}
                             @if ($usuarios->hasPages())
                                 <ul class="pagination">

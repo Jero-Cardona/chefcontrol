@@ -9,10 +9,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
-    <link rel="icon" href="{{ asset('imagenes/proyecto/logochef.jpg') }}">
+        <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
     <title>ChefControl</title>
 </head>
-<body>
+<body class="indexHome">
     <div class="contenedorIndex">
         <div class="div-index">
             <header class="headerIndex">
@@ -41,11 +41,10 @@
         <div id="inicio" class="caja3">
             <div class=>
                 <h2 class="tittle">Bienvenidos a nuestro sitio web</h2>
-                <p>ChefControl es un aplicativo para el manejo y la estandarización de las recetas, para el SENA sede
-                    comercio del municipio de Rionegro Antioquia.</p>
+                <p>ChefControl es un aplicativo para el manejo y la estandarización de las recetas para la cocina del SENA, centro de la innovación, la agroindustria y la aviación; Rionegro, Antioquia.</p>
             </div>
         </div>
-        <div class="caja4">
+        <!-- <div class="caja4">
             <div>
                 <h2 class="tittle">SENA Rionegro</h2>
                 <p>La cocina ha venido presentando problemas a la hora del papeleo a mano y por ello han decidido
@@ -64,7 +63,7 @@
                 <p>Apartado para la explicación de las recetas, junto con su paso a paso. Arrocito con huevo y crema de
                     algas marinadas a la marge.</p>
             </div>
-        </div>
+        </div> -->
         <footer class="footerIndex">
             <img class="logo1SenaIndex" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
             <p><b>Servicio nacional de aprendizaje <br>

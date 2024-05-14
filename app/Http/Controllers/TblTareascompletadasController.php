@@ -27,7 +27,8 @@ class TblTareascompletadasController extends Controller
                 $query->where('id_formato', '=', 0);
             })
             ->orderBy('fecha')
-            ->paginate(65);
+            // ->paginate(65);
+            ->get();
 
         $i = 1;
         return view('usuarios.CrudListaInicio', compact('tareasCompletadasPorFecha', 'i'));

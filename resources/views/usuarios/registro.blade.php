@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="{{ asset('/css/estilosLayout.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
     <title>Registro</title>
 </head>
-
 <body>
     @if (session('success'))
         <div class="alert alert-success">

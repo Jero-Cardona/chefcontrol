@@ -191,6 +191,14 @@ class TblUsuariosController extends Controller
         // descarga el pdf
         return $pdf->download('usuarios.pdf');
     }
+    public function pdfunico($Id_Empleado)
+    {
+        $usuario = tbl_usuarios::where('Id_Empleado', $Id_Empleado)->firstOrFail();
+        // mostrar pdf
+        $pdf = Pdf::loadView('pdf.pdfusuario', compact('usuario'));
+        // descarga el pdf
+        return $pdf->download('usuario.pdf');
+    }
 
     public function buscar(Request $request)
     {

@@ -17,22 +17,22 @@
                     <form class="buscador" action="{{ route('buscar.ordenes', ['buscar' => 3]) }}" method="GET">
                         <input type="text" placeholder="Buscar por cliente o receta" name="buscar"
                             value="{{ request('buscar') }}">
-                        <button>Buscar</button>
+                        <button class="btnOrdenes">Buscar</button>
                     </form>
-                    <a href="{{ route('ordenes.pdf', ['button_id' => 3]) }}" class="btnEditar">Descargar PDF</a>
+                    <a href="{{ route('ordenes.pdf', ['button_id' => 3]) }}" class="btnEditar swal-pdfs">Descargar PDF</a>
                 </div>
             </div>
             <div class="orden-container">
                 @foreach ($ordenesEntregadas->groupBy('cliente.Nombre') as $cliente => $ordenesDelCliente)
                     @foreach ($ordenesDelCliente as $orden)
                         <div class="orden">
-                            <h2>Cliente: {{ $cliente }}</h2>
+                            <h2>Cliente: {{ $orden->cliente->Nombre . ' ' . $orden->cliente->Apellido }}</h2>
                             <div class="orden-details">
                                 <h3>Orden #{{ $orden->Consecutivo }}</h3>
                                 <hr>
                                 <h4>Fecha creación: {{ $orden->Fecha }}</h4>
-                                <h4>Empleado que realizó la orden: {{ $orden->empleado->Nombre }}</h4>
-                                <h4>Receta: {{ $orden->receta->Nombre }}</h4>
+                                <h4>Empleado que realizó la orden: {{ $orden->empleado->Nombre . ' ' . $orden->empleado->Apellido }}</h4>
+                                <h4>Receta: {{ $orden->receta->Nombre}}</h4>
                                 <h4>Cantidad de porciones: {{ $orden->cantidad }}</h4>
                                 @if ($orden->receta)
                                     @php
@@ -58,20 +58,66 @@
                                         @csrf
                                         <div>
                                             <label para="fecha_pedido">Fecha pedido:</label>
-                                            <input type="datetime-local" name="Fecha_Pedido" required>
+                                            <input class="form-control" type="datetime-local" name="Fecha_Pedido" required>
                                         </div>
                                         <div>
                                             <label>Presentación:</label>
-                                            <input type="text" name="Presentación" required>
+                                            <input type="text" name="Presentacion" required>
                                         </div>
-                                        <button type="submit">Agregar detalle</button>
+                                        <button class="btnOrdenes" type="submit">Agregar detalle</button>
                                     </form>
                                 @endif
                             </div>
+                            <a href="{{ route('orden.pdf', ['ordenId' => $orden->Consecutivo, 'button' => 3]) }}"
+                                class="btnEditar swal-descargar" style="margin: 20px 0 10px 0; display: inline-flex;">Descargar Orden de produccion</a>
                         </div>
                     @endforeach
                 @endforeach
             </div>
+             {{-- Links de paginación --}}
+             @if ($ordenesEntregadas->hasPages())
+             <ul class="pagination">
+                 {{-- Botón "Primero" --}}
+                 @if (!$ordenesEntregadas->onFirstPage())
+                     <li><a href="{{ $ordenesEntregadas->url(1) }}">Primero</a></li>
+                 @endif
+                 {{-- Botón "Anterior" --}}
+                 @if ($ordenesEntregadas->onFirstPage())
+                     <li class="disabled"><span>Anterior</span></li>
+                 @else
+                     <li><a href="{{ $ordenesEntregadas->previousPageUrl() }}">Anterior</a></li>
+                 @endif
+                 {{-- para mostrar el numero de Items --}}
+                 {{ $ordenesEntregadas->firstItem() }}
+                 de
+                 {{ $ordenesEntregadas->total() }}
+                 {{-- Páginas --}}
+                 @foreach ($ordenesEntregadas->items() as $item)
+                     @if (is_string($item))
+                         <li class="disabled"><span>{{ $item }}</span></li>
+                     @endif
+                     @if (is_array($item))
+                         @foreach ($item as $page => $url)
+                             @if ($page == $ordenesEntregadas->currentPage())
+                                 <li class="active"><span>{{ $page }}</span></li>
+                             @else
+                                 <li><a href="{{ $url }}">{{ $page }}</a></li>
+                             @endif
+                         @endforeach
+                     @endif
+                 @endforeach
+                 {{-- Botón "Siguiente" --}}
+                 @if ($ordenesEntregadas->hasMorePages())
+                     <li><a href="{{ $ordenesEntregadas->nextPageUrl() }}">Siguiente</a></li>
+                 @else
+                     <li class="disabled"><span>Siguiente</span></li>
+                 @endif
+                 {{-- Botón "Último" --}}
+                 @if ($ordenesEntregadas->hasMorePages())
+                     <li><a href="{{ $ordenesEntregadas->url($ordenesEntregadas->lastPage()) }}">Último</a></li>
+                 @endif
+             </ul>
+         @endif
         </div>
         <footer class="footerLogin">
             <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">

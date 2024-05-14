@@ -112,10 +112,15 @@ class TblClienteController extends Controller
     public function pdf()
     {
         $clientes = tbl_cliente::all();
-        // mostrar pdf
         $pdf = Pdf::loadView('pdf.pdfclientes', compact('clientes'));
-        // descarga el pdf
         return $pdf->download('clientes.pdf');
+    }
+
+    public function pdfunico($Id_Cliente)
+    {
+        $cliente = tbl_cliente::where('Id_Cliente', $Id_Cliente)->firstOrFail();
+        $pdf = Pdf::loadView('pdf.pdfcliente', compact('cliente'));
+        return $pdf->download('cliente.pdf');
     }
 
     public function buscar(Request $request)

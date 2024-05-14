@@ -11,6 +11,7 @@ use App\Models\tbl_receta;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
 class TblOrdenproduccionController extends Controller
 {
     // constructor para los middleware
@@ -20,16 +21,6 @@ class TblOrdenproduccionController extends Controller
         $this->middleware('AdminRol', ['only' => ['edit', 'update', 'active', 'inactive']]);
     }
 
-    // public function index()
-    // {
-    //     $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
-    //         ->get()
-    //         ->groupBy(function ($orden) {
-    //             return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
-    //         });
-
-    //     return view('usuarios.CrudOrden', compact('ordenesPorCliente'));
-    // }
 
     public function storeDetalles(Request $request, $ordenId)
     {
@@ -41,7 +32,7 @@ class TblOrdenproduccionController extends Controller
         $detalle->Presentacion = $request->input('Presentacion');
         $detalle->save();
 
-        return redirect()->back()->with('success', 'Detalle agregado correctamente.');
+        return redirect()->back()->with('ordenes', 'Detalle agregado correctamente.');
     }
 
     public function storeBulkDetalles(Request $request)
@@ -60,13 +51,17 @@ class TblOrdenproduccionController extends Controller
             $detalle->Presentacion = $presentacion;
             $detalle->save();
         }
-        return redirect()->back()->with('success', 'Detalles agregados correctamente.');
+        return redirect()->back()->with('ordenes', 'Detalles agregados correctamente.');
     }
 
     public function create()
     {
-        // vista del formulario de orden de produccion 
-        return view('usuarios.OrdenProduccion');
+        $fechaActual = Carbon::now();
+        $recetas = tbl_receta::where('etapa', true)
+        ->where('Estado', 1)->get();
+        $clientesActivos = tbl_cliente::where('estado', true)->get();
+
+        return view('usuarios.OrdenProduccion', compact('recetas', 'clientesActivos', 'fechaActual'));
     }
 
     public function store(Request $request)
@@ -111,7 +106,7 @@ class TblOrdenproduccionController extends Controller
         $orden->estado = 'En preparación';
         $orden->save();
 
-        return redirect()->back()->with('success', 'Estado de la orden actualizado a "En preparación"');
+        return redirect()->back()->with('ordenes', 'Estado de la orden actualizado a En preparación');
     }
     public function marcarComoEntregado($ordenId)
     {
@@ -119,20 +114,16 @@ class TblOrdenproduccionController extends Controller
         $orden->estado = 'Entregado';
         $orden->save();
 
-        return redirect()->back()->with('success', 'La orden ha sido marcada como entregada.');
+        return redirect()->back()->with('ordenes', 'La orden ha sido marcada como entregada.');
     }
 
     public function indexOrdenesEspera()
     {
         // Obtener todas las órdenes en espera
         $ordenesEnEspera = tbl_ordenproduccion::where('estado', 'En espera')->get();
-        // Obtener las órdenes agrupadas por cliente con sus detalles
         $ordenesPorCliente = tbl_ordenproduccion::with(['cliente', 'receta', 'detalles'])
             ->where('estado', 'En espera')
-            ->get()
-            ->groupBy(function ($orden) {
-                return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
-            });
+            ->paginate(6);
 
         // Obtener los Consecutivos de las órdenes que tienen detalles
         $ordenesConDetalles = tbl_detalleordenproduccion::pluck('Consecutivo')->toArray();
@@ -142,13 +133,13 @@ class TblOrdenproduccionController extends Controller
 
     public function indexOrdenesPreparacion()
     {
-        $ordenesEnPreparacion = tbl_ordenproduccion::where('estado', 'En preparación')->get();
+        $ordenesEnPreparacion = tbl_ordenproduccion::where('estado', 'En preparación')->paginate(6);
         return view('usuarios.ordenesPreparacion', compact('ordenesEnPreparacion'));
     }
 
     public function indexOrdenesEntegadas()
     {
-        $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->get();
+        $ordenesEntregadas = tbl_ordenproduccion::where('estado', 'Entregado')->paginate(6);
         return view('usuarios.ordenesEntregadas', compact('ordenesEntregadas'));
     }
 
@@ -167,7 +158,7 @@ class TblOrdenproduccionController extends Controller
         $detalles->Presentacion = $request->input('Presentacion');
         $detalles->save();
 
-        return redirect()->route('receta.recetario')->with('success', 'Detalle actualizado correctamente.');
+        return redirect()->route('receta.recetario')->with('ordenes', 'Detalle actualizado correctamente.');
     }
 
     public function buscar(Request $request, $buscar)
@@ -267,6 +258,29 @@ class TblOrdenproduccionController extends Controller
         });
 
         $pdf = Pdf::loadView('pdf.pdfordenes', compact('ordenes', 'titulo', 'ordenesPorCliente'));
+        return $pdf->download($titulo . '.pdf');
+    }
+
+    public function pdfunico($ordenId, $button)
+    {
+        if ($button == 1) {
+            $orden = tbl_ordenproduccion::where('Consecutivo', $ordenId)
+                ->where('estado', 'En espera')
+                ->firstOrFail();
+            $titulo = 'Orden de produccion en espera';
+        } elseif ($button == 2) {
+            $orden = tbl_ordenproduccion::where('Consecutivo', $ordenId)
+                ->where('estado', 'En preparación')
+                ->firstOrFail();
+            $titulo = 'Orden de produccion en preparacion';
+        } else {
+            $orden = tbl_ordenproduccion::where('Consecutivo', $ordenId)
+                ->where('estado', 'Entregado')
+                ->firstOrFail();
+            $titulo = 'Orden de produccion entregada';
+        }
+
+        $pdf = PDF::loadView('pdf.pdforden', compact('orden', 'titulo'));
         return $pdf->download($titulo . '.pdf');
     }
 }

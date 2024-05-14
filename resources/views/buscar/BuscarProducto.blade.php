@@ -86,6 +86,87 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="tabla-mobile">
+                            {{-- @foreach ($productos as $producto) --}}
+                            <div class="fila">
+                                @foreach ($resultados as $producto)
+                                <div class="columna">
+                                    <div class="header">Nombre</div>
+                                    <div class="contenido"><b>{{$producto->Nombre}}</b></div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">imagen</div>
+                                    <div class="contenido"><img style="height: 100px; width: 100px; border-radius: 10px;"
+                                    src="{{ $producto->imagen }}" alt="imagen"></div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Stock minimo</div>
+                                    <div class="contenido">{{$producto->Stock_Minimo}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Stock maximo</div>
+                                    <div class="contenido">{{$producto->Stock_Maximo}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Fecha vencimiento</div>
+                                    <div class="contenido">{{$producto->Fecha_Vencimiento}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Costo</div>
+                                    <div class="contenido">$COP {{$producto->Costo}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Tipo</div>
+                                    <div class="contenido">{{$producto->tipoProducto->Tipo}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Ubicacion</div>
+                                    <div class="contenido">{{$producto->Ubicacion}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Unidad medida</div>
+                                    <div class="contenido">{{$producto->tipoMedida->Unidad_Medida}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Precio venta</div>
+                                    <div class="contenido">{{$producto->Precio_Venta}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Existencia</div>
+                                    <div class="contenido">{{$producto->Existencia}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Iva</div>
+                                    <div class="contenido">{{$producto->IVA}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Estado</div>
+                                    <div class="contenido">
+                                        @if ($producto->estado == 1)
+                                        Activo
+                                    @else
+                                        Inactivo
+                                    @endif
+                                    </div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Acciones</div>
+                                    <div class="contenido">
+                                        <a href="{{ route('producto.edit', $producto->Cod_Producto) }}"
+                                            class="btnEditar swal-edit">Editar</a>
+                                        @if ($producto->estado)
+                                            <a href="{{ route('producto.inactive', $producto->Cod_Producto) }}"
+                                                class="btnEliminar swal-confirm">Inactivar</a>
+                                        @else
+                                            <a href="{{ route('producto.active', $producto->Cod_Producto) }}"
+                                                class="btnEliminar swal-confirm">Activar</a>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            {{-- @endforeach --}}
+                        </div>
                         {{-- Links de paginación --}}
                         @if ($resultados->hasPages())
                             <ul class="pagination">

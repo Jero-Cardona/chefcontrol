@@ -80,7 +80,60 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        <div class="tabla-mobile">
+                            <div class="fila">
+                                @foreach ($resultados as $cliente)
+                                <div class="columna">
+                                    <div class="header">Numero de documento</div>
+                                    <div class="contenido"><b>{{$cliente->Id_Cliente}}</b></div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Tipo de Documento</div>
+                                    <div class="contenido">{{$cliente->Tipo_identificacion}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Nombre</div>
+                                    <div class="contenido">{{$cliente->Nombre}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Apellido</div>
+                                    <div class="contenido">{{$cliente->Apellido}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Telefono</div>
+                                    <div class="contenido">{{$cliente->Telefono}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Estado</div>
+                                    <div class="contenido">
+                                        @if ($cliente->estado == 0)
+                                        Inactivo
+                                    @elseif($cliente->estado == 1)
+                                        Activo
+                                    @endif
+                                    </div>
+                                </div>
+                                @if (Auth::user()->Id_Rol == '1')
+                                <div class="columna">
+                                    <div class="header">Acciones</div>
+                                    <div class="contenido">
+                                        <a href="{{ route('cliente.edit', $cliente->Id_Cliente) }}"
+                                            class="btnEditar swal-edit">Editar</a>
+                                        @if ($cliente->estado)
+                                            <a href="{{ route('cliente.inactive', $cliente->Id_Cliente) }}"
+                                                class="btnEliminar swal-confirm">Inactivar</a>
+                                        @else
+                                            <a href="{{ route('cliente.active', $cliente->Id_Cliente) }}"
+                                                class="btnEliminar swal-confirm">Activar</a>
+                                        @endif
+                                        <a href="{{ route('cliente.pdf',['Id_Cliente' => $cliente->Id_Cliente])}}"
+                                            class="btnEditar swal-descargar">Descargar</a>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('/css/estilosReceta.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="{{ asset('imagenes/proyecto/sombrerochef.svg') }}">
+    <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
@@ -114,9 +114,8 @@
             <div class="caja1Recetas">
                 <img class="logo2Recetas" src="{{ asset('imagenes/proyecto/logo.svg') }}">
                 <h2 class="textRecetas1">Bienvenidos a nuestro sitio web</h2>
-                <p class="textRecetas2">El recetario es un libro que contiene recetas culinarias. La receta se
-                    caracteriza por indicar los elementos que entran en la composición y elaboración de un plato de
-                    cocina y la manera en que se prepara.</p>
+                <p class="textRecetas2">El recetario es una recopilación que reúne diversas recetas culinarias. 
+                    Cada receta se distingue por detallar los ingredientes necesarios y el procedimiento para preparar un plato específico.</p>
             </div>
         </div>
         <div class="contenedor2Recetas">
@@ -136,13 +135,10 @@
                 <img src="{{ asset('imagenes/proyecto/image22.png') }}">
                 <b>Ver recetario</b>
             </a>
-            <p><b>Las siguientes opciones permiten distintas funcionalidades de acuerdo a el perfil de usuario y el uso
-                    que este mismo desde, las
-                    opciones son: estandarizar, sugerir, ver listado (editar, borrar),etc...
-                    en la siguiente sección se encuentran las recetas que ya han sido registradas y están
-                    estandarizadas para mostrar al usuario,
-                    una vez visites cada receta tienes la opción de calcular para cuántas personas es necesaria la
-                    receta. </b></p>
+            <p><b>Las siguientes opciones ofrecen diversas funcionalidades según el perfil de usuario y su propósito de uso. 
+                Entre las opciones se incluyen: estandarizar, sugerir, visualizar el listado (con opciones para editar y desactivar), entre otras. 
+                En la sección siguiente se presentan las recetas que ya han sido registradas y estandarizadas para su visualización por parte del administrador. 
+                Una vez que se visita cada receta, se ofrece la opción de calcular la cantidad necesaria de ingredientes para la cantidad deseada de personas. </b></p>
         </div>
         {{-- contenedor de las recetas del aplicativo --}}
         <div class="contenedorRecetario">
@@ -156,14 +152,14 @@
                                 <div class="hoverDiv1Recetas">
                                     <h2>{{ $receta->Nombre }}</h2>
                                     <p>Costo de la receta: <br>
-                                        {{ $receta->Costo_Total }}</p>
+                                    $COP {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
                                 </div>
                             </a>
                         </figure>
                         <div class="hoverDiv2Recetas">
-                            <h2>{{ $receta->Nombre }}</h2>
+                            <h2>{{ $receta->Nombre }}</h2><br>
                             <p>Costo de la receta: <br>
-                                {{ $receta->Costo_Total }}</p>
+                            $cop {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
                         </div>
                     </div>
                 @endforeach

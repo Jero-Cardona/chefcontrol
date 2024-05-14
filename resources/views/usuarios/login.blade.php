@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-0kI1HjxgLveGKz6cuwDSMN4wr1jUnslm2L1qLYF5bDOcVvU7kU0/73RbVhqGpjU/" crossorigin="anonymous"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
@@ -105,6 +106,18 @@
                 icon: "error",
                 text: "!Estas credenciales no coinciden con nuestros registros! Por favor intenta de nuevo. ",
                 title: "!Ups, Algo anda mal¡",
+                showConfirmButton: true,
+                confirmButtonColor: 'rgba(255, 102, 0)',
+            });
+        </script>
+    @endif
+    @if ($errors->has('status'))
+        <script>
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                text: "{{session('status')}}",
+                title: "!Listo!",
                 showConfirmButton: true,
                 confirmButtonColor: 'rgba(255, 102, 0)',
             });

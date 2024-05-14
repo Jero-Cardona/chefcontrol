@@ -77,14 +77,12 @@
                     <div class="form1Registro">
                         <select id="Cod_UMedida" name="Cod_UMedida" value="{{ old('Cod_UMedida') }}">
                             <option value="" disabled selected hidden>Medida del producto</option>
-                            <option value="1" @if (old('Cod_UMedida') == '1') selected @endif>Gramos</option>
-                            <option value="2" @if (old('Cod_UMedida') == '2') selected @endif>Kilos</option>
-                            <option value="3" @if (old('Cod_UMedida') == '3') selected @endif>Libras</option>
-                            <option value="4" @if (old('Cod_UMedida') == '4') selected @endif>Onzas</option>
-                            <option value="5" @if (old('Cod_UMedida') == '5') selected @endif>Porcion</option>
-                            <option value="6" @if (old('Cod_UMedida') == '6') selected @endif>Unidad</option>
-                            <option value="7" @if (old('Cod_UMedida') == '7') selected @endif>Litros</option>
-                            <option value="8" @if (old('Cod_UMedida') == '8') selected @endif>Mililitros</option>
+                            <option value="1" @if (old('Cod_UMedida') == '1') selected @endif>Gramos (g)</option>
+                            <option value="2" @if (old('Cod_UMedida') == '2') selected @endif>Kilogramos (kg)</option>
+                            <option value="3" @if (old('Cod_UMedida') == '3') selected @endif>Litros (l)</option>
+                            <option value="4" @if (old('Cod_UMedida') == '4') selected @endif>Mililitro (ml)</option>
+                            <option value="5" @if (old('Cod_UMedida') == '5') selected @endif>Centímetros cúbicos (cm³)</option>
+                          
                         </select>
                         @error('Cod_UMedida')
                             <div class="alert alert-danger">{{ $message }}</div>

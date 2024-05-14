@@ -79,6 +79,75 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="tabla-mobile">
+                            <div class="fila">
+                                @foreach ($resultados as $receta)
+                                <div class="columna">
+                                    <div class="header">Nombre</div>
+                                    <div class="contenido"><b>{{$receta->Nombre}}</b></div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">imagen</div>
+                                    <div class="contenido"><img style="height: 150px; width: 200px; border-radius: 10px;"
+                                    src="{{ $receta->imagen }}" alt="imagen"></div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Descripcion</div>
+                                    <div class="contenido">{{$receta->Descripcion}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Costo receta</div>
+                                    <div class="contenido">$COP {{ number_format($receta['Costo_Total'], 0, '.', ',')}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Aporte</div>
+                                    <div class="contenido">{{$receta->Contribucion}}</div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Estado</div>
+                                    <div class="contenido">
+                                        @if ($receta->Estado == 1)
+                                        Estandarizada
+                                    @elseif($receta->Estado == 2)
+                                        En espera
+                                    @endif
+                                    </div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Estado</div>
+                                    <div class="contenido">
+                                        @if ($receta->etapa == true)
+                                        Activo
+                                    @else
+                                        Inactivo
+                                    @endif
+                                    </div>
+                                </div>
+                                <div class="columna">
+                                    <div class="header">Acciones</div>
+                                    @if (Auth::user()->Id_Rol == '1')
+                                    <div class="contenido">
+                                                <a href="{{ route('receta.edit', $receta->Id_Receta) }}"
+                                                    class="btnEditar swal-edit">Editar</a>
+                                                @if ($receta->etapa)
+                                                    <a href="{{ route('receta.inactive', $receta->Id_Receta) }}"
+                                                        class="btnEliminar swal-confirm">Desactivar</a>
+                                                @else
+                                                    <a href="{{ route('receta.active', $receta->Id_Receta) }}"
+                                                        class="btnEliminar swal-confirm">Activar</a>
+                                                @endif
+                                                <a href="{{ route('receta.pdf', ['Id_Receta' => $receta->Id_Receta, 'button' => 1]) }}"
+                                                    class="btnEditar swal-edit">Descargar</a>
+                                                @else
+                                                <a href="{{ route('receta.pdf', ['Id_Receta' => $receta->Id_Receta, 'button' => 1]) }}"
+                                                    class="btnEditar swal-edit">Descargar</a>
+                                                @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            {{-- @endforeach --}}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -17,22 +17,37 @@
                                         <tbody>
                                             <h2 style="text-align: center;">{{ $receta->Nombre }}</h2>
                                             <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}"
-                                                style="height: 150px; width: auto; ">
-                                            @if ($receta->Estado === 1)
-                                                <p>Estado: estandarizada</p>
+                                                style="height: 150px; width: auto; border-radius: 15px;">
+                                                <p style="text-align: justify;">{{ $receta->Descripcion }}</p>
                                                 <hr>
-                                            @else
-                                                <p>Estado: en espera</p>
-                                                <hr>
-                                            @endif
-                                            <p style="text-align: justify;">{{ $receta->Descripcion }}</p>
-                                            <hr>
-                                            <ul>
-                                                @foreach ($receta->detallesReceta as $detalle)
-                                                    <li> {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }}
-                                                        {{ $detalle->unidadMedida->Unidad_Medida }} </li>
-                                                @endforeach
-                                            </ul>
+                                                @if ($receta->Estado === 1)
+                                                    <p>Estado: Estandarizada</p>
+                                                    <hr>
+                                                @else
+                                                    <p>Estado: En espera</p>
+                                                    <hr>
+                                                @endif
+                                                
+                                                <h5>$COP {{number_format($receta->Costo_Total,  0, '.', ',')}}</h5>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Unidad de Medida</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($receta->detallesReceta as $detalle)
+                                                    <tr>
+                                                        <td>{{ $detalle->producto->Nombre }}</td>
+                                                        <td>{{number_format($detalle->Cantidad, 0,'.', ',') }}</td>
+                                                        <td>{{ $detalle->unidadMedida->Unidad_Medida }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
                                         </tbody>
                                     </table>
                                 </div>

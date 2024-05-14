@@ -18,9 +18,11 @@
                         <label for="Nombre"> Nombre receta</label>
                     </div>
                     <div class="formRegistro">
-                        <input value="{{ $receta[0]->Descripcion }}" id="Descripcion" name="Descripcion" type="text"
-                            required>
-                        <label for="Descripcion"> Descripción receta</label>
+                        <div class="fileR">
+                            <input id="imagen" name="imagen1" type="file" class="fileRI">
+                            <p class="textoFile">Adjuntar archivo</p>
+                            <label for="imagen"></label>
+                        </div>
                     </div>
                     <div class="formRegistro">
                         <input value="{{ $receta[0]->Costo_Total }}" id="Costo_Total" name="Costo_Total" type="text"
@@ -39,11 +41,13 @@
                             <option value="2">En espera (2)</option>
                         </select> --}}
                     </div>
-                    <div class="formRegistro">
-                        <div class="fileR">
-                            <input id="imagen" name="imagen1" type="file" class="fileRI">
-                            <p class="textoFile">Adjuntar archivo</p>
-                            <label for="imagen"></label>
+                    <div class="formRegistroTextarea1">
+                        <div class="formRegistro">
+                            <textarea class="textarea" name="Descripcion" id="Descripcion" type="text" value="{{ old('Descripcion') }}" required></textarea>
+                            <label class="labelTextarea" for="Descripcion"> Descripción Receta</label>
+                            @error('Descripcion')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="btn1Registro">

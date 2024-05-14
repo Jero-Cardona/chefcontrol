@@ -251,6 +251,36 @@ class TblRecetaController extends Controller
         return view('usuarios.Receta', compact('receta'));
     }
 
+    public function pdfunico($Id_Receta, $button){
+        if($button == 1){
+            $receta = tbl_receta::where('Id_Receta', $Id_Receta)
+            ->where('etapa', true)
+            ->where('Estado', '1')
+            ->firstOrFail();
+            $titulo = 'Receta Estandarizada';
+
+        }elseif($button == 2){
+            $receta = tbl_receta::where('Id_Receta', $Id_Receta)
+            ->where('etapa', true)
+            ->where('Estado', '2')
+            ->firstOrFail();
+            $titulo = 'Receta en Espera';
+        }else{
+            $receta = tbl_receta::where('Id_Receta', $Id_Receta)
+            ->where('etapa', false)
+            ->firstOrFail();
+            $titulo = 'Receta Desactivada';
+        }
+
+        $imagenUrl = $receta->imagen;
+        $urlComponentes = parse_url($imagenUrl);
+        $imageName = $urlComponentes['path'];
+
+
+        $pdf = Pdf::loadView('pdf.pdfreceta', compact('receta', 'imageName', 'titulo'));
+        return $pdf->download($titulo . '.pdf');
+    }
+
     public function pdf($button_id)
     {
         if ($button_id == 1) {
@@ -262,11 +292,12 @@ class TblRecetaController extends Controller
             $recetas = tbl_receta::where('etapa', false)
                 ->get();
             $titulo = 'Recetas Inactivadas';
-        } else {
+        } else{
             $recetas = tbl_receta::where('Estado', '2')
                 ->get();
             $titulo = 'Recetas en Espera';
         }
+
         $imageName = [];
         // obtener el paht de la imagen
         for ($i = 0; $i < count($recetas); $i++) {
@@ -317,7 +348,7 @@ class TblRecetaController extends Controller
         }
 
         if ($resultados->isEmpty()) {
-            return redirect()->route('crudrecetas')
+            return redirect()->back()
                 ->with('mensaje', '!La receta ' . $searchTerm . ' no existe!!');
         } else {
             return view('buscar.BuscarReceta', compact('resultados', 'searchTerm', 'buscar'));

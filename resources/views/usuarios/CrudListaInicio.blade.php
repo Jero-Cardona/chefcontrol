@@ -4,24 +4,27 @@
         <body class="bodyListas">
             <div class="contenedorListasR">
                 <h2 class="tituloListasR">Listas inicio de jornada registradas</h2>
-                <form class="buscador" style="display: inline-flex; float: end;"
+                <div class="buscador-container">
+                <form class="buscador"
                     action="{{ route('buscar.listas', ['buscar' => 1]) }}" method="GET">
+                    <label for="date" id="buscadorform">Buscar lista por fecha</label>
                     <input type="date" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar') }}">
                     <button>Buscar</button>
                 </form>
+                </div>
                 <div class="rowListasR">
                     @foreach ($tareasCompletadasPorFecha->groupBy('fecha') as $fecha => $tareasCompletadas)
                         <div class="contenedor1ListaR">
                             <div class="cardListaR">
                                 <div class="cardHeaderListaR">
-                                    <h3 class="cardTitleListaR">Lista numero: {{ $i }}</h3>
+                                    <h3 class="cardTitleListaR">Lista número: {{ number_format($i, 0, ',', '.') }}</h3>
                                 </div>
                                 <div class="cardBodyListaR" data-variable-i="{{ $i++ }}">
                                     <p class="pListaR"><b>Lista realizada en la fecha:</b><br>{{ $fecha }}<br><b>Cocinero
                                             Responsable:</b><br>{{ $tareasCompletadas->first()->usuario->Nombre }}</p>
                                     <div class="divButtonListaR">
                                         <a href="{{ route('vertareas', ['verlistas' => 1, 'fecha' => $fecha]) }}">
-                                            <button class="buttonListaR">Ver detalles</button>
+                                            <button class="buttonListaR">Ver Tareas</button>
                                         </a>
                                     </div>
                                 </div>

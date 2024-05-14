@@ -18,14 +18,14 @@
                         <form action="{{ route('cliente.store') }}" method="POST" class="formularioRegistro" id="form">
                             @csrf
                             <div class="formRegistro">
-                                <input id="Id_Cliente" name="Id_Cliente" type="number" value="{{ old('Id_Cliente') }}">
+                                <input required id="Id_Cliente" name="Id_Cliente" type="number" value="{{ old('Id_Cliente') }}">
                                 <label for="Id_Cliente">Número de documento</label>
                                 @error('Id_Cliente')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form1Registro">
-                                <select id="Tipo_identificacion" name="Tipo_identificacion" value="{{ old('Tipo_identificacion') }}">
+                                <select required id="Tipo_identificacion" name="Tipo_identificacion" value="{{ old('Tipo_identificacion') }}">
                                     <option value="" disabled selected hidden>Tipo de documento</option>
                                     <option value="Cédula de Ciudadanía" @if (old('Tipo_identificacion') == 'Cédula de Ciudadanía') selected @endif>
                                         Cédula de Ciudadanía (CC)</option>
@@ -43,21 +43,21 @@
                                 @enderror
                             </div>
                             <div class="formRegistro">
-                                <input id="Nombre" name="Nombre" type="text" value="{{ old('Nombre') }}">
+                                <input required id="Nombre" name="Nombre" type="text" value="{{ old('Nombre') }}">
                                 <label for="Nombre"> Nombre Cliente</label>
                                 @error('Nombre')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="formRegistro">
-                                <input id="Apellido" name="Apellido" type="text" value="{{ old('Apellido') }}">
+                                <input required id="Apellido" name="Apellido" type="text" value="{{ old('Apellido') }}">
                                 <label for="Apellido"> Apellido Cliente</label>
                                 @error('Apellido')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="formRegistro">
-                                <input id="Telefono" name="Telefono" type="text" value="{{ old('Telefono') }}">
+                                <input required id="Telefono" name="Telefono" type="text" value="{{ old('Telefono') }}">
                                 <label for="Telefono"> Teléfono Cliente</label>
                                 @error('Telefono')
                                     <div class="alert alert-danger">{{ $message }}</div>

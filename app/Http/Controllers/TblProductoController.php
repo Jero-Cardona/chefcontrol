@@ -178,6 +178,17 @@ class TblProductoController extends Controller
         return redirect()->route('crudproductos')->with('success', 'Producto activado correctamente.');
     }
 
+    public function pdfunico($Cod_Producto)
+{
+    
+        $producto = tbl_producto::where('Cod_Producto', $Cod_Producto)->firstOrFail();
+        $imagenUrl = $producto->imagen;
+        $urlComponentes = parse_url($imagenUrl);
+        $imageName = $urlComponentes['path'];
+        $pdf = Pdf::loadView('pdf.pdfproducto', compact('producto', 'imageName'));
+        return $pdf->download('producto.pdf');
+    
+}
 
     public function pdf()
     {
@@ -196,7 +207,7 @@ class TblProductoController extends Controller
         // mostrar pdf
         $pdf = Pdf::loadView('pdf.pdfproductos', compact('productos', 'imageName'));
         // descarga el pdf
-        return $pdf->download('producto.pdf');
+        return $pdf->download('productos.pdf');
     }
 
     public function buscar(Request $request)

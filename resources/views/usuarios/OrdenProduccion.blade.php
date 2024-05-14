@@ -1,11 +1,5 @@
 <?php
-use App\Models\tbl_cliente;
 use Carbon\Carbon;
-use App\Models\tbl_receta;
-
-$recetas = tbl_receta::all();
-$fechaActual = Carbon::now();
-$clientesActivos = tbl_cliente::where('estado', true)->get();
 ?>
 @extends('layouts.app')
 @section('content')
@@ -22,7 +16,7 @@ $clientesActivos = tbl_cliente::where('estado', true)->get();
                         <select class="input" name="Id_Cliente" required>
                             <option value="" disabled selected hidden>Cliente al que se dirige la orden</option>
                             @foreach ($clientesActivos as $cliente)
-                                <option value="{{ $cliente->Id_Cliente }}">{{ $cliente->Nombre }}</option>
+                                <option value="{{ $cliente->Id_Cliente }}">{{ $cliente->Nombre . ' ' . $cliente->Apellido }}</option>
                             @endforeach
                         </select>
                     </div>

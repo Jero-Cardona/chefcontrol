@@ -1,26 +1,11 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('/css/estilosLayout.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
-        rel="stylesheet">
-    <title>Registro</title>
-</head> --}}
 @extends('layouts.app')
 @section('content')
-<body>
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('confirm-user') }}
         </div>
     @endif
     <div class="contenedorRegistro">
-       
         <div class="contenedorFormRegistro">
             <div class="contenedorFormRegistro1">
                 <div class="tituloRegistro">
@@ -109,24 +94,7 @@
                 </form>
             </div>
         </div>
-        {{-- <footer class="footerLogin">
-            <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
-            <p><b>Servicio nacional de aprendizaje <br>
-                    Centro de la innovación, agroindustria y aviación</b></p>
-            <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
-        </footer> --}}
     </div>
-    <!-- enlace de la libreria de SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- enalce a scripts personalizados del aplicativo --}}
     <script src="{{ asset('js/SweetAlerts.js') }}"></script>
-    <footer class="footerLogin">
-        <img class="logo1SenaLogin" src="{{ asset('imagenes/proyecto/logoSena.png') }}">
-        <p><b>Servicio nacional de aprendizaje <br>
-                Centro de la innovación, agroindustria y aviación</b></p>
-        <img class="logo3Login" src="{{ asset('imagenes/proyecto/logo.svg') }}">
-    </footer>
-</body>
-
-{{-- </html> --}}
 @endsection

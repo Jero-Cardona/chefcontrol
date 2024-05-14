@@ -4,17 +4,20 @@
         <body class="bodyListas">
             <div class="contenedorListasR">
                 <h2 class="tituloListasR">Listas fin de jornada registradas</h2>
-                <form class="buscador" style="display: inline-flex; float: end;"
+                <div class="buscador-container">
+                <form class="buscador"
                     action="{{ route('buscar.listas', ['buscar' => 2]) }}" method="GET">
+                    <label for="date" id="buscadorform">Buscar lista por fecha</label>
                     <input type="date" placeholder="Buscar por cliente o receta" name="buscar" value="{{ request('buscar') }}">
                     <button>Buscar</button>
                 </form>
+                </div>
                 <div class="rowListasR">
                     @foreach ($tareasCompletadasPorFecha as $fecha => $tareasCompletadas)
                         <div class="contenedor1ListaR">
                             <div class="cardListaR">
                                 <div class="cardHeaderListaR">
-                                    <h3 class="cardTitleListaR">Lista número {{ $i }}</h3>
+                                    <h3 class="cardTitleListaR">Lista número: {{ number_format($i, 0, ',', '.') }}</h3>
                                 </div>
                                 <div class="cardBodyListaR" data-variable-i="{{ $i++ }}">
                                     <div class="tablaResponsiveListaR">
@@ -28,7 +31,7 @@
                                                 <div class="divButtonListaR">
                                                     <a style="text-decoration: none; color: #fff;"
                                                         href="{{ route('vertareas', ['verlistas' => 2, 'fecha' => $fecha]) }}"><button
-                                                        class="buttonListaR">Ver detalles</button></a>
+                                                        class="buttonListaR"><b>Ver Tareas</b></button></a>
                                                 </div>
                                             </tbody>
                                         </table>

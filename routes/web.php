@@ -53,6 +53,7 @@ Route::get('/Usuario/{Id_Empleado}/inactive', [TblUsuariosController::class, 'in
 Route::get('/Usuario/{Id_Empleado}/active', [TblUsuariosController::class, 'active'])->name('usuario.active');
 // descarga usuarios pdf
 Route::get('Usuariospdf', [TblUsuariosController::class, 'pdf'])->name('usuarios.pdf');
+Route::get('Usuariospdf/{Id_Empleado}', [TblUsuariosController::class, 'pdfunico'])->name('usuario.pdf');
 // buscar registros de usuarios
 Route::get('/buscarUsuarios', [TblUsuariosController::class, 'buscar'])->name('buscar.usuarios');
 
@@ -82,12 +83,11 @@ Route::post('/orden/{ordenId}/entregado', [TblOrdenproduccionController::class, 
 Route::get('/ordenes/espera', [TblOrdenproduccionController::class, 'indexOrdenesEspera'])->name('ordenes.espera');
 Route::get('/ordenes/preparacion', [TblOrdenProduccionController::class, 'indexOrdenesPreparacion'])->name('ordenes.preparacion');
 Route::get('/ordenes/entregadas', [TblOrdenProduccionController::class, 'indexOrdenesEntegadas'])->name('ordenes.entregadas');
-// buscar ordenes 
+// buscar ordenes   
 Route::get('/buscarOrdenes/{buscar}', [TblOrdenproduccionController::class, 'buscar'])->name('buscar.ordenes');
 // descargar registros de ordenes
 Route::get('Ordenes/{button_id}/pdf', [TblOrdenproduccionController::class, 'pdf'])->name('ordenes.pdf');
-
-
+Route::get('Ordenes/{ordenId}/{button}pdf', [TblOrdenproduccionController::class, 'pdfunico'])->name('orden.pdf');
 
 
 
@@ -107,6 +107,8 @@ Route::get('/recetas/{Id_Receta}/activereceta', [TblRecetaController::class, 'ac
 Route::get('/buscarReceta/{buscar}', [TblRecetaController::class, 'buscar'])->name('buscar.recetas');
 // descargar registros de recetas
 Route::get('Recetas/{button_id}/pdf', [TblRecetaController::class, 'pdf'])->name('recetas.pdf');
+Route::get('Recetas/{Id_Receta}/{button}/pdf', [TblRecetaController::class, 'pdfunico'])->name('receta.pdf');
+
 
 
 
@@ -127,6 +129,7 @@ Route::get('/Producto/{Cod_Producto}/active', [TblProductoController::class, 'ac
 Route::get('/buscarProducto', [TblProductoController::class, 'buscar'])->name('buscar.productos');
 // descargar pdf de registros de producto
 Route::get('/Producto.pdf', [TblProductoController::class, 'pdf'])->name('producto.pdf');
+Route::get('/Producto.pdf/{Cod_Producto}', [TblProductoController::class, 'pdfunico'])->name('productounico.pdf');
 
 
 
@@ -142,6 +145,7 @@ Route::get('/Cliente/{Id_Cliente}/active', [TblClienteController::class, 'active
 Route::get('/buscarCliente', [TblClienteController::class, 'buscar'])->name('buscar.clientes');
 // descargar pdf de registros de cliente
 Route::get('Clientespdf', [TblClienteController::class, 'pdf'])->name('clientes.pdf');
+Route::get('Clientespdf/{Id_Cliente}', [TblClienteController::class, 'pdfunico'])->name('cliente.pdf');
 
 //Rutas Listas de Chequeo-Edilberto
 Route::get('/ListaInicio', [TblTareasController::class, 'Inicio'])->name(('lista.inicio'));

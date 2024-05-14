@@ -55,13 +55,11 @@ $productosActivos = tbl_producto::where('estado', 1)->get();
                     <div class="form1Registro">
                         <select id="Cod_UMedida" name="Cod_UMedida" value="{{ old('Cod_UMedida') }}">
                             <option value="" disabled selected hidden>Medida del producto</option>
-                            <option value="1" {{ old('Cod_UMedida') == 1 ? 'selected' : '' }}>Gramos</option>
-                            <option value="2" {{ old('Cod_UMedida') == 2 ? 'selected' : '' }}>Kilos</option>
-                            <option value="3" {{ old('Cod_UMedida') == 3 ? 'selected' : '' }}>Libras</option>
-                            <option value="4" {{ old('Cod_UMedida') == 4 ? 'selected' : '' }}>Onzas</option>
-                            <option value="5" {{ old('Cod_UMedida') == 5 ? 'selected' : '' }}>Porción</option>
-                            <option value="6" {{ old('Cod_UMedida') == 6 ? 'selected' : '' }}>Unidad</option>
-                            <option value="7" {{ old('Cod_UMedida') == 7 ? 'selected' : '' }}>Mililitro</option>
+                            <option value="1" {{ old('Cod_UMedida') == 1 ? 'selected' : '' }}>Gramos (g)</option>
+                            <option value="2" {{ old('Cod_UMedida') == 2 ? 'selected' : '' }}>Kilogramos (kg)</option>
+                            <option value="3" {{ old('Cod_UMedida') == 3 ? 'selected' : '' }}>Litros (l)</option>
+                            <option value="4" {{ old('Cod_UMedida') == 4 ? 'selected' : '' }}>Mililitro (ml)</option>
+                            <option value="5" {{ old('Cod_UMedida') == 5 ? 'selected' : '' }}>Centímetros cúbicos (cm³)</option>
                         </select>
                         @error('Cod_UMedida')
                             <div class="alert alert-danger">{{ $message }}</div>

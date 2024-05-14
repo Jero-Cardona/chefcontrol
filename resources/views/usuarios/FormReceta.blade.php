@@ -24,13 +24,6 @@
                         @enderror
                     </div>
                     <div class="formRegistro">
-                        <input name="Descripcion" id="Descripcion" type="text" value="{{ old('Descripcion') }}" required>
-                        <label for="Descripcion"> Descripción Receta</label>
-                        @error('Descripcion')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="formRegistro">
                         <input id="Costo_Total" name="Costo_Total" type="text" value="{{ old('Costo_Total') }}" required>
                         <label for="Costo_Total"> Costo total de la receta</label>
                         @error('Costo_Total')
@@ -55,6 +48,15 @@
                         @enderror
                         {{-- campo para el manejo de estados --}}
                         <input name="etapa" type="hidden" value="1">
+                    </div>
+                    <div class="formRegistroTextarea">
+                        <div class="formRegistro">
+                            <textarea class="textarea" name="Descripcion" id="Descripcion" type="text" value="{{ old('Descripcion') }}" required></textarea>
+                            <label class="labelTextarea" for="Descripcion"> Descripción Receta</label>
+                            @error('Descripcion')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     @if (Auth::user()->Id_Rol == '1')
                         <div class="form1Registro">

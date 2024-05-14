@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @auth
+
         <body class="bodyListas">
             <div class="container">
                 <h2 class="mb-4"
@@ -17,12 +18,12 @@
                                 </div>
                                 <div class="card-body" style="padding: 20px;">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                                        <table class="table table-bordered" style="width: 95%; border-collapse: collapse; justify-items:center;">
                                             <thead>
                                                 <tr>
                                                     <th
                                                         style="max-width: 300px; padding: 10px; text-align: left; border-bottom: 1px solid #dee2e6; background-color: #f8f9fa; color: #495057; font-weight: bold;">
-                                                        Tarea</th>
+                                                        Nombre de la Tarea completada</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
