@@ -1,9 +1,40 @@
 <style>
+     /* Estilos para el encabezado */
+     .footerLogin {
+            height: 160px;
+            background-color: #dddddd;
+            border-top: 1px solid black;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .footerLogin table {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footerLogin table td {
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        .footerLogin p {
+            font-size: 15px;
+            text-align: left;
+            margin: 20px;
+        }
+
+        .logo1SenaLogin {
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            align-content: flex-end;
+        }
+
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
-        page-break-inside: avoid; /* Evitar que la tarjeta se divida entre páginas */
     }
 
     th,
@@ -29,7 +60,7 @@
         </tr>
     </table>
 </div>
-<h1>Usuarios Registrados</h1>
+<h1>Registro Cliente</h1>
 <table border="1">
     <thead>
         <tr>
@@ -38,28 +69,24 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Telefono</th>
-            <th>Rol</th>
             <th>Estado</th>
-            
         </tr>
     </thead>
     <tbody>
-        @foreach ($usuarios as $usuario)
             <tr>
-                <td>{{ $usuario->Id_Empleado }}</td>
-                <td>{{ $usuario->tipo_documento }}</td>
-                <td>{{ $usuario->Nombre }}</td>
-                <td>{{ $usuario->Apellido }}</td>
-                <td>{{ $usuario->Telefono }}</td>
-                <td>{{ $usuario->TipoRol->Rol }}</td>
+                <td>{{ $cliente->Id_Cliente }}</td>
+                <td>{{ $cliente->Tipo_identificacion }}</td>
+                <td>{{ $cliente->Nombre }}</td>
+                <td>{{ $cliente->Apellido }}</td>
+                <td>{{ $cliente->Telefono }}</td>
                 <td>
-                    @if ($usuario->estado == true)
+                    @if ($cliente->estado == true)
                         Activo
                     @else
                         Inactivo
                     @endif
                 </td>
             </tr>
-        @endforeach
+    
     </tbody>
 </table>

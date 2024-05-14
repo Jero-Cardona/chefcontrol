@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>{{ $titulo }} - PDF</title>
     <style>
-        body {
+          body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        /* Estilos para el encabezado */
+
+               /* Estilos para el encabezado */
         .footerLogin {
             height: 160px;
             background-color: #dddddd;
@@ -40,12 +41,13 @@
             margin: 10px;
             align-content: flex-end;
         }
-        h2 {
+
+        h1 {
             text-align: center;
         }
 
         p {
-            text-align: justify;
+            text-align: left;
             margin: 0 0 15px 0;
         }
 
@@ -55,29 +57,31 @@
             margin-bottom: 15px;
             padding: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            page-break-inside: avoid; 
+            page-break-inside: avoid; /* Evitar que la tarjeta se divida entre páginas */
         }
 
-        .card img {
-            max-width: 100%; 
-            height: auto;
-            display: block;
-            border-radius: 5px;
-            width: 300px; 
-            /* height: 300px; */
-            object-fit: cover;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto; 
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
 
-        .card h3 {
-            margin-top: 10px;
-            margin-bottom: 5px;
+        .order {
+            width: 48%;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .order-details {
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            width: 100%;
         }
 
         .card p {
-            margin: 0;
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -94,30 +98,31 @@
             </tr>
         </table>
     </div>
-    <h2>{{ $titulo }}</h2>
-    <p>Este documento contiene un listado de las {{ $titulo }}. Aquí se detallan sus atributos y características
-        principales.</p>
-
-    @foreach ($recetas as $index => $receta)
-        <div class="card">
-            <img src="{{ public_path($imageName[$index]) }}" alt="Imagen de {{ $receta->Nombre }}">
-            <h3>{{ $receta->Nombre }}</h3>
-            <p>Descripción: {{ $receta->Descripcion }}</p>
-            <p>Costo total: {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
-            <p>Contribución: {{ $receta->Contribucion }}</p>
-            @if($receta->Estado == 1)
-            <p>Estado: Estandarizada</p>
-            @else
-            <p>Estado: En espera </p>
+    <h1>{{ $titulo }}</h1>
+    <p>Este documento contiene los detalles de la {{$titulo}} seleccionada</p>
+    <div class="card">
+        <h2>Orden de producción</h2>
+        <div class="order">
+            <div class="order-details">
+                <p>Fecha: {{ $orden->Fecha }}</p>
+                <p>Cocinero responsable: {{ $orden->empleado->Nombre }}</p>
+                <p>Receta: {{ $orden->receta->Nombre }}</p>
+                <p>Cantidad: {{ $orden->cantidad }}</p>
+                @if ($orden->receta)
+                    @php
+                        $precioOrden = $orden->receta->Costo_Total * $orden->cantidad;
+                        $precioFormato = number_format($precioOrden, 0, '.', ',');
+                    @endphp
+                    <p>Precio de la orden: {{ $precioFormato }}</p>
+                @endif
+            </div>
+            @if ($orden->detalles)
+            <h3>Detalles de la Orden</h3>
+            <p>Fecha Pedido: {{ $orden->detalles->Fecha_Pedido }}</h4>
+            <p>Presentación: {{ $orden->detalles->Presentacion }}</h4>
+            <hr>
             @endif
-        
-            @if($receta->etapa == true)
-            <p>Etapa: Activo</p>
-            @else
-            <p>Etapa: Desactivado</p>
-            @endif
-
         </div>
-    @endforeach
+    </div>
 </body>
 </html>

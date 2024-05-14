@@ -1,19 +1,16 @@
-*{
+* {
     margin: 0px;
-    font-family: "literata", serif;
-    font-style: italic;
+    font-family: Calibri;
     padding: 0px;
     text-decoration: none;
 }
 
-
-
-.contenedor1CrudP{
+.contenedor1CrudP {
     width: 100%;
 
 }
 
-.div1CrudP{
+.div1CrudP {
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
     margin-right: auto;
@@ -21,7 +18,7 @@
     margin-top: 50px;
 }
 
-.div2CrudP{
+.div2CrudP {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
@@ -33,7 +30,7 @@
     justify-content: center;
 }
 
-.div3CrudP{
+.div3CrudP {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -41,27 +38,27 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
     overflow: auto;
 }
 
-.divHeaderCrudP{
+.divHeaderCrudP {
     padding: 0.5rem 1rem;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
     display: flex;
     justify-content: space-between;
 }
 
-.buscadorCrudP input{
+.buscadorCrudP input {
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 6px;
     padding: 4px;
 }
 
-.buscadorCrudP  button{
+.buscadorCrudP button {
     border-radius: 6px;
     color: rgba(255, 255, 255);
     background-color: rgba(255, 102, 0);
@@ -72,46 +69,46 @@
     transition: all 500ms ease-out;
 }
 
-.buscadorCrudP button:hover{
+.buscadorCrudP button:hover {
     background-color: rgb(200, 80, 0);
 }
 
-.titulo1CrudP{
+.titulo1CrudP {
     font-size: 24px;
     color: rgba(154, 0, 15);
     line-height: 50px;
 }
 
-.divBodyCrudP{
+.divBodyCrudP {
     display: grid;
     padding: 1rem 1rem;
     grid-template: 120px / repeat(8 1fr) minmax(150px 200px);
 }
 
-.tableCrudP{
+.tableCrudP {
     margin: 20px;
     height: 150px;
     align-items: center;
     justify-content: center;
 }
 
-.tableCrudP thead tr th{
+.tableCrudP thead tr th {
     border-bottom: 1px solid black;
     padding: 10px;
     text-align: center;
 }
 
-.tableCrudP tbody tr td{
+.tableCrudP tbody tr td {
     flex-shrink: 1;
     padding: 10px;
 }
 
-.crud-form{
+.crud-form {
     display: flex;
 
 }
 
-.eliminarCrudP{
+.eliminarCrudP {
     background-color: rgba(154, 0, 15);
     color: rgba(255, 255, 255);
     border-radius: 6px;
@@ -123,7 +120,7 @@
     margin: 5px;
 }
 
-.editarCrudP{
+.editarCrudP {
     background-color: rgba(255, 102, 0);
     color: rgba(255, 255, 255);
     border-radius: 6px;
@@ -135,18 +132,11 @@
     margin: 5px;
 }
 
-.eliminarCrudP:hover{
+.eliminarCrudP:hover {
     background-color: rgb(96, 0, 10);
 }
 
-.editarCrudP:hover{
+.editarCrudP:hover {
     background-color: rgba(200, 80, 0);
     color: rgba(255, 255, 255);
 }
-
-
-
-
-
-
-

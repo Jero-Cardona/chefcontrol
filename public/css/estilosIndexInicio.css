@@ -1,13 +1,15 @@
-*{
+* {
     margin: 0 auto;
-    font-family: "literata", serif;
-    font-style: italic;
+    /* font-family: "literata", serif;
+    font-style: italic; */
+    font-family: Calibri;
     padding: 0px;
     text-decoration: none;
 }
-/*Header reg css*/
 
-.headerIndex{
+/*Header css*/
+
+.headerIndex {
     background-color: rgba(154, 0, 15);
     width: 100%;
     height: 110px;
@@ -16,25 +18,24 @@
     top: 0;
     left: 0;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
-    padding: 5px;
+    padding-top: 5px;
 }
 
-.contenedorHIndex{
+.contenedorHIndex {
     width: 98%;
 }
 
-.logoHIndex{
-    height: 90px;
-    width: 90px;
+.logoHIndex {
+    height: 100px;
+    width: 100px;
     background-color: rgba(255, 255, 255);
     border-radius: 50%;
     float: left;
     margin-left: 10px;
-    margin-top: 5px;
     object-fit: cover;
 }
 
-.NombreProyectoIndex{
+.NombreProyectoIndex {
     float: left;
     height: 100px;
     width: 100px;
@@ -43,12 +44,12 @@
     line-height: 100px;
 }
 
-.menuHIndex{
+.menuHIndex {
     float: right;
     line-height: 100px;
 }
 
-.menuHIndex a{
+.menuHIndex a {
     color: rgba(255, 255, 255);
     padding: 15px;
     display: inline-block;
@@ -58,26 +59,26 @@
     border-bottom: 4px solid transparent;
 }
 
-.menuHIndex .activeIndex{
+.menuHIndex .activeIndex {
     color: rgba(255, 102, 0);
     border-bottom: 4px solid rgba(255, 102, 0);
 }
 
-.menuHIndex a:hover{
+.menuHIndex a:hover {
     color: rgba(255, 102, 0);
     border-bottom: 4px solid rgba(255, 102, 0);
 }
 
-#btnMenu{
+#btnMenu {
     display: none;
 }
 
-.btnMenuHIndex{
+.btnMenuHIndex {
     float: right;
     display: none;
 }
 
-.btnMenuHIndex label{
+.btnMenuHIndex label {
     background-color: rgba(255, 102, 0);
     padding: 5px;
     font-size: 14px;
@@ -87,34 +88,38 @@
     transition: all 500ms ease;
 }
 
-.a-index{
+.a-index {
     color: #fff;
     text-decoration: none;
     padding: 0px 100px;
 }
-.sena{
+
+.sena {
     display: flex;
     flex-direction: row;
     border-radius: 5px;
 }
-.recetas{
+
+.recetas {
     display: flex;
     border-radius: 5px;
-    
+
 }
-.caja2{
+
+.caja2 {
     display: flex;
     align-items: center;
     justify-content: center;
     max-height: 400px;
     margin-top: -20px;
     margin-bottom: -80px;
-
 }
-.logo{
+
+.logo {
     height: 800px;
     width: 1000px;
 }
+
 .caja4 {
     display: flex;
     margin-top: 50px;
@@ -127,13 +132,15 @@
     font-size: larger;
 
 }
+
 .caja3,
 .caja5 {
     display: flex;
     margin-top: 50px;
+    margin-bottom: 50px;
     border-top: 1px solid white;
     gap: 40px;
-    text-align: center; 
+    text-align: center;
     justify-content: center;
     background-color: #aaa;
     padding: 50px;
@@ -141,13 +148,14 @@
     font-size: larger;
 
 }
-.tittle{
+
+.tittle {
     font-size: 30px;
 }
 
 /*footer css*/
 
-.footerIndex{
+.footerIndex {
     margin-top: -50px;
     height: 150px;
     width: 100%;
@@ -159,19 +167,19 @@
     align-items: center;
 }
 
-.footerIndex p{
+.footerIndex p {
     font-size: 25px;
     text-align: left;
     margin: 20px;
 }
 
-.logo1SenaIndex{
+.logo1SenaIndex {
     height: 100px;
     width: 100px;
     margin: 10px;
 }
 
-.logo3Index{
+.logo3Index {
     height: 140px;
     width: 140px;
     background-color: rgba(255, 255, 255);
@@ -179,80 +187,180 @@
     object-fit: cover;
 }
 
+/*Media querys header*/
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+
+    .menuHIndex,
+    .btnMenuH1 {
+        line-height: 65px;
+    }
+
+    .logoHIndex {
+        height: 65px;
+        width: 65px;
+    }
+
+    .NombreProyectoIndex {
+        line-height: 65px;
+    }
+
+    .headerIndex {
+        height: 70px;
+    }
+
+    .menuHIndex {
+        position: absolute;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 75px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+    }
+
+    #btnMenu:checked~.menuHIndex {
+        transform: translateX(0);
+    }
+
+    .menuHIndex a {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .btnMenuHIndex {
+        display: block;
+        padding-right: 30px;
+        line-height: 60px;
+    }
+}
+
+@media only screen and (min-width:0px) and (max-width:320px) {
+    * {
+        display: none;
+    }
+}
+
 /*Media querys Footer*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
-    .footerIndex{
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    .footerIndex {
         height: 80px;
         top: 50px;
         grid-template: 80px / 50px 1fr 80px;
     }
 
-    .footerIndex p{
+    .footerIndex p {
         font-size: 10px;
         margin: 5px;
     }
 
-    .logo1SenaIndex{
+    .logo1SenaIndex {
         height: 50px;
         width: 50px;
         margin: 2px;
     }
 
-    .logo3Index{
+    .logo3Index {
         height: 65px;
         width: 65px;
+        margin-left: auto;
     }
+}
 
-} 
 
 /*Media querys ContenedorRecetario*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
-    .contenedorIndex{
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    .contenedorIndex {
         top: 80px;
     }
 
-}  
+}
 
 /*Media querys Caja4*/
 
 
-@media only screen and (min-width:320px) and (max-width:768px){
-    .caja4{
+/* @media only screen and (min-width:320px) and (max-width:1024px) {
+    .caja4 {
         top: 80px;
         grid-template: 150px 60px / 1fr 1fr 1fr;
     }
 
-    .sena img{
+    .sena img {
         height: 100px;
         width: 100px;
         top: 10px;
     }
 
-    .sena b{
+    .sena b {
         font-size: 15px;
     }
 
-    .caja4 p{
+    .caja4 p {
         font-size: 10px;
         padding: 10px;
     }
 
+} */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+
+.caja2 {
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 400px;
+    margin-top: -20px;
+    margin-bottom: -80px; */
+    height: 150px;
+    max-width: 1024px;
+    min-width: 320px;
+    margin-top: 70px;
+    /* margin-left: -10px;
+    margin-right: 0px; */
+    margin-bottom: 50px;
+    gap: 40px;
+
+}
+
+.caja2 img {
+    height: 450px;
+    width: 350px;
+    /* bottom: 70px; */
+    left: -10px;
+}
+}
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+.caja3 {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    border-top: 1px solid white;
+    gap: 40px;
+    text-align: center;
+    justify-content: center;
+    background-color: #aaa;
+    padding: 70px;
+    /* font-size: 15px; */
+    font-size: larger;
+}
 }
 
 /*Media querys Contenedor1*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .logo{
+    .logo {
         height: 300px;
         width: 400px;
         bottom: 70px;
         left: -10px;
     }
 
-    .caja1 p{
+    .caja1 p {
         padding: 10px;
         font-size: 10px;
         bottom: 130px;
@@ -262,22 +370,22 @@
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+/* @media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .barrindex{
+    .barrindex {
         line-height: 55px;
     }
 
-    .a-index{
+    .a-index {
         position: relative;
         top: -15px;
     }
 
-    header{
+    header {
         height: 65px;
     }
 
-    .barra-index{
+    .barra-index {
         position: absolute;
         background-color: rgb(119, 0, 12);
         width: 100%;
@@ -288,15 +396,15 @@
         transform: translateX(-100%);
     }
 
-    .barra-index a{
+    .barra-index a {
         display: block;
         margin-top: 5px;
     }
 
-} 
+}
 
-@media only screen and (min-width:0px) and (max-width:320px){
-    *{
+@media only screen and (min-width:0px) and (max-width:320px) {
+    * {
         display: none;
     }
-}
+} */

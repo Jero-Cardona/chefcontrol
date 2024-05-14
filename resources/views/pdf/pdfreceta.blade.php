@@ -9,8 +9,9 @@
             margin: 0;
             padding: 0;
         }
-        /* Estilos para el encabezado */
-        .footerLogin {
+
+         /* Estilos para el encabezado */
+         .footerLogin {
             height: 160px;
             background-color: #dddddd;
             border-top: 1px solid black;
@@ -40,6 +41,7 @@
             margin: 10px;
             align-content: flex-end;
         }
+
         h2 {
             text-align: center;
         }
@@ -55,20 +57,14 @@
             margin-bottom: 15px;
             padding: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            page-break-inside: avoid; 
+            page-break-inside: avoid; /* Evitar que la tarjeta se divida entre páginas */
         }
 
         .card img {
-            max-width: 100%; 
+            max-width: 100%;
             height: auto;
             display: block;
             border-radius: 5px;
-            width: 300px; 
-            /* height: 300px; */
-            object-fit: cover;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto; 
         }
 
         .card h3 {
@@ -95,29 +91,25 @@
         </table>
     </div>
     <h2>{{ $titulo }}</h2>
-    <p>Este documento contiene un listado de las {{ $titulo }}. Aquí se detallan sus atributos y características
-        principales.</p>
+    <p>Este documento contiene los detalles de la receta seleccionada: {{ $receta->Nombre }}.</p>
 
-    @foreach ($recetas as $index => $receta)
-        <div class="card">
-            <img src="{{ public_path($imageName[$index]) }}" alt="Imagen de {{ $receta->Nombre }}">
-            <h3>{{ $receta->Nombre }}</h3>
-            <p>Descripción: {{ $receta->Descripcion }}</p>
-            <p>Costo total: {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
-            <p>Contribución: {{ $receta->Contribucion }}</p>
-            @if($receta->Estado == 1)
-            <p>Estado: Estandarizada</p>
-            @else
-            <p>Estado: En espera </p>
-            @endif
-        
-            @if($receta->etapa == true)
-            <p>Etapa: Activo</p>
-            @else
-            <p>Etapa: Desactivado</p>
-            @endif
-
-        </div>
-    @endforeach
+    <div class="card">
+        <img src="{{ public_path($imageName) }}" alt="Imagen de {{ $receta->Nombre }}">
+        <h3>{{ $receta->Nombre }}</h3>
+        <p>Descripción: {{ $receta->Descripcion }}</p>
+        <p>Costo total: {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
+        <p>Contribución: {{ $receta->Contribucion }}</p>
+        @if($receta->Estado == 1)
+        <p>Estado: Estandarizada</p>
+        @else
+        <p>Estado: En espera</p>
+        @endif
+    
+        @if($receta->etapa == true)
+        <p>Etapa: Activo</p>
+        @else
+        <p>Etapa: Desactivado</p>
+        @endif
+    </div>
 </body>
 </html>

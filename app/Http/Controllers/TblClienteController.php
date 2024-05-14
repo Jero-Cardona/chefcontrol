@@ -14,17 +14,17 @@ class TblClienteController extends Controller
     // constructor para los middleware
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>'index']);
-        $this->middleware('AdminRol', ['only'=>['edit','update','active','inactive']]);
+        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('AdminRol', ['only' => ['edit', 'update', 'active', 'inactive']]);
     }
 
     public function index()
     {
         $clientes = tbl_cliente::paginate(4);
-        return view('usuarios.CrudCliente',compact('clientes'));
+        return view('usuarios.CrudCliente', compact('clientes'));
     }
 
-    
+
 
     public function create()
     {
@@ -58,13 +58,12 @@ class TblClienteController extends Controller
         $cliente->estado = $request->input('estado');
         $cliente->save();
         // retorna a la vista del index
-        session()->flash('confirm-cliente','Cliente registrado correctamente');
-        return to_route('usuarios.index');
-
+        return redirect()->back();
     }
-    
+
     // formulario para editar clientes
-    public function edit($Id_Cliente){
+    public function edit($Id_Cliente)
+    {
 
         $cliente = DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->get();
         return view('usuarios.EditCliente', compact('cliente'));
@@ -75,12 +74,12 @@ class TblClienteController extends Controller
     {
         // funcion para actualizar los datos
         $cliente = DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->get();
-        if($cliente){
-            DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->update($request->except(['_token','_method']));
+        if ($cliente) {
+            DB::table('tbl_cliente')->where('Id_Cliente', $Id_Cliente)->update($request->except(['_token', '_method']));
             return to_route('crudclientes');
-    }else{
-        return "no se pudo actulizar";
-    };
+        } else {
+            return "no se pudo actulizar";
+        };
     }
 
     //función para inactivar el cliente
@@ -92,7 +91,6 @@ class TblClienteController extends Controller
         $cliente->save();
 
         return redirect()->route('crudclientes')->with('success', 'Cliente inactivado correctamente.');
-    
     }
 
     //función para activar el cliente
@@ -104,7 +102,6 @@ class TblClienteController extends Controller
         $cliente->save();
 
         return redirect()->route('crudclientes')->with('success', 'Cliente activado correctamente.');
-    
     }
 
     public function getClientes()
@@ -115,23 +112,28 @@ class TblClienteController extends Controller
     public function pdf()
     {
         $clientes = tbl_cliente::all();
-        // mostrar pdf
-        $pdf = Pdf::loadView('pdf.pdfclientes',compact('clientes'));
-        // descarga el pdf
+        $pdf = Pdf::loadView('pdf.pdfclientes', compact('clientes'));
         return $pdf->download('clientes.pdf');
     }
 
-    public function buscar(Request $request){
-       // función para buscar registros
+    public function pdfunico($Id_Cliente)
+    {
+        $cliente = tbl_cliente::where('Id_Cliente', $Id_Cliente)->firstOrFail();
+        $pdf = Pdf::loadView('pdf.pdfcliente', compact('cliente'));
+        return $pdf->download('cliente.pdf');
+    }
+
+    public function buscar(Request $request)
+    {
+        // función para buscar registros
         $searchTerm = $request->input('buscar');
         $resultados = tbl_cliente::where('Nombre', 'LIKE', '%' . $searchTerm . '%')->get();
 
         if ($resultados->isEmpty()) {
             return redirect()->route('crudclientes')
-            ->with('mensaje', '¡No se encuentra!');
+                ->with('mensaje', '¡No se encuentra!');
         } else {
             return view('buscar.BuscarCliente', compact('resultados', 'searchTerm'));
         }
-                
     }
 }

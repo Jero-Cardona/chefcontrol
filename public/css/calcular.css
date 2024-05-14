@@ -1,136 +1,16 @@
-/* body{
-    margin: 0px;
-    font-family: "literata", serif;
-    font-style: italic;
-    padding: 0px;
-    text-decoration: none;
-    box-sizing: border-box;
-    background-color: #ccc;
-}
-
-
-.container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-}
-
-.titulo{
-    background-color: rgba(154, 0, 15);
-    border-radius: 20px;
-    color: white;
-    height: 100px;
-}
-.imgR {
-    height: 300px;
-    width: 450px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-top: 20px;
-    grid-row: 1 / span 2;
-}
-
-.receta-info {
-    display: grid;
-    grid-template: 100px 220px / 470px 1fr 1fr;
-}
-
-.descripcion,
-.ingredientes {
-    flex: 1;
-    width: 50%;
-}
-
-.descripcion {
-    margin-right: 20px;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 2;
-    width: 100%;
-    padding-right: 40px;
-}
-
-.receta-info2 {
-    display: grid;
-    grid-template: 1fr / 1fr 400px;
-    margin-top: 20px;
-}
-
-.calcular-div{
-    width: 300px;
-    height: 300px;
-    margin-top: 40px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-form {
-    margin-top: 20px;
-    background-color: #ccc;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #454545;
-    background-color: #ccc;
-    outline: none;
-}
-
-
-
-button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: rgba(255, 102, 0);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 500ms ease;
-}
-
-button:hover {
-    background-color: rgba(154, 0, 15);
-}
-
-.nombreR {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    color: white;
-    padding-top: 20px;
-}
-
-.nombre-ingredientes{
-    margin: 30px 0px;
-    color: black;
-    grid-column: 2 / span 2;
-} */
-
 body {
     margin: 0 auto;
-    font-family: "literata", serif;
+    font-family: Calibri;
     background-color: #ccc;
     padding: 0;
 }
 
+.descripcion1 {
+    margin-right: 20px;
+    width: 100%;
+    padding-right: 40px;
+    text-align: justify;
+}
 .container {
     max-width: 1200px;
     margin: 50px auto;
@@ -148,20 +28,21 @@ body {
     /* text-align: center; */
 }
 
+
 .imgR {
     height: 300px;
-    width: 100%;
+    max-width: 100%;
+    min-width: 600px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-top: 20px;
-    grid-row: 1 / span 2;
-
+    border-radius: 8px;
+    padding: 20px;
+    float: left;
 }
 
 .receta-info {
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    margin: 50px auto;
+    width: 100%;
 }
 
 .receta-text {
@@ -174,18 +55,40 @@ body {
 }
 
 .calcular-div {
-    margin-top: 20px;
+    padding-top: 40px;
+    align-items: center;
+    justify-content: center;
+    
 }
 
-@media (min-width: 768px) {
+.calcular-div2 {
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 320px) and (max-width: 1024) {
     .receta-info {
         flex-direction: row;
         align-items: flex-start;
         gap: 20px;
+        flex: 0 0 300px;
+        min-width: auto;
+        /* margin: 150px auto;
+        width: 70%; */
+    }
+
+    .receta-text {
+        direction: row;
+        padding: 50px;
+        
+    }
+
+    .descripcion1 {
+        direction: row;
     }
 
     .receta-info2 {
-        flex-direction: row;
+        direction: row;
         justify-content: space-between;
     }
 
@@ -198,7 +101,6 @@ body {
         text-align: center;
         padding-top: 0;
     }
-    
 }
 
 form {
@@ -216,12 +118,17 @@ input[type="number"] {
 }
 
 button {
+    display: block;
+    margin: 10px auto; /* Se establece auto para los márgenes laterales */
     padding: 10px 15px;
     background-color: rgba(255, 102, 0);
-    color: white;
+    color: #fff;
+    border: none;
     border-radius: 5px;
-    transition: background-color 500ms ease;
+    cursor: pointer;
+    transition: all 500ms ease;
 }
+
 
 button:hover {
     background-color: rgba(154, 0, 15);
@@ -233,6 +140,9 @@ button:hover {
 }
 
 .nombre-ingredientes {
+    margin-top: 30px;
+    margin-bottom: 20px;
     color: black;
     text-align: center;
 }
+

@@ -18,12 +18,11 @@ class AdminRol
      */
     public function handle(Request $request, Closure $next)
     {
-        
+
         if (Auth::check() && Auth::user()->Id_Rol != '1') {
-            // return view('usuarios.login');
             return abort(403);
         }
-    
+
         return $next($request);
     }
 }

@@ -14,7 +14,8 @@ class TblDetallerecetaController extends Controller
     {
         return view('receta');
     }
-    public function create(){
+    public function create()
+    {
         return view('usuarios.frmDetalleReceta');
     }
 
@@ -28,7 +29,7 @@ class TblDetallerecetaController extends Controller
             'Cantidad' => 'required|numeric|min:0',
             'Cod_UMedida' => 'required|exists:tbl_umedida,Cod_UMedida',
         ]);
-    
+
         // Crear nueva instancia de tbl_detallereceta y asignar valores
         $detalleReceta = new tbl_detallereceta;
         $detalleReceta->Id_Receta = $request->input('Id_Receta');
@@ -36,13 +37,14 @@ class TblDetallerecetaController extends Controller
         $detalleReceta->Cantidad = $request->input('Cantidad');
         $detalleReceta->Cod_UMedida = $request->input('Cod_UMedida');
         $detalleReceta->save();
-    
+
         // Retornar a la vista de creación de detalleReceta
         return redirect()->route('detalleReceta.create')->with('success', 'El detalle de la receta fue guardado correctamente');
     }
 
     // Carga el formulario de edicion
-    public function edit(tbl_detallereceta $detalleReceta){
+    public function edit(tbl_detallereceta $detalleReceta)
+    {
         return view('receta.edit', compact('detalleReceta'));
     }
 
@@ -52,7 +54,7 @@ class TblDetallerecetaController extends Controller
         $detalleReceta->update($request->all());
         return to_route('recetas.index');
     }
-    
+
     // se encarga de eliminar registros
     public function destroy(tbl_detallereceta $tbl_detallereceta)
     {

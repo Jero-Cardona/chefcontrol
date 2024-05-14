@@ -1,17 +1,51 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Calibri;
     margin: 0;
     background-color: #f4f4f4;
 }
 
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
-h1, h2, h3, h4 {
-    margin-top: 0;
+.title-container {
+    background-color: rgba(154, 0, 15);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title-container h1 {
+    color: #fff;
+    margin: 0;
+}
+
+.search-download-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.search-download-container form {
+    display: inline-flex;
+}
+
+.search-download-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255, 102, 0);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-download-container a:hover {
+    background-color: rgba(154, 0, 15);
 }
 
 .orden-container {
@@ -22,11 +56,27 @@ h1, h2, h3, h4 {
 
 .orden {
     border-radius: 10px;
-    width: 48%;
+    width: 100%;
     background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.orden:hover {
+    box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    /* Añadido efecto de levantamiento al hacer hover */
+}
+
+@media (min-width: 768px) {
+    .search-download-container {
+        justify-content: space-between; /* Para pantallas medianas en adelante */
+    }
+
+    .orden {
+        width: 48%; /* Ajusta el ancho para pantallas medianas */
+    }
 }
 
 .orden h1, .orden h2 {
@@ -67,23 +117,22 @@ label {
 }
 
 input[type="datetime-local"], input[type="text"] {
-    width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
+.btnOrdenes {
     padding: 10px 20px;
     background-color: rgba(154, 0, 15);
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
+.btnOrdenes:hover {
     background-color: rgba(255, 102, 0);
 }
 
@@ -91,33 +140,161 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px sólido #ccc;
 }
 
-/* Alinear checkboxes */
-.checkbox-container {
+/*Footer css*/
+
+.footerLogin {
+    height: 160px;
+    background-color: rgba(217, 217, 217);
+    border-top: 1px solid black;
+    display: grid;
+    grid-template: 150px / 110px 1fr 150px;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.footerLogin p {
+    font-size: 25px;
+    text-align: left;
+    margin: 20px;
+}
+
+.logo1SenaLogin {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.logo3Login {
+    height: 140px;
+    width: 140px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*Media querys footer*/
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+
+    .footerLogin {
+        height: 80px;
+        bottom: 0;
+        display: flex;
+    }
+
+    .footerLogin p {
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .logo1SenaLogin {
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+    }
+
+    .logo3Login {
+        height: 65px;
+        width: 65px;
+        margin-left: auto;
+    }
+
+}
+
+/* Media querys header total vistas */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+
+    .menuRecetas,
+    .btnMenuR {
+        line-height: 20px;
+    }
+
+    .usuarioRecetas {
+        position: relative;
+        top: -15px;
+    }
+
+    .logo1Recetas {
+        height: 55px;
+        width: 55px;
+    }
+
+    .headerRecetas {
+        height: 65px;
+    }
+
+    .menuRecetas {
+        position: fixed;
+        background-color: rgb(119, 0, 12);
+        width: 100%;
+        height: 100vh;
+        top: 65px;
+        left: 0;
+        transition: all 500ms ease;
+        transform: translateX(-100%);
+        flex-direction: column;
+        display: block;
+    }
+
+    #btnMenu:checked~.menuRecetas {
+        transform: translateX(0);
+    }
+
+    .menuRecetas a {
+        display: block;
+        /* margin-top: 5px; */
+    }
+
+    .menu-item:last-child .submenu {
+        right: auto;
+        left: 0;
+    }
+
+    .btnMenuR {
+        display: block;
+        padding-right: 10px;
+    }
+}
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-wrapper .terms-label {
+    cursor: pointer;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.checkbox-container input[type="checkbox"] {
-    margin-top: 5px;
-}
-
-.title-container {
-    background-color: rgba(154, 0, 15);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 20px; /* Espacio arriba */
-    margin-bottom: 20px; /* Espacio abajo */
-    /* position: relative; */
-    display: flex;
-}
-
-.title-container h1 {
-    color: #fff;
-    margin: 0; /* Eliminar el margen predeterminado del h1 */
-}
+    align-items: center;
+  }
+  
+  .checkbox-wrapper .terms-label .label-text {
+    margin-left: 10px;
+  }
+  
+  .checkbox-wrapper .checkbox-svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .checkbox-wrapper .checkbox-box {
+    fill: #efefef;
+    stroke: rgba(154, 0, 15);
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.6s ease-in;
+  }
+  
+  .checkbox-wrapper .checkbox-tick {
+    stroke:  rgba(154, 0, 15);
+    stroke-dasharray: 172;
+    stroke-dashoffset: 172;
+    transition: stroke-dashoffset 0.6s ease-in;
+  }
+  
+  .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-box,
+    .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-tick {
+    stroke-dashoffset: 0;
+  }

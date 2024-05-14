@@ -1,13 +1,14 @@
-*{
+* {
     margin: 0px;
-    font-family: "literata", serif;
-    font-style: italic;
+    /* font-family: "literata", serif;
+    font-style: italic; */
+    font-family: Calibri;
     padding: 0px;
     text-decoration: none;
     box-sizing: border-box;
 }
 
-.contenedorRegistro{
+.contenedorRegistro {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -16,7 +17,7 @@
 
 /*Header registro css*/
 
-.headerIndex{
+.headerIndex {
     background-color: rgba(154, 0, 15);
     width: 100%;
     height: 110px;
@@ -28,11 +29,11 @@
     padding: 5px;
 }
 
-.contenedorHIndex{
+.contenedorHIndex {
     width: 98%;
 }
 
-.logoHIndex{
+.logoHIndex {
     height: 90px;
     width: 90px;
     background-color: rgba(255, 255, 255);
@@ -43,7 +44,7 @@
     object-fit: cover;
 }
 
-.NombreProyectoIndex{
+.NombreProyectoIndex {
     float: left;
     height: 100px;
     width: 100px;
@@ -52,12 +53,12 @@
     line-height: 100px;
 }
 
-.menuHIndex{
+.menuHIndex {
     float: right;
     line-height: 100px;
 }
 
-.menuHIndex a{
+.menuHIndex a {
     color: rgba(255, 255, 255);
     padding: 15px;
     display: inline-block;
@@ -67,21 +68,21 @@
     border-bottom: 4px solid transparent;
 }
 
-.menuHIndex a:hover{
+.menuHIndex a:hover {
     color: rgba(255, 102, 0);
     border-bottom: 4px solid rgba(255, 102, 0);
 }
 
-#btnMenu{
+#btnMenu {
     display: none;
 }
 
-.btnMenuHIndex{
+.btnMenuHIndex {
     float: right;
     display: none;
 }
 
-.btnMenuHIndex label{
+.btnMenuHIndex label {
     background-color: rgba(255, 102, 0);
     padding: 5px;
     font-size: 14px;
@@ -93,7 +94,7 @@
 
 /*Header css*/
 
-.headerRecetas{
+.headerRecetas {
     background-color: rgba(154, 0, 15);
     width: 100%;
     height: 100px;
@@ -106,11 +107,11 @@
     box-sizing: border-box;
 }
 
-.contenedorHR{
+.contenedorHR {
     width: 100%;
 }
 
-.usuarioRecetas{
+.usuarioRecetas {
     float: left;
     height: 100px;
     width: 100px;
@@ -118,7 +119,7 @@
     color: rgba(255, 255, 255);
 }
 
-.logo1Recetas{
+.logo1Recetas {
     height: 90px;
     width: 90px;
     background-color: rgba(255, 255, 255);
@@ -128,37 +129,36 @@
     object-fit: cover;
 }
 
-.menuRecetas{
+.menuRecetas {
     float: right;
     line-height: 90px;
 }
 
-.menuRecetas a{
+.menuRecetas a {
     color: rgba(255, 255, 255);
-    padding: 15px;
+    padding: 10px;
     display: inline-block;
     line-height: normal;
-    font-size: 16px;
+    font-size: 15px;
     transition: all 500ms ease;
     border-bottom: 4px solid transparent;
-    font-size: 18px;
 }
 
-.menuRecetas a:hover{
+.menuRecetas a:hover {
     color: rgba(255, 102, 0);
     border-bottom: 4px solid rgba(255, 102, 0);
 }
 
-#btnMenu{
+#btnMenu {
     display: none;
 }
 
-.btnMenuR{
+.btnMenuR {
     float: right;
     display: none;
 }
 
-.btnMenuR label{
+.btnMenuR label {
     background-color: rgba(255, 102, 0);
     padding: 5px;
     font-size: 14px;
@@ -186,20 +186,22 @@
     min-width: 160px;
     left: 0;
 }
+
 .submenu a {
-    color: rgba(255, 255, 255); 
+    color: rgba(255, 255, 255);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
+
 .menu-item:hover .submenu {
     display: block;
 }
 
 
 .menu-item:last-child .submenu {
-    left: auto; 
-    right: 0; 
+    left: auto;
+    right: 0;
 }
 
 /*Header css*/
@@ -208,27 +210,28 @@
 
 /* Media querys header total vistas */
 
-@media only screen and (min-width:320px) and (max-width:1024px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .menuRecetas, .btnMenuR{
+    .menuRecetas,
+    .btnMenuR {
         line-height: 55px;
     }
 
-    .usuarioRecetas{
+    .usuarioRecetas {
         position: relative;
         top: -15px;
     }
 
-    .logo1Recetas{
+    .logo1Recetas {
         height: 55px;
         width: 55px;
     }
 
-    .headerRecetas{
+    .headerRecetas {
         height: 65px;
     }
 
-    .menuRecetas{
+    .menuRecetas {
         position: fixed;
         background-color: rgb(119, 0, 12);
         width: 100%;
@@ -241,11 +244,11 @@
         display: block;
     }
 
-    #btnMenu:checked ~ .menuRecetas{
+    #btnMenu:checked~.menuRecetas {
         transform: translateX(0);
     }
 
-    .menuRecetas a{
+    .menuRecetas a {
         display: block;
         /* margin-top: 5px; */
     }
@@ -255,7 +258,7 @@
         left: 0;
     }
 
-    .btnMenuR{
+    .btnMenuR {
         display: block;
         padding-right: 10px;
     }
@@ -263,14 +266,16 @@
 
 /* Nueva orden CSS */
 
-.contenedorFormRegistro-{
+.contenedorFormRegistro- {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 50px;
+    /* padding-left: 140px;
+    padding-bottom: 50px; */
 }
 
-.contenedorFormRegistro1-{
+.contenedorFormRegistro1- {
     display: grid;
     grid-template: 150px 500px / 1fr 1fr;
     justify-content: center;
@@ -279,11 +284,9 @@
     width: 100%;
     margin-top: 30px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
-} 
+}
 
-
-
-.tituloRegistro-{
+.tituloRegistro- {
     grid-column: 1 / span 2;
     margin: 20px;
     background-color: rgba(154, 0, 15);
@@ -294,26 +297,82 @@
     line-height: 80px;
 }
 
-.formularioRegistro-{
+/*textarea*/
+
+.textarea{
+    width: 750px;
+    height: 90px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 20px 15px;
+    border: 2px solid rgba(154, 0, 15);
+    background: transparent;
+    color: rgba(0, 0, 0);
+    outline: none;
+}
+
+.formRegistroTextarea{
+    position: relative;
+    left: 200px;
+}
+
+.formRegistroTextarea1{
+    position: relative;
+    right: 200px;
+}
+
+.textarea::-webkit-inner-spin-button,
+.textarea::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.textarea:focus {
+    border: 2px solid rgba(255, 102, 0);
+}
+
+.textarea:focus~label,
+.textarea:valid~label {
+    top: -20px;
+    font-size: 16px;
+    padding: 0px 10px;
+    background-color: rgba(217, 217, 217);
+}
+
+.labelTextarea{
+    position: absolute;
+    top: 15%;
+    left: 15px;
+    transform: translateY(-15%);
+    color: rgba(0, 0, 0);
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+/**/
+
+.formularioRegistro- {
     display: grid;
     margin: 20px;
     justify-items: center;
 }
 
-.contenedorFormRegistro- img{
+.contenedorFormRegistro- img {
     height: 450px;
     width: 500px;
     object-fit: cover;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    margin: 10px 30px 10px 10px; 
+    margin: 10px 30px 10px 10px;
 }
 
-.formRegistro-{
+.formRegistro- {
     position: relative;
 }
 
-.formRegistro- input, .form1Registro- select{
+.formRegistro- input,
+.form1Registro- select {
     width: 350px;
     height: 60px;
     border-radius: 6px;
@@ -325,11 +384,11 @@
     outline: none;
 }
 
-.form1Registro- select:focus{
+.form1Registro- select:focus {
     border: 2px solid rgba(255, 102, 0);
 }
 
-.formRegistro- label{
+.formRegistro- label {
     position: absolute;
     top: 15%;
     left: 15px;
@@ -341,31 +400,32 @@
 }
 
 .formRegistro- input::-webkit-inner-spin-button,
-.formRegistro- input::-webkit-outer-spin-button{
+.formRegistro- input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.formRegistro- input:focus{
+.formRegistro- input:focus {
     border: 2px solid rgba(255, 102, 0);
 }
 
-.formRegistro- input:focus ~ label,
-.formRegistro- input:valid ~ label{
+.formRegistro- input:focus~label,
+.formRegistro- input:valid~label {
     top: -10px;
     font-size: 16px;
     padding: 0px 15px;
     background-color: rgba(217, 217, 217);
 }
 
-.btn1Registro-{
+.btn1Registro- {
     display: grid;
     grid-template: 1fr / 1fr 1fr;
     justify-items: center;
     width: 100%;
 }
 
-.btn1Registro- a, .enviarRegistro-{
+.btn1Registro- a,
+.enviarRegistro- {
     height: 50px;
     width: 150px;
     color: rgba(255, 255, 255);
@@ -378,26 +438,123 @@
     line-height: 50px;
 }
 
-.btn1Registro- a:hover{
+.btn1Registro- a:hover {
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
 
-.btn1Registro- .enviarRegistro-:hover{
+.btn1Registro- .enviarRegistro-:hover {
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
+
+/* Media queries nueva orden */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    
+    .contenedorFormRegistro1- img {
+        display: none;
+    }
+
+    .contenedorFormRegistro- {
+        /* display: grid; */
+        min-width: 320px;
+        max-width: 768px;
+        /* margin-right: 300px; */
+    }
+
+    .contenedorFormRegistro1- {
+        grid-template: 100px 350px / 1fr;
+    }
+
+    .formularioRegistro- {
+        margin: 10px;
+    }
+
+    .tituloRegistro- {
+        margin: 10px;
+        height: 65px;
+        line-height: 65px;
+        font-size: small;
+    }
+
+    .formRegistro- input,
+    .form1Registro- select {
+        width: 250px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .formRegistro- label {
+        font-size: 12px;
+    }
+
+    .formRegistro- input:focus~label,
+    .formRegistro- input:valid~label {
+        top: -6px;
+        font-size: 11px;
+    }
+
+    .btn1Registro- a,
+    .enviarRegistro- {
+        height: 40px;
+        width: 100px;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+    /*textarea*/
+
+    .textarea{
+        width: 250px;
+    }
+
+    .labelTextarea{
+        margin: -9px;
+    }
+
+    .formRegistroTextarea{
+        left: 0px;
+        top: 10px;
+    }
+
+    .formRegistroTextarea1{
+        left: 0px;
+        top: -80px;
+    }
+
+    .textarea:focus~label,
+    .textarea:valid~label {
+        top: -10px;
+        font-size: 16px;
+        padding: 0px 10px;
+        background-color: rgba(217, 217, 217);
+    }
+
+    .textarea:focus~label,
+    .textarea:valid~label {
+        top: -5px;
+        font-size: 11px;
+    }
+
+    .formRegistro .descripcionLabel {
+        font-size: 13px;
+        top: 20%;
+    }
+
+}
+
 
 /* Nueva receta y nuevo producto CSS */
 
-.contenedorFormRegistro{
+.contenedorFormRegistro {
     display: grid;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
 
-.contenedorFormRegistro1{
+.contenedorFormRegistro1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -409,7 +566,7 @@
     margin: 40px;
 }
 
-.tituloRegistro{
+.tituloRegistro {
     grid-column: 1 / span 2;
     margin: 20px;
     background-color: rgba(154, 0, 15);
@@ -420,7 +577,7 @@
     line-height: 80px;
 }
 
-.formularioRegistro{
+.formularioRegistro {
     display: grid;
     margin: 20px;
     justify-items: center;
@@ -428,24 +585,26 @@
     grid-template: repeat(5, 100px) / 400px 400px;
 }
 
-.contenedor1Registro img{
+.contenedor1Registro img {
     height: 450px;
     width: 500px;
     object-fit: cover;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    margin: 10px 30px 10px 10px; 
+    margin: 10px 30px 10px 10px;
 }
 
-.formRegistro{
+.formRegistro {
     position: relative;
 }
 
-input[type="file"], input[type="date"] {
+input[type="file"],
+input[type="date"] {
     text-decoration: none;
 }
 
-.formRegistro input, .form1Registro select{
+.formRegistro input,
+.form1Registro select {
     width: 350px;
     height: 60px;
     border-radius: 6px;
@@ -458,12 +617,12 @@ input[type="file"], input[type="date"] {
     margin: 10px;
 }
 
-.form1Registro select:focus{
+.form1Registro select:focus {
     border: 2px solid rgba(255, 102, 0);
     flex-direction: column;
 }
 
-.formRegistro label{
+.formRegistro label {
     padding: 0px 15px;
     position: absolute;
     top: 15%;
@@ -476,31 +635,31 @@ input[type="file"], input[type="date"] {
 }
 
 .formRegistro input::-webkit-inner-spin-button,
-.formRegistro input::-webkit-outer-spin-button{
+.formRegistro input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.formRegistro input:focus{
+.formRegistro input:focus {
     border: 2px solid rgba(255, 102, 0);
 }
 
-.formRegistro input:focus ~ label,
-.formRegistro input:valid ~ label{
+.formRegistro input:focus~label,
+.formRegistro input:valid~label {
     top: -10px;
     font-size: 16px;
     padding: 0px 15px;
     background-color: rgba(217, 217, 217);
 }
 
-.btn1Registro{
+.btn1Registro {
     padding-top: 20px;
     display: grid;
     justify-items: center;
     width: 100%;
 }
 
-.enviarRegistro{
+.enviarRegistro {
     background-color: rgba(154, 0, 15);
     width: 750px;
     height: 50px;
@@ -514,14 +673,112 @@ input[type="file"], input[type="date"] {
     transition: all 500ms ease;
 }
 
-.btn1Registro .enviarRegistro:hover{
+.btn1Registro .enviarRegistro:hover {
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
 
+/* estilos para el file */
+.fileR {
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid rgba(154, 0, 15);
+    background: transparent;
+    color: rgba(0, 0, 0);
+    outline: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.fileRI {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 60px;
+    opacity: 0;
+    margin: -10px;
+    cursor: pointer;
+}
+
+.textoFile {
+    margin: 15px 5px;
+}
+
+
+/* Media queries nueva receta y nuevo producto */
+
+@media only screen and (min-width:320px) and (max-width:1024px) {
+    
+    .contenedorFormRegistro1 img {
+        display: none;
+    }
+
+    .contenedorFormRegistro {
+        min-width: 320px;
+        max-width: 1024px;
+    }
+
+    .contenedorFormRegistro1 {
+        grid-template: 100px 350px / 1fr;
+    }
+
+    .formularioRegistro {
+        margin: 10px;
+    }
+
+    .tituloRegistro {
+        margin: 10px;
+        height: 65px;
+        line-height: 65px;
+    }
+
+    .formRegistro input,
+    .form1Registro select {
+        width: 250px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .formRegistro label {
+        font-size: 12px;
+    }
+
+    .formRegistro input:focus~label,
+    .formRegistro input:valid~label {
+        top: -6px;
+        font-size: 11px;
+    }
+
+    .fileR {
+        width: 250px;
+        height: 45px;
+        top: -6px;
+    }
+
+    .textoFile {
+        font-size: 13px;
+    }
+
+    .btn1Registro a,
+    .enviarRegistro {
+        height: 40px;
+        width: 100px;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+}
+
+
 /*Footer css*/
 
-.footerLogin{
+.footerLogin {
     height: 160px;
     background-color: rgba(217, 217, 217);
     border-top: 1px solid black;
@@ -532,19 +789,19 @@ input[type="file"], input[type="date"] {
     padding: 10px;
 }
 
-.footerLogin p{
-    font-size: 25px;
+.footerLogin p {
+    font-size: 20px;
     text-align: left;
     margin: 20px;
 }
 
-.logo1SenaLogin{
+.logo1SenaLogin {
     height: 100px;
     width: 100px;
     margin: 10px;
 }
 
-.logo3Login{
+.logo3Login {
     height: 140px;
     width: 140px;
     background-color: rgba(255, 255, 255);
@@ -554,76 +811,78 @@ input[type="file"], input[type="date"] {
 
 /*Media querys footer*/
 
-@media only screen and (min-width:320px) and (max-width:1024px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .footerLogin{
+    .footerLogin {
         height: 80px;
         bottom: 0;
         display: flex;
     }
 
-    .footerLogin p{
+    .footerLogin p {
         font-size: 10px;
         margin: 5px;
     }
 
-    .logo1SenaLogin{
+    .logo1SenaLogin {
         height: 50px;
         width: 50px;
         margin: 2px;
     }
 
-    .logo3Login{
+    .logo3Login {
         height: 65px;
         width: 65px;
+        margin-left: auto;
     }
 
 }
 
 /*Media querys contenedorRegistro*/
 
-@media only screen and (min-width:320px) and (max-width:1024px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .contenedorFormRegistro{
+    .contenedorFormRegistro {
         min-width: 320px;
         max-width: 768px;
     }
 
-    .contenedorFormRegistro1{
+    .contenedorFormRegistro1 {
         margin: 30px;
         width: auto;
         min-width: 300px;
     }
 
-    .tituloRegistro{
+    .tituloRegistro {
         height: 65px;
         line-height: 65px;
         margin: 10px;
     }
 
-    .formularioRegistro{
+    .formularioRegistro {
         margin: 10px;
         grid-template: repeat(9, 80px)/ 400px;
     }
 
-    .formRegistro input, .form1Registro select{
+    .formRegistro input,
+    .form1Registro select {
         width: 250px;
         height: 45px;
         font-size: 12px;
     }
 
-    .formRegistro label{
+    .formRegistro label {
         font-size: 13px;
         top: 20%;
     }
 
-    .formRegistro input:focus ~ label,
-    .formRegistro input:valid ~ label{
+    .formRegistro input:focus~label,
+    .formRegistro input:valid~label {
         top: -2px;
         font-size: 11px;
     }
 
-    .btn1Registro .enviarRegistro{
+    .btn1Registro .enviarRegistro {
         height: 50px;
         width: 250px;
         font-size: 13px;
@@ -636,27 +895,28 @@ input[type="file"], input[type="date"] {
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:1024px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .menuHIndex, .btnMenuH1{
+    .menuHIndex,
+    .btnMenuH1 {
         line-height: 65px;
     }
 
-    .logoHIndex{
+    .logoHIndex {
         height: 55px;
         width: 55px;
         margin-left: 5px;
     }
 
-    .NombreProyectoIndex{
+    .NombreProyectoIndex {
         line-height: 65px;
     }
 
-    .headerIndex{
+    .headerIndex {
         height: 75px;
     }
 
-    .menuHIndex{
+    .menuHIndex {
         position: absolute;
         background-color: rgb(119, 0, 12);
         width: 100%;
@@ -667,31 +927,31 @@ input[type="file"], input[type="date"] {
         transform: translateX(-100%);
     }
 
-    #btnMenu:checked ~ .menuHIndex{
+    #btnMenu:checked~.menuHIndex {
         transform: translateX(0);
     }
 
-    .menuHIndex a{
+    .menuHIndex a {
         display: block;
-        text-align: center;
+        /* text-align: center; */
         margin-top: 10px;
     }
 
-    .btnMenuHIndex{
+    .btnMenuHIndex {
         display: block;
         padding-right: 10px;
         line-height: 60px;
     }
-} 
+}
 
 /* estilos para las listas */
 
-.container{
+.container {
     width: 100%;
     padding: 0 50px 50px;
 }
 
-.div1{
+.div1 {
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
     margin-right: auto;
@@ -699,7 +959,7 @@ input[type="file"], input[type="date"] {
     margin-top: 50px;
 }
 
-.div2{
+.div2 {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
@@ -711,7 +971,7 @@ input[type="file"], input[type="date"] {
     justify-content: center;
 }
 
-.div3{
+.div3 {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -719,28 +979,28 @@ input[type="file"], input[type="date"] {
     word-wrap: break-word;
     background-color: #efefef;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
     overflow: auto;
 }
 
-.divHeader{
+.divHeader {
     padding: 0.5rem 1rem;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
     display: flex;
     justify-content: space-between;
 }
 
-.buscador input{
+.buscador input {
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 6px;
     padding: 4px;
     margin: 0 0 0 20px;
 }
 
-.buscador button{
+.buscador button {
     border-radius: 6px;
     color: rgba(255, 255, 255);
     background-color: rgba(255, 102, 0);
@@ -751,55 +1011,62 @@ input[type="file"], input[type="date"] {
     transition: all 500ms ease-out;
 }
 
-.buscador button:hover{
+.buscador button:hover {
     background-color: rgb(200, 80, 0);
 }
 
-.titulo{
+.titulo {
     font-size: 24px;
     color: rgba(154, 0, 15);
     line-height: 50px;
 }
 
-.divBody{
+.divBody {
+    /* margin: 0;
+    padding: 0;
+    box-sizing: border-box; */
     display: grid;
     padding: 1rem 1rem;
     grid-template: 120px / repeat(8 1fr) minmax(150px 200px);
 }
 
-.table{
+.table {
+    /* width: 100%; */
+    border-collapse: collapse;
     margin: 20px;
     height: 150px;
     align-items: center;
     justify-content: center;
 }
 
-.table thead tr th{
+.table thead tr th {
     border-bottom: 1px solid black;
     padding: 20px 5px;
     text-align: center;
 }
 
-tbody tr td{
+tbody tr td {
     flex-shrink: 1;
     text-align: center;
-    padding: 10px;
+    padding: 3px;
 }
-tr:nth-child(even){
+
+tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.crud-form{
+.crud-form {
     display: flex;
     justify-content: center;
     margin-top: 25px;
 }
-.crud-active{
+
+.crud-active {
     display: flex;
     justify-content: center;
 }
 
-.btnEliminar{
+.btnEliminar {
     background-color: rgba(154, 0, 15);
     color: rgba(255, 255, 255);
     border-radius: 6px;
@@ -811,7 +1078,7 @@ tr:nth-child(even){
     margin: 5px;
 }
 
-.btnEditar{
+.btnEditar {
     background-color: rgba(255, 102, 0);
     color: rgba(255, 255, 255);
     border-radius: 6px;
@@ -821,24 +1088,76 @@ tr:nth-child(even){
     text-decoration: none;
     transition: all 500ms ease-out;
     margin: 5px;
-    
+
 }
 
-.btnEliminar:hover{
+.btnEliminar:hover {
     background-color: rgb(96, 0, 10);
 }
 
-.btnEditar:hover{
+.btnEditar:hover {
     background-color: rgba(200, 80, 0);
     color: rgba(255, 255, 255);
 }
 
+/* estilos para las tablas en mobiles */
+
+.tabla-mobile{
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabla-mobile .fila .columna{
+    display: flex;
+}
+
+.tabla-mobile .fila .columna .header,
+.tabla-mobile .fila .columna .contenido{
+    border: 1px solid #dddddd;
+    border-bottom: none;
+    padding: 10px;
+}
+
+.tabla-mobile .fila .columna .header{
+    width: 25%;
+    border-bottom: 1px solid black;
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    justify-items: center;
+    background-color: rgba(154, 0, 15);
+    color: rgba(255, 255, 255);
+}
+
+.tabla-mobile .fila .columna .contenido{
+    width: 75%;
+    padding: 10px 5px;
+    text-align: center;
+    margin: 0 auto;
+    justify-items: center;
+
+}
+.tabla-mobile .fila:nth-of-type(even) .columna .contenido{
+    background-color: #dddddd;
+}
+
+
+@media (max-width: 1000px){
+    .tabla-mobile{
+        display: block;
+    }
+    .table{
+        display: none;
+    }
+}
 /* estilos de la paginacion  */
 
 .pagination {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 20px 0 0 0;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -872,52 +1191,18 @@ tr:nth-child(even){
     color: #ccc;
 }
 
-/* estilos para el file */
-.fileR{
-    width: 350px;
-    height: 60px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid rgba(154, 0, 15);
-    background: transparent;
-    color: rgba(0, 0, 0);
-    outline: none;
-    margin: 10px;
-    cursor: pointer;
-}
-
-.fileRI{
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    margin: -10px;
-    cursor: pointer;
-}
-
-.textoFile{
-    margin: 15px 5px;
-}
-
 /*Lista inicio de jornada registradas*/
 
 .bodyListas {
     margin: 0 auto;
-    font-family: "literata", serif;
-    background-color: #ccc;
+    background-color: #999;
     padding: 0;
 }
 
 .contenedorListasR {
     margin: 30px;
     padding: 20px;
-    font-family: "literata", serif;
-    background-color: #ccc;
+    background-color: #dddddd;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -932,12 +1217,25 @@ tr:nth-child(even){
 }
 
 /* Ajustes para la búsqueda */
+.buscador-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 .buscador {
     display: inline-flex;
     justify-content: flex-end;
     gap: 10px;
     align-items: center;
 }
+
+#buscadorform{
+    /* text-transform: uppercase; */
+    font-weight: bold;
+    font-size: large;
+}
+ 
+    
 
 /* Grid para la disposición de listas */
 .rowListasR {
@@ -962,7 +1260,12 @@ tr:nth-child(even){
 .cardListaR {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #efefef;
+    background-color: white;
+}
+
+.cardListaR:hover {
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 .cardHeaderListaR {
@@ -996,25 +1299,31 @@ tr:nth-child(even){
     border-radius: 5px;
     padding: 10px;
     transition: background-color 0.5s;
+    transition: all 500ms ease-out;
+    cursor: pointer;
 }
 
 .buttonListaR:hover {
     background-color: rgb(172, 69, 0);
 }
 
-
-
-
-
+.descripcion {
+    text-align: justify;
+    /* max-width: 50%; */
+    
+}
 /* Contenedor principal de las recetas sugeridas */
+
 .contenedorListasR- {
-    margin: 30px auto; /* Centra el contenedor horizontalmente */
+    margin: 30px auto;
+    /* Centra el contenedor horiszontalmente */
     padding: 20px;
-    font-family: "literata", serif;
-    background-color: #f0f0f0; /* Cambiado a un tono más claro */
+    background-color: rgb(230, 230, 230);
+    /* Cambiado a un tono más claro */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 1200px; /* Ancho máximo del contenedor */
+    max-width: 1200px;
+    /* Ancho máximo del contenedor */
 }
 
 /* Estilos para el título de recetas sugeridas */
@@ -1023,16 +1332,20 @@ tr:nth-child(even){
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    margin-top: 0; /* Elimina el margen superior */
-    margin-bottom: 20px; /* Agrega espacio inferior */
+    margin-top: 0;
+    /* Elimina el margen superior */
+    margin-bottom: 20px;
+    /* Agrega espacio inferior */
 }
 
 /* Media queries para responsividad */
 .rowListasR- {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tamaño mínimo y máximo de las tarjetas */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Tamaño mínimo y máximo de las tarjetas */
     grid-gap: 20px;
-    justify-content: center; /* Centra las tarjetas en el contenedor */
+    justify-content: center;
+    /* Centra las tarjetas en el contenedor */
 }
 
 /* Estilos para las tarjetas vista recetas sugeridas */
@@ -1046,7 +1359,8 @@ tr:nth-child(even){
 }
 
 .cardListaR-:hover {
-    transform: translateY(-5px); /* Añadido efecto de levantamiento al hacer hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 .cardHeaderListaR- {
@@ -1055,18 +1369,47 @@ tr:nth-child(even){
     text-align: center;
     padding: 20px;
     border-radius: 10px 10px 0 0;
-    margin: 0; /* Elimina el margen */
+    margin: 0;
 }
 
 .cardBodyListaR- {
     padding: 20px;
     text-align: center;
-    overflow: hidden; /* Oculta el contenido que desborda */
-    flex-grow: 1; /* Permite que el cuerpo de la tarjeta crezca para ajustarse al contenido */
+    overflow: hidden;
+    flex-grow: 1;
 }
 
 .cardBodyListaR- p {
-    margin: 0; /* Elimina el margen predeterminado del párrafo */
-    white-space: pre-line; /* Permite saltos de línea */
-    overflow-wrap: break-word; /* Rompe las palabras largas */
+    margin: 0;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+
+li {
+    padding-left: 40px;
+}
+
+.DivBtnEditar- {
+    margin-top: 30px;
+    align-items: center;
+}
+
+.btnEditar- {
+    text-align: center;
+    background-color: rgba(255, 102, 0);
+    color: rgba(255, 255, 255);
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 8px;
+    border: none;
+    text-decoration: none;
+    transition: all 500ms ease-out;
+    /* margin-left: 40%; */
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btnEditar-:hover {
+    background-color: #8B0000;
+    
 }

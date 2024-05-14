@@ -44,7 +44,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($usuarios as $usuario)
+        
             <tr>
                 <td>{{ $usuario->Id_Empleado }}</td>
                 <td>{{ $usuario->tipo_documento }}</td>
@@ -60,6 +60,6 @@
                     @endif
                 </td>
             </tr>
-        @endforeach
+        
     </tbody>
 </table>

@@ -1,13 +1,12 @@
-*{
+* {
     margin: 0px;
-    font-family: "literata", serif;
-    font-style: italic;
+    font-family: Calibri;
     padding: 0px;
     text-decoration: none;
     box-sizing: border-box;
 }
 
-.contenedorLogin{
+.contenedorLogin {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -16,7 +15,7 @@
 
 /*Header css*/
 
-.headerIndex{
+.headerIndex {
     background-color: rgba(154, 0, 15);
     width: 100%;
     height: 110px;
@@ -28,11 +27,11 @@
     padding: 5px;
 }
 
-.contenedorHIndex{
+.contenedorHIndex {
     width: 98%;
 }
 
-.logoHIndex{
+.logoHIndex {
     height: 100px;
     width: 100px;
     background-color: rgba(255, 255, 255);
@@ -42,7 +41,7 @@
     object-fit: cover;
 }
 
-.NombreProyectoLogin{
+.NombreProyectoLogin {
     float: left;
     height: 100px;
     width: 100px;
@@ -51,12 +50,12 @@
     line-height: 100px;
 }
 
-.menuHIndex{
+.menuHIndex {
     float: right;
     line-height: 100px;
 }
 
-.menuHIndex a{
+.menuHIndex a {
     color: rgba(255, 255, 255);
     padding: 15px;
     display: inline-block;
@@ -66,21 +65,21 @@
     border-bottom: 4px solid transparent;
 }
 
-.menuHIndex a:hover{
+.menuHIndex a:hover {
     color: rgba(255, 102, 0);
     border-bottom: 4px solid rgba(255, 102, 0);
 }
 
-#btnMenu{
+#btnMenu {
     display: none;
 }
 
-.btnMenuHIndex{
+.btnMenuHIndex {
     float: right;
     display: none;
 }
 
-.btnMenuHIndex label{
+.btnMenuHIndex label {
     background-color: rgba(255, 102, 0);
     padding: 5px;
     font-size: 14px;
@@ -92,14 +91,14 @@
 
 /*contenedor1Login css*/
 
-.contenedorFormLogin{
+.contenedorFormLogin {
     display: grid;
     justify-content: center;
     align-items: center;
     padding-bottom: 50px;
 }
 
-.contenedor1Login{
+.contenedor1Login {
     display: grid;
     grid-template: 150px 500px / 1fr 1fr;
     justify-content: center;
@@ -110,7 +109,7 @@
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-.tituloFormLogin{
+.tituloFormLogin {
     grid-column: 1 / span 2;
     margin: 20px;
     background-color: rgba(154, 0, 15);
@@ -121,26 +120,27 @@
     line-height: 80px;
 }
 
-.formularioLogin{
+.formularioLogin {
     display: grid;
     margin: 20px;
     justify-items: center;
 }
 
-.contenedor1Login img{
+.contenedor1Login img {
     height: 450px;
     width: 500px;
     object-fit: cover;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    margin: 10px 30px 10px 10px; 
+    margin: 10px 30px 10px 10px;
 }
 
-.form2Login{
+.form2Login {
     position: relative;
 }
 
-.form2Login input, .form1Login select{
+.form2Login input,
+.form1Login select {
     width: 350px;
     height: 60px;
     border-radius: 6px;
@@ -152,11 +152,11 @@
     outline: none;
 }
 
-.form1Login select:focus{
+.form1Login select:focus {
     border: 2px solid rgba(255, 102, 0);
 }
 
-.form2Login label{
+.form2Login label {
     position: absolute;
     top: 15%;
     left: 15px;
@@ -168,31 +168,32 @@
 }
 
 .form2Login input::-webkit-inner-spin-button,
-.form2Login input::-webkit-outer-spin-button{
+.form2Login input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.form2Login input:focus{
+.form2Login input:focus {
     border: 2px solid rgba(255, 102, 0);
 }
 
-.form2Login input:focus ~ label,
-.form2Login input:valid ~ label{
+.form2Login input:focus~label,
+.form2Login input:valid~label {
     top: -10px;
     font-size: 16px;
     padding: 0px 15px;
     background-color: rgba(217, 217, 217);
 }
 
-.btn1Login{
+.btn1Login {
     display: grid;
     grid-template: 1fr / 1fr 1fr;
     justify-items: center;
     width: 100%;
 }
 
-.btn1Login a, .enviarLogin{
+.btn1Login a,
+.enviarLogin {
     height: 50px;
     width: 150px;
     color: rgba(255, 255, 255);
@@ -205,12 +206,12 @@
     line-height: 50px;
 }
 
-.btn1Login a:hover{
+.btn1Login a:hover {
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
 
-.btn1Login .enviarLogin:hover{
+.btn1Login .enviarLogin:hover {
     background-color: rgba(255, 102, 0);
     cursor: pointer;
 }
@@ -218,7 +219,7 @@
 /*Footer css*/
 /* cambio en el position: absolute */
 
-.footerLogin{
+.footerLogin {
     height: 160px;
     /* position: fixed; */
     background-color: rgba(217, 217, 217);
@@ -229,19 +230,19 @@
     width: 100%;
 }
 
-.footerLogin p{
+.footerLogin p {
     font-size: 25px;
     text-align: left;
     margin: 20px;
 }
 
-.logo1SenaLogin{
+.logo1SenaLogin {
     height: 100px;
     width: 100px;
     margin: 10px;
 }
 
-.logo3Login{
+.logo3Login {
     height: 140px;
     width: 140px;
     background-color: rgba(255, 255, 255);
@@ -251,76 +252,78 @@
 
 /*Media querys footer*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .footerLogin{
+    .footerLogin {
         height: 80px;
         grid-template: 80px / 50px 1fr 80px;
         bottom: 0;
     }
 
-    .footerLogin p{
+    .footerLogin p {
         font-size: 10px;
         margin: 5px;
     }
 
-    .logo1SenaLogin{
+    .logo1SenaLogin {
         height: 50px;
         width: 50px;
         margin: 2px;
     }
 
-    .logo3Login{
+    .logo3Login {
         height: 65px;
         width: 65px;
     }
 
-} 
+}
 
 /*Media querys contenedor1Login*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .contenedor1Login img{
+    .contenedor1Login img {
         display: none;
     }
 
-    .contenedorFormLogin{
+    .contenedorFormLogin {
         min-width: 320px;
         max-width: 768px;
     }
 
-    .contenedor1Login{
+    .contenedor1Login {
         grid-template: 100px 350px / 1fr;
     }
 
-    .formularioLogin{
+    .formularioLogin {
         margin: 10px;
     }
 
-    .tituloFormLogin{
+    .tituloFormLogin {
         margin: 10px;
         height: 65px;
         line-height: 65px;
     }
 
-    .form2Login input, .form1Login select{
+    .form2Login input,
+    .form1Login select {
         width: 250px;
         height: 45px;
         font-size: 12px;
     }
 
-    .form2Login label{
+    .form2Login label {
         font-size: 13px;
     }
 
-    .form2Login input:focus ~ label,
-    .form2Login input:valid ~ label{
+    .form2Login input:focus~label,
+    .form2Login input:valid~label {
         top: -6px;
         font-size: 11px;
     }
 
-    .btn1Login a, .enviarLogin{
+    .btn1Login a,
+    .enviarLogin {
         height: 40px;
         width: 100px;
         font-size: 13px;
@@ -331,26 +334,27 @@
 
 /*Media querys header*/
 
-@media only screen and (min-width:320px) and (max-width:768px){
+@media only screen and (min-width:320px) and (max-width:1024px) {
 
-    .menuHIndex, .btnMenuH1{
+    .menuHIndex,
+    .btnMenuH1 {
         line-height: 65px;
     }
 
-    .logoHIndex{
+    .logoHIndex {
         height: 65px;
         width: 65px;
     }
 
-    .NombreProyectoLogin{
+    .NombreProyectoLogin {
         line-height: 65px;
     }
 
-    .headerIndex{
+    .headerIndex {
         height: 75px;
     }
 
-    .menuHIndex{
+    .menuHIndex {
         position: absolute;
         background-color: rgb(119, 0, 12);
         width: 100%;
@@ -361,24 +365,24 @@
         transform: translateX(-100%);
     }
 
-    #btnMenu:checked ~ .menuHIndex{
+    #btnMenu:checked~.menuHIndex {
         transform: translateX(0);
     }
 
-    .menuHIndex a{
+    .menuHIndex a {
         display: block;
         margin-top: 10px;
     }
 
-    .btnMenuHIndex{
+    .btnMenuHIndex {
         display: block;
         padding-right: 10px;
         line-height: 60px;
     }
-} 
+}
 
-@media only screen and (min-width:0px) and (max-width:320px){
-    *{
+@media only screen and (min-width:0px) and (max-width:320px) {
+    * {
         display: none;
     }
 }
@@ -389,8 +393,9 @@
     position: absolute;
     top: 28%;
     right: 15px;
-    
+
     transform: translateY(-50%);
     cursor: pointer;
-    z-index: 1; /* Asegura que el icono esté sobre el input */
+    z-index: 1;
+    /* Asegura que el icono esté sobre el input */
 }
