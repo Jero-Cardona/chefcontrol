@@ -113,6 +113,8 @@
                                             <a href="{{ route('cliente.active', $cliente->Id_Cliente) }}"
                                                 class="btnEliminar swal-confirm">Activar</a>
                                         @endif
+                                        <a href="{{ route('cliente.pdf',['Id_Cliente' => $cliente->Id_Cliente])}}"
+                                            class="btnEditar swal-descargar">Descargar</a>
                                         @else
                                         <a href="{{ route('cliente.pdf',['Id_Cliente' => $cliente->Id_Cliente])}}"
                                             class="btnEditar swal-descargar">Descargar</a>

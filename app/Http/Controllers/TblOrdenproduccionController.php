@@ -254,7 +254,7 @@ class TblOrdenproduccionController extends Controller
         }
 
         $ordenesPorCliente = $ordenes->groupBy(function ($orden) {
-            return $orden->cliente->Nombre; // Agrupa por el nombre del cliente
+            return $orden->cliente->Nombre . ' ' . $orden->cliente->Apellido; // Agrupa por el nombre y apellido del cliente
         });
 
         $pdf = Pdf::loadView('pdf.pdfordenes', compact('ordenes', 'titulo', 'ordenesPorCliente'));

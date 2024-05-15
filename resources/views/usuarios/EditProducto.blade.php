@@ -57,14 +57,12 @@
                     <div class="form1Registro">
                         <select value="{{ $producto[0]->Cod_UMedida }}" id="Cod_UMedida" name="Cod_UMedida" required>
                             <option value="" disabled selected hidden>{{ $producto[0]->Cod_UMedida }}</option>
-                            <option value="1">Gramos</option>
-                            <option value="2">Kilos</option>
-                            <option value="3">Libras</option>
-                            <option value="4">Onzas</option>
-                            <option value="5">Porción</option>
-                            <option value="6">Unidad</option>
-                            <option value="7">Litros</option>
-                            <option value="8">Mililitros</option>
+                          <option value="1">Gramos (g)</option>
+                            <option value="2">Kilogramos (kg)</option>
+                            <option value="3">Litros (l)</option>
+                            <option value="4">Mililitro (ml)</option>
+                            <option value="5" >Centímetros cúbicos (cm³)</option>
+                          
                         </select>
                     </div>
                     <div class="formRegistro">

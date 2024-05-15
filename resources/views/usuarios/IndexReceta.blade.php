@@ -121,12 +121,12 @@
         <div class="contenedor2Recetas">
             <a class="a1Recetas" href="{{ route('crudrecetas') }}">
                 <img src="{{ asset('imagenes/proyecto/image21.png') }}">
-                <b>Recetas estandarizadas</b>
+                <b>Lista Recetas</b>
             </a>
             <a class="a2Recetas" href="{{ route('receta.create') }}">
                 <img src="{{ asset('imagenes/proyecto/image4.png') }}">
                 @if (Auth::user()->Id_Rol == '1')
-                    <b>Estandarizar una receta</b>
+                    <b>estandarizar receta</b>
                 @else
                     <b>Sugerir receta</b>
                 @endif
@@ -159,7 +159,7 @@
                         <div class="hoverDiv2Recetas">
                             <h2>{{ $receta->Nombre }}</h2><br>
                             <p>Costo de la receta: <br>
-                            $cop {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
+                            $COP {{ number_format($receta['Costo_Total'], 0, '.', ',') }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -220,47 +220,6 @@
                 <img class="logo3Recetas" src="{{ asset('imagenes/proyecto/logo.svg') }}">
             </footer>
         </div>
-        {{-- modal para calcular la cantidad de Recetas --}}
-        <section class="modal">
-            <div class="modal__container">
-                <img src="{{ $receta->imagen }}" alt="{{ $receta->Nombre }}" class="modal__img">
-                <h2 class="modal__title">{{ $receta->Nombre }}</h2>
-                <p class="modal__parrafo">{{ $receta->Descripcion }}</p>
-                <a href="#" class="cerrarModal">Cerrar</a>
-                <h3 class="modal__title">Ingredientes de la receta</h3>
-                <ul>
-                    @foreach ($receta->detallesReceta as $detalle)
-                        <li>
-                            {{ $detalle->producto->Nombre }} - {{ $detalle->Cantidad }}
-                            {{ $detalle->unidadMedida->Unidad_Medida }}
-                        </li>
-                    @endforeach
-                </ul>
-                <form id="frmcantidad" method="POST"
-                    action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
-                    @csrf
-                    <div>
-                        <label for="cantidad">Cantidad de la receta:</label>
-                        <input type="number" name="cantidad" min="1" required>
-                    </div>
-                    <button type="submit">Calcular</button>
-                </form>
-                @if (isset($cantidadesAjustadas))
-                    <h2 class="nombre-ingredientes">Cantidades ajustadas para
-                        {{ number_format($cantidad, 0, '.', ',') }} porciones:</h2>
-                    <ul>
-                        @foreach ($cantidadesAjustadas as $detalle)
-                            <li>
-                                {{ $detalle['producto']->Nombre }} -
-                                {{ number_format($detalle['cantidadAjustada'], 0, '.', ',') }}
-                                {{ $detalle['unidadMedida']->Unidad_Medida }}
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-                <a href="#" class="cerrarModal">Cerrar</a>
-            </div>
-        </section>
         <script src="{{ asset('js/SweetAlerts.js') }}"></script>
         @if (session('inicio'))
             <script>

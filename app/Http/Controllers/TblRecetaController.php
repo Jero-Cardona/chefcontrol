@@ -101,10 +101,13 @@ class TblRecetaController extends Controller
             'imagen.max' => 'La imagen no debe ser mayor de 2MB.'
         ]);
 
+        // variabe path produccion
+        $url = '/home/dh_ir2j2g/chefcontrolr.adso.cloud';
+
         // Procesamiento de la imagen
         if ($request->hasFile('imagen')) {
             $imageName = time() . '.' . $request->imagen->extension();
-            $request->imagen->move(public_path('imagenes/recetas/'), $imageName);
+            $request->imagen->move(($url.'imagenes/recetas/'), $imageName);
             $urlreceta = asset('imagenes/recetas/' . $imageName);
         } else {
             $urlreceta = "";

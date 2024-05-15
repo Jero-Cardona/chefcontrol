@@ -102,7 +102,7 @@
     <p>Este documento contiene un listado de las {{ $titulo }}.</p>
     @foreach ($ordenesPorCliente as $cliente => $ordenesDelCliente)
         <div class="card">
-            <h2>Cliente: {{ $cliente }}</h2>
+            <h2>Cliente: {{ $orden->cliente->Nombre .' ' .$orden->cliente->Apeliido}}</h2>
             @foreach ($ordenesDelCliente as $index => $orden)
                 @if ($index % 2 == 0)
                     <div class="row">
@@ -111,7 +111,7 @@
                     <div class="order-details">
                         <h3>Orden #{{$orden->Consecutivo}}</h3>
                         <p>Fecha:{{ $orden->Fecha }}</p>
-                        <p>Cocinero responsable: {{ $orden->empleado->Nombre }}</p>
+                        <p>Cocinero responsable: {{ $orden->empleado->Nombre . ' ' . $orden->empleado->Apellido }}</p>
                         <p>Receta: {{ $orden->receta->Nombre }}</p>
                         <p>Cantidad: {{ $orden->cantidad }}</p>
                         @if ($orden->receta)

@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="card-body" style="padding: 20px;">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" style="width: 95%; border-collapse: collapse; justify-items:center;">
+                                        <table class="table-bordered" style="width: 95%; border-collapse: collapse; justify-items:center;">
                                             <thead>
                                                 <tr>
                                                     <th

@@ -79,7 +79,7 @@ class TblProductoController extends Controller
 
         if ($producto->save()) {
             session()->flash('confirm-producto', 'El producto ha sido registrado correctamente');
-            return redirect()->route('usuarios.index');
+            return redirect()->route('usuarios.FormProducto');
         } else {
             return "datos no enviados";
         }

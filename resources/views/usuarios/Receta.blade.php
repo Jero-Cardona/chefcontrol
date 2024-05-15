@@ -20,36 +20,34 @@
             </div>
             <div class="contenedorIngredientesR2">
                 <div class="receta-info2">
-                    <div class="ingredientes" style="margin: 0 auto;">
+                    <div class="ingredientes">
                         <h2 class="nombre-ingredientes">Ingredientes</h2>
                         @if ($receta->detallesReceta->isNotEmpty())
-
-                        <table style="margin: 0 auto; height: 100px; text-align:left;">
-                            <thead>
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Cantidad  </th>
-                                    <th>Unidad de medida</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($receta->detallesReceta as $detalle)
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>{{ $detalle->producto->Nombre }}</td>
-                                        <td>{{ number_format($detalle['Cantidad'], 0, '.', ',') }}</td>
-                                        <td>{{ $detalle->unidadMedida->Unidad_Medida }}</td>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Unidad de medida</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($receta->detallesReceta as $detalle)
+                                        <tr>
+                                            <td>{{ $detalle->producto->Nombre }}</td>
+                                            <td>{{ number_format($detalle['Cantidad'], 0, '.', ',') }}</td>
+                                            <td>{{ $detalle->unidadMedida->Unidad_Medida }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         @endif
                     </div>
-                    <div class="calcular-div" style="margin: 0 auto;">
-                        <form id="frmcantidad" method="POST"
-                            action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
+                    <div class="calcular-div">
+                        <form id="frmcantidad" method="POST" action="{{ route('recetas.cantidadmultiplicada', $receta->Id_Receta) }}">
                             @csrf
                             <div class="calcular-div2">
-                                <label for="cantidad">Cantidad de la receta:</label>
+                                <label for="cantidad">Cantidad de porciones:</label>
                                 <input type="number" name="cantidad" min="1" required>
                             </div>
                             <button type="submit">Calcular</button>
@@ -61,7 +59,7 @@
             @if (isset($cantidadesAjustadas))
                 <h2 class="nombre-ingredientes">Cantidades ajustadas para {{ number_format($cantidad, 0, '.', ',') }} porciones:</h2>
                 <br>
-                <table style="margin: 0 auto; width: 80%; height: 100px;">
+                <table class="adjusted-table">
                     <thead>
                         <tr>
                             <th>Producto</th>

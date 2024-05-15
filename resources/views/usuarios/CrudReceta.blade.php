@@ -132,10 +132,14 @@
                                             <a href="{{ route('receta.active', $receta->Id_Receta) }}"
                                                 class="btnEliminar swal-confirm">Activar</a>
                                         @endif
+                                            
+                                            <a href="{{ route('receta.pdf', ['Id_Receta' => $receta->Id_Receta, 'button' => 1]) }}"
+                                                class="btnEditar swal-descargar">Descargar</a>
                                             @else
                                             <a href="{{ route('receta.pdf', ['Id_Receta' => $receta->Id_Receta, 'button' => 1]) }}"
                                                 class="btnEditar swal-descargar">Descargar</a>
                                             @endif
+
                                         </div>
                                     </div>
                                 @endforeach

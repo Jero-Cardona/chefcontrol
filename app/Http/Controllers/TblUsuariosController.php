@@ -139,14 +139,22 @@ class TblUsuariosController extends Controller
 
     // Actualiza los datos de los usuarios en la base de datos
     public function update(Request $request, $Id_Empleado)
-    {
-        $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
-        if ($usuario) {
-            DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->update($request->except(['_token', '_method']));
-            return to_route('usuarios.index');
-        } else {
-            return "no se pudo actulizar";
-        };
+    { 
+        try{
+       
+            $usuario = DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->get();
+            if ($usuario) {
+                DB::table('tbl_usuarios')->where('Id_Empleado', $Id_Empleado)->update($request->except(['_token', '_method']));
+                return to_route('usuarios.index');
+            } else {
+                return "no se pudo actulizar";
+            };
+        
+        }catch(\Exception $e){ 
+        return response()->json([
+                    'error' => 'Error al actualizar el establecimiento: ' . $e->getMessage(),
+                  ], 500);
+        }   
     }
 
     // Elimina los registros de la base de datos
@@ -187,6 +195,7 @@ class TblUsuariosController extends Controller
     {
         $usuarios = tbl_usuarios::all();
         // mostrar pdf
+        
         $pdf = Pdf::loadView('pdf.pdfusuarios', compact('usuarios'));
         // descarga el pdf
         return $pdf->download('usuarios.pdf');
@@ -213,4 +222,12 @@ class TblUsuariosController extends Controller
             return view('buscar.BuscarUsuario', compact('resultados', 'searchTerm'));
         }
     }
+
+    // public function mostrar(\exception $e){
+    //     return response()->json([
+    //         'error' => 'Error al actualizar el establecimiento: ' . $e->getMessage(),
+    //       ], 500);
+    // }
+
+
 }

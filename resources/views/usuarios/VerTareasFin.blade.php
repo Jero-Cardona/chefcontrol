@@ -16,8 +16,8 @@
                                     {{-- <h3 class="card-title" style="height: 40px;">Lista realizada en la fecha: {{ $fecha }} - Cocinero Responsable: {{ $tareasCompletadas->first()->usuario->Nombre }}</h3> --}}
                                 </div>
                                 <div class="card-body" style="padding: 20px;">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                                    <div>
+                                        <table class="table-bordered" style="width: 100%; border-collapse: collapse;">
                                             <thead>
                                                 <tr>
                                                     <th

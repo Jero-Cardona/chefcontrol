@@ -6,11 +6,13 @@ body {
 }
 
 .descripcion1 {
+    font-size: 20px;
     margin-right: 20px;
     width: 100%;
     padding-right: 40px;
     text-align: justify;
 }
+
 .container {
     max-width: 1200px;
     margin: 50px auto;
@@ -25,21 +27,40 @@ body {
     border-radius: 20px;
     color: white;
     height: 100px;
-    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
 .imgR {
-    height: 300px;
-    max-width: 100%;
-    min-width: 600px;
+    height: auto;
+    width: 100%;
+    max-width: 600px;
     object-fit: cover;
     border-radius: 8px;
-    padding: 20px;
-    float: left;
+    margin: 20px auto;
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
 }
 
 .receta-info {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 50px auto;
     width: 100%;
@@ -47,59 +68,80 @@ body {
 
 .receta-text {
     text-align: center;
+    padding: 20px;
 }
 
 .receta-info2 {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .calcular-div {
     padding-top: 40px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    
+    width: 100%;
 }
 
 .calcular-div2 {
+    display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
 }
 
-@media (min-width: 320px) and (max-width: 1024) {
+@media (min-width: 320px) and (max-width: 1024px) {
     .receta-info {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 20px;
-        flex: 0 0 300px;
-        min-width: auto;
-        /* margin: 150px auto;
-        width: 70%; */
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     .receta-text {
-        direction: row;
-        padding: 50px;
-        
+        padding: 20px;
     }
 
     .descripcion1 {
-        direction: row;
+        width: 100%;
+        padding-right: 20px;
     }
 
     .receta-info2 {
-        direction: row;
-        justify-content: space-between;
+        width: 100%;
     }
 
     .calcular-div {
-        flex: 0 0 300px;
-        margin-top: 0;
+        padding-top: 20px;
     }
 
-    .nombreR {
-        text-align: center;
-        padding-top: 0;
+    .calcular-div2 {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+@media(max-width: 500px){
+    .descripcion1 {
+        width: 100%;
+        font-size: 15px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 10px;
+    }
+
+    table, th, td {
+        font-size: 1em;
+    }
+
+    input[type="number"] {
+        width: 100%;
     }
 }
 
@@ -107,6 +149,9 @@ form {
     background-color: #ccc;
     padding: 20px;
     border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 input[type="number"] {
@@ -115,11 +160,12 @@ input[type="number"] {
     border: none;
     border-bottom: 1px solid #454545;
     background-color: #ccc;
+    margin-bottom: 20px;
 }
 
 button {
     display: block;
-    margin: 10px auto; /* Se establece auto para los márgenes laterales */
+    margin: 10px auto;
     padding: 10px 15px;
     background-color: rgba(255, 102, 0);
     color: #fff;
@@ -128,7 +174,6 @@ button {
     cursor: pointer;
     transition: all 500ms ease;
 }
-
 
 button:hover {
     background-color: rgba(154, 0, 15);
@@ -145,4 +190,3 @@ button:hover {
     color: black;
     text-align: center;
 }
-

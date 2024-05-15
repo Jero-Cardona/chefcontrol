@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="columna">
                                     <div class="header">imagen</div>
-                                    <div class="contenido"><img style="height: 100px; width: 100px; border-radius: 10px;"
+                                    <div class="contenido"><img style="height: 150px; width: 200px; border-radius: 10px;"
                                     src="{{ $producto->imagen }}" alt="imagen"></div>
                                 </div>
                                 <div class="columna">
@@ -164,6 +164,8 @@
                                             <a href="{{ route('producto.active', $producto->Cod_Producto) }}"
                                                 class="btnEliminar swal-confirm">Activar</a>
                                         @endif
+                                        <a href="{{ route('productounico.pdf', ['Cod_Producto' => $producto->Cod_Producto] )}}"
+                                            class="btnEditar swal-edit">Descargar</a>
                                         @else
                                         <a href="{{ route('productounico.pdf', ['Cod_Producto' => $producto->Cod_Producto] )}}"
                                             class="btnEditar swal-edit">Descargar</a>
