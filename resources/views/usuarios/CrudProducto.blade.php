@@ -1,5 +1,6 @@
 
 @extends('layouts.app')
+@section('title','ChefControl | Lista de productos')
 @section('content')
     <div class="container">
         {{-- @if (session('success'))
@@ -56,7 +57,7 @@
                                         <td>{{ $producto->tipoMedida->Unidad_Medida }}</td>
                                         <td>$COP {{ number_format($producto->Precio_Venta,  0, '.', ',')}}</td>
                                         <td>{{ $producto->Existencia }}</td>
-                                        <td>{{ $producto->IVA }}</td>
+                                        <td>{{ $producto->IVA }} %</td>
                                         <td>
                                             @if ($producto->estado == 1)
                                                 Activo

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Listas registradas')
 @section('content')
     @auth
         <body class="bodyListas">

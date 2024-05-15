@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Nuevo producto')
 {{ session('confirm-producto') }}
 @section('content')
     <body>

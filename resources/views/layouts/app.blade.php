@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
         rel="stylesheet">
     <link rel="icon" href="{{ asset('imagenes/proyecto/logo.svg') }}">
-    <title>ChefControl</title>
+    <title>@yield('title')</title>
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/cssclsbootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     @yield('style')
     <!-- enlace de la libreria de SweetAlert -->
@@ -29,7 +29,7 @@
             </div>
             <div class="usuarioRecetas">
 
-                <h2>{{ Auth::user()->Nombre }}</h2>
+                <h2>{{ Auth::user()->Nombre .''. Auth::user()->Apellido }}</h2>
                 <?php
                 $rol = App\Models\tbl_rol::where('Id_Rol', Auth::user()->Id_Rol)->first();
                 ?>
@@ -80,9 +80,9 @@
                     <a href="#">Orden de producción</a>
                     <div class="submenu">
                         <a href="{{ route('orden.produccion') }}">Nueva orden</a>
-                        <a href="{{ route('ordenes.espera') }}">Órdenes en espera</a>
-                        <a href="{{ route('ordenes.preparacion') }}">Órdenes en preparación</a>
-                        <a href="{{ route('ordenes.entregadas') }}">Órdenes entregadas</a>
+                        <a href="{{ route('ordenes.espera') }}">Ordenes en espera</a>
+                        <a href="{{ route('ordenes.preparacion') }}">Ordenes en preparación</a>
+                        <a href="{{ route('ordenes.entregadas') }}">Ordenes entregadas</a>
                     </div>
                 </div>
                 <div class="menu-item">

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','ChefControl | Registrar usuario')
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">

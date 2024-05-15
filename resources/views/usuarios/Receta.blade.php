@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'ChefControl | Calcular porciones')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('/css/calcular.css') }}">
 @endsection

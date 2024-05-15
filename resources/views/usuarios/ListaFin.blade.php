@@ -3,6 +3,7 @@ use Carbon\Carbon;
 $fechaActual = Carbon::now();
 ?>
 @extends('layouts.app')
+@section('title','ChefControl | Lista fin')
 @section('style')
     <link rel="stylesheet" href="{{ asset('/css/estilosListasChequeo.css') }}">
 @endsection

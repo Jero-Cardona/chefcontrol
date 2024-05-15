@@ -2,6 +2,7 @@
 use Carbon\Carbon;
 ?>
 @extends('layouts.app')
+@section('title','ChefControl | Nueva orden')
 @section('content')
     @auth
         <div class="contenedorFormRegistro-">
